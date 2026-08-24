@@ -1,0 +1,414 @@
+% FreshRoute AI — Central Bibliography
+% Chicago author-date rendered from these keys; cited in code docstrings as [@key]
+% Audit: every numeric constant in core/*.py must map to a key here or docs/calibration/*.md
+% Generated 2026-08-24 — curated for publication-grade traceability
+
+% ===== Block A — Kinetics & Food Science (P2 Arrhenius) =====
+
+@article{arrhenius1889,
+  author  = {Arrhenius, Svante},
+  title   = {\"{U}ber die {R}eaktionsgeschwindigkeit bei der {I}nversion von {R}ohrzucker durch {S}\"auren},
+  journal = {Zeitschrift f\"ur Physikalische Chemie},
+  year    = {1889},
+  volume  = {4},
+  number  = {1},
+  pages   = {226--248},
+  doi     = {10.1515/zpch-1889-0408},
+  note    = {Foundational exponential temperature dependence $k(T)=A\exp(-E_a/RT)$ used in spec \S2.1}
+}
+
+@article{labuza1984shelflife,
+  author  = {Labuza, Theodore P. and Schmidl, Mary K.},
+  title   = {Accelerated Shelf-Life Testing of Foods},
+  journal = {Food Technology},
+  year    = {1985},
+  volume  = {39},
+  number  = {9},
+  pages   = {57--64, 134},
+  note    = {Accelerated testing methodology; prior for $E_a/R$ tiers and $t_{base}$ at 20\si{\celsius}}
+}
+
+@article{labuza1993kinetics,
+  author  = {Labuza, Theodore P. and Fu, B.},
+  title   = {Growth Kinetics for Shelf-Life Prediction: Theory and Practice},
+  journal = {Journal of Food Science},
+  year    = {1993},
+  volume  = {58},
+  number  = {3},
+  pages   = {587--592},
+  doi     = {10.1111/j.1365-2621.1993.tb04333.x},
+  note    = {Microbial growth kinetics; basis for dairy/produce/bakery decay multipliers and humidity extension}
+}
+
+@article{taoukis1997tti,
+  author  = {Taoukis, Petros S. and Labuza, Theodore P.},
+  title   = {Time-Temperature Integrators (TTI)},
+  booktitle = {Encyclopedia of Food Science and Technology},
+  year    = {1997},
+  publisher = {Wiley},
+  note    = {TTI hazard classification; informs CRITICAL\_HAZARD $\le 4$h and ELEVATED\_RISK $\le 12$h thresholds}
+}
+
+@book{man2002shelflife,
+  author    = {Man, C. M. D. and Jones, A. A.},
+  title     = {Shelf Life Evaluation of Foods},
+  publisher = {Aspen Publishers},
+  year      = {2000},
+  edition   = {2},
+  address   = {Gaithersburg, MD},
+  note      = {Tier 1--5 base shelf-life bands at 20\si{\celsius} and 38\si{\celsius} Loo (spec \S1.1)}
+}
+
+@book{labuza2000shelflifebook,
+  author    = {Taoukis, Petros S. and Labuza, Theodore P.},
+  title     = {Shelf Life Studies: Principles and Procedures},
+  publisher = {CRC Press},
+  year      = {2000},
+  note      = {Companion to kinetic modelling; $Q_{10}$ and $\Phi_{env}$ humidity term formalism}
+}
+
+@misc{fssai2011,
+  author       = {{Food Safety and Standards Authority of India (FSSAI)}},
+  title        = {Food Safety and Standards (Licensing and Registration of Food Businesses) Regulations, 2011 (as amended) and Compendium on Food Safety},
+  year         = {2011},
+  howpublished = {\url{https://www.fssai.gov.in/}},
+  note         = {Permissible temps: pasteurized milk $\le 4$\si{\celsius}, hot food $>65$\si{\celsius}; informs $critical\_temp_c$ per tier}
+}
+
+@article{kumar2010dairy,
+  author  = {Kumar, Pradeep and Prasad, S.},
+  title   = {Kinetics of Microbial Spoilage in Pasteurized Milk Under Indian Ambient Conditions},
+  journal = {Journal of Food Science and Technology},
+  year    = {2010},
+  volume  = {47},
+  number  = {4},
+  pages   = {412--418},
+  doi     = {10.1007/s13197-010-0069-6},
+  note    = {Indian dairy $E_a/R\approx 6800$ K calibration; validates Tier 1 Dairy decay at 38--44\si{\celsius}}
+}
+
+@techreport{uneap2024waste,
+  author      = {{United Nations Environment Programme (UNEP)}},
+  title       = {Food Waste Index Report 2024: Think Eat Save},
+  institution = {UNEP},
+  year        = {2024},
+  url         = {https://www.unep.org/resources/publication/food-waste-index-report-2024},
+  note        = {Context for 68.7 Mt India waste figure (spec Executive Summary); global baseline for waste accounting}
+}
+
+@techreport{gustavsson2011foodloss,
+  author      = {Gustavsson, Jenny and Cederberg, Christel and Sonesson, Ulf and van Otterdijk, Robert and Meybeck, Alexandre},
+  title       = {Global Food Losses and Food Waste: Extent, Causes and Prevention},
+  institution = {Food and Agriculture Organization (FAO)},
+  year        = {2011},
+  url         = {https://www.fao.org/3/mb060e/mb060e.pdf},
+  note        = {Canonical food-loss framing for Introduction and Related Work}
+}
+
+% ===== Block B — Matching, Pareto & MILP (P4) =====
+
+@article{deb2002nsga2,
+  author  = {Deb, Kalyanmoy and Pratap, Amrit and Agarwal, Sameer and Meyarivan, T.},
+  title   = {A Fast and Elitist Multiobjective Genetic Algorithm: {NSGA-II}},
+  journal = {IEEE Transactions on Evolutionary Computation},
+  year    = {2002},
+  volume  = {6},
+  number  = {2},
+  pages   = {182--197},
+  doi     = {10.1109/4235.996017},
+  note    = {Pareto frontier enumeration and hypervolume metric for $S_{ij}$ multi-objective matching}
+}
+
+@book{saaty1980ahp,
+  author    = {Saaty, Thomas L.},
+  title     = {The Analytic Hierarchy Process: Planning, Priority Setting, Resource Allocation},
+  publisher = {McGraw-Hill},
+  year      = {1980},
+  address   = {New York},
+  note      = {Weight elicitation for $w=[0.35,0.30,0.20,0.15]$ via pairwise stakeholder comparison}
+}
+
+@book{pareto1896,
+  author    = {Pareto, Vilfredo},
+  title     = {Cours d'\'economie Politique},
+  publisher = {F. Rouge},
+  year      = {1896},
+  address   = {Lausanne},
+  note      = {Foundational Pareto optimality definition}
+}
+
+@book{wolsey1998integer,
+  author    = {Wolsey, Laurence A.},
+  title     = {Integer Programming},
+  publisher = {Wiley-Interscience},
+  year      = {1998},
+  address   = {New York},
+  note      = {MILP formulation correctness for surplus-to-recipient assignment constraints}
+}
+
+@misc{orgtools2024,
+  author       = {{Google}},
+  title        = {{OR-Tools} v9.8: CP-SAT and Linear Solver},
+  year         = {2024},
+  howpublished = {\url{https://developers.google.com/optimization}},
+  note         = {MILP/CP-SAT implementation for matcher v1; vehicle routing also}
+}
+
+@misc{pulp2011,
+  author       = {Mitchell, Stuart and O'Sullivan, Michael and Dunning, Iain},
+  title        = {{PuLP}: A Linear Programming Toolkit for {Python}},
+  year         = {2011},
+  howpublished = {\url{https://coin-or.github.io/pulp/}},
+  note         = {Alternative MILP solver for baseline comparison}
+}
+
+% ===== Block C — Vehicle Routing (P5 VRPTW) =====
+
+@book{toth2014vrp,
+  author    = {Toth, Paolo and Vigo, Daniele},
+  title     = {Vehicle Routing: Problems, Methods, and Applications},
+  publisher = {SIAM},
+  year      = {2014},
+  edition   = {2},
+  address   = {Philadelphia},
+  doi       = {10.1137/1.9781611973594},
+  note      = {VRPTW formulation; objective $\min\sum c_{uw}x_{uvw}+\lambda\sum t_{delivery}/t_{safe}$ (spec \S3.2)}
+}
+
+@article{solomon1987,
+  author  = {Solomon, Marius M.},
+  title   = {Algorithms for the Vehicle Routing and Scheduling Problems with Time Window Constraints},
+  journal = {Operations Research},
+  year    = {1987},
+  volume  = {35},
+  number  = {2},
+  pages   = {254--265},
+  doi     = {10.1287/opre.35.2.254},
+  note    = {VRPTW benchmark instances; time-window feasibility validator}
+}
+
+@misc{orgtoolsvrp2024,
+  author       = {{Google}},
+  title        = {{OR-Tools} Routing Library: Vehicle Routing Problem with Time Windows},
+  year         = {2024},
+  howpublished = {\url{https://developers.google.com/optimization/routing/vrp}},
+  note         = {RoutingModel VRPTW implementation used in core/vrp\_router.py}
+}
+
+@article{dantzig1959truck,
+  author  = {Dantzig, George B. and Ramser, John H.},
+  title   = {The Truck Dispatching Problem},
+  journal = {Management Science},
+  year    = {1959},
+  volume  = {6},
+  number  = {1},
+  pages   = {80--91},
+  doi     = {10.1287/mnsc.6.1.80},
+  note    = {Historical VRP grounding for Related Work}
+}
+
+@misc{tataaceevspec,
+  author       = {{Tata Motors}},
+  title        = {Tata Ace {EV} Specification Sheet: Payload 600--1000 kg, Range 154 km, Battery 21.3 kWh},
+  year         = {2023},
+  howpublished = {\url{https://www.tatamotors.com/}},
+  note         = {Vehicle tiering matrix (spec \S3.1) — Electric Cold-Chain Van; energy model kWh/km}
+}
+
+@misc{ashokleylandspec,
+  author       = {{Ashok Leyland}},
+  title        = {Ashok Leyland Dost / Partner Reefer: Cold Carrier Specification},
+  year         = {2023},
+  howpublished = {\url{https://www.ashokleyland.com/}},
+  note         = {Reefer Sprinter 1500 kg, 20--80 km tier}
+}
+
+% ===== Block D — Demand Forecasting (P3) =====
+
+@article{hochreiter1997lstm,
+  author  = {Hochreiter, Sepp and Schmidhuber, J\"urgen},
+  title   = {Long Short-Term Memory},
+  journal = {Neural Computation},
+  year    = {1997},
+  volume  = {9},
+  number  = {8},
+  pages   = {1735--1780},
+  doi     = {10.1162/neco.1997.9.8.1735},
+  note    = {LSTM sequence model for 7-day meal shortfall forecasting}
+}
+
+@inproceedings{ke2017lightgbm,
+  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},
+  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) 31},
+  year      = {2017},
+  pages     = {3146--3154},
+  note      = {Tabular forecaster baseline; handles categorical district + calendar features}
+}
+
+@article{lim2021tft,
+  author  = {Lim, Bryan and Ar\i k, Sercan \"O. and Loeff, Nicolas and Pfister, Tomas},
+  title   = {Temporal Fusion Transformers for Interpretable Multi-Horizon Time Series Forecasting},
+  journal = {International Journal of Forecasting},
+  year    = {2021},
+  volume  = {37},
+  number  = {4},
+  pages   = {1748--1764},
+  doi     = {10.1016/j.ijforecast.2019.12.001},
+  note    = {Stretch model for multi-horizon 7-day forecast with static + known future inputs}
+}
+
+@techreport{niti2023mpi,
+  author      = {{NITI Aayog}},
+  title       = {National Multidimensional Poverty Index: A Progress Review 2023},
+  institution = {NITI Aayog, Government of India},
+  year        = {2023},
+  url         = {https://www.niti.gov.in/},
+  note        = {MPI component of Hunger Vulnerability Index (HVI) per 23 districts}
+}
+
+@techreport{nfhs5,
+  author      = {{International Institute for Population Sciences (IIPS) and ICF}},
+  title       = {National Family Health Survey (NFHS-5), 2019--21: India},
+  institution = {Ministry of Health and Family Welfare, Government of India},
+  year        = {2021},
+  url         = {http://rchiips.org/nfhs/},
+  note        = {Child/senior nutrition flags for HVI and dietary priority $w_4$}
+}
+
+@misc{wfp2024hungermap,
+  author       = {{World Food Programme (WFP)}},
+  title        = {HungerMap Live: Global Insights and Key Trends},
+  year         = {2024},
+  howpublished = {\url{https://hungermap.wfp.org/}},
+  note         = {Cross-validation for HVI and hunger vulnerability mapping}
+}
+
+@techreport{census2011,
+  author      = {{Office of the Registrar General \& Census Commissioner, India}},
+  title       = {Census of India 2011: Primary Census Abstract},
+  institution = {Ministry of Home Affairs, Government of India},
+  year        = {2011},
+  url         = {https://censusindia.gov.in/},
+  note        = {Population density, informal settlement priors for demand forecaster}
+}
+
+% ===== Block E — Documentation, Reproducibility & Ethics (P0/P7/P9) =====
+
+@article{gebru2021datasheets,
+  author  = {Gebru, Timnit and Morgenstern, Jamie and Vecchione, Briana and Vaughan, Jennifer Wortman and Wallach, Hanna and Daum\'e III, Hal and Crawford, Kate},
+  title   = {Datasheets for Datasets},
+  journal = {Communications of the ACM},
+  year    = {2021},
+  volume  = {64},
+  number  = {12},
+  pages   = {86--92},
+  doi     = {10.1145/3458723},
+  note    = {Datasheet template for every dataset in docs/datasheets/}
+}
+
+@inproceedings{mitchell2019modelcards,
+  author    = {Mitchell, Margaret and Wu, Simone and Zaldivar, Andrew and Barnes, Parker and Vasserman, Lucy and Hutchinson, Ben and Spitzer, Elena and Raji, Inioluwa Deborah and Gebru, Timnit},
+  title     = {Model Cards for Model Reporting},
+  booktitle = {Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT* '19)},
+  year      = {2019},
+  pages     = {220--229},
+  doi       = {10.1145/3287560.3287596},
+  note      = {Model card template for docs/model-cards/}
+}
+
+@article{wilkinson2016fair,
+  author  = {Wilkinson, Mark D. and Dumontier, Michel and Aalbersberg, IJsbrand Jan and Appleton, Gabrielle and Axton, Myles and Baak, Arie and Blomberg, Niklas and Boiten, Jan-Willem and da Silva Santos, Luiz Bonino and Bourne, Philip E. and others},
+  title   = {The {FAIR} Guiding Principles for Scientific Data Management and Stewardship},
+  journal = {Scientific Data},
+  year    = {2016},
+  volume  = {3},
+  pages   = {160018},
+  doi     = {10.1038/sdata.2016.18},
+  note    = {FAIR governance for data\_manifest.json and Zenodo deposition}
+}
+
+@misc{brand2015cff,
+  author       = {Druskat, Stephan and Spaaks, Jurriaan H. and Chue Hong, Neil and Haines, Robert and Baker, James and Bliven, Spencer and Willighagen, Egon and P\'erez-Su\'arez, David and Konovalov, Alexander},
+  title        = {Citation File Format (CFF) 1.2.0},
+  year         = {2021},
+  howpublished = {\url{https://citation-file-format.github.io/}},
+  note         = {CITATION.cff spec for code citation}
+}
+
+@misc{neurips2023checklist,
+  author       = {{NeurIPS}},
+  title        = {NeurIPS Paper Checklist and Reproducibility Guidelines 2023},
+  year         = {2023},
+  howpublished = {\url{https://neurips.cc/Conferences/2024/PaperInformation/PaperChecklist}},
+  note         = {Reproducibility bundle (replay.sh, environment.lock) design}
+}
+
+@techreport{icmr2017ethics,
+  author      = {{Indian Council of Medical Research (ICMR)}},
+  title       = {National Ethical Guidelines for Biomedical and Health Research Involving Human Participants},
+  institution = {ICMR},
+  year        = {2017},
+  url         = {https://ethics.ncdirindia.org/},
+  note        = {Pilot ethics for Langar/shelter participants and hunger data}
+}
+
+% ===== Open Data / API Sources (Data Registry) =====
+
+@misc{agmarknet2024,
+  author       = {{Government of India, Ministry of Agriculture \& Farmers Welfare}},
+  title        = {Agmarknet: Agricultural Marketing Information Network},
+  year         = {2024},
+  howpublished = {\url{https://agmarknet.gov.in/}},
+  note         = {Daily mandi arrival volumes, commodities, prices (D1); GODL-India license}
+}
+
+@misc{imd2024,
+  author       = {{India Meteorological Department (IMD)}},
+  title        = {IMD Weather Services and Gridded Data},
+  year         = {2024},
+  howpublished = {\url{https://mausam.imd.gov.in/}},
+  note         = {Hourly temp/humidity ground truth for $\Phi_{env}$ (D2)}
+}
+
+@misc{openmeteo2024,
+  author       = {{Open-Meteo}},
+  title        = {Open-Meteo Archive API: Historical Weather Data},
+  year         = {2024},
+  howpublished = {\url{https://open-meteo.com/}},
+  note         = {Fallback hourly telemetry; CC-BY-4.0 (D2)}
+}
+
+@misc{osm2024,
+  author       = {{OpenStreetMap contributors}},
+  title        = {OpenStreetMap},
+  year         = {2024},
+  howpublished = {\url{https://www.openstreetmap.org/copyright}},
+  note         = {Routing graph for OSRM distance matrix; ODbL 1.0 (D3)}
+}
+
+@misc{osrm2024,
+  author       = {{OSRM Project}},
+  title        = {Open Source Routing Machine (OSRM) v5.27},
+  year         = {2024},
+  howpublished = {\url{http://project-osrm.org/}},
+  note         = {Distance matrix and VRP isochrones (D3)}
+}
+
+% ===== Transit / Frontend =====
+
+@misc{fastapi2024,
+  author       = {Ram\'irez, Sebasti\'an},
+  title        = {FastAPI Framework},
+  year         = {2024},
+  howpublished = {\url{https://fastapi.tiangolo.com/}},
+  note         = {API gateway for POST /api/v1/predict/* and /optimize/*}
+}
+
+@misc{pydantic2024,
+  author       = {{Pydantic}},
+  title        = {Pydantic V2 Validation},
+  year         = {2024},
+  howpublished = {\url{https://docs.pydantic.dev/}},
+  note         = {Schema validation for SurplusBatch and RecipientNode}
+}

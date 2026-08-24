@@ -12,6 +12,27 @@ dist
 dist-ssr
 *.local
 
+# Python optimizer (freshroute-optimizer-model)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.venv*/
+venv/
+env/
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+mlruns/
+mlartifacts/
+data/raw/
+**/data/raw/
+data/gold/
+**/data/gold/
+*.parquet
+environment.lock
+*.dvc
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

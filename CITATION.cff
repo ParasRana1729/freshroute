@@ -1,0 +1,72 @@
+cff-version: 1.2.0
+title: "FreshRoute AI: Food Redistribution Optimizer"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - given-names: "FreshRoute"
+    family-names: "AI Architecture Core"
+    affiliation: "FreshRoute AI"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - given-names: "Paras"
+    family-names: "Contributor"
+    affiliation: "FreshRoute"
+repository-code: "https://github.com/anomalyco/freshroute"
+url: "https://freshroute.example"
+abstract: >
+  Modular multi-stage ML and optimization framework for surplus food
+  redistribution in the Indian ambient cold-chain: Arrhenius shelf-life kinetics,
+  spatial-temporal demand forecasting (LSTM/LightGBM), multi-objective Pareto
+  matching (MILP/NSGA-II), and VRPTW routing (OR-Tools) across Punjab's
+  Mandi-Langar network.
+keywords:
+  - food-redistribution
+  - cold-chain
+  - arrhenius-kinetics
+  - vehicle-routing
+  - multi-objective-optimization
+  - LSTM
+  - LightGBM
+  - India
+  - FSSAI
+  - OR-Tools
+license: MIT
+version: 1.0.0-RC
+date-released: 2026-08-24
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.XXXXXXX
+    description: "Zenodo concept DOI — updated on each gated release (P1, P2, P6, P7)"
+references:
+  - type: article
+    title: "On the reaction velocity of the inversion of cane sugar by acids"
+    authors:
+      - family-names: Arrhenius
+        given-names: Svante
+    journal: "Zeitschrift für Physikalische Chemie"
+    year: 1889
+    doi: 10.1515/zpch-1889-0408
+  - type: article
+    title: "Datasheets for Datasets"
+    authors:
+      - family-names: Gebru
+        given-names: Timnit
+    journal: "Communications of the ACM"
+    year: 2021
+    doi: 10.1145/3458723
+  - type: article
+    title: "Model Cards for Model Reporting"
+    authors:
+      - family-names: Mitchell
+        given-names: Margaret
+    journal: "FAT* '19"
+    year: 2019
+    doi: 10.1145/3287560.3287596
+preferred-citation:
+  type: article
+  title: "FreshRoute AI: Food Redistribution Optimizer for the Indian Ambient Cold-Chain"
+  authors:
+    - family-names: "AI Architecture Core"
+      given-names: "FreshRoute"
+  journal: "Manuscript in preparation — target Nature Food / ACM COMPASS"
+  year: 2026
+  url: "https://github.com/anomalyco/freshroute/blob/main/docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md"

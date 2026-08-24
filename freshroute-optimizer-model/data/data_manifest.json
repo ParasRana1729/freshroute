@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "version": "1.0.0-P1",
+    "generated": "2026-08-24T00:00:00Z",
+    "spec": "docs/IMPLEMENTATION_PLAN.md:3.1 FAIR provenance",
+    "note": "SHA256 computed on each gold file after ingestion; DOI minted at gate P1/P2/P6/P7"
+  },
+  "files": [
+    {
+      "role": "commodity_priors",
+      "path": "data/indian_commodities.json",
+      "sha256": "pending_compute_at_ingest",
+      "doi": "10.5281/zenodo.XXXXXXX",
+      "bib_key": "man2002shelflife,labuza1993kinetics,kumar2010dairy,fssai2011",
+      "version": "1.0.0-P1"
+    },
+    {
+      "role": "district_hvi",
+      "path": "data/punjab_districts.json",
+      "sha256": "pending_compute_at_ingest",
+      "doi": "10.5281/zenodo.XXXXXXX",
+      "bib_key": "census2011,niti2023mpi,nfhs5,wfp2024hungermap",
+      "version": "1.0.0-P1"
+    },
+    {
+      "role": "mandi_gold",
+      "path": "data/gold/mandi_daily.parquet",
+      "sha256": "pending_after_P1_L1.1",
+      "doi": "pending",
+      "bib_key": "agmarknet2024",
+      "update_cadence": "daily 02:00 IST"
+    },
+    {
+      "role": "weather_hourly_gold",
+      "path": "data/gold/weather_hourly.parquet",
+      "sha256": "pending_after_P1_L1.2",
+      "doi": "pending",
+      "bib_key": "imd2024,openmeteo2024",
+      "update_cadence": "hourly"
+    },
+    {
+      "role": "osm_distance_matrix",
+      "path": "data/gold/osm_distance_matrix.parquet",
+      "sha256": "pending_after_P1_L1.3",
+      "doi": "pending",
+      "bib_key": "osm2024,osrm2024",
+      "license": "ODbL-1.0 — attribution © OpenStreetMap contributors"
+    }
+  ]
+}

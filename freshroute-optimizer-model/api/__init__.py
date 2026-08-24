@@ -1,0 +1,2 @@
+"""FreshRoute FastAPI package."""
+

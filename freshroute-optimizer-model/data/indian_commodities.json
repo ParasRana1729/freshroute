@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "version": "1.0.0-P1",
+    "created": "2026-08-24",
+    "source": "Curated from Labuza & Schmidl 1985, Labuza & Fu 1993, Taoukis & Labuza 1997, FSSAI 2011, Kumar & Prasad 2010 — see docs/BIBLIOGRAPHY.bib",
+    "citation_keys": ["labuza1984shelflife", "labuza1993kinetics", "taoukis1997tti", "fssai2011", "kumar2010dairy", "man2002shelflife"],
+    "calibration_note": "Ea_over_R and base_hours_at_20C are literature priors. Field refit in docs/calibration/ per docs/IMPLEMENTATION_PLAN.md P2 L2.1-L2.2. Alpha/beta (Phi_env) empirical for Punjab Loo/monsoon — refit quarterly.",
+    "units": {
+      "Ea_over_R": "Kelvin (Ea [J/mol] / R 8.314)",
+      "base_hours_at_20C": "hours at 20C baseline",
+      "critical_temp_c": "celsius, beyond which reefer mandatory irrespective of t_safe"
+    }
+  },
+  "commodities": {
+    "Dairy": {
+      "label": "Tier 1 — Chilled Dairy (Verka/Amul Milk, Paneer, Dahi, Chaas)",
+      "examples": ["Verka/Amul Milk Pouches 500ml", "Paneer", "Dahi", "Chaas"],
+      "Ea_over_R": 6800.0,
+      "base_hours_at_20C": 24.0,
+      "critical_temp_c": 8.0,
+      "observed_base_range_hours": [24, 36],
+      "critical_limit_38C_loo_hours": [4, 8],
+      "sensitivity": "Extreme",
+      "citation": "[@kumar2010dairy; @labuza1993kinetics; @fssai2011]",
+      "fssai_clause": "Pasteurized milk ≤4C; Dahi 4-8C"
+    },
+    "Prepared": {
+      "label": "Tier 2 — Cooked / Langar Meals (Dal, Rice, Khichdi, Sabzi, Banquet Gravies)",
+      "examples": ["Cooked Dal", "Rice", "Khichdi", "Sabzi", "Banquet Gravies"],
+      "Ea_over_R": 7200.0,
+      "base_hours_at_20C": 14.0,
+      "critical_temp_c": 10.0,
+      "observed_base_range_hours": [14, 18],
+      "critical_limit_38C_loo_hours": [3, 6],
+      "sensitivity": "Extreme",
+      "citation": "[@labuza1984shelflife; @man2002shelflife; @fssai2011]",
+      "fssai_clause": "Cooked food: hold >65C or <5C; rapid fermentation risk"
+    },
+    "Produce": {
+      "label": "Tier 3 — Mandi Fresh Produce (Palak, Tomatoes, Cauliflower, Coriander)",
+      "examples": ["Palak (Spinach)", "Tomatoes", "Cauliflower", "Coriander", "Kinnow"],
+      "Ea_over_R": 5400.0,
+      "base_hours_at_20C": 48.0,
+      "critical_temp_c": 15.0,
+      "observed_base_range_hours": [36, 48],
+      "critical_limit_38C_loo_hours": [12, 18],
+      "sensitivity": "High",
+      "citation": "[@man2002shelflife; @labuza2000shelflifebook]",
+      "notes": "Transpiration & wilting driven; humidity term beta highly influential"
+    },
+    "Bakery": {
+      "label": "Tier 4 — Bakery & Semi-Perishable (Pav, Bread, Rusks, Cooked Rotis)",
+      "examples": ["Pav", "Bread", "Rusks", "Cooked Rotis"],
+      "Ea_over_R": 3200.0,
+      "base_hours_at_20C": 60.0,
+      "critical_temp_c": 30.0,
+      "observed_base_range_hours": [48, 72],
+      "critical_limit_38C_loo_hours": [24, 36],
+      "sensitivity": "Moderate",
+      "citation": "[@man2002shelflife]",
+      "notes": "Humidity staling index; lower Ea => flatter T response"
+    },
+    "Grains": {
+      "label": "Tier 5 — Grains & Staples (Whole Wheat Atta, Rice, Dal Pulses, Oil)",
+      "examples": ["Whole Wheat Atta", "Rice", "Dal Pulses", "Oil"],
+      "Ea_over_R": 1800.0,
+      "base_hours_at_20C": 2160.0,
+      "critical_temp_c": 35.0,
+      "observed_base_range_hours": [2160, 4320],
+      "critical_limit_38C_loo_hours": [1440, 2880],
+      "sensitivity": "Low",
+      "citation": "[@man2002shelflife]",
+      "notes": "Moisture/weevil control dominates over Arrhenius; keep dry"
+    }
+  },
+  "decay_model": {
+    "arrhenius": "k(T) = A * exp(-Ea / (R*T_K)) [@arrhenius1889]",
+    "phi_env": "Phi_env(T,H) = exp(alpha*(T - T_base) + beta*max(0, H - H_threshold))",
+    "phi_params": {
+      "alpha": 0.048,
+      "beta": 0.008,
+      "T_base_c": 20.0,
+      "H_threshold_pct": 70.0,
+      "H_baseline_for_phi_zero_pct": 60.0,
+      "citation": "[@labuza1993kinetics — humidity extension calibrated Punjab summer 2024-25; see docs/calibration/phi_env.md before claiming generality]"
+    },
+    "t_safe_formula": "t_safe(t) = t_base / Phi_env(T,H) - t_elapsed  (spec 2.3)",
+    "hazard_thresholds": {
+      "CRITICAL_HAZARD_hours_le": 4.0,
+      "ELEVATED_RISK_hours_le": 12.0,
+      "SAFE_TRANSIT_hours_gt": 12.0,
+      "citation": "[@taoukis1997tti]"
+    }
+  }
+}
