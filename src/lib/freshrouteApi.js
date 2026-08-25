@@ -38,10 +38,14 @@ export async function predictShelfLife({ category = 'Dairy', ambient_temp_c = 36
 /**
  * Surplus-to-recipient match — wraps POST /api/v1/optimize/match
  * Uses live decay + Pareto matcher (w=[0.35,0.30,0.20,0.15]) [@saaty1980ahp]
+ * Pass opts e.g. {use_milp:true, solver:'pulp'} for MILP optimal (P4) vs greedy default.
  */
-export async function optimizeMatch(surplus_batch, ambient_weather = null, candidate_recipients = null) {
+export async function optimizeMatch(surplus_batch, ambient_weather = null, candidate_recipients = null, opts = {}) {
   const payload = { surplus_batch, ambient_weather }
   if (candidate_recipients) payload.candidate_recipients = candidate_recipients
+  if (opts.use_milp) payload.use_milp = true
+  if (opts.solver) payload.solver = opts.solver
+  if (opts.min_score) payload.min_score = opts.min_score
   return fetchJSON('/api/v1/optimize/match', {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -62,11 +66,16 @@ export async function forecastDemand({ district_id = null, horizon_days = 7, inc
 
 /**
  * VRP routing — wraps POST /api/v1/optimize/routing
+ * Pass opts {use_or_tools:true, t_safe_hours:[6], lambda_penalty:2.0} for VRPTW (P5).
  */
-export async function optimizeRouting({ pickup_nodes, dropoff_nodes, fleet_available = null }) {
+export async function optimizeRouting({ pickup_nodes, dropoff_nodes, fleet_available = null, use_or_tools = false, t_safe_hours = null, lambda_penalty = null }) {
+  const payload = { pickup_nodes, dropoff_nodes, fleet_available }
+  if (use_or_tools) payload.use_or_tools = true
+  if (t_safe_hours) payload.t_safe_hours = t_safe_hours
+  if (lambda_penalty != null) payload.lambda_penalty = lambda_penalty
   return fetchJSON('/api/v1/optimize/routing', {
     method: 'POST',
-    body: JSON.stringify({ pickup_nodes, dropoff_nodes, fleet_available }),
+    body: JSON.stringify(payload),
   })
 }
 
