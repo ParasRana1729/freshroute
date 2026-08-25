@@ -1,0 +1,42 @@
+% FreshRoute AI Paper Skeleton — P9
+% Compiles with pdflatex + bibtex using docs/BIBLIOGRAPHY.bib
+% See docs/IMPLEMENTATION_PLAN.md:13 Appendix E
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\title{FreshRoute AI: Punjab Ambient Cold-Chain Food Rescue Optimizer}
+\author{FreshRoute AI Architecture Core}
+\date{2026-08-26 (v0.1 skeleton)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Punjab 44$^\circ$C Loo and monsoon humidity compress shelf-life via $\Phi_{env}$; we present a 4-stage optimizer (Arrhenius $\rightarrow$ demand LSTM/LightGBM $\rightarrow$ Pareto MILP $\rightarrow$ VRPTW OR-Tools) with Langar Rehat/Halal hard gates, evaluated on 23 districts (HVI) and NH44 corridor. Code and data: \texttt{data\_manifest.json} FAIR \cite{wilkinson2016fair}.
+\end{abstract}
+
+\section{Introduction}
+Food waste 68.7Mt India \cite{uneap2024waste} and global loss \cite{gustavsson2011foodloss} motivate rescue. FSSAI temps \cite{fssai2011} and Agmarknet mandi \cite{agmarknet2024} inform priors.
+
+\section{Related Work}
+Kinetics \cite{arrhenius1889,labuza1993kinetics,taoukis1997tti,man2002shelflife,kumar2010dairy}, Pareto \cite{deb2002nsga2,pareto1896,saaty1980ahp}, VRP \cite{toth2014vrp,solomon1987,dantzig1959truck}, forecasting \cite{ke2017lightgbm,hochreiter1997lstm,lim2021tft}, datasheets \cite{gebru2021datasheets} \& model cards \cite{mitchell2019modelcards}.
+
+\section{Model}
+\subsection{Shelf-life} $k(T)=A e^{-E_a/RT}$ \cite{arrhenius1889}, $\Phi_{env}=e^{\alpha(T-20)+\beta\max(0,H-60)}$, $t_{safe}=t_{base}/\Phi_{env}-t_{elapsed}$ \cite{labuza1993kinetics}, hazard $\le4h$ \cite{taoukis1997tti}.
+\subsection{Matcher} $S_{ij}=w_1\text{Urgency}+w_2\text{Deficit}+w_3\text{Proximity}+w_4\text{Diet}$ $w=[0.35,0.30,0.20,0.15]$ \cite{saaty1980ahp}, MILP \cite{wolsey1998integer} via PuLP \cite{pulp2011} / CP-SAT \cite{orgtools2024}.
+\subsection{VRP} $\min\sum c_{uw}x_{uvw}+\lambda\sum t_{delivery}/t_{safe}$ \cite{toth2014vrp} with tiers Tata Ace EV \cite{tataaceevspec} etc., OR-Tools \cite{orgtoolsvrp2024}, Solomon \cite{solomon1987} bench.
+\subsection{Forecaster} HVI from NITI MPI \cite{niti2023mpi}, NFHS-5 \cite{nfhs5}, WFP \cite{wfp2024hungermap}, Census \cite{census2011}; LightGBM \cite{ke2017lightgbm}, LSTM \cite{hochreiter1997lstm}, TFT \cite{lim2021tft}.
+
+\section{Data}
+Datasheets Gebru \cite{gebru2021datasheets}, FAIR \cite{wilkinson2016fair}, DVC + manifest, Agmarknet \cite{agmarknet2024}, IMD \cite{imd2024}, Open-Meteo \cite{openmeteo2024}, OSM/OSRM \cite{osm2024,osrm2024}.
+
+\section{Experiments}
+Simulation + field pilot (GT corridor) KPIs $\ge95\%$ spoilage prevention, 100\% dietary/cold-chain (spec \S6.1). Ablations: no $\Phi$, greedy vs MILP, no HVI, no OSRM.
+
+\section{Conclusion}
+Limits: $\alpha,\beta$ Punjab summer only (C6), not validated $>48^\circ$C. Ethics ICMR \cite{icmr2017ethics}.
+
+\bibliographystyle{plain}
+\bibliography{../docs/BIBLIOGRAPHY}
+
+\end{document}
