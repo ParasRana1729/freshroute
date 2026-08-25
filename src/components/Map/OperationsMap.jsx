@@ -49,11 +49,27 @@ export function OperationsMap({ donors, hubs, recipients, fleet }) {
     // Route 3: Khanna Grain Silos to Patiala Welfare Kitchen
     { 
       id: 3, 
-      pts: [[30.6350, 76.2200], [30.5200, 76.3200], [30.3400, 76.3900]], 
+      pts: [[30.7070, 76.2170], [30.5200, 76.3200], [30.3420, 76.3950]], 
       color: '#D97706', 
       dash: '3,4',
       name: 'Sirhind Bypass: Khanna -> Patiala Sanstha'
     },
+    // Route 4: Bathinda Mandi to Talwandi Sabo Mega Langar
+    { 
+      id: 4, 
+      pts: [[30.2110, 74.9455], [30.0850, 75.0200], [29.9880, 75.0910]], 
+      color: '#7C3AED', 
+      dash: '5,5',
+      name: 'Malwa Express: Bathinda -> Talwandi Sabo'
+    },
+    // Route 5: Moga Nestlé to Firozpur Border Relief Pantry
+    { 
+      id: 5, 
+      pts: [[30.8150, 75.1720], [30.8800, 74.8500], [30.9250, 74.6150]], 
+      color: '#0D9488', 
+      dash: '4,4',
+      name: 'Firozpur Corridor: Moga -> Border Pantry'
+    }
   ];
 
   return (
@@ -66,9 +82,9 @@ export function OperationsMap({ donors, hubs, recipients, fleet }) {
             Punjab State Grid
           </span>
           <span style={{ color: '#CBD5E1' }}>|</span>
-          <span>4 Mandis</span>
-          <span>· 4 Langars</span>
-          <span>· 4 Cold Fleet</span>
+          <span>{donors.length} Mandis & Dairies</span>
+          <span>· {recipients.length} Langars & Pantries</span>
+          <span>· {fleet.length} Fleet Vans</span>
         </div>
 
         {/* Clean Segmented Button Group */}
