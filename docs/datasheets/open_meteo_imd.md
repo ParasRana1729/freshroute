@@ -30,3 +30,11 @@ Humidity threshold `H_threshold=70%` per spec; tail >85% rare (<2% hours) — mo
 ## 9. Citation
 
 `@imd2024`, `@openmeteo2024` (CC-BY-4.0).
+
+## Real Fetch Log
+
+<!-- real-fetch-log -->
+
+| window | source | points | rows | peak | retrieved |
+|---|---|---|---|---|---|
+| 2026-05-01..2026-06-30 | open-meteo-archive | 5 points | 7320 rows | max 43.6C | retrieved 2026-08-25T12:24:07.892590 |

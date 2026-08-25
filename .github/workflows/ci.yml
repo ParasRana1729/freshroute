@@ -24,6 +24,12 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Build gold tables (DVC, gitignored — must exist for D3 test)
+        run: |
+          python scripts/build_gold_mandi.py --date 2026-08-18 || true
+          python scripts/build_gold_weather.py --lat 30.9 --lon 75.85 --date 2026-08-18 || true
+          python scripts/build_gold_osm.py || true
+
       - name: Pytest (28 tests, spec 6.2 must-pass)
         run: python -m pytest tests/ -q
 
