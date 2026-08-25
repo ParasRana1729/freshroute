@@ -44,7 +44,12 @@ Incubation matrix: T in {20,32,38,44}°C × RH {60,80}% × Tier {Dairy, Prepared
 ```
 Cite `[@labuza1993kinetics; @taoukis1997tti; @kumar2010dairy]` plus this note when quoting numeric Phi.
 
-## 6. Next Actions
+## 6. Validation Snapshot (2026-08-26, code v a9025f8)
+
+- `core/arrhenius_decay.py:272` `calculate_decay_multiplier(44,80)=3.72` → `CRITICAL_HAZARD` `t_safe 6.5h` Dairy, `2.4h` Prepared (matches `tests/test_optimizer.py:12` `≥3.0` gate).
+- Lit prior holds for 23-district synthetic loop; chamber fit still pending.
+
+## 7. Next Actions
 
 - [ ] Collect 44°C chamber logs Jalandhar Kitchen Hub (P7 L7.2) with BLE sensor [@imd2024] correction.
 - [ ] Refit with monsoon 2026 humidity tail 85-95% (rare).
