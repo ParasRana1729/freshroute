@@ -205,3 +205,17 @@ def test_d3_gold_matrix_lookup():
     # score_match uses matrix (not haversine) — proximity reflects road distance
     s = m.score_match(b, r, safe_hours_remaining=12.0)
     assert s > 0
+
+
+def test_real_dataset_simulation():
+    """Verify Phase P7 real-world dataset simulation passes all KPI gates."""
+    from scripts.simulate_real_data import run_simulation
+
+    res = run_simulation(use_milp=True)
+    assert res["status"] == "success"
+    assert res["batches_processed"] >= 3
+    assert res["matches_generated"] >= 3
+    assert res["spoilage_prevention_rate"] >= 95.0
+    assert res["dietary_violations"] == 0
+    assert res["total_rescued_kg"] > 0
+    assert res["match_latency_ms"] < 800.0

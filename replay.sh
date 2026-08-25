@@ -22,4 +22,6 @@ echo "Step 6: VRP lambda grid"
 mise exec -- python freshroute-optimizer-model/scripts/benchmark_vrp_lambda.py
 echo "Step 7: Manifest SHA"
 mise exec -- env PYTHONPATH=freshroute-optimizer-model python -m data.update_manifest
+echo "Step 8: Real Data Simulation (Agmarknet Mandi + IMD + OSRM)"
+mise exec -- python scripts/simulate_real_data.py --use-milp --output-summary
 echo "=== replay pass — see $LOG ==="

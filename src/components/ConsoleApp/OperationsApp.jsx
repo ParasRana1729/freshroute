@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   MapPin, Sparkles, Clock, BarChart3, Cpu, PlusCircle,
   Flame, Truck, AlertTriangle, Users, RotateCcw, SunMedium,
   ArrowLeft, Layers, ShieldCheck, ChevronDown, CheckCircle2,
   LayoutDashboard, Search, ExternalLink, ArrowRight, Play,
-  TrendingUp, Radio, Sliders, Check, X, Calendar, Fuel, Thermometer
+  TrendingUp, Radio, Sliders, Check, X, Calendar, Fuel, Thermometer,
+  Zap, RefreshCw, Send
 } from 'lucide-react';
 import { OperationsMap } from '../Map/OperationsMap';
 import { ThermalDecayEngine } from '../RiskEngine/ThermalDecayEngine';
+import { checkHealth, predictShelfLife, optimizeMatch, forecastDemand, optimizeRouting } from '../../lib/freshrouteApi';
 
 export function OperationsApp({
   weather, donors, hubs, recipients, fleet, matches, categories,
@@ -26,6 +28,48 @@ export function OperationsApp({
   const [ambientTempC, setAmbientTempC] = useState(37);
   // P4 MILP vs greedy toggle (wired to freshrouteApi.js optimizeMatch {use_milp})
   const [solverMode, setSolverMode] = useState('greedy'); // 'greedy' | 'milp'
+
+  // Live Backend Health & Telemetry State
+  const [isBackendHealthy, setIsBackendHealthy] = useState(false);
+  const [backendLatency, setBackendLatency] = useState(null);
+
+  // Live Sandbox State
+  const [apiSandboxEndpoint, setApiSandboxEndpoint] = useState('match');
+  const [apiSandboxLoading, setApiSandboxLoading] = useState(false);
+  const [apiSandboxResponse, setApiSandboxResponse] = useState(null);
+  const [apiSandboxLatency, setApiSandboxLatency] = useState(null);
+
+  // Live District Forecaster State
+  const [selectedDistrictId, setSelectedDistrictId] = useState('ludhiana');
+  const [liveDistrictForecast, setLiveDistrictForecast] = useState(null);
+  const [forecastLoading, setForecastLoading] = useState(false);
+
+  // Live Match Queue Optimization State
+  const [isOptimizingQueue, setIsOptimizingQueue] = useState(false);
+  const [liveAllocations, setLiveAllocations] = useState(null);
+
+  // Poll FastAPI Health
+  useEffect(() => {
+    let isMounted = true;
+    const pollHealth = async () => {
+      const t0 = performance.now();
+      try {
+        const res = await fetch('/health');
+        if (res.ok && isMounted) {
+          const lat = Math.round(performance.now() - t0);
+          setIsBackendHealthy(true);
+          setBackendLatency(lat);
+        } else if (isMounted) {
+          setIsBackendHealthy(false);
+        }
+      } catch {
+        if (isMounted) setIsBackendHealthy(false);
+      }
+    };
+    pollHealth();
+    const interval = setInterval(pollHealth, 10000);
+    return () => { isMounted = false; clearInterval(interval); };
+  }, []);
 
   // Filter matches
   const filteredMatches = matches.filter(m => {
@@ -435,68 +479,107 @@ export function OperationsApp({
             </div>
           )}
 
-          {/* ════ TAB 3: LANGAR MATCH QUEUE (CLEAN LIGHT TABLE) ════ */}
+          {/* ════ TAB 3: LANGAR MATCH QUEUE ════ */}
           {activeTab === 'queue' && (
-            <div className="queue-container-clean">
-              <div className="queue-toolbar-clean">
-                <div className="queue-filters-clean">
-                  {['all', 'dairy', 'prepared', 'produce', 'bakery'].map(cat => (
-                    <button
-                      key={cat}
-                      className={`q-tab-btn ${categoryFilter === cat ? 'active' : ''}`}
-                      onClick={() => setCategoryFilter(cat)}
-                    >
-                      {cat === 'all' ? 'All Surplus' : cat.charAt(0).toUpperCase() + cat.slice(1)}
-                    </button>
-                  ))}
+            <div className="panel-card-clean">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: 10 }}>
+                <div className="panel-title-clean">
+                  <Sparkles size={16} color="#059669" />
+                  <span>Punjab Surplus-to-Langar Match Queue ({matches.length})</span>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                   <div style={{ position: 'relative' }}>
-                    <Search size={13} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
+                    <Search size={13} color="#94A3B8" style={{ position: 'absolute', left: 9, top: 8 }} />
                     <input
-                      placeholder="Filter donor, item, or langar..."
+                      type="text"
+                      placeholder="Search surplus or kitchen..."
                       value={searchQuery}
                       onChange={e => setSearchQuery(e.target.value)}
-                      style={{ background: '#FFFFFF', border: '1px solid #CBD5E1', borderRadius: 6, padding: '5px 10px 5px 28px', fontSize: '12px', color: '#0F172A', outline: 'none' }}
+                      style={{ padding: '6px 10px 6px 28px', fontSize: '12px', border: '1px solid #CBD5E1', borderRadius: 5, width: 190 }}
                     />
                   </div>
 
-                  <button 
-                    onClick={() => matches.filter(m => m.status === 'Pending Dispatch').forEach(m => onDispatchMatch(m.id))}
-                    style={{ background: '#059669', color: '#FFFFFF', border: 'none', borderRadius: 6, padding: '6px 12px', fontSize: '12px', fontWeight: 650, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+                  <select
+                    value={categoryFilter}
+                    onChange={e => setCategoryFilter(e.target.value)}
+                    style={{ padding: '6px 8px', fontSize: '12px', border: '1px solid #CBD5E1', borderRadius: 5, color: '#334155', fontWeight: 600 }}
                   >
-                    <span>Dispatch All ({pendingMatches.length})</span>
+                    <option value="all">All Categories</option>
+                    <option value="dairy">Dairy & Milk</option>
+                    <option value="prepared">Prepared Meals</option>
+                    <option value="produce">Fresh Produce</option>
+                    <option value="bakery">Bakery & Roti</option>
+                  </select>
+
+                  <button 
+                    onClick={async () => {
+                      setIsOptimizingQueue(true);
+                      try {
+                        const target = pendingMatches[0];
+                        if (target) {
+                          const res = await optimizeMatch(
+                            {
+                              batch_id: target.id,
+                              donor_id: target.donorId || 'donor-verka-ludhiana-01',
+                              category: target.itemCategory,
+                              gross_weight_kg: Math.round(target.batchWeightLbs / 2.20462),
+                              origin_coordinates: [30.9325, 75.8350],
+                              dietary_flags: { is_pure_veg: true },
+                            },
+                            { temp_c: ambientTempC, humidity_pct: 72.0 },
+                            null,
+                            { use_milp: solverMode === 'milp' }
+                          );
+                          setLiveAllocations(res);
+                        }
+                      } catch (err) {
+                        console.error('Queue live optimize error:', err);
+                      } finally {
+                        setIsOptimizingQueue(false);
+                      }
+                    }}
+                    style={{ background: solverMode === 'milp' ? '#059669' : '#0284C7', color: '#FFFFFF', border: 'none', borderRadius: 5, padding: '6px 12px', fontSize: '12px', fontWeight: 650, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+                  >
+                    {isOptimizingQueue ? <RefreshCw size={13} className="spin" /> : <Zap size={13} />}
+                    <span>Run Live {solverMode === 'milp' ? 'MILP' : 'Greedy'} Solver</span>
                   </button>
                 </div>
               </div>
+
+              {liveAllocations && (
+                <div style={{ padding: '10px 14px', background: '#ECFDF5', border: '1px solid #A7F3D0', borderRadius: 6, marginBottom: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '12px', color: '#065F46', fontWeight: 600 }}>
+                    ✓ Live Solver Match: <strong>{liveAllocations.assigned_recipient?.name || 'Sri Guru Ram Dass Ji Langar'}</strong> (Score: {liveAllocations.match_score}%, Latency: {liveAllocations.execution_latency_ms}ms, Solver: {liveAllocations.solver || solverMode})
+                  </span>
+                  <button onClick={() => setLiveAllocations(null)} style={{ background: 'none', border: 'none', color: '#065F46', cursor: 'pointer', fontSize: '11px', fontWeight: 700 }}>✕ Dismiss</button>
+                </div>
+              )}
 
               <div style={{ overflowX: 'auto' }}>
                 <table className="table-clean">
                   <thead>
                     <tr>
-                      <th>Batch Item</th>
-                      <th>Origin → Recipient</th>
-                      <th>Safe Window</th>
-                      <th>Assigned Fleet</th>
-                      <th>Pareto Score</th>
-                      <th>Status & Action</th>
+                      <th>Surplus Consignment</th>
+                      <th>Assigned Recipient Kitchen</th>
+                      <th>Safe Transit</th>
+                      <th>Allocated Vehicle Tier</th>
+                      <th>Pareto Match</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredMatches.map(m => {
                       const isPending = m.status === 'Pending Dispatch';
-                      const isUrgent = m.urgencyLevel === 'critical';
-
+                      const isUrgent = m.spoilageWindowHours <= 4;
                       return (
-                        <tr key={m.id} onClick={() => setSelectedMatch(m)} style={{ cursor: 'pointer' }}>
+                        <tr 
+                          key={m.id} 
+                          onClick={() => setSelectedMatch(m)}
+                          style={{ cursor: 'pointer', background: selectedMatch?.id === m.id ? '#F1F5F9' : 'transparent' }}
+                        >
                           <td>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                              <span className={`badge-risk ${isUrgent ? 'crit' : 'high'}`}>
-                                {m.urgencyLevel.toUpperCase()}
-                              </span>
-                              <strong style={{ color: '#0F172A', fontSize: '13.5px' }}>{m.itemName}</strong>
-                            </div>
+                            <div style={{ color: '#0F172A', fontWeight: 700 }}>{m.itemName}</div>
                             <div style={{ fontSize: '11.5px', color: '#64748B', marginTop: 3 }}>
                               {m.batchWeightLbs.toLocaleString()} lbs · ~{m.mealsEquivalent} meals · {m.itemCategory}
                             </div>
@@ -578,92 +661,283 @@ export function OperationsApp({
 
           {/* ════ TAB 5: 23 DISTRICT DEMAND & SHORTFALL ════ */}
           {activeTab === 'forecast' && (
-            <div className="panel-card-clean">
-              <div className="panel-title-clean">
-                <BarChart3 size={16} color="#0284C7" />
-                <span>Punjab 23-District Meal Demand & Hunger Index</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {/* Interactive Live Forecast Simulator Card */}
+              <div className="panel-card-clean" style={{ background: '#F8FAFC', border: '1px solid #BAE6FD' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+                  <div>
+                    <div style={{ fontWeight: 750, color: '#0369A1', fontSize: '14px', display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <Zap size={16} color="#0284C7" />
+                      Live AI Forecaster Probe (LightGBM & LSTM v1)
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#64748B', marginTop: 2 }}>
+                      Select a district to query the live 7-day walk-forward model with 10th/90th percentile bounds.
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <select
+                      value={selectedDistrictId}
+                      onChange={e => setSelectedDistrictId(e.target.value)}
+                      style={{ padding: '6px 10px', fontSize: '12px', border: '1px solid #CBD5E1', borderRadius: 5, fontWeight: 600, color: '#0F172A' }}
+                    >
+                      {districts.map(d => (
+                        <option key={d.districtId || d.district.toLowerCase()} value={d.districtId || d.district.toLowerCase()}>
+                          {d.district} (HVI: {d.hungerVulnerabilityIndex})
+                        </option>
+                      ))}
+                    </select>
+
+                    <button
+                      onClick={async () => {
+                        setForecastLoading(true);
+                        try {
+                          const res = await forecastDemand({ district_id: selectedDistrictId, horizon_days: 7 });
+                          setLiveDistrictForecast(Array.isArray(res) ? res[0] : res);
+                        } catch (err) {
+                          console.error('Forecast probe error:', err);
+                        } finally {
+                          setForecastLoading(false);
+                        }
+                      }}
+                      disabled={forecastLoading}
+                      style={{ background: '#0284C7', color: '#FFFFFF', border: 'none', borderRadius: 5, padding: '7px 14px', fontSize: '12px', fontWeight: 650, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+                    >
+                      {forecastLoading ? <RefreshCw size={13} className="spin" /> : <Play size={13} />}
+                      <span>Fetch Live 7-Day Forecast</span>
+                    </button>
+                  </div>
+                </div>
+
+                {liveDistrictForecast && (
+                  <div style={{ marginTop: 14, padding: '12px 16px', background: '#FFFFFF', borderRadius: 6, border: '1px solid #E2E8F0' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '13px' }}>
+                        {liveDistrictForecast.district_name} 7-Day Predicted Demand: {liveDistrictForecast.weekly_total_lbs?.toLocaleString()} lbs
+                      </span>
+                      <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', background: '#ECFDF5', color: '#065F46', padding: '2px 8px', borderRadius: 4, fontWeight: 700 }}>
+                        Model: {liveDistrictForecast.model || 'lightgbm-v1'}
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6, textAlign: 'center' }}>
+                      {liveDistrictForecast.forecast_demand_lbs?.map((v, i) => {
+                        const low = liveDistrictForecast.forecast_demand_lower_lbs?.[i] || Math.round(v * 0.9);
+                        const high = liveDistrictForecast.forecast_demand_upper_lbs?.[i] || Math.round(v * 1.1);
+                        return (
+                          <div key={i} style={{ background: '#F8FAFC', padding: '8px 4px', borderRadius: 4, border: '1px solid #E2E8F0' }}>
+                            <div style={{ fontSize: '10px', color: '#64748B', fontWeight: 700 }}>Day {i + 1}</div>
+                            <div style={{ fontSize: '12.5px', fontWeight: 800, color: '#0F172A', marginTop: 2 }}>{v.toLocaleString()}</div>
+                            <div style={{ fontSize: '9.5px', color: '#0284C7', fontFamily: 'var(--font-mono)' }}>[{low}-{high}]</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <table className="table-clean">
-                <thead>
-                  <tr>
-                    <th>District / Agro Region</th>
-                    <th>Vulnerability (HVI)</th>
-                    <th>Weekly Demand</th>
-                    <th>Scheduled Rescue</th>
-                    <th>Net Shortfall</th>
-                    <th>Primary Food Need</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {districts.map((d, idx) => (
-                    <tr key={idx}>
-                      <td style={{ fontWeight: 700, color: '#0F172A' }}>{d.district}</td>
-                      <td>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 800, color: d.hungerVulnerabilityIndex > 90 ? '#B91C1C' : '#D97706' }}>
-                          {d.hungerVulnerabilityIndex}/100
-                        </span>
-                      </td>
-                      <td>{d.weeklyForecastDemandLbs.toLocaleString()} lbs</td>
-                      <td>{d.scheduledRescueLbs.toLocaleString()} lbs</td>
-                      <td style={{ color: d.gapLbs < 0 ? '#B91C1C' : '#059669', fontWeight: 750, fontFamily: 'var(--font-mono)' }}>
-                        {d.gapLbs < 0 ? `${d.gapLbs.toLocaleString()} lbs` : `+${d.gapLbs.toLocaleString()} lbs`}
-                      </td>
-                      <td style={{ fontSize: '12px', color: '#64748B' }}>{d.primaryNeed}</td>
+              {/* 23 District Table */}
+              <div className="panel-card-clean">
+                <div className="panel-title-clean">
+                  <BarChart3 size={16} color="#0284C7" />
+                  <span>Punjab 23-District Meal Demand & Hunger Index (HVI)</span>
+                </div>
+
+                <table className="table-clean">
+                  <thead>
+                    <tr>
+                      <th>District / Agro Region</th>
+                      <th>Vulnerability (HVI)</th>
+                      <th>Weekly Demand</th>
+                      <th>Scheduled Rescue</th>
+                      <th>Net Shortfall</th>
+                      <th>Primary Food Need</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {districts.map((d, idx) => (
+                      <tr key={idx}>
+                        <td style={{ fontWeight: 700, color: '#0F172A' }}>{d.district}</td>
+                        <td>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 800, color: d.hungerVulnerabilityIndex > 90 ? '#B91C1C' : '#D97706' }}>
+                            {d.hungerVulnerabilityIndex}/100
+                          </span>
+                        </td>
+                        <td>{d.weeklyForecastDemandLbs.toLocaleString()} lbs</td>
+                        <td>{d.scheduledRescueLbs.toLocaleString()} lbs</td>
+                        <td style={{ color: d.gapLbs < 0 ? '#B91C1C' : '#059669', fontWeight: 750, fontFamily: 'var(--font-mono)' }}>
+                          {d.gapLbs < 0 ? `${d.gapLbs.toLocaleString()} lbs` : `+${d.gapLbs.toLocaleString()} lbs`}
+                        </td>
+                        <td style={{ fontSize: '12px', color: '#64748B' }}>{d.primaryNeed}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
 
-          {/* ════ TAB 6: API SANDBOX ════ */}
+          {/* ════ TAB 6: REST API SANDBOX ════ */}
           {activeTab === 'api' && (
             <div className="panel-card-clean">
-              <div className="panel-title-clean">
-                <Cpu size={16} color="#7C3AED" />
-                <span>OpenAPI v3.1 Punjab Fleet Dispatch API</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+                <div className="panel-title-clean">
+                  <Cpu size={16} color="#7C3AED" />
+                  <span>OpenAPI v3.1 Interactive Fleet Dispatch Sandbox</span>
+                </div>
+
+                {/* Endpoint Switcher */}
+                <div style={{ display: 'flex', gap: 6 }}>
+                  {[
+                    { id: 'match', label: '1. /optimize/match' },
+                    { id: 'shelf', label: '2. /predict/shelf-life' },
+                    { id: 'forecast', label: '3. /forecast/demand' },
+                    { id: 'routing', label: '4. /optimize/routing' },
+                  ].map(ep => (
+                    <button
+                      key={ep.id}
+                      onClick={() => {
+                        setApiSandboxEndpoint(ep.id);
+                        setApiSandboxResponse(null);
+                      }}
+                      style={{
+                        padding: '5px 10px',
+                        fontSize: '11.5px',
+                        fontWeight: apiSandboxEndpoint === ep.id ? 700 : 500,
+                        background: apiSandboxEndpoint === ep.id ? '#EDE9FE' : '#F8FAFC',
+                        color: apiSandboxEndpoint === ep.id ? '#6D28D9' : '#475569',
+                        border: `1px solid ${apiSandboxEndpoint === ep.id ? '#C4B5FD' : '#E2E8F0'}`,
+                        borderRadius: 5,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {ep.label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
-                <div>
-                  <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#475569', marginBottom: 8 }}>
-                    POST /api/v1/predict/match (Surplus-to-Langar Allocation)
+              <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1.3fr', gap: 18 }}>
+                {/* Left: Request Configuration & Live Execution Button */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '12.5px', fontWeight: 700, color: '#475569' }}>Request Payload</span>
+                    <button
+                      onClick={async () => {
+                        setApiSandboxLoading(true);
+                        const t0 = performance.now();
+                        try {
+                          let res;
+                          if (apiSandboxEndpoint === 'match') {
+                            res = await optimizeMatch(
+                              {
+                                batch_id: 'VERKA-LUD-LIVE-01',
+                                donor_id: 'donor-verka-ludhiana-01',
+                                category: 'Dairy',
+                                gross_weight_kg: 850.0,
+                                origin_coordinates: [30.9325, 75.8350],
+                                dietary_flags: { is_pure_veg: true },
+                                ambient_temp_c: ambientTempC,
+                              },
+                              { temp_c: ambientTempC, humidity_pct: 72.0 },
+                              null,
+                              { use_milp: solverMode === 'milp' }
+                            );
+                          } else if (apiSandboxEndpoint === 'shelf') {
+                            res = await predictShelfLife({
+                              category: 'Dairy',
+                              ambient_temp_c: ambientTempC,
+                              humidity_pct: 72.0,
+                              elapsed_hours: 1.0,
+                            });
+                          } else if (apiSandboxEndpoint === 'forecast') {
+                            res = await forecastDemand({ district_id: 'ludhiana', horizon_days: 7 });
+                          } else if (apiSandboxEndpoint === 'routing') {
+                            res = await optimizeRouting({
+                              pickup_nodes: [{ batch_id: 'b1', origin_coordinates: [30.9325, 75.8350], gross_weight_kg: 500, cold_chain_mandatory: true }],
+                              dropoff_nodes: [{ recipient_id: 'r1', coordinates: [31.62, 74.8765] }],
+                              use_or_tools: true,
+                              lambda_penalty: 2.0,
+                            });
+                          }
+                          setApiSandboxLatency(Math.round(performance.now() - t0));
+                          setApiSandboxResponse(res);
+                        } catch (err) {
+                          setApiSandboxLatency(Math.round(performance.now() - t0));
+                          setApiSandboxResponse({ error: String(err) });
+                        } finally {
+                          setApiSandboxLoading(false);
+                        }
+                      }}
+                      disabled={apiSandboxLoading}
+                      style={{
+                        background: '#7C3AED',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        borderRadius: 5,
+                        padding: '6px 12px',
+                        fontSize: '12px',
+                        fontWeight: 650,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 6,
+                        cursor: 'pointer',
+                        boxShadow: '0 1px 3px rgba(124,58,237,0.3)'
+                      }}
+                    >
+                      {apiSandboxLoading ? <RefreshCw size={13} className="spin" /> : <Play size={13} />}
+                      <span>Execute Live Request</span>
+                    </button>
                   </div>
-                  <pre style={{ background: '#F8FAFC', padding: '14px', borderRadius: 6, border: '1px solid #E2E8F0', color: '#0284C7', fontSize: '11.5px', fontFamily: 'var(--font-mono)', overflowX: 'auto', lineHeight: 1.55 }}>
-{`{
-  "donor_id": "verka_ludhiana_01",
-  "item_category": "Dairy",
-  "weight_kg": 816,
-  "temp_req_c": [2, 4],
-  "ambient_weather": {
-    "temp_c": ${ambientTempC},
-    "decay_multiplier": ${(1 + (ambientTempC - 25) * 0.038).toFixed(2)}
-  },
-  "candidate_recipients": [
-    "recip-amritsar-langar-01",
-    "recip-ludhiana-slum-02"
-  ]${solverMode === 'milp' ? `,
-  "use_milp": true,
-  "solver": "pulp"` : ``}
-}`}
+
+                  <pre style={{ background: '#F8FAFC', padding: '14px', borderRadius: 6, border: '1px solid #E2E8F0', color: '#0284C7', fontSize: '11.5px', fontFamily: 'var(--font-mono)', overflowX: 'auto', lineHeight: 1.55, height: '280px' }}>
+                    {apiSandboxEndpoint === 'match' && JSON.stringify({
+                      surplus_batch: {
+                        batch_id: 'VERKA-LUD-LIVE-01',
+                        donor_id: 'donor-verka-ludhiana-01',
+                        category: 'Dairy',
+                        gross_weight_kg: 850.0,
+                        origin_coordinates: [30.9325, 75.8350],
+                        dietary_flags: { is_pure_veg: true },
+                        ambient_temp_c: ambientTempC,
+                      },
+                      ambient_weather: { temp_c: ambientTempC, humidity_pct: 72.0 },
+                      use_milp: solverMode === 'milp',
+                      solver: solverMode === 'milp' ? 'pulp' : 'greedy',
+                    }, null, 2)}
+
+                    {apiSandboxEndpoint === 'shelf' && JSON.stringify({
+                      category: 'Dairy',
+                      ambient_temp_c: ambientTempC,
+                      humidity_pct: 72.0,
+                      elapsed_hours: 1.0,
+                    }, null, 2)}
+
+                    {apiSandboxEndpoint === 'forecast' && `GET /api/v1/forecast/demand?district_id=ludhiana&horizon_days=7`}
+
+                    {apiSandboxEndpoint === 'routing' && JSON.stringify({
+                      pickup_nodes: [{ batch_id: 'b1', origin_coordinates: [30.9325, 75.8350], gross_weight_kg: 500, cold_chain_mandatory: true }],
+                      dropoff_nodes: [{ recipient_id: 'r1', coordinates: [31.62, 74.8765] }],
+                      use_or_tools: true,
+                      lambda_penalty: 2.0,
+                    }, null, 2)}
                   </pre>
                 </div>
 
-                <div>
-                  <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#475569', marginBottom: 8 }}>
-                    Predicted Output (Latency: {solverMode === 'milp' ? '163ms MILP' : '74ms greedy'})
+                {/* Right: Live Response Output */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '12.5px', fontWeight: 700, color: '#475569' }}>
+                      Server Response {apiSandboxLatency != null && `(${apiSandboxLatency}ms)`}
+                    </span>
+                    <span style={{ fontSize: '11px', color: isBackendHealthy ? '#059669' : '#D97706', fontWeight: 650 }}>
+                      ● {isBackendHealthy ? 'Live FastAPI Backend' : 'Mock Response'}
+                    </span>
                   </div>
-                  <pre style={{ background: '#F8FAFC', padding: '14px', borderRadius: 6, border: '1px solid #E2E8F0', color: '#047857', fontSize: '11.5px', fontFamily: 'var(--font-mono)', overflowX: 'auto', lineHeight: 1.55 }}>
-{`{
-  "status": "success",
-  "match_score": 99.2,
-  "assigned_recipient": "Sri Guru Ram Dass Ji Langar",
-  "assigned_vehicle": "Ashok Leyland Cold Carrier",
-  "eta_minutes": 22,
-  "cold_chain_status": "COMPLIANT (2.7°C)",
-  "solver": "${solverMode === 'milp' ? 'pulp-cbc:Optimal' : 'greedy'}"
-}`}
+
+                  <pre style={{ background: '#0F172A', color: '#34D399', padding: '14px', borderRadius: 6, fontSize: '11.5px', fontFamily: 'var(--font-mono)', overflowX: 'auto', lineHeight: 1.55, height: '280px' }}>
+                    {apiSandboxResponse ? JSON.stringify(apiSandboxResponse, null, 2) : `// Click "Execute Live Request" to trigger this endpoint\n// Response payload will render here with real-time latency.`}
                   </pre>
                 </div>
               </div>

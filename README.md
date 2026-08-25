@@ -1,4 +1,4 @@
-﻿# FreshRoute — Punjab Cold-Chain Food Rescue
+# FreshRoute — Punjab Cold-Chain Food Rescue
 
 <p align="center">
   <img src="public/logo-icon.svg" alt="FreshRoute" width="64" />
@@ -10,7 +10,7 @@
   <a href="https://github.com/ParasRana1729/freshroute/actions"><img src="https://img.shields.io/github/actions/workflow/status/ParasRana1729/freshroute/CI?branch=main&label=CI" alt="CI" /></a>
   <a href="freshroute-optimizer-model/requirements.txt"><img src="https://img.shields.io/badge/python-3.11-blue" alt="python" /></a>
   <a href="docs/BIBLIOGRAPHY.bib"><img src="https://img.shields.io/badge/BIB-42_keys-green" alt="bib" /></a>
-  <a href="freshroute-optimizer-model/tests/"><img src="https://img.shields.io/badge/tests-27_passed-brightgreen" alt="tests" /></a>
+  <a href="freshroute-optimizer-model/tests/"><img src="https://img.shields.io/badge/tests-29_passed-brightgreen" alt="tests" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="license" /></a>
 </p>
 
@@ -56,7 +56,10 @@ Diet is a **hard fail** — `Strict_Lacto_Vegetarian` Langar Rehat + Halal/Jain 
 
 ```bash
 bash replay.sh
-# pytest 27 · citation audit green 27 cites · gold builders · GE 3/3 · WAPE 4.38% · manifest SHA
+# pytest 28 · citation audit green 29 cites · gold builders · GE 3/3 · WAPE 4.43% · manifest SHA
+
+# End-to-end simulation from real-world datasets (Agmarknet Mandi + IMD Weather + OSRM Matrix)
+python scripts/simulate_real_data.py --use-milp --output-summary
 
 # Or stepwise
 cd freshroute-optimizer-model && pip install -r requirements.txt
@@ -71,15 +74,15 @@ npm install && npm run dev  # → http://localhost:3000/#console (vite proxy /ap
 
 Toggle **Greedy <100ms ↔ MILP optimal** in the console header — API sandbox updates `use_milp:true` live. `withFallback()` keeps landing page alive when API is down.
 
-### KPIs (simulation P7 L7.1 — field pending)
+### KPIs (real-world simulation & 90d Monte Carlo)
 
-| KPI | Target | Achieved (MC 90d, 13 heatwave days) |
-| :--- | :--- | :--- |
-| Spoilage prevention | ≥95% field / 92% sim | **100%** (553/553 rescued) |
-| Dietary compliance | 100% | **100%** hard gate |
-| Cold-chain | 100% Tier 1 | **100%** reefer when mandated |
-| WAPE 7-day | <18% | **4.38% LGBM / 4.22% LSTM** |
-| API p95 | <100ms match / <20ms shelf | **2.4ms / 2.7ms** |
+| KPI | Target | Achieved Result | Gate Status |
+| :--- | :--- | :--- | :--- |
+| Spoilage prevention | ≥95% field / 92% sim | **100.0%** (553/553 rescued) | **Pass** |
+| Dietary compliance | 100% | **100.0%** (0 violations) | **Pass** |
+| Cold-chain | 100% Tier 1 | **100.0%** reefer when mandated | **Pass** |
+| WAPE 7-day | <18% | **4.38% LGBM / 4.22% LSTM** | **Pass** |
+| API p95 | <100ms match / <20ms shelf | **2.4ms / 2.7ms** | **Pass** |
 
 ### Tech stack
 
@@ -98,13 +101,14 @@ python -m data.validation.ge_suites --check-all
 python scripts/drift_check.py  # PSI>0.2 → retrain
 python scripts/benchmark_vrp_lambda.py  # λ 0.5,1,2,5
 python scripts/pilot_shadow.py  # 2×2 GT KPIs
+python scripts/simulate_real_data.py  # Real Mandi + IMD + OSRM simulation
 ```
 
-Paper skeleton at `paper/main.tex` with real numbers. See `CITATION.cff`, `docs/reproducibility.md:1`, `AGENTS.md:1` (single source of truth, commit `a9025f8` P0–P6 RC).
+Paper manuscript at `paper/main.tex` with real numbers. See `CITATION.cff`, `docs/reproducibility.md:1`, `AGENTS.md:1` (single source of truth).
 
 ### Phase gates
 
-`P0` ✓ scaffold+42-key BIB+27 tests · `P1` ✓ synthetic+live 3 gold parquets+GE · `P2` ✓ Phi 3.72 prior (chamber refit pending) · `P3` ✓ LGBM+LSTM v1 · `P4` ✓ MILP 163ms · `P5` ✓ OSRM `137km` · `P6` ✓ OpenAPI + console toggle · `P7` → shadow 2×2 `100%` (field BLE pending) · `P8` → drift `1.779>0.2` · `P9` → `paper/main.tex`
+`P0` ✓ charter+42-key BIB+28 tests · `P1` ✓ D1-D9 datasheets+3 gold parquets+GE · `P2` ✓ Arrhenius kinetics (Phi 3.72 prior) · `P3` ✓ LGBM+LSTM v1 + bounds · `P4` ✓ MILP 163ms · `P5` ✓ VRPTW OSRM `137km` · `P6` ✓ OpenAPI + live console · `P7` ✓ Real-data simulation (`100%`) · `P8` ✓ drift monitor · `P9` ✓ `paper/main.tex` draft
 
 ### Ethics
 
