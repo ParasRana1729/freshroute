@@ -13,13 +13,13 @@ mise exec -- python -m pytest freshroute-optimizer-model/tests/ -q
 echo "Step 3: Citation audit"
 mise exec -- python scripts/citation_audit.py --bib docs/BIBLIOGRAPHY.bib --root .
 echo "Step 4: Ingestion synthetic + GE"
-mise exec -- python scripts/build_gold_mandi.py --date 2026-08-18 || true
-mise exec -- python scripts/build_gold_weather.py --lat 30.9 --lon 75.85 --date 2026-08-18 || true
-mise exec -- python -m data.validation.ge_suites --check-all || true
+mise exec -- python freshroute-optimizer-model/scripts/build_gold_mandi.py --date 2026-08-18
+mise exec -- python freshroute-optimizer-model/scripts/build_gold_weather.py --lat 30.9 --lon 75.85 --date 2026-08-18
+mise exec -- env PYTHONPATH=freshroute-optimizer-model python -m data.validation.ge_suites --check-all
 echo "Step 5: Forecaster smoke (LightGBM WAPE <18%)"
-mise exec -- python -m core.demand_forecaster --days 30 --test-days 7 || true
+mise exec -- env PYTHONPATH=freshroute-optimizer-model python -m core.demand_forecaster --days 30 --test-days 7
 echo "Step 6: VRP lambda grid"
-mise exec -- python scripts/benchmark_vrp_lambda.py || true
+mise exec -- python freshroute-optimizer-model/scripts/benchmark_vrp_lambda.py
 echo "Step 7: Manifest SHA"
-mise exec -- python -m data.update_manifest || true
+mise exec -- env PYTHONPATH=freshroute-optimizer-model python -m data.update_manifest
 echo "=== replay pass — see $LOG ==="
