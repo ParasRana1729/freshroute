@@ -2,7 +2,7 @@
 
 > **For human maintainers and AI agents continuing this repo.** Copy this file into your context before editing. It is the single source of truth for *where we are* (P0–P6 RC), *how to run*, and *how not to break publication guarantees*.
 
-**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `6967185` (`feat: P3 LightGBM forecaster and P1 GE validation`)
+**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `a9025f8` (`feat: P3 LSTM, P5 OSRM, P1 manifest and integration tests`)
 
 ---
 
@@ -94,7 +94,7 @@ docker run -p 8000:8000 freshroute-optimizer-api:1.0-rc
 
 ---
 
-## 5. Repository map (commit `9c164c2` + P3/P5 pending)
+## 5. Repository map (commit `a9025f8`)
 
 ```
 freshroute/
