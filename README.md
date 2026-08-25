@@ -32,7 +32,7 @@
 > All operations strictly enforce a **zero-tolerance binary gate** on dietary policies (*Strict Lacto-Vegetarian Langar Rehat Maryada* and *Halal* purity).
 
 <p align="center">
-  <img src="screenshots/console_overview.svg" alt="FreshRoute Production Console" width="100%" />
+  <img src="screenshots/console_overview.png" alt="FreshRoute Production Console Overview" width="100%" />
   <br/><em><b>Figure 1:</b> FreshRoute Production Operations Console — Live Punjab dispatch grid across 23 districts, 30+ Langar kitchens, 25+ Mandis/Dairies, real-time Arrhenius thermal decay, and Pareto match queue.</em>
 </p>
 
@@ -63,18 +63,28 @@ flowchart LR
 <table>
   <tr>
     <td width="50%">
-      <img src="screenshots/thermal_decay.svg" alt="Stage 1 Arrhenius Perishability Simulator" width="100%" />
+      <img src="screenshots/thermal_decay.png" alt="Stage 1 Arrhenius Perishability Simulator" width="100%" />
       <p align="center"><b>Stage 1: Arrhenius Bio-Decay Simulator</b><br/><em>Interactive climate slider with Punjab Loo (44°C) & monsoon presets calculating real-time safety margins.</em></p>
     </td>
     <td width="50%">
-      <img src="screenshots/forecaster_grid.svg" alt="Stage 2 Punjab 23-District Forecaster" width="100%" />
+      <img src="screenshots/district_forecast.png" alt="Stage 2 Punjab 23-District Forecaster" width="100%" />
       <p align="center"><b>Stage 2: 23-District Demand Forecaster</b><br/><em>Spatial-temporal 7-day demand predictions with 10th/90th percentile bounds and MPI hunger indices.</em></p>
     </td>
   </tr>
   <tr>
+    <td width="50%">
+      <img src="screenshots/match_queue.png" alt="Stage 3 Langar Match Queue" width="100%" />
+      <p align="center"><b>Stage 3: Langar & Community Match Queue</b><br/><em>Searchable allocation queue with live MILP solver triggers, $t_{safe}$ windows, and Pareto scores.</em></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/dispatch_map.png" alt="Stage 4 Live Dispatch Map" width="100%" />
+      <p align="center"><b>Stage 4: Live Fleet Dispatch Map</b><br/><em>Interactive Leaflet GIS map with 5 GT highway routes, live sensor temps, and carrier nodes.</em></p>
+    </td>
+  </tr>
+  <tr>
     <td colspan="2">
-      <img src="screenshots/rest_api_sandbox.svg" alt="OpenAPI Developer Sandbox" width="100%" />
-      <p align="center"><b>Stage 3 & 4: OpenAPI Interactive Dispatch Sandbox</b><br/><em>Real-time execution of <code>/optimize/match</code>, <code>/predict/shelf-life</code>, <code>/forecast/demand</code>, and <code>/optimize/routing</code> with live server latencies.</em></p>
+      <img src="screenshots/rest_api_sandbox.png" alt="OpenAPI Developer Sandbox" width="100%" />
+      <p align="center"><b>Stage 5: OpenAPI Interactive Dispatch Sandbox</b><br/><em>Real-time execution of <code>/optimize/match</code>, <code>/predict/shelf-life</code>, <code>/forecast/demand</code>, and <code>/optimize/routing</code> with live server latencies.</em></p>
     </td>
   </tr>
 </table>
