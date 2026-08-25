@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": "1.0.0-P1",
-    "generated": "2026-08-25T10:44:34.783829+00:00",
+    "generated": "2026-08-25T11:02:25.108597+00:00",
     "spec": "docs/IMPLEMENTATION_PLAN.md:3.1 FAIR provenance",
     "note": "SHA256 computed on each gold file after ingestion; DOI minted at gate P1/P2/P6/P7"
   },
@@ -14,7 +14,7 @@
       "bib_key": "man2002shelflife,labuza1993kinetics,kumar2010dairy,fssai2011",
       "version": "1.0.0-P1",
       "bytes": 4305,
-      "updated": "2026-08-25T10:44:34.782311+00:00"
+      "updated": "2026-08-25T11:02:25.107314+00:00"
     },
     {
       "role": "district_hvi",
@@ -24,31 +24,37 @@
       "bib_key": "census2011,niti2023mpi,nfhs5,wfp2024hungermap",
       "version": "1.0.0-P1",
       "bytes": 11786,
-      "updated": "2026-08-25T10:44:34.782428+00:00"
+      "updated": "2026-08-25T11:02:25.107429+00:00"
     },
     {
       "role": "mandi_gold",
       "path": "data/gold/mandi_daily.parquet",
-      "sha256": "pending_after_P1_L1.1",
+      "sha256": "e38bad6a117dc5c553f4bcf0d0e78248603afd170c8cbce5bf30c208bd194e6d",
       "doi": "pending",
       "bib_key": "agmarknet2024",
-      "update_cadence": "daily 02:00 IST"
+      "update_cadence": "daily 02:00 IST",
+      "bytes": 7722,
+      "updated": "2026-08-25T11:02:25.107542+00:00"
     },
     {
       "role": "weather_hourly_gold",
       "path": "data/gold/weather_hourly.parquet",
-      "sha256": "pending_after_P1_L1.2",
+      "sha256": "0040973c9c1098bf956440c99413d8e76f4ac8ded96efc98072bcf09671cd38e",
       "doi": "pending",
       "bib_key": "imd2024,openmeteo2024",
-      "update_cadence": "hourly"
+      "update_cadence": "hourly",
+      "bytes": 5762,
+      "updated": "2026-08-25T11:02:25.107647+00:00"
     },
     {
       "role": "osm_distance_matrix",
       "path": "data/gold/osm_distance_matrix.parquet",
-      "sha256": "pending_after_P1_L1.3",
+      "sha256": "6098b9920d03d525bfdde827a75f12ed2e9016ac951d99896c7345db492a4232",
       "doi": "pending",
       "bib_key": "osm2024,osrm2024",
-      "license": "ODbL-1.0 \u2014 attribution \u00a9 OpenStreetMap contributors"
+      "license": "ODbL-1.0 \u2014 attribution \u00a9 OpenStreetMap contributors",
+      "bytes": 3533,
+      "updated": "2026-08-25T11:02:25.107740+00:00"
     },
     {
       "role": "forecaster_lgbm_model",
@@ -59,18 +65,18 @@
       "version": "1.0.0-P3",
       "update_cadence": "weekly (retrain on drift PSI>0.2)",
       "bytes": 802246,
-      "updated": "2026-08-25T10:44:34.783556+00:00"
+      "updated": "2026-08-25T11:02:25.108323+00:00"
     },
     {
       "role": "forecaster_lstm_model",
       "path": "data/gold/forecaster_lstm.pt",
-      "sha256": "66c6a945c55c52ebf86a197f7ce38a937656a946feaef8c605859456e2587a10",
+      "sha256": "2367e32c1c4966289c33304634a05397f49a24fd6992145a86fbea689daaa878",
       "doi": "pending",
       "bib_key": "hochreiter1997lstm",
       "version": "1.0.0-P3",
       "update_cadence": "weekly",
       "bytes": 236343,
-      "updated": "2026-08-25T10:44:34.783826+00:00"
+      "updated": "2026-08-25T11:02:25.108594+00:00"
     }
   ]
 }
