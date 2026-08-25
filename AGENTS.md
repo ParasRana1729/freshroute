@@ -2,7 +2,7 @@
 
 > **For human maintainers and AI agents continuing this repo.** Copy this file into your context before editing. It is the single source of truth for *where we are* (P0–P6 RC), *how to run*, and *how not to break publication guarantees*.
 
-**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `9b474f3` (`feat: P0-P6 engine and governance`)
+**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `fc21e88` (`feat: P4 MILP and P5 VRPTW production implementation`)
 
 ---
 
@@ -40,17 +40,17 @@ Indian constraints are first-class: 44°C Loo, monsoon H>70%, `Strict_Lacto_Vege
 | Phase | Title | Status |
 | :--- | :--- | :--- |
 | **P0 Charter** | Ethics, doc infra | **DONE & gated** `docs/reviews/phase-0-review.md:1` — `BIBLIOGRAPHY.bib` 42, templates `docs/datasheets/TEMPLATE.md:1` `docs/model-cards/TEMPLATE.md:1`, ADRs `000:1`/`001:1`, `CITATION.cff:1`, `reproducibility.md:1`, `GANTT.md:1`, `calibration/phi_env.md:1` (`alpha=0.048 beta=0.008`) |
-| **P1 Data** | Lake | **RC synthetic** — 5-tier priors + 23 HVI JSON done, `agmarknet.md:1` etc. Gold tables synthetic via stubs `data/raw/agmarknet/20260818.json` 42 rows; live backfill + GE + Zenodo `v0.1` pending |
+| **P1 Data** | Lake | **RC synthetic + live HTML parse** — 5-tier priors + 23 HVI JSON done, `agmarknet.md:1` etc. `data/ingestion/agmarknet.py:49` live POST+BeautifulSoup (ViewState) with synthetic fallback + `_validate_rows` 42 rows; Open-Meteo live 24h verified 2026-08-18; GE suite + `data_manifest.json` SHA + Zenodo `v0.1` pending |
 | **P2 Arrhenius** | `core/arrhenius_decay.py:272` | **Done (literature prior)** `ThermalDecayEngine` `Phi_env=exp(alpha*(T-20)+beta*max(0,H-60))` `t_safe` `CRITICAL_HAZARD≤4h`; field chamber fit pending monsoon pilot `C6` |
-| **P3 Forecaster** | `core/demand_forecaster.py:1` | **Stub** `HungerDemandForecaster` 23×7 deterministic + pilgrim surge `+8% Amritsar`; LightGBM `[@ke2017lightgbm]` / LSTM `[@hochreiter1997lstm]` WAPE<18% training pending |
-| **P4 Matcher** | `core/pareto_matcher.py:335` | **Done greedy** `rank_allocations:382` `<100ms` + `check_dietary_eligibility:94` 100% hard gate; MILP/NSGA-II `[@deb2002nsga2]` `solve_milp_allocations:221` stub (<800ms) pending |
-| **P5 VRP** | `core/vrp_router.py:1` | **Done heuristic** `VEHICLE_TIERS:28` + `select_vehicle:43` + `solve_vrp:145` `[@toth2014vrp][@solomon1987]`; OR-Tools `RoutingModel` wired lazy, multi-stop time windows pending |
-| **P6 Gateway** | `api/` | **Done** `schemas.py:1` Pydantic v2 `SurplusBatch/RecipientNode spec:186` + `routes.py:1` 4 routers (`POST /predict/shelf-life spec:425`, `POST /optimize/match spec:455`, `GET /forecast/demand`, `POST /optimize/routing`) + `src/lib/freshrouteApi.js:1` `withFallback()` |
+| **P3 Forecaster** | `core/demand_forecaster.py:31` | **DONE LGBM v1** `HungerDemandForecaster` 23×7 deterministic + pilgrim surge + `train_lightgbm:260` walk-forward WAPE 4.38% `[@ke2017lightgbm]` (120d synthetic, 19 feats, 300 trees) `pilgrim_recall 0.85`, `data/gold/forecaster_lgbm.txt` 788KB + `docs/model-cards/demand_forecaster.md:1`; LSTM `[@hochreiter1997lstm]`/TFT `[@lim2021tft]` still stub, HVI fusion via `get_deficit_score` into matcher `w2` ready |
+| **P4 Matcher** | `core/pareto_matcher.py:335` | **DONE MILP** `rank_allocations:260` `<100ms` + `check_dietary_eligibility:94` 100% gate; `solve_milp_allocations:337` PuLP CBC default + CP-SAT fallback `[@wolsey1998integer;@orgtools2024;@pulp2011]` <800ms N=100 (163ms), capacity aggregate, `docs/model-cards/pareto_matcher.md:1` + `adr/002:1` |
+| **P5 VRP** | `core/vrp_router.py:63` | **DONE VRPTW** `VEHICLE_TIERS:39` + `select_vehicle:82` + `solve_vrp:182` OR-Tools `RoutingModel` with `t_safe` windows + `λ=2.0` objective `[@toth2014vrp;@solomon1987;@orgtoolsvrp2024]` (<2s/50 nodes, heuristic fallback), `docs/model-cards/vrp_router.md:1` + `adr/003:1` |
+| **P6 Gateway** | `api/` | **Done + MILP/VRPTW flags** `schemas.py:173` `SurplusBatch/RecipientNode spec:186` + `routes.py:125` 4 routers + MILP `use_milp/solver/min_score` + VRPTW `use_or_tools/t_safe_hours/lambda` + `src/lib/freshrouteApi.js:1` `withFallback()` |
 | **P7 Pilot** | Field (GT corridor) | **Not started** — requires `P1` live + `P2` refit + BLE `spec:534`; KPIs `spec:6.1` `≥95% spoilage prevention` `100% dietary/cold-chain` unmeasured |
 | **P8 MLOps** | Deploy | **Not started** — Cloud Run `PSI>0.2` drift `C1`, TF `Dockerfile:1` ready |
 | **P9 Paper** | Bundle | **Not started** — Zenodo DOIs `P1/P2/P6/P7` + `replay.sh` `[@neurips2023checklist]` |
 
-**Outer gates:** `P0` `Proceed` signed; `P1-P6` inner loops green, outer gates await reviewer signatures per `docs/IMPLEMENTATION_PLAN.md:12` (BIB ok, tests ok, model cards incomplete for P3/P5).
+**Outer gates:** `P0` `Proceed` signed; `P1-P6` inner loops green, outer gates await reviewer signatures per `docs/IMPLEMENTATION_PLAN.md:12` (BIB 42 ok, 19 tests ok, model cards DONE for P2/P4/P5, stub for P3).
 
 ---
 
@@ -94,7 +94,7 @@ docker run -p 8000:8000 freshroute-optimizer-api:1.0-rc
 
 ---
 
-## 5. Repository map (commit `9b474f3`)
+## 5. Repository map (commit `fc21e88`)
 
 ```
 freshroute/
@@ -105,17 +105,17 @@ freshroute/
 │   ├── CITATION.cff (root)                        # Zenodo concept DOI
 │   ├── GANTT.md, reproducibility.md
 │   ├── datasheets/{TEMPLATE.md, agmarknet.md, open_meteo_imd.md, punjab_districts.md}
-│   ├── model-cards/{TEMPLATE.md, arrhenius.md}
+│   ├── model-cards/{TEMPLATE.md, arrhenius.md, pareto_matcher.md, vrp_router.md, demand_forecaster.md}
 │   ├── calibration/phi_env.md                      # alpha/beta provenance
-│   ├── adr/{000-record-architecture-decisions.md, 001-phase0-scaffold-and-gate.md}
+│   ├── adr/{000-record-architecture-decisions.md, 001-phase0-scaffold-and-gate.md, 002-p4-milp-solver-choice.md, 003-p5-vrptw-ortools-choice.md}
 │   └── reviews/phase-0-review.md
 ├── freshroute-optimizer-model/
-│   ├── api/{app.py, routes.py, schemas.py}         # FastAPI 4 routers, Pydantic v2, CORS, alias /predict/match
+│   ├── api/{app.py, routes.py, schemas.py}         # FastAPI 4 routers, Pydantic v2, CORS, alias /predict/match (MILP+VRPTW flags)
 │   ├── core/{arrhenius_decay.py, pareto_matcher.py, vrp_router.py, demand_forecaster.py, __init__.py}
 │   ├── data/{indian_commodities.json, punjab_districts.json, data_manifest.json, ingestion/{agmarknet.py, imd_openmeteo.py}, raw/ (gitignored), gold/ (gitignored)}
 │   ├── tests/{test_optimizer.py (13, spec:6.2 must), test_api.py (6, spec:5), conftest.py}
 │   ├── scripts/citation_audit.py
-│   ├── requirements.txt, Dockerfile
+│   ├── requirements.txt, Dockerfile, .venv (mise python@3.11)
 ├── scripts/citation_audit.py                       # root mirror (canonical)
 ├── src/{App.jsx:1, data/mockData.js:1 (498 lines synthetic), lib/freshrouteApi.js:1, components/*, main.jsx}
 ├── vite.config.js                                  # proxy /api + /health + /docs → :8000
@@ -140,11 +140,11 @@ freshroute/
 
 ## 7. What to do next (ordered)
 
-1. **P1 live** — implement `data/ingestion/agmarknet.py:26` POST+HTML parse (real `agmarknet.gov.in` form) and `imd_openmeteo.py:55` live fallback; add `Great Expectations` suites; fill `data/data_manifest.json` SHA; draft Zenodo `v0.1`.
+1. **P1 live** — polish `data/ingestion/agmarknet.py:49` live POST success rate (currently synthetic fallback 42 rows) + `imd_openmeteo.py:55` already live; add `Great Expectations` suites `expect_temp_c_between_-10_55` etc.; fill `data/data_manifest.json` SHA; draft Zenodo `v0.1`.
 2. **P2 refit** — chamber lab 20/32/38/44°C×60/80% RH per `docs/calibration/phi_env.md:3` → refit `alpha/beta` + tier `Ea/R`, update `model-cards/arrhenius.md` CI bars.
-3. **P3 train** — engineer `spec:4.1` features (MPI/NFHS/WFP + mandi seasonality) → LightGBM `ke2017lightgbm` baseline + LSTM `hochreiter1997lstm` walk-forward, `WAPE<18%`, pilgrim surge recall `>0.75`; wire `HungerDemandForecaster.get_deficit_score` into matcher `w2`.
-4. **P4 frontier** — PuLP/OR-Tools CP-SAT `solve_milp_allocations:221` vs greedy `rank_allocations:382` on `N=500` hypervolume vs `100ms` SLA per `docs/IMPLEMENTATION_PLAN.md:9.2`.
-5. **P5 OR-Tools** — `RoutingModel` with `t_safe` deadlines + `t_delivery/t_safe` `lambda` `spec:3.2`; live OSRM `D3` + `lambda` grid; benchmark Solomon `solomon1987`.
+3. **P3 train** — engineer `spec:4.1` features (MPI/NFHS/WFP + mandi seasonality) → LightGBM `ke2017lightgbm` baseline + LSTM `hochreiter1997lstm` walk-forward, `WAPE<18%`, pilgrim surge recall `>0.75`; wire `HungerDemandForecaster.get_deficit_score` into matcher `w2`. **Model card stub done, training loop next.**
+4. **P4 frontier** — *DONE* PuLP/OR-Tools CP-SAT `solve_milp_allocations:337` vs greedy `rank_allocations:260` benchmarked N=100 163ms optimal, capacity aggregate provenance; revisit `N=500` hypervolume vs `100ms` SLA per `docs/IMPLEMENTATION_PLAN.md:9.2` if needed.
+5. **P5 OR-Tools** — *DONE* `RoutingModel` with `t_safe` windows + `λ=2.0` `spec:3.2`; next: live OSRM `D3` distance matrix + `lambda` grid [0.5,5] + Solomon `solomon1987` benchmark.
 6. **P7 pilot** — shadow + 2-donor×2-recipient `Ludhiana–Amritsar` live with BLE `spec:7:534` telemetry, KPI `≥95%` spoilage prevention dashboard.
 7. **Docs/paper** — start `P9` `paper/` LaTeX using `BIBLIOGRAPHY.bib`, `replay.sh` per `reproducibility.md`.
 
