@@ -2,7 +2,7 @@
 
 > **For human maintainers and AI agents continuing this repo.** Copy this file into your context before editing. It is the single source of truth for *where we are* (P0–P6 RC), *how to run*, and *how not to break publication guarantees*.
 
-**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `fcef85f` (`fix(P9): replay.sh paths for repo-root execution`)
+**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `cbad2af` (`docs: README display version — badges, hero, mermaid, KPIs`)
 
 ---
 
@@ -40,15 +40,15 @@ Indian constraints are first-class: 44°C Loo, monsoon H>70%, `Strict_Lacto_Vege
 | Phase | Title | Status |
 | :--- | :--- | :--- |
 | **P0 Charter** | Ethics, doc infra | **DONE & gated** `docs/reviews/phase-0-review.md:1` — `BIBLIOGRAPHY.bib` 42, templates `docs/datasheets/TEMPLATE.md:1` `docs/model-cards/TEMPLATE.md:1`, ADRs `000:1`/`001:1`, `CITATION.cff:1`, `reproducibility.md:1`, `GANTT.md:1`, `calibration/phi_env.md:1` (`alpha=0.048 beta=0.008`) |
-| **P1 Data** | Lake | **RC + live + GE** — 5-tier priors + 23 HVI done, `agmarknet.py:49` live POST+BS4 (synthetic 42 rows) + `_validate_rows`, `imd_openmeteo.py:44` live `open-meteo-live` 24h + `_validate_weather_rows`; `data/validation/ge_suites.py:1` 3 suites pass; `data/data_manifest.json:1` SHA computed for `indian_commodities.json`/`punjab_districts.json`/`forecaster_lgbm.txt`/`forecaster_lstm.pt`; `data/update_manifest.py:1` FAIR automation [@wilkinson2016fair]; Zenodo `v0.1` pending |
-| **P2 Arrhenius** | `core/arrhenius_decay.py:272` | **Done (literature prior)** `ThermalDecayEngine` `Phi_env=exp(alpha*(T-20)+beta*max(0,H-60))` `t_safe` `CRITICAL_HAZARD≤4h`; field chamber fit pending monsoon pilot `C6` |
+| **P1 Data** | Lake | **RC + live + GE + DVC** — 5-tier priors +23 HVI, `agmarknet.py:49` live + `_validate_rows` 42 rows + `build_gold_mandi.py:1` → `mandi_daily.parquet` 126 rows (3d backfill), `imd_openmeteo.py:44` live `open-meteo-live` 24h + `build_gold_weather.py:1` 48 rows, `build_gold_osm.py:1` 12 OSRM pairs + `osm_distance_matrix.parquet`; `ge_suites.py:1` 3 suites pass; `data_manifest.json:1` SHA `e38b...`/`0040...`/`6098...` + `*.dvc` 5 gold; real weather `fetch_real_weather.py:1` 7320 rows 43.6°C peak logged to `open_meteo_imd.md` |
+| **P2 Arrhenius** | `core/arrhenius_decay.py:272` | **Done + demo refit** `Phi_env=exp(alpha*(T-20)+beta*max(0,H-60))` `t_safe` `CRITICAL_HAZARD≤4h`; `scripts/calibrate_phi_demo.py:1` synthetic 4×2×10 R² 0.993 alpha 0.050 beta 0.006 `[@labuza1993kinetics]`; field chamber fit pending `C6` |
 | **P3 Forecaster** | `core/demand_forecaster.py:31` | **DONE LGBM+LSTM v1** `HungerDemandForecaster` 23×7 deterministic + pilgrim surge + `train_lightgbm:359` WAPE 4.38% / `train_lstm:529` WAPE 4.22% [@ke2017lightgbm;@hochreiter1997lstm] (120d syn, 19 feats LGBM 300 trees, LSTM 2-layer 64 hidden +8 emb 20 epochs) `pilgrim_recall 0.85/0.82`, `data/gold/forecaster_lgbm.txt` 802KB + `forecaster_lstm.pt` 236KB + `docs/model-cards/demand_forecaster.md:1`; TFT `[@lim2021tft]` still stub, HVI fusion via `get_deficit_score` into matcher `w2` ready |
 | **P4 Matcher** | `core/pareto_matcher.py:335` | **DONE MILP** `rank_allocations:260` `<100ms` + `check_dietary_eligibility:94` 100% gate; `solve_milp_allocations:337` PuLP CBC default + CP-SAT fallback `[@wolsey1998integer;@orgtools2024;@pulp2011]` <800ms N=100 (163ms), capacity aggregate, `docs/model-cards/pareto_matcher.md:1` + `adr/002:1` |
 | **P5 VRP** | `core/vrp_router.py:63` | **DONE VRPTW + OSRM** `VEHICLE_TIERS:39` + `select_vehicle:82` + `solve_vrp:182` OR-Tools `RoutingModel` with `t_safe` windows + `λ=2.0` + `_get_osrm_distance_matrix:27` live OSRM `[@osm2024;@osrm2024]` (fallback haversine), `docs/model-cards/vrp_router.md:1` + `adr/003:1` |
-| **P6 Gateway** | `api/` | **Done + MILP/VRPTW flags** `schemas.py:173` `SurplusBatch/RecipientNode spec:186` + `routes.py:125` 4 routers + MILP `use_milp/solver/min_score` + VRPTW `use_or_tools/t_safe_hours/lambda` + `src/lib/freshrouteApi.js:1` `withFallback()` |
-| **P7 Pilot** | Field (GT corridor) | **Not started** — requires `P1` live + `P2` refit + BLE `spec:534`; KPIs `spec:6.1` `≥95% spoilage prevention` `100% dietary/cold-chain` unmeasured |
-| **P8 MLOps** | Deploy | **Not started** — Cloud Run `PSI>0.2` drift `C1`, TF `Dockerfile:1` ready |
-| **P9 Paper** | Bundle | **Not started** — Zenodo DOIs `P1/P2/P6/P7` + `replay.sh` `[@neurips2023checklist]` |
+| **P6 Gateway** | `api/` | **Done + MILP/VRPTW flags + p95 bench** `schemas.py:173` + `routes.py:125` 4 routers + MILP `use_milp/solver/min_score` + VRPTW `use_or_tools/t_safe_hours/lambda` + `src/lib/freshrouteApi.js:1` `withFallback()` + `scripts/benchmark_api_latency.py:1` p95 2.4ms/2.7ms + console `OperationsApp.jsx:26` MILP toggle |
+| **P7 Pilot** | Field (GT corridor) | **Shadow DONE** — `scripts/pilot_shadow.py:1` 2×2 `100%` spoilage/cold/dietary (field BLE `spec:534` pending); Monte Carlo `scripts/monte_carlo_sim.py:1` 90d 100% prevention (13 heatwaves) |
+| **P8 MLOps** | Deploy | **CI+drift+lock DONE** — `.github/workflows/ci.yml:1` + `scripts/drift_check.py:1` PSI `1.779` + `environment.lock:1` + `data/gold/*.dvc` DVC, `.pre-commit-config.yaml:1` |
+| **P9 Paper** | Bundle | **Skeleton+Results DONE** — `paper/main.tex:1` + Results 100%/4.38/4.22% + `replay.sh:1` `[@neurips2023checklist]` (Zenodo DOIs pending) |
 
 **Outer gates:** `P0` `Proceed` signed; `P1-P6` inner loops green, outer gates await reviewer signatures per `docs/IMPLEMENTATION_PLAN.md:12` (BIB 42 ok, 19 tests ok, model cards DONE for P2/P4/P5, stub for P3).
 
@@ -67,9 +67,11 @@ pip install -r requirements.txt
 python -m data.ingestion.agmarknet --date 2026-08-18 --out data/raw/agmarknet/20260818.json
 python -m data.ingestion.imd_openmeteo --lat 30.90 --lon 75.85 --date 2026-08-18
 
-# Verify (19 tests)
+# Verify (27 tests: 13 core +6 API +8 integration)
 python -m pytest tests/ -v
 python scripts/citation_audit.py --bib ../docs/BIBLIOGRAPHY.bib --root ..
+python -m data.validation.ge_suites --check-all
+bash ../replay.sh  # full NeurIPS checklist
 
 # Serve (reload)
 uvicorn api.app:app --reload --port 8000
@@ -94,7 +96,7 @@ docker run -p 8000:8000 freshroute-optimizer-api:1.0-rc
 
 ---
 
-## 5. Repository map (commit `a9025f8`)
+## 5. Repository map (commit `cbad2af`)
 
 ```
 freshroute/
