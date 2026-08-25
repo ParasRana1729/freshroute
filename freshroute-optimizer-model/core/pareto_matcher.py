@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import math
 import time
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 
@@ -92,6 +93,42 @@ class ParetoMatchingEngine:
         if avg_speed_kmh <= 0:
             avg_speed_kmh = 35.0
         return round(distance_km / avg_speed_kmh, 2)
+
+    # ------------------------------------------------------------------
+    # D3 distance matrix (OSRM gold parquet with haversine fallback)
+    # ------------------------------------------------------------------
+
+    def load_distance_matrix(self, path: str | Path | None = None) -> Dict[Tuple[str, str], float]:
+        """Load donor↔recipient distances from gold parquet (P1 L1.3 D3).
+
+        Expects columns donor_id, recipient_id, distance_km (see
+        scripts/build_gold_osm.py). Returns dict {(donor_id, recipient_id): km}.
+        Missing file → empty dict; callers fall back to haversine.
+        """
+        import pandas as pd
+
+        p = Path(path) if path else Path(__file__).parent.parent / "data" / "gold" / "osm_distance_matrix.parquet"
+        if not p.exists():
+            self._dist_matrix: Dict[Tuple[str, str], float] = {}
+            return self._dist_matrix
+        try:
+            df = pd.read_parquet(p)
+            self._dist_matrix = {
+                (str(r["donor_id"]), str(r["recipient_id"])): float(r["distance_km"])
+                for _, r in df.iterrows()
+            }
+        except Exception:
+            self._dist_matrix = {}
+        return self._dist_matrix
+
+    def lookup_distance(self, batch: Dict[str, Any], recipient: Dict[str, Any]) -> Optional[float]:
+        """Distance from gold matrix if present, else None (caller uses haversine)."""
+        matrix = getattr(self, "_dist_matrix", None)
+        if not matrix:
+            return None
+        donor_id = str(batch.get("donor_id", ""))
+        recip_id = str(recipient.get("recipient_id", recipient.get("id", "")))
+        return matrix.get((donor_id, recip_id))
 
     # ------------------------------------------------------------------
     # Dietary eligibility (hard constraint)
