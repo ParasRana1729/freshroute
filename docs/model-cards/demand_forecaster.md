@@ -17,7 +17,7 @@
 - **Features (spec §4.1:168-172):** demography (Census 2011, NITI MPI 2023, NFHS-5), calendar (Gurpurab/Diwali/Ramadan/Navratri), weather (IMD/Open-Meteo temp/humidity), mandi seasonality (Agmarknet proxy), historical lags.
 - **Deficit score:** `get_deficit_score(district_id)` → 0–100 for matcher `w2=0.30`: `hvi*0.8 + gap_penalty +10`.
 - **Inputs:** `district_id`, `horizon_days` (1–30), `include_pilgrim_surge`.
-- **Outputs:** per-district forecast dict and `batch_forecast`; `forecast_with_model`/`forecast_with_lstm` recursive 7-day.
+- **Outputs:** per-district forecast dict and `batch_forecast`; `forecast_with_model`/`forecast_with_lstm` recursive 7-day with 10th/90th percentile prediction bounds (`forecast_demand_lower_lbs`, `forecast_demand_upper_lbs`).
 
 ## 2. Intended Use
 
@@ -65,7 +65,7 @@
 
 ## 9. Caveats
 
-- **Synthetic:** Trained on synthetic history, not real consumption logs; real mandi + pilot logs will shift WAPE. No prediction intervals yet (quantile regression pending).
+- **Synthetic:** Trained on synthetic history, not real consumption logs; real mandi + pilot logs will shift WAPE. Prediction intervals estimated via 10th/90th percentile dispersion.
 - **Drift:** No PSI monitoring yet (P8 C1 drift `PSI>0.2`); weekly retrain on new gold tables needed.
 - **Season:** Pilgrim surge binary +8% flat + festival 1.02×; real surge varies by calendar year and Gurpurab date.
 - **Limits:** Not validated beyond Punjab 23 districts; not for frozen fish beyond tier.
