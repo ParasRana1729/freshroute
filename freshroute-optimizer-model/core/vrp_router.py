@@ -20,9 +20,48 @@ satisfies spec unit expectations and frontend simulation (see src/App.jsx:189).
 
 from __future__ import annotations
 
+import json
 import math
+import urllib.parse
+import urllib.request
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
+
+
+def _get_osrm_distance_matrix(
+    coords: List[List[float]], timeout: float = 3.0
+) -> Optional[Tuple[List[List[int]], List[List[int]]]]:
+    """Try OSRM table for haversine fallback (D3) [@osm2024; @osrm2024].
+
+    Expects coords as [lat,lon] per spec; OSRM needs lon,lat.
+    Returns (dist_matrix_m, time_matrix_s) or None on failure/timeout.
+    Uses public demo server https://router.project-osrm.org; falls back to
+    None so caller uses haversine (spec prior). No API key required.
+    """
+    try:
+        # OSRM table expects lon,lat;lon,lat;...
+        coord_str = ";".join(f"{lon},{lat}" for lat, lon in coords)
+        # Use table service: https://router.project-osrm.org/table/v1/driving/{coords}?annotations=distance,duration
+        url = f"https://router.project-osrm.org/table/v1/driving/{coord_str}?annotations=distance,duration"
+        req = urllib.request.Request(url, headers={"User-Agent": "FreshRoute-P5-OSRM/1.0"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            data = json.loads(r.read().decode())
+            if data.get("code") != "Ok":
+                return None
+            dists = data.get("distances")
+            durs = data.get("durations")
+            if not dists or not durs:
+                return None
+            # Convert to int meters / seconds, round
+            dist_m = [[int(round(v)) if v is not None else 0 for v in row] for row in dists]
+            time_s = [[int(round(v)) if v is not None else 0 for v in row] for row in durs]
+            # Basic sanity: must be n x n
+            n = len(coords)
+            if len(dist_m) != n or any(len(row) != n for row in dist_m):
+                return None
+            return dist_m, time_s
+    except Exception:
+        return None
 
 
 @dataclass
@@ -335,25 +374,43 @@ class VRPRouter:
         all_coords = [list(depot_coords)] + dropoff_coords
         n_nodes = len(all_coords)
 
-        # Build distance matrix (haversine, integer meters) and time matrix (minutes)
-        # Use OSRM if available in future D3; currently haversine [@toth2014vrp routing distance prior]
-        dist_matrix: List[List[int]] = [[0]*n_nodes for _ in range(n_nodes)]
-        time_matrix: List[List[int]] = [[0]*n_nodes for _ in range(n_nodes)]
-        # Speed: average 35 kmh, but adjust for traffic
-        speed_kmh = 35.0 * (0.74 if traffic_congestion else 1.0)  # ~1.35x time -> 0.74 speed
-        for i in range(n_nodes):
-            for j in range(n_nodes):
-                if i == j:
-                    continue
-                d_km = haversine_km(all_coords[i][0], all_coords[i][1], all_coords[j][0], all_coords[j][1])
-                # Integer cost: meters
-                dist_matrix[i][j] = int(round(d_km * 1000))
-                # Time minutes: dist / speed *60, integer
-                time_min = int(round((d_km / max(5.0, speed_kmh)) * 60))
-                # Service time 10 min at dropoffs
-                if j != 0:
-                    time_min += 10
-                time_matrix[i][j] = max(1, time_min)
+        # Build distance matrix: try OSRM live first (D3), fallback to haversine [@toth2014vrp]
+        dist_matrix: Optional[List[List[int]]] = None
+        time_matrix: Optional[List[List[int]]] = None
+        # OSRM attempt (public demo, 3s timeout) — uses lon,lat order
+        osrm_res = _get_osrm_distance_matrix(all_coords, timeout=3.0)
+        if osrm_res is not None:
+            dist_m, time_s = osrm_res
+            # OSRM gives meters and seconds; convert time to minutes + service
+            dist_matrix = dist_m
+            time_matrix = [[0]*n_nodes for _ in range(n_nodes)]
+            for i in range(n_nodes):
+                for j in range(n_nodes):
+                    if i == j:
+                        continue
+                    # time_s is seconds, convert to minutes, add service
+                    base_min = int(round(time_s[i][j] / 60))
+                    if j != 0:
+                        base_min += 10
+                    # Traffic congestion penalty (1.35× if flagged, as in heuristic)
+                    if traffic_congestion:
+                        base_min = int(round(base_min * 1.35))
+                    time_matrix[i][j] = max(1, base_min)
+        if dist_matrix is None or time_matrix is None:
+            # Haversine fallback
+            dist_matrix = [[0]*n_nodes for _ in range(n_nodes)]
+            time_matrix = [[0]*n_nodes for _ in range(n_nodes)]
+            speed_kmh = 35.0 * (0.74 if traffic_congestion else 1.0)
+            for i in range(n_nodes):
+                for j in range(n_nodes):
+                    if i == j:
+                        continue
+                    d_km = haversine_km(all_coords[i][0], all_coords[i][1], all_coords[j][0], all_coords[j][1])
+                    dist_matrix[i][j] = int(round(d_km * 1000))
+                    time_min = int(round((d_km / max(5.0, speed_kmh)) * 60))
+                    if j != 0:
+                        time_min += 10
+                    time_matrix[i][j] = max(1, time_min)
 
         num_vehicles = min(len(fleet), max(1, len(dropoff_nodes)))
         # If fleet is larger than needed, cap; if smaller, use all fleet and allow multiple trips per vehicle via capacity splits

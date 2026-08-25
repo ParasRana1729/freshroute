@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": "1.0.0-P1",
-    "generated": "2026-08-24T00:00:00Z",
+    "generated": "2026-08-25T10:44:34.783829+00:00",
     "spec": "docs/IMPLEMENTATION_PLAN.md:3.1 FAIR provenance",
     "note": "SHA256 computed on each gold file after ingestion; DOI minted at gate P1/P2/P6/P7"
   },
@@ -9,18 +9,22 @@
     {
       "role": "commodity_priors",
       "path": "data/indian_commodities.json",
-      "sha256": "pending_compute_at_ingest",
+      "sha256": "f8693d52371bc416cb6144c8eb8c1e147b2a9a92611703b2737562f625838264",
       "doi": "10.5281/zenodo.XXXXXXX",
       "bib_key": "man2002shelflife,labuza1993kinetics,kumar2010dairy,fssai2011",
-      "version": "1.0.0-P1"
+      "version": "1.0.0-P1",
+      "bytes": 4305,
+      "updated": "2026-08-25T10:44:34.782311+00:00"
     },
     {
       "role": "district_hvi",
       "path": "data/punjab_districts.json",
-      "sha256": "pending_compute_at_ingest",
+      "sha256": "ca13f04d2121e7bedca840f697bc4805e9dca1871a7c98ed9f963dd3a558fa1d",
       "doi": "10.5281/zenodo.XXXXXXX",
       "bib_key": "census2011,niti2023mpi,nfhs5,wfp2024hungermap",
-      "version": "1.0.0-P1"
+      "version": "1.0.0-P1",
+      "bytes": 11786,
+      "updated": "2026-08-25T10:44:34.782428+00:00"
     },
     {
       "role": "mandi_gold",
@@ -44,7 +48,29 @@
       "sha256": "pending_after_P1_L1.3",
       "doi": "pending",
       "bib_key": "osm2024,osrm2024",
-      "license": "ODbL-1.0 — attribution © OpenStreetMap contributors"
+      "license": "ODbL-1.0 \u2014 attribution \u00a9 OpenStreetMap contributors"
+    },
+    {
+      "role": "forecaster_lgbm_model",
+      "path": "data/gold/forecaster_lgbm.txt",
+      "sha256": "3d6bd79481027e33758f114b6835975ddac026ba9576d21c17d8b5ed349303ea",
+      "doi": "pending",
+      "bib_key": "ke2017lightgbm",
+      "version": "1.0.0-P3",
+      "update_cadence": "weekly (retrain on drift PSI>0.2)",
+      "bytes": 802246,
+      "updated": "2026-08-25T10:44:34.783556+00:00"
+    },
+    {
+      "role": "forecaster_lstm_model",
+      "path": "data/gold/forecaster_lstm.pt",
+      "sha256": "66c6a945c55c52ebf86a197f7ce38a937656a946feaef8c605859456e2587a10",
+      "doi": "pending",
+      "bib_key": "hochreiter1997lstm",
+      "version": "1.0.0-P3",
+      "update_cadence": "weekly",
+      "bytes": 236343,
+      "updated": "2026-08-25T10:44:34.783826+00:00"
     }
   ]
 }
