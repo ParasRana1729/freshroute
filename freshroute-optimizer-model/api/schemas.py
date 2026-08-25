@@ -171,9 +171,22 @@ class ShelfLifeResponse(BaseModel):
 
 
 class MatchRequest(BaseModel):
-    surplus_batch: SurplusBatch
+    surplus_batch: Optional[SurplusBatch] = Field(None, description="Single surplus batch (legacy); if surplus_batches supplied, this may be omitted")
     ambient_weather: Optional[Dict[str, Any]] = Field(None, examples=[{"temp_c": 38.0, "humidity_pct": 72.0}])
     candidate_recipients: Optional[List[RecipientNode]] = None
+    # P4 MILP options (spec 2.1 MILP vs greedy)
+    use_milp: bool = Field(False, description="If true, use MILP optimal solver vs greedy heuristic")
+    solver: Optional[str] = Field(None, examples=["pulp", "ortools"], description="MILP backend: pulp (CBC) or ortools (CP-SAT)")
+    min_score: float = Field(40.0, ge=0, le=100, description="Feasibility threshold S_ij")
+    time_limit_secs: float = Field(0.8, ge=0.1, le=5.0, description="MILP time budget")
+    # Batch mode: optional list for MILP multi-batch optimization
+    surplus_batches: Optional[List[SurplusBatch]] = Field(None, description="Batch MILP: list of surplus batches (alternative to single surplus_batch)")
+
+    @model_validator(mode="after")
+    def _require_batch(self) -> "MatchRequest":
+        if self.surplus_batch is None and (self.surplus_batches is None or len(self.surplus_batches) == 0):
+            raise ValueError("Either surplus_batch or surplus_batches must be provided")
+        return self
 
 
 class MatchResponse(BaseModel):
@@ -186,6 +199,8 @@ class MatchResponse(BaseModel):
     execution_latency_ms: int
     risk_classification: str
     cold_chain_enforced: bool
+    solver: Optional[str] = Field(None, examples=["greedy", "pulp-cbc:Optimal", "ortools-cp-sat"], description="Solver used")
+    allocations: Optional[List[Dict[str, Any]]] = Field(None, description="Batch MILP: all allocations when surplus_batches supplied")
 
 
 class ForecastRequest(BaseModel):
@@ -211,6 +226,12 @@ class RoutingRequest(BaseModel):
     pickup_nodes: List[Dict[str, Any]]
     dropoff_nodes: List[Dict[str, Any]]
     traffic_matrix: Optional[str] = Field(None, examples=["live_nh44_telemetry"])
+    # P5 VRPTW options
+    use_or_tools: bool = Field(False, description="If true, use OR-Tools VRPTW solver")
+    t_safe_hours: Optional[List[float]] = Field(None, description="Per-pickup t_safe hours for time windows (spec 2.3)")
+    lambda_penalty: float = Field(2.0, ge=0, le=10, description="Perishability weight lambda in objective (spec 3.2:162)")
+    time_limit_secs: float = Field(2.0, ge=0.5, le=10, description="OR-Tools time budget")
+    traffic_congestion: bool = Field(False, description="NH44 congestion flag (Phagwara bypass)")
 
 
 class RoutingResponse(BaseModel):

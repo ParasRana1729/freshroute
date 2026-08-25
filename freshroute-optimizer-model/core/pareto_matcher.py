@@ -32,7 +32,8 @@ Integration with frontend:
 from __future__ import annotations
 
 import math
-from typing import Any, Dict, List, Optional
+import time
+from typing import Any, Dict, List, Optional, Tuple
 
 
 class ParetoMatchingEngine:
@@ -331,7 +332,7 @@ class ParetoMatchingEngine:
         return results
 
     # ------------------------------------------------------------------
-    # MILP stub (Phase P4 v1) — not used in greedy path but reserved
+    # MILP optimal allocation (Phase P4 v1) — PuLP CBC + OR-Tools CP-SAT
     # ------------------------------------------------------------------
 
     def solve_milp_allocations(
@@ -339,15 +340,303 @@ class ParetoMatchingEngine:
         surplus_batches: List[Dict[str, Any]],
         recipients: List[Dict[str, Any]],
         decay_engine: Any,
+        *,
+        min_score: float = 40.0,
+        time_limit_secs: float = 0.8,
+        solver: str = "pulp",
     ) -> List[Dict[str, Any]]:
-        """MILP optimal allocation stub.
+        """MILP optimal allocation — maximize sum S_ij x_ij [@wolsey1998integer; @orgtools2024].
 
-        Intended: binary x_ij, maximize sum S_ij x_ij s.t. each surplus at most
-        one recipient, capacity, diet, t_transit <= t_safe. Solver: pulp or
-        OR-Tools CP-SAT. For now delegates to greedy with log note; P4 loop
-        will implement when latency budget allows (<800ms for N=100).
+        Formulation (spec 2.1:128-133):
+          max sum_{i,j} S_ij * x_ij
+          s.t. sum_j x_ij <= 1               for each surplus i (at most one recipient)
+               sum_i w_i * x_ij <= Cap_j      for each recipient j (capacity)
+               x_ij in {0,1}
+               x_ij = 0 if diet ineligible or t_transit > t_safe or S_ij < min_score
 
-        See ADR for solver choice; cites [@wolsey1998integer; @orgtools2024].
+        Solver: PuLP CBC (default) or OR-Tools CP-SAT fallback. Latency target
+        <800ms for N=100 (spec 9.1). Falls back to greedy on timeout/failure.
+
+        Parameters
+        ----------
+        surplus_batches, recipients, decay_engine : as rank_allocations
+        min_score : float — feasibility threshold (spec 4.3 uses 40)
+        time_limit_secs : float — solver time budget
+        solver : 'pulp' or 'ortools'
+
+        Returns
+        -------
+        List[dict] same schema as rank_allocations with added `solver` key.
         """
-        # TODO(P4-L4.3): implement pulp/OR-Tools MILP after greedy gate green.
-        return self.rank_allocations(surplus_batches, recipients, decay_engine)
+        if not surplus_batches or not recipients:
+            return []
+
+        t0 = time.perf_counter()
+        n, m = len(surplus_batches), len(recipients)
+
+        # Precompute batch meta: safe_hours, weight
+        batch_metas: List[Dict[str, Any]] = []
+        for batch in surplus_batches:
+            category = batch.get("category") or batch.get("itemCategory") or "Prepared"
+            ambient_temp_c = float(batch.get("ambient_temp_c", batch.get("temp_c", 36.0)))
+            humidity_pct = float(batch.get("humidity_pct", batch.get("humidity", 70.0)))
+            if "ambient_weather" in batch:
+                amb = batch["ambient_weather"] or {}
+                ambient_temp_c = float(amb.get("temp_c", ambient_temp_c))
+                humidity_pct = float(amb.get("humidity_pct", humidity_pct))
+            elapsed = float(batch.get("elapsed_hours", 0.0))
+            # Handle FoodCategory enum (str subclass) — use .value if present, else string
+            cat_for_eval = category.value if hasattr(category, "value") else category
+            try:
+                eval_res = decay_engine.evaluate_batch_safety(
+                    category=cat_for_eval,  # type: ignore[arg-type]
+                    ambient_temp_c=ambient_temp_c,
+                    humidity_pct=humidity_pct,
+                    elapsed_hours=elapsed,
+                )
+                safe_hours = float(eval_res["dynamic_safe_hours_remaining"])
+            except Exception:
+                eval_res = {}
+                safe_hours = 12.0
+            weight = float(batch.get("gross_weight_kg", batch.get("batchWeightLbs", batch.get("weight_kg", 0))) or 0)
+            # Normalize lbs vs kg heuristic: if weight > 2000 assume lbs? keep as kg for MILP but use same as rank_allocations
+            # We keep raw kg; capacity gate handled separately
+            batch_metas.append({
+                "category": cat_for_eval,
+                "safe_hours": safe_hours,
+                "weight": weight,
+                "eval_res": eval_res,
+                "ambient_temp_c": ambient_temp_c,
+                "humidity_pct": humidity_pct,
+            })
+
+        # Recipient capacities (None = unlimited)
+        recip_caps: List[Optional[float]] = []
+        for rec in recipients:
+            cap = rec.get("cold_storage_capacity_liters") or rec.get("capacityLbs") or rec.get("capacity_lbs") or rec.get("capacity_kg")
+            if cap is not None:
+                try:
+                    cap_f = float(cap)
+                    # If cap looks like lbs (>2000) and weight kg small, normalize via 2.2? Keep lenient 1.2x gate as in score_match
+                    # For MILP we use cap as-is but scale check: if batch weight >> cap, infeasible already via score gate
+                    recip_caps.append(cap_f)
+                except Exception:
+                    recip_caps.append(None)
+            else:
+                recip_caps.append(None)
+
+        # Build score & feasibility matrix
+        scores: Dict[Tuple[int, int], float] = {}
+        feasible: Dict[Tuple[int, int], bool] = {}
+        distances: Dict[Tuple[int, int], float] = {}
+        for i, batch in enumerate(surplus_batches):
+            safe_hours = batch_metas[i]["safe_hours"]
+            for j, rec in enumerate(recipients):
+                sc = self.score_match(batch, rec, safe_hours)
+                if sc > 0 and sc >= min_score:
+                    scores[(i, j)] = sc
+                    feasible[(i, j)] = True
+                    try:
+                        d_lat, d_lon = batch["origin_coordinates"]
+                        r_lat, r_lon = rec["coordinates"]
+                        distances[(i, j)] = self._haversine_distance_km(d_lat, d_lon, r_lat, r_lon)
+                    except Exception:
+                        distances[(i, j)] = 10.0
+                else:
+                    # Keep zero-score pairs as infeasible for MILP sparsity
+                    feasible[(i, j)] = False
+
+        if not scores:
+            return []
+
+        # Trivial case: if n*m large and scores sparse but n small, still try MILP
+        # If solver explicitly requested ortools, try it first
+        if solver == "ortools":
+            ort_res = self._solve_milp_ortools(
+                surplus_batches, recipients, batch_metas, scores, recip_caps, distances, time_limit_secs, min_score
+            )
+            if ort_res is not None:
+                return ort_res
+            # fall through to pulp
+
+        # PuLP path [@pulp2011]
+        try:
+            import pulp  # type: ignore
+
+            prob = pulp.LpProblem("FreshRouteMatching", pulp.LpMaximize)
+            x_vars: Dict[Tuple[int, int], Any] = {}
+            for (i, j), sc in scores.items():
+                # Only create var for feasible pairs to keep model small
+                x_vars[(i, j)] = pulp.LpVariable(f"x_{i}_{j}", cat=pulp.LpBinary)
+
+            # Objective
+            prob += pulp.lpSum(scores[(i, j)] * x_vars[(i, j)] for (i, j) in x_vars), "TotalScore"
+
+            # Each surplus at most one recipient (spec 2.1 MILP)
+            for i in range(n):
+                vars_i = [x_vars[(i, j)] for j in range(m) if (i, j) in x_vars]
+                if vars_i:
+                    prob += pulp.lpSum(vars_i) <= 1, f"Surplus_{i}_once"
+
+            # Recipient capacity: sum weight_i * x_ij <= Cap_j  [@wolsey1998integer]
+            for j in range(m):
+                cap = recip_caps[j]
+                if cap is None:
+                    continue
+                # Only enforce if at least one batch has meaningful weight >0
+                vars_j = [(i, x_vars[(i, j)]) for i in range(n) if (i, j) in x_vars]
+                if not vars_j:
+                    continue
+                # Heuristic: if weights are all zero, skip
+                total_weight_expr = pulp.lpSum(batch_metas[i]["weight"] * v for i, v in vars_j)
+                # Use same lenient 1.2x factor as score_match to avoid unit mismatch false infeas?
+                # For MILP we enforce strict: if weight*1.2 exceeds cap, still allow but score gate already filtered grossly overweight
+                # So we use cap*1.2 as effective capacity to match greedy gate
+                prob += total_weight_expr <= float(cap) * 1.2, f"Cap_{j}"
+
+            # Solve with CBC, time limit
+            cbc_args = {"msg": False, "timeLimit": max(0.1, time_limit_secs)}
+            # threads param only in newer pulp; guard
+            try:
+                cbc_args["threads"] = 0
+                solver_obj = pulp.PULP_CBC_CMD(**cbc_args)
+            except TypeError:
+                cbc_args.pop("threads", None)
+                solver_obj = pulp.PULP_CBC_CMD(**cbc_args)
+
+            prob.solve(solver_obj)
+            status = pulp.LpStatus[prob.status]
+            # Accept Optimal or Not Solved but feasible within limit? pulp returns Optimal even on timeout if feasible found
+            if status not in ("Optimal", "Not Solved"):
+                # Try greedy fallback if infeasible
+                if status == "Infeasible":
+                    return []
+                # else fallback to greedy
+                raise RuntimeError(f"PuLP status {status}")
+
+            # Extract solution
+            results: List[Dict[str, Any]] = []
+            for (i, j), var in x_vars.items():
+                val = var.varValue
+                if val is not None and val > 0.5:
+                    batch = surplus_batches[i]
+                    rec = recipients[j]
+                    meta = batch_metas[i]
+                    # Build same dict as rank_allocations:382
+                    weight = meta["weight"]
+                    co2 = round(weight * self.co2_factor, 1)
+                    eval_res = meta["eval_res"]
+                    results.append({
+                        "batch_id": batch.get("batch_id", batch.get("id", f"batch-{i}")),
+                        "item_description": batch.get("item_description", batch.get("itemName", meta["category"])),
+                        "matched_recipient_id": rec.get("recipient_id", rec.get("id")),
+                        "recipient_name": rec.get("name", rec.get("recipientName")),
+                        "match_score": scores[(i, j)],
+                        "safe_hours_remaining": meta["safe_hours"],
+                        "urgency": eval_res.get("risk_classification") if isinstance(eval_res, dict) else None,
+                        "cold_chain_enforced": eval_res.get("cold_chain_mandatory") if isinstance(eval_res, dict) else None,
+                        "distance_km": distances.get((i, j)),
+                        "co2_saved_kg": co2,
+                        "solver": f"pulp-cbc:{status}",
+                        "origin_coordinates": batch.get("origin_coordinates"),
+                        "recipient_coordinates": rec.get("coordinates"),
+                    })
+            # Sort by match_score desc for determinism
+            results.sort(key=lambda x: x["match_score"], reverse=True)
+            # If solved but got zero allocations (e.g., all below min_score), fall through to greedy? Return empty
+            # Latency guard: if took > time_limit + slack, log but still return
+            _elapsed = time.perf_counter() - t0
+            return results
+
+        except ImportError:
+            # pulp not installed -> try ortools then greedy
+            ort_res = self._solve_milp_ortools(
+                surplus_batches, recipients, batch_metas, scores, recip_caps, distances, time_limit_secs, min_score
+            )
+            if ort_res is not None:
+                return ort_res
+            return self.rank_allocations(surplus_batches, recipients, decay_engine, min_score=min_score)
+        except Exception:
+            # Any solver error -> fallback to greedy (never break pipeline)
+            # In production log to audit stream (C2)
+            return self.rank_allocations(surplus_batches, recipients, decay_engine, min_score=min_score)
+
+    def _solve_milp_ortools(
+        self,
+        surplus_batches: List[Dict[str, Any]],
+        recipients: List[Dict[str, Any]],
+        batch_metas: List[Dict[str, Any]],
+        scores: Dict[Tuple[int, int], float],
+        recip_caps: List[Optional[float]],
+        distances: Dict[Tuple[int, int], float],
+        time_limit_secs: float,
+        min_score: float,
+    ) -> Optional[List[Dict[str, Any]]]:
+        """OR-Tools CP-SAT MILP fallback [@orgtools2024]."""
+        try:
+            from ortools.sat.python import cp_model  # type: ignore
+        except ImportError:
+            return None
+
+        n, m = len(surplus_batches), len(recipients)
+        model = cp_model.CpModel()
+        x_vars: Dict[Tuple[int, int], Any] = {}
+        for (i, j) in scores:
+            x_vars[(i, j)] = model.NewBoolVar(f"x_{i}_{j}")
+
+        # Objective: maximize sum S_ij * x_ij (scale to int for CP-SAT)
+        # CP-SAT needs integer coefficients; multiply by 10 (scores have 1 decimal)
+        model.Maximize(sum(int(round(scores[(i, j)] * 10)) * x_vars[(i, j)] for (i, j) in x_vars))
+
+        # Each surplus at most once
+        for i in range(n):
+            vars_i = [x_vars[(i, j)] for j in range(m) if (i, j) in x_vars]
+            if vars_i:
+                model.Add(sum(vars_i) <= 1)
+
+        # Capacity constraints (weight*10 to keep int)
+        for j in range(m):
+            cap = recip_caps[j]
+            if cap is None:
+                continue
+            vars_j = [(i, x_vars[(i, j)]) for i in range(n) if (i, j) in x_vars]
+            if not vars_j:
+                continue
+            # Use int scaling: weight kg *10 vs cap*12 (1.2x)
+            model.Add(sum(int(round(batch_metas[i]["weight"] * 10)) * v for i, v in vars_j) <= int(round(float(cap) * 12)))
+
+        solver = cp_model.CpSolver()
+        solver.parameters.max_time_in_seconds = max(0.1, time_limit_secs)
+        solver.parameters.num_search_workers = 8
+        # Silence
+        solver.parameters.log_search_progress = False
+        status = solver.Solve(model)
+        if status not in (cp_model.OPTIMAL, cp_model.FEASIBLE):
+            return None
+
+        results: List[Dict[str, Any]] = []
+        for (i, j), var in x_vars.items():
+            if solver.Value(var) == 1:
+                batch = surplus_batches[i]
+                rec = recipients[j]
+                meta = batch_metas[i]
+                weight = meta["weight"]
+                co2 = round(weight * self.co2_factor, 1)
+                eval_res = meta["eval_res"]
+                results.append({
+                    "batch_id": batch.get("batch_id", batch.get("id", f"batch-{i}")),
+                    "item_description": batch.get("item_description", batch.get("itemName", meta["category"])),
+                    "matched_recipient_id": rec.get("recipient_id", rec.get("id")),
+                    "recipient_name": rec.get("name", rec.get("recipientName")),
+                    "match_score": scores[(i, j)],
+                    "safe_hours_remaining": meta["safe_hours"],
+                    "urgency": eval_res.get("risk_classification") if isinstance(eval_res, dict) else None,
+                    "cold_chain_enforced": eval_res.get("cold_chain_mandatory") if isinstance(eval_res, dict) else None,
+                    "distance_km": distances.get((i, j)),
+                    "co2_saved_kg": co2,
+                    "solver": "ortools-cp-sat",
+                    "origin_coordinates": batch.get("origin_coordinates"),
+                    "recipient_coordinates": rec.get("coordinates"),
+                })
+        results.sort(key=lambda x: x["match_score"], reverse=True)
+        return results

@@ -170,16 +170,29 @@ def predict_shelf_life(req: ShelfLifeRequest) -> ShelfLifeResponse:
 def optimize_match(req: MatchRequest) -> MatchResponse:
     start = time.perf_counter()
 
-    batch_dict: Dict[str, Any] = req.surplus_batch.model_dump()
-    # Merge ambient_weather override if provided
-    if req.ambient_weather:
-        # Pydantic already has ambient_temp_c/humidity_pct on batch; override with weather if batch missing
-        if batch_dict.get("ambient_temp_c") is None and "temp_c" in req.ambient_weather:
-            batch_dict["ambient_temp_c"] = req.ambient_weather["temp_c"]
-        if batch_dict.get("humidity_pct") is None and "humidity_pct" in req.ambient_weather:
-            batch_dict["humidity_pct"] = req.ambient_weather["humidity_pct"]
-        # Also attach ambient_weather for matcher transparency
-        batch_dict["ambient_weather"] = req.ambient_weather
+    # Batch mode: if surplus_batches supplied, use list; else wrap single batch
+    if req.surplus_batches is not None and len(req.surplus_batches) > 0:
+        batch_dicts: List[Dict[str, Any]] = [b.model_dump() for b in req.surplus_batches]
+        # Attach ambient_weather to each if supplied
+        if req.ambient_weather:
+            for bd in batch_dicts:
+                if bd.get("ambient_temp_c") is None and "temp_c" in req.ambient_weather:
+                    bd["ambient_temp_c"] = req.ambient_weather["temp_c"]
+                if bd.get("humidity_pct") is None and "humidity_pct" in req.ambient_weather:
+                    bd["humidity_pct"] = req.ambient_weather["humidity_pct"]
+                bd["ambient_weather"] = req.ambient_weather
+        # Single batch for t_safe display: use first
+        primary_batch = batch_dicts[0]
+    else:
+        primary_batch = req.surplus_batch.model_dump()
+        # Merge ambient_weather override if provided
+        if req.ambient_weather:
+            if primary_batch.get("ambient_temp_c") is None and "temp_c" in req.ambient_weather:
+                primary_batch["ambient_temp_c"] = req.ambient_weather["temp_c"]
+            if primary_batch.get("humidity_pct") is None and "humidity_pct" in req.ambient_weather:
+                primary_batch["humidity_pct"] = req.ambient_weather["humidity_pct"]
+            primary_batch["ambient_weather"] = req.ambient_weather
+        batch_dicts = [primary_batch]
 
     # Resolve candidates
     if req.candidate_recipients:
@@ -187,14 +200,13 @@ def optimize_match(req: MatchRequest) -> MatchResponse:
     else:
         recipients = _DEFAULT_RECIPIENTS
 
-    # Evaluate t_safe for this batch
-    category = batch_dict.get("category")
-    # Enum may be FoodCategory; normalize to string value
+    # Evaluate t_safe for primary batch (display)
+    category = primary_batch.get("category")
     if hasattr(category, "value"):
         category = category.value  # type: ignore
-    ambient_temp_c = float(batch_dict.get("ambient_temp_c") or (req.ambient_weather or {}).get("temp_c", 36.7))
-    humidity_pct = float(batch_dict.get("humidity_pct") or (req.ambient_weather or {}).get("humidity_pct", 72.0))
-    elapsed = float(batch_dict.get("elapsed_hours", 0.0))
+    ambient_temp_c = float(primary_batch.get("ambient_temp_c") or (req.ambient_weather or {}).get("temp_c", 36.7))
+    humidity_pct = float(primary_batch.get("humidity_pct") or (req.ambient_weather or {}).get("humidity_pct", 72.0))
+    elapsed = float(primary_batch.get("elapsed_hours", 0.0))
 
     decay_res = _decay_engine.evaluate_batch_safety(
         category=str(category),
@@ -204,22 +216,35 @@ def optimize_match(req: MatchRequest) -> MatchResponse:
     )
     safe_hours = float(decay_res["dynamic_safe_hours_remaining"])
 
-    # Score all candidates via pareto matcher
-    # rank_allocations expects list of batches
-    allocations = _matcher.rank_allocations([batch_dict], recipients, _decay_engine, min_score=0.0)
+    # Score via matcher — MILP vs greedy
+    if req.use_milp:
+        solver_name = req.solver or "pulp"
+        allocations = _matcher.solve_milp_allocations(
+            batch_dicts, recipients, _decay_engine,
+            min_score=req.min_score,
+            time_limit_secs=req.time_limit_secs,
+            solver=solver_name,
+        )
+        solver_label = f"milp-{solver_name}"
+    else:
+        allocations = _matcher.rank_allocations(batch_dicts, recipients, _decay_engine, min_score=req.min_score if req.min_score != 40.0 else 0.0)
+        solver_label = "greedy"
     if not allocations:
         raise HTTPException(status_code=422, detail="No feasible recipient (dietary, capacity, or t_transit > t_safe). Try reefer or nearer hub.")
 
     best = max(allocations, key=lambda x: x["match_score"])
 
     # Vehicle assignment via VRP router
-    # Origin/dest for routing
-    origin = batch_dict.get("origin_coordinates", [30.9325, 75.8350])
+    # Origin/dest for routing — resolve from matched batch in batch_dicts or best allocation coords
+    matched_batch = next((b for b in batch_dicts if b.get("batch_id", b.get("id")) == best.get("batch_id")), primary_batch)
+    origin = (best.get("origin_coordinates") if isinstance(best, dict) and best.get("origin_coordinates") else matched_batch.get("origin_coordinates", [30.9325, 75.8350]))
     # Find matched recipient coordinates
     matched_rec = next((r for r in recipients if r.get("recipient_id", r.get("id")) == best["matched_recipient_id"]), None)
-    dest = matched_rec["coordinates"] if matched_rec and "coordinates" in matched_rec else [31.6200, 74.8765]
+    dest = matched_rec["coordinates"] if matched_rec and "coordinates" in matched_rec else (best.get("recipient_coordinates") or [31.6200, 74.8765])
 
-    weight = float(batch_dict.get("gross_weight_kg", 500))
+    weight = float(matched_batch.get("gross_weight_kg", matched_batch.get("batchWeightLbs", 500)) or 500)
+    if weight > 3000:  # lbs confusion: normalize
+        weight = weight / 2.20462
     route = _vrp.plan_route(
         origin_coords=origin,
         dest_coords=dest,
@@ -228,6 +253,9 @@ def optimize_match(req: MatchRequest) -> MatchResponse:
     )
 
     latency_ms = int((time.perf_counter() - start) * 1000)
+
+    # Solver provenance for audit (C2 dietary compliance)
+    solver_out = best.get("solver", solver_label) if isinstance(best, dict) else solver_label
 
     return MatchResponse(
         match_score=best["match_score"],
@@ -249,6 +277,8 @@ def optimize_match(req: MatchRequest) -> MatchResponse:
         execution_latency_ms=latency_ms,
         risk_classification=decay_res["risk_classification"],
         cold_chain_enforced=bool(decay_res["cold_chain_mandatory"]),
+        solver=solver_out,
+        allocations=allocations if (req.surplus_batches is not None and len(req.surplus_batches) > 0) else None,
     )
 
 
@@ -304,7 +334,16 @@ def forecast_demand_post(req: ForecastRequest) -> List[ForecastResponse]:
 
 @router.post("/optimize/routing", response_model=RoutingResponse)
 def optimize_routing(req: RoutingRequest) -> RoutingResponse:
-    res = _vrp.solve_vrp(req.pickup_nodes, req.dropoff_nodes, req.fleet_available, use_or_tools=False)
+    res = _vrp.solve_vrp(
+        req.pickup_nodes,
+        req.dropoff_nodes,
+        req.fleet_available,
+        use_or_tools=req.use_or_tools,
+        t_safe_hours=req.t_safe_hours,
+        lambda_penalty=req.lambda_penalty,
+        time_limit_secs=req.time_limit_secs,
+        traffic_congestion=req.traffic_congestion,
+    )
     return RoutingResponse(
         routes=res["routes"],
         total_distance_km=res["total_distance_km"],
