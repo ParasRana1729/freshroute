@@ -31,7 +31,14 @@ data/gold/
 **/data/gold/
 *.parquet
 environment.lock
-*.dvc
+# DVC: keep .dvc pointers for gold tables (FAIR) — unignore .dvc inside ignored gold dirs
+!data/gold/
+!**/data/gold/
+!*.dvc
+!**/*.dvc
+!data/gold/*.dvc
+!**/data/gold/*.dvc
+!freshroute-optimizer-model/data/gold/*.dvc
 
 # Editor directories and files
 .vscode/*

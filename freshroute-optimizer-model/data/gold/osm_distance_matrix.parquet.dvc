@@ -1,0 +1,5 @@
+outs:
+- md5: fd788cf38eb68b18e7a171f5996d2b5c
+  size: 3533
+  path: osm_distance_matrix.parquet
+  cache: true

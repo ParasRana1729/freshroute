@@ -1,0 +1,5 @@
+outs:
+- md5: f7d208a7d923830948fe1405cfa7b45b
+  size: 7722
+  path: mandi_daily.parquet
+  cache: true

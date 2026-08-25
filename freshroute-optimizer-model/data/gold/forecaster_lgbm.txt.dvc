@@ -1,0 +1,5 @@
+outs:
+- md5: 7b6473b194a39df5d048aa39fee24e73
+  size: 802246
+  path: forecaster_lgbm.txt
+  cache: true

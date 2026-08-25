@@ -1,0 +1,5 @@
+outs:
+- md5: e63cf1fd17c07f381ec8ac9764083f3a
+  size: 29859
+  path: weather_hourly.parquet
+  cache: true
