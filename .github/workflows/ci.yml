@@ -33,6 +33,9 @@ jobs:
       - name: Pytest (28 tests, spec 6.2 must-pass)
         run: python -m pytest tests/ -q
 
+      - name: Coverage (informational, 36% current, gate 85% per plan 12)
+        run: python -m pytest tests/test_optimizer.py --cov=core --cov-report=term | tail -20
+
       - name: Citation audit (0 TODO debt)
         run: python scripts/citation_audit.py --bib ../docs/BIBLIOGRAPHY.bib --root ..
 
