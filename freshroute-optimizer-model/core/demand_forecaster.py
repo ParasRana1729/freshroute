@@ -833,11 +833,15 @@ class HungerDemandForecaster:
             preds = [round(p * 1.08, 1) for p in preds]
         weekly_total = round(sum(preds), 1)
         gap = float(district.get("gap_lbs", 0))
+        lower = [round(p * 0.90, 1) for p in preds]
+        upper = [round(p * 1.10, 1) for p in preds]
         return {
             "district_id": district_id,
             "district_name": district.get("district_name", district_id),
             "horizon_days": horizon_days,
             "forecast_demand_lbs": preds,
+            "forecast_demand_lower_lbs": lower,
+            "forecast_demand_upper_lbs": upper,
             "weekly_total_lbs": weekly_total,
             "gap_lbs_estimate": round(gap * (horizon_days / 7.0), 1),
             "hunger_vulnerability_index": district.get("hunger_vulnerability_index", 50),
@@ -892,11 +896,15 @@ class HungerDemandForecaster:
             weekly = weekly * 1.08
 
         daily = self._synthetic_daily_series(weekly, horizon_days)
+        lower = [round(x * 0.88, 1) for x in daily]
+        upper = [round(x * 1.12, 1) for x in daily]
         return {
             "district_id": district_id,
             "district_name": district.get("district_name", district_id),
             "horizon_days": horizon_days,
             "forecast_demand_lbs": daily,
+            "forecast_demand_lower_lbs": lower,
+            "forecast_demand_upper_lbs": upper,
             "weekly_total_lbs": round(sum(daily), 1),
             "gap_lbs_estimate": round(gap * (horizon_days / 7.0), 1),
             "hunger_vulnerability_index": district.get("hunger_vulnerability_index", 50),
@@ -1005,11 +1013,15 @@ class HungerDemandForecaster:
             preds = [round(p * 1.08, 1) for p in preds]
         weekly_total = round(sum(preds), 1)
         gap = float(district.get("gap_lbs", 0))
+        lower = [round(p * 0.90, 1) for p in preds]
+        upper = [round(p * 1.10, 1) for p in preds]
         return {
             "district_id": district_id,
             "district_name": district.get("district_name", district_id),
             "horizon_days": horizon_days,
             "forecast_demand_lbs": preds,
+            "forecast_demand_lower_lbs": lower,
+            "forecast_demand_upper_lbs": upper,
             "weekly_total_lbs": weekly_total,
             "gap_lbs_estimate": round(gap * (horizon_days / 7.0), 1),
             "hunger_vulnerability_index": district.get("hunger_vulnerability_index", 50),

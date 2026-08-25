@@ -216,6 +216,8 @@ class ForecastResponse(BaseModel):
     district_name: str
     horizon_days: int
     forecast_demand_lbs: List[float]
+    forecast_demand_lower_lbs: Optional[List[float]] = Field(None, description="10th percentile lower demand bound")
+    forecast_demand_upper_lbs: Optional[List[float]] = Field(None, description="90th percentile upper demand bound")
     weekly_total_lbs: float
     gap_lbs_estimate: float
     hunger_vulnerability_index: float

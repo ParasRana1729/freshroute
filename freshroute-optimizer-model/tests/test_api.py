@@ -56,6 +56,12 @@ def test_forecast_demand_get():
     arr = r.json()
     assert isinstance(arr, list) and len(arr) == 1
     assert len(arr[0]["forecast_demand_lbs"]) == 7
+    assert arr[0]["forecast_demand_lower_lbs"] is not None
+    assert arr[0]["forecast_demand_upper_lbs"] is not None
+    assert len(arr[0]["forecast_demand_lower_lbs"]) == 7
+    assert len(arr[0]["forecast_demand_upper_lbs"]) == 7
+    for low, mid, high in zip(arr[0]["forecast_demand_lower_lbs"], arr[0]["forecast_demand_lbs"], arr[0]["forecast_demand_upper_lbs"]):
+        assert low <= mid <= high
 
 
 def test_routing():
