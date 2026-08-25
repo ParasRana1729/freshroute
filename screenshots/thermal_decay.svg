@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%" style="background:#0F172A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif;">
+  <defs>
+    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0.0" />
+    </linearGradient>
+    <linearGradient id="reeferGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0.0" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Top App Navigation Bar -->
+  <rect x="0" y="0" width="1200" height="60" fill="#1E293B" stroke="#334155" />
+  <circle cx="35" cy="30" r="14" fill="#059669" />
+  <text x="35" y="35" fill="#FFFFFF" font-size="14" font-weight="900" text-anchor="middle">FR</text>
+  <text x="60" y="36" fill="#F8FAFC" font-size="18" font-weight="800">FreshRoute AI — Stage 1 Arrhenius Perishability Engine</text>
+  <rect x="960" y="18" width="215" height="26" rx="13" fill="#451A03" stroke="#B45309" />
+  <circle cx="975" cy="31" r="4" fill="#F59E0B" />
+  <text x="986" y="35" fill="#FDE68A" font-size="11" font-weight="600">Punjab Loo Mode: 44.0°C Ambient</text>
+
+  <!-- Background -->
+  <rect x="0" y="60" width="1200" height="620" fill="#F8FAFC" />
+
+  <!-- Left Column: Interactive Arrhenius Simulator & Formula Card -->
+  <g transform="translate(40, 90)">
+    <!-- Formula Card -->
+    <rect x="0" y="0" width="460" height="230" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+    <rect x="0" y="0" width="460" height="38" rx="8 8 0 0" fill="#F1F5F9" stroke="#E2E8F0" />
+    <text x="16" y="24" fill="#0F172A" font-size="13" font-weight="750">Arrhenius Bio-Decay Formulation (Labuza 1993)</text>
+
+    <g transform="translate(20, 55)">
+      <rect x="0" y="0" width="420" height="48" rx="6" fill="#0F172A" />
+      <text x="210" y="30" fill="#34D399" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle">Φ_env = exp( α·(T - 20) + β·max(0, H - 60) )</text>
+    </g>
+
+    <text x="20" y="125" fill="#475569" font-size="11.5" line-height="1.5">
+      • Calibrated Parameters: <tspan font-weight="700" fill="#0F172A">α = 0.048</tspan> (Thermal Sensitivity), <tspan font-weight="700" fill="#0F172A">β = 0.008</tspan> (Monsoon Humidity)
+    </text>
+    <text x="20" y="145" fill="#475569" font-size="11.5">
+      • Shelf Life Derivation: <tspan font-family="monospace" font-weight="700" fill="#0284C7">t_safe(T, H) = (t_base / Φ_env) - t_elapsed</tspan>
+    </text>
+    <text x="20" y="165" fill="#475569" font-size="11.5">
+      • Critical Hazard Gate: <tspan font-weight="700" fill="#DC2626">Triggered when t_safe ≤ 4.0h (Reefer Locking Mandated)</tspan>
+    </text>
+    <text x="20" y="195" fill="#059669" font-size="11" font-weight="700">
+      ✓ Peer-reviewed citation: Labuza et al. (1993) Kinetics of Food Deterioration
+    </text>
+  </g>
+
+  <!-- Left Column Bottom: Environmental Slider -->
+  <g transform="translate(40, 340)">
+    <rect x="0" y="0" width="460" height="300" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+    <rect x="0" y="0" width="460" height="38" rx="8 8 0 0" fill="#F1F5F9" stroke="#E2E8F0" />
+    <text x="16" y="24" fill="#0F172A" font-size="13" font-weight="750">Live Climate Controller &amp; Presets</text>
+
+    <!-- Preset Buttons -->
+    <g transform="translate(16, 52)">
+      <rect x="0" y="0" width="95" height="32" rx="4" fill="#F1F5F9" stroke="#CBD5E1" />
+      <text x="47" y="20" fill="#475569" font-size="11" font-weight="700" text-anchor="middle">Cold (4°C)</text>
+
+      <rect x="105" y="0" width="105" height="32" rx="4" fill="#F1F5F9" stroke="#CBD5E1" />
+      <text x="157" y="20" fill="#475569" font-size="11" font-weight="700" text-anchor="middle">Spring (24°C)</text>
+
+      <rect x="220" y="0" width="100" height="32" rx="4" fill="#F1F5F9" stroke="#CBD5E1" />
+      <text x="270" y="20" fill="#475569" font-size="11" font-weight="700" text-anchor="middle">Summer (37°C)</text>
+
+      <rect x="330" y="0" width="98" height="32" rx="4" fill="#FEE2E2" stroke="#EF4444" />
+      <text x="379" y="20" fill="#991B1B" font-size="11" font-weight="800" text-anchor="middle">Loo (44°C)</text>
+    </g>
+
+    <text x="20" y="115" fill="#0F172A" font-size="12" font-weight="700">Ambient Temperature: 44.0°C (111.2°F)</text>
+    <!-- Slider representation -->
+    <rect x="20" y="125" width="420" height="8" rx="4" fill="#E2E8F0" />
+    <rect x="20" y="125" width="370" height="8" rx="4" fill="#EF4444" />
+    <circle cx="390" cy="129" r="10" fill="#EF4444" stroke="#FFFFFF" stroke-width="2" />
+
+    <text x="20" y="165" fill="#0F172A" font-size="12" font-weight="700">Relative Humidity: 72.0% (Monsoon Moisture Surge)</text>
+    <rect x="20" y="175" width="420" height="8" rx="4" fill="#E2E8F0" />
+    <rect x="20" y="175" width="300" height="8" rx="4" fill="#0284C7" />
+    <circle cx="320" cy="179" r="10" fill="#0284C7" stroke="#FFFFFF" stroke-width="2" />
+
+    <!-- Calculated Multiplier Output -->
+    <rect x="20" y="210" width="420" height="70" rx="6" fill="#FEF2F2" stroke="#FCA5A5" />
+    <text x="35" y="235" fill="#991B1B" font-size="12" font-weight="700">CRITICAL HAZARD: Phi_env = 3.72× Normal Decay Speed</text>
+    <text x="35" y="255" fill="#7F1D1D" font-size="11">Fresh Verka milk safe window compressed from 24.0h down to 6.45h</text>
+    <text x="35" y="270" fill="#059669" font-size="10.5" font-weight="700">✓ Tier 2/3 Active Cold-Chain Carrier Automatically Assigned</text>
+  </g>
+
+  <!-- Right Column: 5 Commodity Decay Curves & Shelf-Life Table -->
+  <g transform="translate(530, 90)">
+    <rect x="0" y="0" width="630" height="550" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+    <rect x="0" y="0" width="630" height="38" rx="8 8 0 0" fill="#F1F5F9" stroke="#E2E8F0" />
+    <text x="16" y="24" fill="#0F172A" font-size="13" font-weight="750">Punjab 5-Tier Commodity Safe Transit Matrix</text>
+
+    <!-- Table of 5 Tiers -->
+    <g transform="translate(16, 50)">
+      <!-- Table Header -->
+      <rect x="0" y="0" width="598" height="30" fill="#F8FAFC" />
+      <text x="10" y="20" fill="#64748B" font-size="11" font-weight="700">COMMODITY CATEGORY</text>
+      <text x="210" y="20" fill="#64748B" font-size="11" font-weight="700">BASE 20°C</text>
+      <text x="290" y="20" fill="#64748B" font-size="11" font-weight="700">AT 44°C LOO</text>
+      <text x="390" y="20" fill="#64748B" font-size="11" font-weight="700">DECAY</text>
+      <text x="470" y="20" fill="#64748B" font-size="11" font-weight="700">HAZARD STATUS</text>
+
+      <!-- Row 1: Dairy -->
+      <line x1="0" y1="32" x2="598" y2="32" stroke="#E2E8F0" />
+      <text x="10" y="54" fill="#0F172A" font-size="12" font-weight="700">Tier 1: Fresh Verka Milk &amp; Paneer</text>
+      <text x="210" y="54" fill="#64748B" font-size="12">24.0h</text>
+      <text x="290" y="54" fill="#DC2626" font-size="12" font-weight="800">6.45h</text>
+      <text x="390" y="54" fill="#DC2626" font-size="12" font-weight="700">3.72×</text>
+      <rect x="470" y="40" width="115" height="20" rx="3" fill="#FEE2E2" />
+      <text x="527" y="54" fill="#991B1B" font-size="10" font-weight="800" text-anchor="middle">CRITICAL HAZARD</text>
+
+      <!-- Row 2: Cooked Food -->
+      <line x1="0" y1="68" x2="598" y2="68" stroke="#E2E8F0" />
+      <text x="10" y="90" fill="#0F172A" font-size="12" font-weight="700">Tier 2: Cooked Langar Dal &amp; Khichdi</text>
+      <text x="210" y="90" fill="#64748B" font-size="12">18.0h</text>
+      <text x="290" y="90" fill="#DC2626" font-size="12" font-weight="800">4.84h</text>
+      <text x="390" y="90" fill="#DC2626" font-size="12" font-weight="700">3.72×</text>
+      <rect x="470" y="76" width="115" height="20" rx="3" fill="#FEE2E2" />
+      <text x="527" y="90" fill="#991B1B" font-size="10" font-weight="800" text-anchor="middle">HIGH PRIORITY</text>
+
+      <!-- Row 3: Fresh Greens -->
+      <line x1="0" y1="104" x2="598" y2="104" stroke="#E2E8F0" />
+      <text x="10" y="126" fill="#0F172A" font-size="12" font-weight="700">Tier 3: Mandi Spinach &amp; Cauliflower</text>
+      <text x="210" y="126" fill="#64748B" font-size="12">36.0h</text>
+      <text x="290" y="126" fill="#D97706" font-size="12" font-weight="800">11.6h</text>
+      <text x="390" y="126" fill="#D97706" font-size="12" font-weight="700">3.10×</text>
+      <rect x="470" y="112" width="115" height="20" rx="3" fill="#FEF3C7" />
+      <text x="527" y="126" fill="#92400E" font-size="10" font-weight="800" text-anchor="middle">MODERATE ALERT</text>
+
+      <!-- Row 4: Bakery -->
+      <line x1="0" y1="140" x2="598" y2="140" stroke="#E2E8F0" />
+      <text x="10" y="162" fill="#0F172A" font-size="12" font-weight="700">Tier 4: Bakery Breads &amp; Rusk Batches</text>
+      <text x="210" y="162" fill="#64748B" font-size="12">60.0h</text>
+      <text x="290" y="162" fill="#059669" font-size="12" font-weight="800">27.2h</text>
+      <text x="390" y="162" fill="#059669" font-size="12" font-weight="700">2.20×</text>
+      <rect x="470" y="148" width="115" height="20" rx="3" fill="#ECFDF5" />
+      <text x="527" y="162" fill="#065F46" font-size="10" font-weight="800" text-anchor="middle">STABLE</text>
+
+      <!-- Row 5: Kinnow Citrus -->
+      <line x1="0" y1="176" x2="598" y2="176" stroke="#E2E8F0" />
+      <text x="10" y="198" fill="#0F172A" font-size="12" font-weight="700">Tier 5: Kinnow Citrus &amp; Hard Tubers</text>
+      <text x="210" y="198" fill="#64748B" font-size="12">120.0h</text>
+      <text x="290" y="198" fill="#059669" font-size="12" font-weight="800">66.6h</text>
+      <text x="390" y="198" fill="#059669" font-size="12" font-weight="700">1.80×</text>
+      <rect x="470" y="184" width="115" height="20" rx="3" fill="#ECFDF5" />
+      <text x="527" y="198" fill="#065F46" font-size="10" font-weight="800" text-anchor="middle">STABLE</text>
+    </g>
+
+    <!-- Graph Representation -->
+    <g transform="translate(20, 290)">
+      <rect x="0" y="0" width="590" height="230" rx="6" fill="#0F172A" />
+      <text x="20" y="24" fill="#94A3B8" font-size="11" font-weight="700">ARRHENIUS DECAY SPEED vs TEMPERATURE (20°C - 50°C)</text>
+
+      <!-- Graph Axes -->
+      <line x1="40" y1="190" x2="550" y2="190" stroke="#334155" stroke-width="1" />
+      <line x1="40" y1="40" x2="40" y2="190" stroke="#334155" stroke-width="1" />
+
+      <text x="40" y="206" fill="#64748B" font-size="9" text-anchor="middle">20°C</text>
+      <text x="142" y="206" fill="#64748B" font-size="9" text-anchor="middle">25°C</text>
+      <text x="244" y="206" fill="#64748B" font-size="9" text-anchor="middle">30°C</text>
+      <text x="346" y="206" fill="#64748B" font-size="9" text-anchor="middle">37°C</text>
+      <text x="448" y="206" fill="#EF4444" font-size="9" font-weight="800" text-anchor="middle">44°C Loo</text>
+      <text x="550" y="206" fill="#64748B" font-size="9" text-anchor="middle">50°C</text>
+
+      <!-- Curve: Ambient Non-Refrigerated Decay (Exponential Upward) -->
+      <path d="M 40 170 Q 244 150, 346 115 T 448 60 T 550 45" fill="none" stroke="#EF4444" stroke-width="3" />
+      <text x="450" y="50" fill="#EF4444" font-size="10" font-weight="800">Ambient Non-Reefer (3.72× decay)</text>
+
+      <!-- Curve: Active Cold-Chain Transport (Flat at 2-4°C) -->
+      <path d="M 40 180 L 550 180" fill="none" stroke="#10B981" stroke-width="2.5" stroke-dasharray="4,4" />
+      <text x="240" y="174" fill="#34D399" font-size="9.5" font-weight="700">Active Reefer @ 2-4°C (Baseline 1.0× Decay Preserved)</text>
+    </g>
+  </g>
+</svg>

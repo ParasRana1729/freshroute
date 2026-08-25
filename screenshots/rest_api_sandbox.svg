@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%" style="background:#0F172A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif;">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Top App Navigation Bar -->
+  <rect x="0" y="0" width="1200" height="60" fill="#1E293B" stroke="#334155" />
+  <circle cx="35" cy="30" r="14" fill="#059669" />
+  <text x="35" y="35" fill="#FFFFFF" font-size="14" font-weight="900" text-anchor="middle">FR</text>
+  <text x="60" y="36" fill="#F8FAFC" font-size="18" font-weight="800">FreshRoute AI — OpenAPI v3.1 Interactive Fleet Dispatch Sandbox</text>
+  <rect x="980" y="18" width="190" height="26" rx="13" fill="#312E81" stroke="#6366F1" />
+  <circle cx="995" cy="31" r="4" fill="#818CF8" />
+  <text x="1006" y="35" fill="#E0E7FF" font-size="11" font-weight="600">OpenAPI Spec Live · /docs</text>
+
+  <!-- Background -->
+  <rect x="0" y="60" width="1200" height="620" fill="#F8FAFC" />
+
+  <!-- Endpoint Selector Tabs -->
+  <g transform="translate(40, 80)">
+    <rect x="0" y="0" width="1120" height="42" rx="6" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+    
+    <!-- Tab 1: /optimize/match (Active) -->
+    <rect x="6" y="5" width="260" height="32" rx="4" fill="#EDE9FE" stroke="#C4B5FD" />
+    <text x="136" y="26" fill="#6D28D9" font-size="12" font-weight="800" text-anchor="middle">POST /api/v1/optimize/match</text>
+
+    <!-- Tab 2: /predict/shelf-life -->
+    <rect x="275" y="5" width="260" height="32" rx="4" fill="#F8FAFC" />
+    <text x="405" y="26" fill="#64748B" font-size="12" font-weight="600" text-anchor="middle">POST /api/v1/predict/shelf-life</text>
+
+    <!-- Tab 3: /forecast/demand -->
+    <rect x="545" y="5" width="260" height="32" rx="4" fill="#F8FAFC" />
+    <text x="675" y="26" fill="#64748B" font-size="12" font-weight="600" text-anchor="middle">GET /api/v1/forecast/demand</text>
+
+    <!-- Tab 4: /optimize/routing -->
+    <rect x="815" y="5" width="260" height="32" rx="4" fill="#F8FAFC" />
+    <text x="945" y="26" fill="#64748B" font-size="12" font-weight="600" text-anchor="middle">POST /api/v1/optimize/routing</text>
+  </g>
+
+  <!-- Main Console Split Area -->
+  <g transform="translate(40, 140)">
+    <!-- Left: Request Payload Card -->
+    <rect x="0" y="0" width="545" height="500" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+    <rect x="0" y="0" width="545" height="42" rx="8 8 0 0" fill="#F8FAFC" stroke="#E2E8F0" />
+    <text x="16" y="26" fill="#0F172A" font-size="13" font-weight="750">Request Body (application/json)</text>
+    
+    <rect x="390" y="8" width="140" height="26" rx="4" fill="#7C3AED" />
+    <text x="460" y="25" fill="#FFFFFF" font-size="11.5" font-weight="700" text-anchor="middle">▶ Execute Live (8ms)</text>
+
+    <!-- Code Editor representation (JSON Payload) -->
+    <rect x="14" y="54" width="517" height="430" rx="6" fill="#0F172A" />
+    <text x="28" y="80" fill="#38BDF8" font-family="monospace" font-size="11.5" line-height="1.5">
+      <tspan fill="#F8FAFC">{</tspan>
+      <tspan x="42" dy="20"><tspan fill="#F472B6">"surplus_batch"</tspan>: {</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"batch_id"</tspan>: <tspan fill="#FDE047">"VERKA-LUD-LIVE-01"</tspan>,</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"donor_id"</tspan>: <tspan fill="#FDE047">"donor-verka-ludhiana-01"</tspan>,</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"category"</tspan>: <tspan fill="#FDE047">"Dairy"</tspan>,</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"gross_weight_kg"</tspan>: <tspan fill="#A7F3D0">850.0</tspan>,</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"origin_coordinates"</tspan>: [<tspan fill="#A7F3D0">30.9325</tspan>, <tspan fill="#A7F3D0">75.8350</tspan>],</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"dietary_flags"</tspan>: { <tspan fill="#93C5FD">"is_pure_veg"</tspan>: <tspan fill="#60A5FA">true</tspan> },</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"ambient_temp_c"</tspan>: <tspan fill="#A7F3D0">38.0</tspan></tspan>
+      <tspan x="42" dy="20">},</tspan>
+      <tspan x="42" dy="20"><tspan fill="#F472B6">"ambient_weather"</tspan>: {</tspan>
+      <tspan x="56" dy="20"><tspan fill="#93C5FD">"temp_c"</tspan>: <tspan fill="#A7F3D0">38.0</tspan>, <tspan fill="#93C5FD">"humidity_pct"</tspan>: <tspan fill="#A7F3D0">72.0</tspan></tspan>
+      <tspan x="42" dy="20">},</tspan>
+      <tspan x="42" dy="20"><tspan fill="#F472B6">"use_milp"</tspan>: <tspan fill="#60A5FA">true</tspan>,</tspan>
+      <tspan x="42" dy="20"><tspan fill="#F472B6">"solver"</tspan>: <tspan fill="#FDE047">"pulp"</tspan></tspan>
+      <tspan x="28" dy="20"><tspan fill="#F8FAFC">}</tspan></tspan>
+    </text>
+
+    <!-- Right: Server Response Card -->
+    <g transform="translate(575, 0)">
+      <rect x="0" y="0" width="545" height="500" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+      <rect x="0" y="0" width="545" height="42" rx="8 8 0 0" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="16" y="26" fill="#0F172A" font-size="13" font-weight="750">Server Response · 200 OK (Latency: 28.5ms)</text>
+      <text x="430" y="26" fill="#059669" font-size="11" font-weight="700">● FastAPI Live</text>
+
+      <!-- Response Viewer representation -->
+      <rect x="14" y="54" width="517" height="430" rx="6" fill="#0B132B" />
+      <text x="28" y="80" fill="#34D399" font-family="monospace" font-size="11" line-height="1.5">
+        <tspan fill="#F8FAFC">{</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"status"</tspan>: <tspan fill="#FDE047">"success"</tspan>,</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"batch_id"</tspan>: <tspan fill="#FDE047">"VERKA-LUD-LIVE-01"</tspan>,</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"match_score"</tspan>: <tspan fill="#A7F3D0">99.2</tspan>,</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"assigned_recipient"</tspan>: {</tspan>
+        <tspan x="56" dy="18"><tspan fill="#93C5FD">"recipient_id"</tspan>: <tspan fill="#FDE047">"recip-01"</tspan>,</tspan>
+        <tspan x="56" dy="18"><tspan fill="#93C5FD">"name"</tspan>: <tspan fill="#FDE047">"Sri Guru Ram Dass Ji Langar"</tspan>,</tspan>
+        <tspan x="56" dy="18"><tspan fill="#93C5FD">"dietary_policy"</tspan>: <tspan fill="#FDE047">"Strict_Lacto_Vegetarian"</tspan>,</tspan>
+        <tspan x="56" dy="18"><tspan fill="#93C5FD">"coordinates"</tspan>: [<tspan fill="#A7F3D0">31.6200</tspan>, <tspan fill="#A7F3D0">74.8765</tspan>]</tspan>
+        <tspan x="42" dy="18">},</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"allocated_vehicle"</tspan>: {</tspan>
+        <tspan x="56" dy="18"><tspan fill="#93C5FD">"tier"</tspan>: <tspan fill="#FDE047">"Tier 3 Medium Reefer"</tspan>,</tspan>
+        <tspan x="56" dy="18"><tspan fill="#93C5FD">"vehicle_id"</tspan>: <tspan fill="#FDE047">"PB-02-AK-4412"</tspan>,</tspan>
+        <tspan x="56" dy="18"><tspan fill="#93C5FD">"setpoint_c"</tspan>: <tspan fill="#A7F3D0">2.7</tspan></tspan>
+        <tspan x="42" dy="18">},</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"safe_transit_window_hours"</tspan>: <tspan fill="#A7F3D0">14.0</tspan>,</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"solver"</tspan>: <tspan fill="#FDE047">"pulp-cbc:Optimal"</tspan>,</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"execution_latency_ms"</tspan>: <tspan fill="#A7F3D0">28.5</tspan>,</tspan>
+        <tspan x="42" dy="18"><tspan fill="#93C5FD">"dietary_violations"</tspan>: <tspan fill="#A7F3D0">0</tspan></tspan>
+        <tspan x="28" dy="18"><tspan fill="#F8FAFC">}</tspan></tspan>
+      </text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%" style="background:#0F172A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif;">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Top App Navigation Bar -->
+  <rect x="0" y="0" width="1200" height="60" fill="#1E293B" stroke="#334155" />
+  <circle cx="35" cy="30" r="14" fill="#059669" />
+  <text x="35" y="35" fill="#FFFFFF" font-size="14" font-weight="900" text-anchor="middle">FR</text>
+  <text x="60" y="36" fill="#F8FAFC" font-size="18" font-weight="800">FreshRoute AI — Stage 2 Punjab 23-District Forecaster (LightGBM &amp; LSTM)</text>
+  <rect x="960" y="18" width="215" height="26" rx="13" fill="#064E3B" stroke="#059669" />
+  <circle cx="975" cy="31" r="4" fill="#10B981" />
+  <text x="986" y="35" fill="#34D399" font-size="11" font-weight="600">Model: LightGBM WAPE 4.38%</text>
+
+  <!-- Background -->
+  <rect x="0" y="60" width="1200" height="620" fill="#F8FAFC" />
+
+  <!-- Top Walk-Forward Forecast Inspector Card -->
+  <g transform="translate(30, 80)">
+    <rect x="0" y="0" width="1140" height="155" rx="8" fill="#FFFFFF" stroke="#BAE6FD" filter="url(#shadow)" />
+    <rect x="0" y="0" width="1140" height="36" rx="8 8 0 0" fill="#F0F9FF" stroke="#BAE6FD" />
+    <text x="16" y="24" fill="#0369A1" font-size="13" font-weight="750">Live 7-Day Spatial-Temporal Walk-Forward Forecast · Amritsar (Gurpurab Pilgrim Surge Active)</text>
+    <text x="980" y="24" fill="#059669" font-size="11" font-weight="700">WAPE: 4.38% (Target &lt; 18%)</text>
+
+    <g transform="translate(20, 50)">
+      <!-- 7 Day Cards with 10th / 90th percentile bounds -->
+      <!-- Day 1 -->
+      <rect x="0" y="0" width="145" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="14" y="22" fill="#64748B" font-size="11" font-weight="700">Day 1 (Today)</text>
+      <text x="14" y="48" fill="#0F172A" font-size="18" font-weight="800">7,678 lbs</text>
+      <text x="14" y="68" fill="#0284C7" font-family="monospace" font-size="10.5" font-weight="700">[6,910 - 8,446]</text>
+
+      <!-- Day 2 -->
+      <rect x="158" y="0" width="145" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="172" y="22" fill="#64748B" font-size="11" font-weight="700">Day 2 (Tomorrow)</text>
+      <text x="172" y="48" fill="#0F172A" font-size="18" font-weight="800">7,705 lbs</text>
+      <text x="172" y="68" fill="#0284C7" font-family="monospace" font-size="10.5" font-weight="700">[6,935 - 8,476]</text>
+
+      <!-- Day 3 -->
+      <rect x="316" y="0" width="145" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="330" y="22" fill="#64748B" font-size="11" font-weight="700">Day 3</text>
+      <text x="330" y="48" fill="#0F172A" font-size="18" font-weight="800">7,705 lbs</text>
+      <text x="330" y="68" fill="#0284C7" font-family="monospace" font-size="10.5" font-weight="700">[6,935 - 8,476]</text>
+
+      <!-- Day 4 -->
+      <rect x="474" y="0" width="145" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="488" y="22" fill="#64748B" font-size="11" font-weight="700">Day 4</text>
+      <text x="488" y="48" fill="#0F172A" font-size="18" font-weight="800">7,705 lbs</text>
+      <text x="488" y="68" fill="#0284C7" font-family="monospace" font-size="10.5" font-weight="700">[6,935 - 8,476]</text>
+
+      <!-- Day 5 (Weekend Surge) -->
+      <rect x="632" y="0" width="145" height="85" rx="6" fill="#EFF6FF" stroke="#93C5FD" />
+      <text x="646" y="22" fill="#1E40AF" font-size="11" font-weight="700">Day 5 (Weekend)</text>
+      <text x="646" y="48" fill="#1E3A8A" font-size="18" font-weight="800">7,816 lbs</text>
+      <text x="646" y="68" fill="#0284C7" font-family="monospace" font-size="10.5" font-weight="700">[7,034 - 8,598]</text>
+
+      <!-- Day 6 (Festival Peak) -->
+      <rect x="790" y="0" width="145" height="85" rx="6" fill="#ECFDF5" stroke="#6EE7B7" />
+      <text x="804" y="22" fill="#065F46" font-size="11" font-weight="700">Day 6 (Gurpurab +8%)</text>
+      <text x="804" y="48" fill="#064E3B" font-size="18" font-weight="800">7,823 lbs</text>
+      <text x="804" y="68" fill="#059669" font-family="monospace" font-size="10.5" font-weight="700">[7,041 - 8,605]</text>
+
+      <!-- Day 7 -->
+      <rect x="948" y="0" width="145" height="85" rx="6" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="962" y="22" fill="#64748B" font-size="11" font-weight="700">Day 7</text>
+      <text x="962" y="48" fill="#0F172A" font-size="18" font-weight="800">7,678 lbs</text>
+      <text x="962" y="68" fill="#0284C7" font-family="monospace" font-size="10.5" font-weight="700">[6,910 - 8,446]</text>
+    </g>
+  </g>
+
+  <!-- 23 District HVI & Demand Table -->
+  <g transform="translate(30, 250)">
+    <rect x="0" y="0" width="1140" height="400" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#shadow)" />
+    <rect x="0" y="0" width="1140" height="38" rx="8 8 0 0" fill="#F8FAFC" stroke="#E2E8F0" />
+    <text x="16" y="24" fill="#0F172A" font-size="13" font-weight="750">Punjab 23-District Multidimensional Poverty (MPI) &amp; Hunger Deficit Ledger</text>
+    <text x="960" y="24" fill="#64748B" font-size="11">Census 2026 Projections + NITI Aayog</text>
+
+    <!-- Table Rows -->
+    <g transform="translate(16, 45)">
+      <rect x="0" y="0" width="1108" height="28" fill="#F1F5F9" />
+      <text x="10" y="19" fill="#475569" font-size="11" font-weight="700">DISTRICT / AGRO BELT</text>
+      <text x="260" y="19" fill="#475569" font-size="11" font-weight="700">POPULATION (2026)</text>
+      <text x="420" y="19" fill="#475569" font-size="11" font-weight="700">MPI RANK</text>
+      <text x="530" y="19" fill="#475569" font-size="11" font-weight="700">HVI (0-100)</text>
+      <text x="640" y="19" fill="#475569" font-size="11" font-weight="700">WEEKLY DEMAND</text>
+      <text x="790" y="19" fill="#475569" font-size="11" font-weight="700">SCHEDULED</text>
+      <text x="920" y="19" fill="#475569" font-size="11" font-weight="700">NET SHORTFALL</text>
+
+      <!-- Row 1: Ludhiana -->
+      <line x1="0" y1="30" x2="1108" y2="30" stroke="#E2E8F0" />
+      <text x="10" y="52" fill="#0F172A" font-size="12" font-weight="700">Ludhiana (Industrial &amp; Slum Belt)</text>
+      <text x="260" y="52" fill="#64748B" font-size="12">3,700,000</text>
+      <text x="420" y="52" fill="#64748B" font-size="12">#3</text>
+      <text x="530" y="52" fill="#DC2626" font-size="12" font-weight="800">95 / 100</text>
+      <text x="640" y="52" fill="#0F172A" font-size="12">38,000 lbs</text>
+      <text x="790" y="52" fill="#059669" font-size="12">34,500 lbs</text>
+      <text x="920" y="52" fill="#DC2626" font-size="12" font-weight="800">-3,500 lbs (Shortfall)</text>
+
+      <!-- Row 2: Amritsar -->
+      <line x1="0" y1="64" x2="1108" y2="64" stroke="#E2E8F0" />
+      <text x="10" y="86" fill="#0F172A" font-size="12" font-weight="700">Amritsar (Border &amp; Pilgrim Core)</text>
+      <text x="260" y="86" fill="#64748B" font-size="12">2,800,000</text>
+      <text x="420" y="86" fill="#64748B" font-size="12">#5</text>
+      <text x="530" y="86" fill="#DC2626" font-size="12" font-weight="800">92 / 100</text>
+      <text x="640" y="86" fill="#0F172A" font-size="12">48,000 lbs</text>
+      <text x="790" y="86" fill="#059669" font-size="12">49,200 lbs</text>
+      <text x="920" y="86" fill="#059669" font-size="12" font-weight="800">+1,200 lbs (Surplus)</text>
+
+      <!-- Row 3: Fazilka -->
+      <line x1="0" y1="98" x2="1108" y2="98" stroke="#E2E8F0" />
+      <text x="10" y="120" fill="#0F172A" font-size="12" font-weight="700">Fazilka (Border &amp; Agrarian Belt)</text>
+      <text x="260" y="120" fill="#64748B" font-size="12">1,350,000</text>
+      <text x="420" y="120" fill="#DC2626" font-size="12" font-weight="700">#1 (Highest)</text>
+      <text x="530" y="120" fill="#DC2626" font-size="12" font-weight="800">94 / 100</text>
+      <text x="640" y="120" fill="#0F172A" font-size="12">24,000 lbs</text>
+      <text x="790" y="120" fill="#059669" font-size="12">20,500 lbs</text>
+      <text x="920" y="120" fill="#DC2626" font-size="12" font-weight="800">-3,500 lbs (Shortfall)</text>
+
+      <!-- Row 4: Sri Muktsar Sahib -->
+      <line x1="0" y1="132" x2="1108" y2="132" stroke="#E2E8F0" />
+      <text x="10" y="154" fill="#0F172A" font-size="12" font-weight="700">Sri Muktsar Sahib (South-West Malwa)</text>
+      <text x="260" y="154" fill="#64748B" font-size="12">1,050,000</text>
+      <text x="420" y="154" fill="#DC2626" font-size="12" font-weight="700">#2</text>
+      <text x="530" y="154" fill="#DC2626" font-size="12" font-weight="800">91 / 100</text>
+      <text x="640" y="154" fill="#0F172A" font-size="12">19,500 lbs</text>
+      <text x="790" y="154" fill="#059669" font-size="12">16,800 lbs</text>
+      <text x="920" y="154" fill="#DC2626" font-size="12" font-weight="800">-2,700 lbs (Shortfall)</text>
+
+      <!-- Row 5: Firozpur -->
+      <line x1="0" y1="166" x2="1108" y2="166" stroke="#E2E8F0" />
+      <text x="10" y="188" fill="#0F172A" font-size="12" font-weight="700">Firozpur (Border Rural)</text>
+      <text x="260" y="188" fill="#64748B" font-size="12">1,150,000</text>
+      <text x="420" y="188" fill="#64748B" font-size="12">#4</text>
+      <text x="530" y="188" fill="#DC2626" font-size="12" font-weight="800">90 / 100</text>
+      <text x="640" y="188" fill="#0F172A" font-size="12">21,000 lbs</text>
+      <text x="790" y="188" fill="#059669" font-size="12">18,200 lbs</text>
+      <text x="920" y="188" fill="#DC2626" font-size="12" font-weight="800">-2,800 lbs (Shortfall)</text>
+
+      <!-- Row 6: Bathinda -->
+      <line x1="0" y1="200" x2="1108" y2="200" stroke="#E2E8F0" />
+      <text x="10" y="222" fill="#0F172A" font-size="12" font-weight="700">Bathinda (Malwa Farming Heartland)</text>
+      <text x="260" y="222" fill="#64748B" font-size="12">1,500,000</text>
+      <text x="420" y="222" fill="#64748B" font-size="12">#7</text>
+      <text x="530" y="222" fill="#D97706" font-size="12" font-weight="800">88 / 100</text>
+      <text x="640" y="222" fill="#0F172A" font-size="12">22,000 lbs</text>
+      <text x="790" y="222" fill="#059669" font-size="12">19,800 lbs</text>
+      <text x="920" y="222" fill="#DC2626" font-size="12" font-weight="800">-2,200 lbs (Shortfall)</text>
+
+      <!-- Row 7: Jalandhar -->
+      <line x1="0" y1="234" x2="1108" y2="234" stroke="#E2E8F0" />
+      <text x="10" y="256" fill="#0F172A" font-size="12" font-weight="700">Jalandhar (Doaba Urban Core)</text>
+      <text x="260" y="256" fill="#64748B" font-size="12">2,300,000</text>
+      <text x="420" y="256" fill="#64748B" font-size="12">#10</text>
+      <text x="530" y="256" fill="#D97706" font-size="12" font-weight="800">83 / 100</text>
+      <text x="640" y="256" fill="#0F172A" font-size="12">26,000 lbs</text>
+      <text x="790" y="256" fill="#059669" font-size="12">26,500 lbs</text>
+      <text x="920" y="256" fill="#059669" font-size="12" font-weight="800">+500 lbs (Balanced)</text>
+
+      <!-- Row 8: Malerkotla -->
+      <line x1="0" y1="268" x2="1108" y2="268" stroke="#E2E8F0" />
+      <text x="10" y="290" fill="#0F172A" font-size="12" font-weight="700">Malerkotla (Central Vegetable Belt)</text>
+      <text x="260" y="290" fill="#64748B" font-size="12">520,000</text>
+      <text x="420" y="290" fill="#64748B" font-size="12">#11</text>
+      <text x="530" y="290" fill="#D97706" font-size="12" font-weight="800">82 / 100</text>
+      <text x="640" y="290" fill="#0F172A" font-size="12">12,000 lbs</text>
+      <text x="790" y="290" fill="#059669" font-size="12">11,200 lbs</text>
+      <text x="920" y="290" fill="#DC2626" font-size="12" font-weight="800">-800 lbs (Shortfall)</text>
+    </g>
+  </g>
+</svg>
