@@ -168,3 +168,19 @@ def test_api_milp_and_or_tools_integration():
     r2 = client.post("/api/v1/optimize/routing", json=route_payload)
     assert r2.status_code == 200
     assert r2.json()["total_distance_km"] > 0
+
+
+def test_d3_gold_matrix_lookup():
+    """D3 OSRM gold matrix drives matcher distances when donor/recipient ids match."""
+    from core.pareto_matcher import ParetoMatchingEngine
+
+    m = ParetoMatchingEngine()
+    matrix = m.load_distance_matrix()
+    assert len(matrix) >= 12, f"gold matrix missing: {len(matrix)} pairs"
+    b = {"donor_id": "donor-verka-ludhiana-01", "origin_coordinates": [30.9325, 75.835], "dietary_flags": {"is_pure_veg": True}}
+    r = {"recipient_id": "recip-amritsar-langar-01", "coordinates": [31.62, 74.8765], "urgency_score": 97, "dietary_policy": "Strict_Lacto_Vegetarian"}
+    d = m.lookup_distance(b, r)
+    assert d is not None and 130 < d < 145, f"OSRM Ludhiana->Amritsar {d} not ~137"
+    # score_match uses matrix (not haversine) — proximity reflects road distance
+    s = m.score_match(b, r, safe_hours_remaining=12.0)
+    assert s > 0
