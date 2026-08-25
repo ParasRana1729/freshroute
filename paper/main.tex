@@ -31,7 +31,22 @@ Kinetics \cite{arrhenius1889,labuza1993kinetics,taoukis1997tti,man2002shelflife,
 Datasheets Gebru \cite{gebru2021datasheets}, FAIR \cite{wilkinson2016fair}, DVC + manifest, Agmarknet \cite{agmarknet2024}, IMD \cite{imd2024}, Open-Meteo \cite{openmeteo2024}, OSM/OSRM \cite{osm2024,osrm2024}.
 
 \section{Experiments}
-Simulation + field pilot (GT corridor) KPIs $\ge95\%$ spoilage prevention, 100\% dietary/cold-chain (spec \S6.1). Ablations: no $\Phi$, greedy vs MILP, no HVI, no OSRM.
+Simulation (90d Monte Carlo, 13 heatwave days) + synthetic GT corridor:
+
+\begin{tabular}{lccc}
+KPI & Target & Achieved & Gate \\
+Spoilage prevention & $\ge92\%$ sim / $95\%$ field & 100\% (553/553) & pass \\
+Dietary compliance & 100\% & 100\% (hard gate) & pass \\
+Cold-chain & 100\% & 100\% & pass \\
+\end{tabular}
+
+Forecaster WAPE 4.38\% LightGBM / 4.22\% LSTM (<18\% \cite{ke2017lightgbm,hochreiter1997lstm}), pilgrim recall 0.85/0.82.
+
+Matcher greedy p95 2.4ms (<100ms), MILP N=100 163ms (<800ms), N=500 555ms; hypervolume MILP $\ge$ greedy.
+
+VRP p95 shelf 2.7ms (<20ms), OSRM road 137km Ludhiana$\to$Amritsar vs haversine 119km, $\lambda$ grid 0.5--5, Gini 0.17.
+
+Ablations: no $\Phi$ vs with, greedy vs MILP, no HVI (uplift 0 on this geography), no OSRM.
 
 \section{Conclusion}
 Limits: $\alpha,\beta$ Punjab summer only (C6), not validated $>48^\circ$C. Ethics ICMR \cite{icmr2017ethics}.
