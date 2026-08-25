@@ -2,7 +2,7 @@
 
 > **For human maintainers and AI agents continuing this repo.** Copy this file into your context before editing. It is the single source of truth for *where we are* (P0–P6 RC), *how to run*, and *how not to break publication guarantees*.
 
-**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `cbad2af` (`docs: README display version — badges, hero, mermaid, KPIs`)
+**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `5c39394` (`feat: D1-D9 datasheets, P1-P6 reviews, demand bounds, paper draft`)
 
 ---
 
