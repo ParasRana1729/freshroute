@@ -216,7 +216,9 @@ class ParetoMatchingEngine:
         if not self.check_dietary_eligibility(surplus, recipient):
             return 0.0
 
-        # Distance / transit
+        # Distance / transit: D3 gold matrix → haversine fallback
+        if distance_km is None:
+            distance_km = self.lookup_distance(surplus, recipient)
         if distance_km is None:
             try:
                 d_lat, d_lon = surplus["origin_coordinates"]
@@ -339,13 +341,15 @@ class ParetoMatchingEngine:
                 if score > best_score:
                     best_score = score
                     best_match = rec
-                    # capture distance for trace
-                    try:
-                        d_lat, d_lon = batch["origin_coordinates"]
-                        r_lat, r_lon = rec["coordinates"]
-                        best_dist = self._haversine_distance_km(d_lat, d_lon, r_lat, r_lon)
-                    except Exception:
-                        best_dist = None
+                    # capture distance for trace — D3 gold matrix first, else haversine
+                    best_dist = self.lookup_distance(batch, rec)
+                    if best_dist is None:
+                        try:
+                            d_lat, d_lon = batch["origin_coordinates"]
+                            r_lat, r_lon = rec["coordinates"]
+                            best_dist = self._haversine_distance_km(d_lat, d_lon, r_lat, r_lon)
+                        except Exception:
+                            best_dist = None
 
             if best_match is not None and best_score > min_score:
                 # CO2 factor: mock uses lbs*2.5? Spec uses kg*2.5. We handle both.
@@ -473,12 +477,16 @@ class ParetoMatchingEngine:
                 if sc > 0 and sc >= min_score:
                     scores[(i, j)] = sc
                     feasible[(i, j)] = True
-                    try:
-                        d_lat, d_lon = batch["origin_coordinates"]
-                        r_lat, r_lon = rec["coordinates"]
-                        distances[(i, j)] = self._haversine_distance_km(d_lat, d_lon, r_lat, r_lon)
-                    except Exception:
-                        distances[(i, j)] = 10.0
+                    # D3 gold matrix first (score_match already resolved), else haversine
+                    dist = self.lookup_distance(batch, rec)
+                    if dist is None:
+                        try:
+                            d_lat, d_lon = batch["origin_coordinates"]
+                            r_lat, r_lon = rec["coordinates"]
+                            dist = self._haversine_distance_km(d_lat, d_lon, r_lat, r_lon)
+                        except Exception:
+                            dist = 10.0
+                    distances[(i, j)] = dist
                 else:
                     # Keep zero-score pairs as infeasible for MILP sparsity
                     feasible[(i, j)] = False
