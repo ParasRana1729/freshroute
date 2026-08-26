@@ -1,169 +1,167 @@
 # AGENTS.md — FreshRoute AI: Food Redistribution Optimizer
 
-> **For human maintainers and AI agents continuing this repo.** Copy this file into your context before editing. It is the single source of truth for *where we are* (P0–P6 RC), *how to run*, and *how not to break publication guarantees*.
+> Maintainer and agent guide. This file describes the verified state of the repository at commit `d62462e` (`docs(screenshots): capture authentic browser PNG screenshots and update README showcase`, 2026-08-26). Keep it synchronized with `docs/IMPLEMENTATION_PLAN.md` and update the status section when work closes a gate.
 
-**Spec:** `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md:1` v1.0.0-Release | **Plan:** `docs/IMPLEMENTATION_PLAN.md:1` v1.0.0-Draft | **Bibliography:** `docs/BIBLIOGRAPHY.bib:1` 42 keys | **Commit:** `5c39394` (`feat: D1-D9 datasheets, P1-P6 reviews, demand bounds, paper draft`)
+## 1. What the project does
 
----
+FreshRoute is a Punjab-focused food-rescue optimizer and operations-console prototype. It models the path from perishable surplus to a feasible, culturally compliant delivery:
 
-## 1. What this project is (30s)
-
-Punjab ambient cold-chain food-rescue pipeline — 4 stages:
-
+```text
+Agmarknet / weather / FSSAI inputs
+        ↓
+1. Thermal safety: Arrhenius decay + humidity → Phi_env, t_safe, hazard class
+        ↓
+2. Demand: LightGBM/LSTM-style 7-day forecasts for 23 districts + HVI deficit
+        ↓
+3. Matching: Pareto score and optional MILP allocation with dietary hard gates
+        ↓
+4. Routing: vehicle tier selection and OR-Tools VRPTW with OSRM/haversine distances
+        ↓
+FastAPI/OpenAPI gateway → React/Vite/Leaflet operations console
 ```
-Agmarknet/IMD/FSSAI → Stage1 Arrhenius Phi_env (k(T), t_safe) → Stage2 Demand LSTM/LightGBM (HVI, 23 districts)
-                                     ↓
-                    Stage3 Pareto Matcher S_ij MILP w=[0.35,0.30,0.20,0.15]
-                                     ↓
-                    Stage4 VRPTW Router OR-Tools + vehicle tiering
-                                     ↓
-                         FastAPI → React Console (Vite + Leaflet)
-```
 
-Indian constraints are first-class: 44°C Loo, monsoon H>70%, `Strict_Lacto_Vegetarian` Langar Rehat + Halal/Jain hard gates (`spec:1.2`), `FSSAI` temps, NH44 GT corridor, Tata Ace EV / reefer tiers.
+The domain constraints are part of the design, not presentation-only features: Punjab heatwave conditions around 44°C, monsoon humidity, FSSAI temperature bands, NH44 corridor logistics, reefer tiers, and zero-tolerance dietary compatibility for `Strict_Lacto_Vegetarian`, vegetarian, Jain, and Halal recipients. The matcher must never route an ineligible batch to a recipient merely to improve a score.
 
----
+This is currently a reproducible research/demo system with synthetic defaults and simulation results. It is not yet a field-proven or production-operated dispatch service.
 
-## 2. Tech stack & runtime
+## 2. Repository and runtime
 
-| Layer | Choice | Entrypoint |
-| :--- | :--- | :--- |
-| Python optimizer `3.11` | FastAPI `0.110` + Pydantic v2, OR-Tools `9.9`, PuLP, LightGBM `4.3`, Torch `2.3`, MLflow, Great Expectations | `freshroute-optimizer-model/api/app.py:1` `uvicorn api.app:app --reload --port 8000` |
-| Frontend | React `18` + Vite `6` + Leaflet `1.9`, `lucide-react` | `src/App.jsx:1` `npm run dev` `0.0.0.0:3000` proxied `/api→8000` via `vite.config.js:7` |
-| Data | `data/indian_commodities.json:1` (5 tiers), `data/punjab_districts.json:1` (23 HVI), ingestion stubs `data/ingestion/agmarknet.py:1` `imd_openmeteo.py:1` → `data/raw/` → `data/gold/*.parquet` (DVC) | `data/data_manifest.json:1` (FAIR SHA+DOI) |
-| Tooling | `mise` `python@3.11` `node@26.7`, `pytest`, `citation_audit.py` | `mise.toml:1` `freshroute-optimizer-model/requirements.txt:1` `Dockerfile:1` |
+| Area | Location | Notes |
+| --- | --- | --- |
+| Frozen specification and plan | `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md` | Mathematical formulas, schemas, KPIs, phase gates |
+| Backend | `freshroute-optimizer-model/` | Python 3.11; run from this directory for direct imports |
+| Core engines | `freshroute-optimizer-model/core/` | `arrhenius_decay.py`, `demand_forecaster.py`, `pareto_matcher.py`, `vrp_router.py` |
+| API | `freshroute-optimizer-model/api/` | FastAPI app, Pydantic v2 schemas, four primary routes plus health/alias routes |
+| Data | `freshroute-optimizer-model/data/` | 5 commodity tiers, 23 district/HVI records, ingestion/build scripts, DVC pointers |
+| Frontend | `src/` | React 18 + Vite + Leaflet; `OperationsApp` is the interactive console |
+| Frontend fallback | `src/data/mockData.js`, `src/lib/freshrouteApi.js` | The UI remains usable when the API is unavailable |
+| Reproducibility | `replay.sh`, `docs/reproducibility.md`, `scripts/citation_audit.py` | Full replay and citation governance |
+| Publication | `paper/main.tex`, `docs/BIBLIOGRAPHY.bib` | Manuscript source and 42-key bibliography |
+| CI/quality | `.github/workflows/ci.yml`, `.pre-commit-config.yaml` | Python tests, GE, forecaster smoke, Monte Carlo, citation audit |
 
----
+The pinned toolchain is `mise.toml` (`python = "3.11"`). Python dependencies are in `freshroute-optimizer-model/requirements.txt`; frontend dependencies are in `package.json`. There is a backend Dockerfile at `freshroute-optimizer-model/Dockerfile`. An `environment.lock` file is not currently committed; `.gitignore` ignores that filename.
 
-## 3. Current state — Phase map `docs/IMPLEMENTATION_PLAN.md:4`
+## 3. Current phase status
 
-| Phase | Title | Status |
-| :--- | :--- | :--- |
-| **P0 Charter** | Ethics, doc infra | **DONE & gated** `docs/reviews/phase-0-review.md:1` — `BIBLIOGRAPHY.bib` 42, templates `docs/datasheets/TEMPLATE.md:1` `docs/model-cards/TEMPLATE.md:1`, ADRs `000:1`/`001:1`, `CITATION.cff:1`, `reproducibility.md:1`, `GANTT.md:1`, `calibration/phi_env.md:1` (`alpha=0.048 beta=0.008`) |
-| **P1 Data** | Lake | **RC + live + GE + DVC** — 5-tier priors +23 HVI, `agmarknet.py:49` live + `_validate_rows` 42 rows + `build_gold_mandi.py:1` → `mandi_daily.parquet` 126 rows (3d backfill), `imd_openmeteo.py:44` live `open-meteo-live` 24h + `build_gold_weather.py:1` 48 rows, `build_gold_osm.py:1` 12 OSRM pairs + `osm_distance_matrix.parquet`; `ge_suites.py:1` 3 suites pass; `data_manifest.json:1` SHA `e38b...`/`0040...`/`6098...` + `*.dvc` 5 gold; real weather `fetch_real_weather.py:1` 7320 rows 43.6°C peak logged to `open_meteo_imd.md` |
-| **P2 Arrhenius** | `core/arrhenius_decay.py:272` | **Done + demo refit** `Phi_env=exp(alpha*(T-20)+beta*max(0,H-60))` `t_safe` `CRITICAL_HAZARD≤4h`; `scripts/calibrate_phi_demo.py:1` synthetic 4×2×10 R² 0.993 alpha 0.050 beta 0.006 `[@labuza1993kinetics]`; field chamber fit pending `C6` |
-| **P3 Forecaster** | `core/demand_forecaster.py:31` | **DONE LGBM+LSTM v1** `HungerDemandForecaster` 23×7 deterministic + pilgrim surge + `train_lightgbm:359` WAPE 4.38% / `train_lstm:529` WAPE 4.22% [@ke2017lightgbm;@hochreiter1997lstm] (120d syn, 19 feats LGBM 300 trees, LSTM 2-layer 64 hidden +8 emb 20 epochs) `pilgrim_recall 0.85/0.82`, `data/gold/forecaster_lgbm.txt` 802KB + `forecaster_lstm.pt` 236KB + `docs/model-cards/demand_forecaster.md:1`; TFT `[@lim2021tft]` still stub, HVI fusion via `get_deficit_score` into matcher `w2` ready |
-| **P4 Matcher** | `core/pareto_matcher.py:335` | **DONE MILP** `rank_allocations:260` `<100ms` + `check_dietary_eligibility:94` 100% gate; `solve_milp_allocations:337` PuLP CBC default + CP-SAT fallback `[@wolsey1998integer;@orgtools2024;@pulp2011]` <800ms N=100 (163ms), capacity aggregate, `docs/model-cards/pareto_matcher.md:1` + `adr/002:1` |
-| **P5 VRP** | `core/vrp_router.py:63` | **DONE VRPTW + OSRM** `VEHICLE_TIERS:39` + `select_vehicle:82` + `solve_vrp:182` OR-Tools `RoutingModel` with `t_safe` windows + `λ=2.0` + `_get_osrm_distance_matrix:27` live OSRM `[@osm2024;@osrm2024]` (fallback haversine), `docs/model-cards/vrp_router.md:1` + `adr/003:1` |
-| **P6 Gateway** | `api/` | **Done + MILP/VRPTW flags + p95 bench** `schemas.py:173` + `routes.py:125` 4 routers + MILP `use_milp/solver/min_score` + VRPTW `use_or_tools/t_safe_hours/lambda` + `src/lib/freshrouteApi.js:1` `withFallback()` + `scripts/benchmark_api_latency.py:1` p95 2.4ms/2.7ms + console `OperationsApp.jsx:26` MILP toggle |
-| **P7 Pilot** | Field (GT corridor) | **Shadow DONE** — `scripts/pilot_shadow.py:1` 2×2 `100%` spoilage/cold/dietary (field BLE `spec:534` pending); Monte Carlo `scripts/monte_carlo_sim.py:1` 90d 100% prevention (13 heatwaves) |
-| **P8 MLOps** | Deploy | **CI+drift+lock DONE** — `.github/workflows/ci.yml:1` + `scripts/drift_check.py:1` PSI `1.779` + `environment.lock:1` + `data/gold/*.dvc` DVC, `.pre-commit-config.yaml:1` |
-| **P9 Paper** | Bundle | **Skeleton+Results DONE** — `paper/main.tex:1` + Results 100%/4.38/4.22% + `replay.sh:1` `[@neurips2023checklist]` (Zenodo DOIs pending) |
+The phase reviews document “Proceed” decisions through P6, but their reviewer/sign-off sections are not fully completed. Treat the system as an RC/demo with open outer-gate and field-validation work.
 
-**Outer gates:** `P0` `Proceed` signed; `P1-P6` inner loops green, outer gates await reviewer signatures per `docs/IMPLEMENTATION_PLAN.md:12` (BIB 42 ok, 19 tests ok, model cards DONE for P2/P4/P5, stub for P3).
+| Phase | Verified state |
+| --- | --- |
+| **P0 — Charter** | Documentation, bibliography, ADRs, templates, calibration note, and reproducibility scaffolding exist. Formal sign-offs remain open in the review artifact. |
+| **P1 — Data** | Commodity and district priors, 9 datasheets, GE checks, manifest, DVC pointers, and gold-table builders exist. Agmarknet/Open-Meteo adapters attempt live fetches but intentionally fall back to deterministic synthetic rows. Gold parquet/model binaries are ignored locally and represented by DVC pointers; manifest DOI fields are still pending/placeholders. |
+| **P2 — Thermal decay** | `ThermalDecayEngine` is implemented and API-exposed. The `Phi_env` prior and demo refit pass the heatwave regression, but chamber/field validation and seasonal refitting of `alpha`/`beta` remain outstanding. |
+| **P3 — Demand** | LightGBM and LSTM training/forecast code, prediction bounds, HVI deficit scoring, metrics, and model artifacts/metadata exist. Reported WAPE is 4.38%/4.22% on synthetic history. `core/tft_stub.py` is deliberately a delegating stub, and real meal-consumption logs are not yet the training source. |
+| **P4 — Matcher** | Greedy and PuLP MILP paths, OR-Tools fallback, capacity handling, OSRM-matrix lookup, and hard dietary gates exist. N=100 MILP is within the 800 ms budget; the current standalone 500×500 greedy benchmark is ~896 ms, so the plan’s `<100 ms @ N=500` SLA is not met. HVI benchmark uplift is currently 0 on the corridor because proximity and HVI align. |
+| **P5 — Router** | Heuristic and OR-Tools VRPTW paths, 4 vehicle tiers, `t_safe` windows, lambda tuning, OSRM live attempt, and haversine fallback exist. Full Solomon benchmarking, true pickup/delivery precedence, per-tier timing, and production traffic/sensor inputs remain incomplete. |
+| **P6 — Gateway/UI** | Four primary APIs and OpenAPI are implemented: shelf life, match, forecast, and routing. The console has map, queue, thermal matrix, 23-district forecast, scenarios, live health polling, API sandbox, and greedy/MILP controls. It is resilient through API fallback; it is not an authenticated/hosted production gateway. |
+| **P7 — Pilot** | Shadow-mode, real-data-simulation, and Monte Carlo scripts exist and pass the synthetic KPI checks. The planned live 2-donor × 2-recipient GT-corridor pilot, BLE/MQTT telemetry, human-factor review, and signed P7 review do not exist yet. |
+| **P8 — MLOps** | CI, pre-commit configuration, DVC pointers, and a synthetic PSI drift script exist. Production deployment, dashboards/alerts, automatic retraining/refit, infrastructure-as-code, rollback validation, environment lock, and maintainer runbook are still absent. |
+| **P9 — Paper** | `paper/main.tex` and `replay.sh` exist with draft results. PDF rendering, clean-clone artifact verification, real data/code Zenodo deposits, final DOIs, and `CITATION.cff` release cross-references remain outstanding. |
 
----
+## 4. API and UI contract
 
-## 4. How to run (one-command replay `docs/reproducibility.md:1`)
+Backend routes are mounted under `/api/v1`:
+
+- `POST /api/v1/predict/shelf-life`
+- `POST /api/v1/optimize/match`
+- `GET` or `POST /api/v1/forecast/demand`
+- `POST /api/v1/optimize/routing`
+- `GET /health` and `GET /openapi.json`
+
+`api/schemas.py` accepts the spec’s kg/°C fields and the frontend mock’s legacy lbs weight alias; the UI also presents some telemetry in °F. Normalize units at the API/schema boundary; do not add lbs/°F conversion to the core engines. Coordinates are `[latitude, longitude]` in application payloads; OSRM requests reverse them to `[longitude, latitude]` as required by that service.
+
+The frontend uses the Vite proxy for `/api` and `/health`. `withFallback()` in `src/lib/freshrouteApi.js` falls back to `src/data/mockData.js` when FastAPI is down. Do not mistake fallback data or UI scenario changes for live operational data.
+
+## 5. How to run
+
+From the repository root:
 
 ```bash
-# Backend — freshroute-optimizer-model is the Python root
-mise use python@3.11
+# Install backend dependencies
 cd freshroute-optimizer-model
-python -m venv .venv && source .venv/bin/activate   # or: mise exec -- pip ...
-pip install -r requirements.txt
+mise exec -- python -m pip install -r requirements.txt
 
-# Ingestion (synthetic until live keys)
-python -m data.ingestion.agmarknet --date 2026-08-18 --out data/raw/agmarknet/20260818.json
-python -m data.ingestion.imd_openmeteo --lat 30.90 --lon 75.85 --date 2026-08-18
+# Verify backend, integration, and GE behavior
+cd ..
+mise exec -- python -m pytest freshroute-optimizer-model/tests/ -q
+mise exec -- python scripts/citation_audit.py --bib docs/BIBLIOGRAPHY.bib --root .
 
-# Verify (27 tests: 13 core +6 API +8 integration)
-python -m pytest tests/ -v
-python scripts/citation_audit.py --bib ../docs/BIBLIOGRAPHY.bib --root ..
-python -m data.validation.ge_suites --check-all
-bash ../replay.sh  # full NeurIPS checklist
-
-# Serve (reload)
-uvicorn api.app:app --reload --port 8000
-# → http://localhost:8000/health  http://localhost:8000/docs  http://localhost:8000/openapi.json
-
-# Frontend — repo root in another shell
+# Build the frontend
 npm install
-npm run dev -- --host 0.0.0.0 --port 3000
-# → http://localhost:3000  http://localhost:3000/#console  (vite proxy /api→8000)
-# If API down, src/lib/freshrouteApi.js falls back to src/data/mockData.js:1 mocks so landing never blanks.
+npm run build
 ```
 
-**PM2/nohup helpers** (already used once): `nohup mise exec -- uvicorn ... > /tmp/freshroute-api.log 2>&1 &`, `nohup mise exec -- npm run dev > /tmp/freshroute-vite.log 2>&1 &`.
-
-**Docker**
+Run the backend from its Python root:
 
 ```bash
 cd freshroute-optimizer-model
-docker build -t freshroute-optimizer-api:1.0-rc -f Dockerfile .
-docker run -p 8000:8000 freshroute-optimizer-api:1.0-rc
+mise exec -- uvicorn api.app:app --reload --host 0.0.0.0 --port 8000
 ```
 
----
+Run the frontend in a second shell from the repository root:
 
-## 5. Repository map (commit `cbad2af`)
-
-```
-freshroute/
-├── docs/
-│   ├── FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md   # frozen spec (k(T), Phi_env, S_ij, tiering, schemas, KPIs)
-│   ├── IMPLEMENTATION_PLAN.md                     # 10 phases + inner/outer loops + DoD
-│   ├── BIBLIOGRAPHY.bib                           # 42 keys: arrhenius1889, labuza*, deb2002nsga2, toth2014vrp, hochreiter1997lstm, etc.
-│   ├── CITATION.cff (root)                        # Zenodo concept DOI
-│   ├── GANTT.md, reproducibility.md
-│   ├── datasheets/{TEMPLATE.md, agmarknet.md, open_meteo_imd.md, punjab_districts.md}
-│   ├── model-cards/{TEMPLATE.md, arrhenius.md, pareto_matcher.md, vrp_router.md, demand_forecaster.md}
-│   ├── calibration/phi_env.md                      # alpha/beta provenance
-│   ├── adr/{000-record-architecture-decisions.md, 001-phase0-scaffold-and-gate.md, 002-p4-milp-solver-choice.md, 003-p5-vrptw-ortools-choice.md}
-│   └── reviews/phase-0-review.md
-├── freshroute-optimizer-model/
-│   ├── api/{app.py, routes.py, schemas.py}         # FastAPI 4 routers, Pydantic v2, CORS, alias /predict/match (MILP+VRPTW flags)
-│   ├── core/{arrhenius_decay.py, pareto_matcher.py, vrp_router.py, demand_forecaster.py, __init__.py}
-│   ├── data/{indian_commodities.json, punjab_districts.json, data_manifest.json, ingestion/{agmarknet.py, imd_openmeteo.py}, raw/ (gitignored), gold/ (gitignored)}
-│   ├── tests/{test_optimizer.py (13, spec:6.2 must), test_api.py (6, spec:5), conftest.py}
-│   ├── scripts/citation_audit.py
-│   ├── requirements.txt, Dockerfile, .venv (mise python@3.11)
-├── scripts/citation_audit.py                       # root mirror (canonical)
-├── src/{App.jsx:1, data/mockData.js:1 (498 lines synthetic), lib/freshrouteApi.js:1, components/*, main.jsx}
-├── vite.config.js                                  # proxy /api + /health + /docs → :8000
-├── mise.toml                                       # python@3.11
-├── .gitignore                                      # **/data/raw, **/data/gold, *.parquet, .venv, mlruns
-└── README.md                                       # quickstart + layout
+```bash
+npm run dev -- --host 0.0.0.0 --port 3000
 ```
 
----
+Open `http://localhost:3000/#console`, `http://localhost:8000/docs`, and `http://localhost:8000/health`.
 
-## 6. Conventions that will fail CI / gate if broken
+Build synthetic gold tables when needed by tests or local experiments:
 
-* **Citation debt is blocking** `docs/IMPLEMENTATION_PLAN.md:3.2`. Every numeric constant (`alpha`, `beta`, `Ea/R`, `w_i`, capacities) must `[@key]` to `BIBLIOGRAPHY.bib` or `docs/calibration/*.md`. `python scripts/citation_audit.py --bib docs/BIBLIOGRAPHY.bib --root .` must be `TODO 0 | unknown 0` (`[pass] citation audit green`). The script skips `citation_audit.py` itself and `zenodo.XXXX` DOI placeholders — do not add `TODO.*cite` or `FIXME`.
-* **No code without datasheet/model-card** `docs/IMPLEMENTATION_PLAN.md:12` — every dataset `docs/datasheets/<slug>.md` (Gebru), every model `docs/model-cards/<model>.md` (Mitchell) before gate. `data_manifest.json` SHA per gold file.
-* **Tests are frozen** `tests/test_optimizer.py:12` `test_arrhenius_heatwave_spoilage` (`Dairy @44C decay≥3.0 → CRITICAL_HAZARD`) and `test_dietary_compatibility_rejection` (`Strict_Lacto_Vegetarian non-veg → 0.0`) must stay green. Core `pytest` `19 passed` is minimum; API `p95 <100ms matcher`, `p95 <20ms shelf-life`.
-* **Paths** — run Python from `freshroute-optimizer-model` with `mise exec` so `from core.*`/`from api.*` resolves ( `api/routes.py:16` and `api/app.py:10` inject `_root` onto `sys.path`). `tests/conftest.py:1` does same for bare `pytest`. Do not rename `freshroute-optimizer-model` (hyphen → not importable, `adr/001:1` explains).
-* **Units** — spec is **kg + °C**, mock is **lbs + °F**. `api/schemas.py:1` `SurplusBatch._coerce_weight` `lbs→kg /2.20462`; frontend `src/lib/freshrouteApi.js:1` handles both. Keep conversion there, not in `core/`.
-* **Diet is hard fail** `core/pareto_matcher.py:94` `check_dietary_eligibility` — zero tolerance, never silently rank non-veg to Langar; audit logs required (`C2` `docs/IMPLEMENTATION_PLAN.md:6`).
-* **ADR for any spec deviation** `docs/adr/000:1` — changing `w_i`, `Phi` formula, or greedy→MILP as default requires `docs/adr/NNN-*.md`.
+```bash
+cd freshroute-optimizer-model
+mise exec -- python scripts/build_gold_mandi.py --date 2026-08-18
+mise exec -- python scripts/build_gold_weather.py --lat 30.9 --lon 75.85 --date 2026-08-18
+mise exec -- python scripts/build_gold_osm.py
+```
 
----
+`bash replay.sh` runs the full eight-step replay, including generated/ignored gold data and manifest synchronization. It can change ignored data and update the tracked manifest, so inspect `git diff` afterward. The real-feed helpers are `scripts/fetch_real_mandi.py` and `scripts/fetch_real_weather.py`; they require network access and must not silently be treated as proof of field provenance.
 
-## 7. What to do next (ordered)
+## 6. Verified checks at this snapshot
 
-1. **P1 live** — *near-DONE* `agmarknet.py:49` + `imd_openmeteo.py:44` live, `ge_suites.py:1` 3 suites pass, `data_manifest.json:1` SHA `f869...`/`ca13...`/`3d6b...`/`66c6...`; remaining: backfill `mandi_daily.parquet`/`weather_hourly.parquet` gold + `osm_distance_matrix.parquet` D3, then Zenodo `v0.1` draft.
-2. **P2 refit** — chamber lab 20/32/38/44°C×60/80% RH per `docs/calibration/phi_env.md:3` → refit `alpha/beta` + tier `Ea/R`, update `model-cards/arrhenius.md` CI bars.
-3. **P3 train** — *DONE LGBM+LSTM* `train_lightgbm:359` WAPE 4.38% + `train_lstm:529` WAPE 4.22% (120d syn, 19/12 feats) `pilgrim_recall 0.85/0.82` `[@ke2017lightgbm;@hochreiter1997lstm]`; next: TFT `[@lim2021tft]` stretch + HVI fusion benchmark in matcher `w2` (spec 4.1 L3.3) + `get_deficit_score` already wired.
-4. **P4 frontier** — *DONE* PuLP/OR-Tools CP-SAT `solve_milp_allocations:337` vs greedy `rank_allocations:260` benchmarked N=100 163ms optimal, capacity aggregate provenance; revisit `N=500` hypervolume vs `100ms` SLA per `docs/IMPLEMENTATION_PLAN.md:9.2` if needed.
-5. **P5 OR-Tools** — *DONE* `RoutingModel` with `t_safe` windows + `λ=2.0` `spec:3.2`; next: live OSRM `D3` distance matrix + `lambda` grid [0.5,5] + Solomon `solomon1987` benchmark.
-6. **P7 pilot** — shadow + 2-donor×2-recipient `Ludhiana–Amritsar` live with BLE `spec:7:534` telemetry, KPI `≥95%` spoilage prevention dashboard.
-7. **Docs/paper** — start `P9` `paper/` LaTeX using `BIBLIOGRAPHY.bib`, `replay.sh` per `reproducibility.md`.
+Run on 2026-08-26 from this workspace:
 
----
+- `mise exec -- python -m pytest freshroute-optimizer-model/tests/ -q`: **29 passed**; warnings include HTTPX, Torch/NVML, and Great Expectations deprecations.
+- `mise exec -- python scripts/citation_audit.py --bib docs/BIBLIOGRAPHY.bib --root .`: **0 TODO-cite, 0 unresolved bibliography keys**.
+- `npm run build`: **passed** with Vite production output.
+- API latency script: shelf-life p95 **2.6 ms**, greedy match p95 **2.4 ms**, heuristic routing p95 **3.1 ms**, forecast p95 **17.2 ms**.
+- Standalone matcher scale benchmark: greedy N=500 **~896 ms** (fails the planned `<100 ms` target); MILP N=100 **~254 ms** in this run (within the `<800 ms` budget).
+- HVI fusion benchmark: **0 uplift** on the current 12-pair corridor fixture; this is a limitation of the fixture, not evidence that the equity objective has no effect generally.
+- Lambda grid: all tested 5-stop synthetic routes feasible; a full Solomon instance was not run.
 
-## 8. Gotchas already solved
+## 7. Work that needs to be done, in priority order
 
-* `mise.toml:1` pins `python@3.11` — vanilla `python3` on runners is `3.14` without `pip`/`pytest`; always `mise exec -- python …`.
-* `data/raw` appears untracked until `.gitignore:28` uses `**/data/raw/` (slash in middle → root-relative otherwise). Already fixed `9b474f3`.
-* `citation_audit.py` false-positive on `zenodo.XXXX` and `rg -n "TODO.*cite"` — patched to skip `citation_audit.py` and DOI lines.
-* Import hygiene — `api/*.py:16` prepend `_root` to `sys.path` so `uvicorn api.app:app` works from both `freshroute-optimizer-model` and repo root.
+1. **Make data provenance real.** Capture and retain real Agmarknet and weather pulls, validate source/row provenance, complete the gold DVC workflow, replace placeholder/pending DOIs, and make synthetic-vs-real status explicit in manifests and model cards.
+2. **Validate thermal safety.** Run the planned 20/32/38/44°C × 60/80% RH chamber or field study, fit confidence intervals for `alpha`, `beta`, and tier parameters, and update `docs/calibration/phi_env.md` and `docs/model-cards/arrhenius.md`.
+3. **Replace synthetic demand assumptions.** Train/evaluate against real district meal demand and pilot logs, validate prediction intervals and seasonal performance, and either implement a real TFT model or remove the misleading stub path from the supported-model surface.
+4. **Resolve matcher scale and fairness evidence.** Profile the 500×500 greedy path, then optimize/index it or revise the SLA through an ADR. Add fixtures where HVI and proximity conflict, measure fairness trade-offs, and preserve zero-tolerance dietary/audit behavior.
+5. **Finish routing validation.** Run the available Solomon data through the benchmark, implement true pickup-and-delivery precedence and per-tier travel times, verify that every infeasible/fallback route is surfaced as unsafe, and document OSRM availability/road-distance provenance.
+6. **Run the field pilot.** Obtain domain partner approval, operate the 2×2 Ludhiana–Amritsar/Jalandhar shadow-to-live pilot, collect calibrated BLE/MQTT temperature and weighbridge/consumption logs, perform human/diet audits, and sign `docs/reviews/phase-7-review.md`.
+7. **Harden operations.** Add authentication/authorization, durable audit logs, deployment/IaC, monitoring and alerting, retraining/refit jobs, locked environments, rollback procedures, and an on-call runbook. Keep the offline UI fallback but label it clearly as simulated.
+8. **Close publication gates.** Render and review the paper, reproduce results from a clean checkout, deposit code/data artifacts with real Zenodo DOIs, update `CITATION.cff`, and complete technical/domain reviewer signatures for the phase reviews.
 
----
+## 8. Non-negotiable engineering rules
 
-## 9. Contacts & lineage
+- Keep `test_arrhenius_heatwave_spoilage` and `test_dietary_compatibility_rejection` green. The dietary gate is a hard safety/cultural constraint, not a ranking preference.
+- Every new numeric constant, dataset, model, or external source needs a bibliography entry or dated calibration note, a datasheet/model card where applicable, and a passing citation audit.
+- Any change to `Phi_env`, weights `w=[0.35, 0.30, 0.20, 0.15]`, vehicle capacities/tiers, solver defaults, unit semantics, or frozen API contracts requires an ADR under `docs/adr/`.
+- Keep the spec in kg and °C internally. Preserve compatibility conversion only at `api/schemas.py`/client boundaries.
+- Keep raw and gold binaries out of Git; retain DVC pointers, manifest hashes, retrieval metadata, and reproducible builder/fetch scripts.
+- Treat OSRM and external ingestion as fallible. Preserve deterministic fallbacks for tests, but surface `source`, fallback, stale-data, and unsafe-route state to operators.
+- Do not claim synthetic simulation KPIs as field outcomes. Model cards must state the data source, geography, calibration limits, and fallback behavior.
+- Run Python with `mise exec --` and respect the `freshroute-optimizer-model` directory name; its hyphen means it is a source root, not a normal importable package.
+- Do not expand scope or alter frozen objectives without an ADR and corresponding documentation/review update.
 
-* Author line `CITATION.cff:1` `FreshRoute AI Architecture Core` — MoUs pending with SGPC Langar / Verka / Mandi boards (ethics `ICMR 2017` `docs/BIBLIOGRAPHY.bib:icmr2017ethics`).
-* Prior synthetic truth `src/data/mockData.js:1` `DONORS/RECIPIENTS/FLEET/MATCHES/DISTRICT_DEMAND_FORECAST/AI_INTEGRATION_ENDPOINTS` — kept as fallback until `data/gold/*.parquet` replaces it.
+## 9. Useful references
 
-*Do not expand scope without an ADR. Keep this file and `docs/IMPLEMENTATION_PLAN.md` in sync — next agent, update this section when you close a phase.*
+- Specification: `docs/FOOD_REDISTRIBUTION_OPTIMIZER_AI_SPEC.md`
+- Plan and phase definitions: `docs/IMPLEMENTATION_PLAN.md`
+- Reproduction: `docs/reproducibility.md` and `replay.sh`
+- Data manifest: `freshroute-optimizer-model/data/data_manifest.json`
+- Model cards: `docs/model-cards/`
+- Dataset datasheets: `docs/datasheets/`
+- Architecture decisions: `docs/adr/`
+- Phase reviews: `docs/reviews/`
+- Public/demo documentation and screenshots: `README.md` and `screenshots/`
+
+*Do not expand scope without an ADR. Keep this file and `docs/IMPLEMENTATION_PLAN.md` in sync.*
