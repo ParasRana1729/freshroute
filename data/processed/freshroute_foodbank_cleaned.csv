@@ -1,0 +1,619 @@
+donation_id,donation_date,city,state,donor_type,food_type,quantity_donated_kg,quantity_available_kg,shelf_life_hours,storage_condition,storage_temp_C,distance_to_foodbank_km,foodbank_id,foodbank_capacity_kg,current_stock_kg,beneficiaries_count,transport_available,redistribution_priority,donation_month,donation_dayofweek,stock_pressure,surplus_ratio,need_per_km,is_perishable,cold_chain_ok
+DON-0050,2026-03-02,Jaipur,Rajasthan,Restaurant,Wheat Flour,116.3,103.3,114,No Storage,30.2,6.6,FB-03,1500,1351,276,Yes,Medium,3,0,0.901,0.888,36.32,0,0
+DON-0583,2026-02-02,Amritsar,Punjab,Restaurant,Fruits,77.4,52.2,59,Cold,4.2,20.0,FB-03,500,446,98,No,Low,2,0,0.892,0.674,4.67,0,1
+DON-0083,2026-01-12,Jaipur,Rajasthan,Restaurant,Cooked Meals,99.5,86.3,4,Cold,4.2,10.5,FB-02,800,136,183,Yes,High,1,0,0.17,0.867,15.91,1,1
+DON-0306,2026-01-26,Patiala,Punjab,Wedding Hall,Wheat Flour,134.2,94.9,207,No Storage,30.2,13.75,FB-03,1000,839,152,Yes,Medium,1,0,0.839,0.707,10.31,0,0
+DON-0110,2026-02-04,Jalandhar,Punjab,Farm,Vegetables,113.5,70.5,10,Room,24.9,16.8,FB-03,800,485,402,Yes,High,2,2,0.606,0.621,22.58,1,0
+DON-0011,2026-03-09,Amritsar,Punjab,Gurudwara Langar,Vegetables,75.0,61.8,41,No Storage,30.2,3.4,FB-01,500,147,146,Yes,Medium,3,0,0.294,0.824,33.18,0,0
+DON-0269,2026-02-28,Jalandhar,Punjab,Farm,Cooked Meals,77.9,73.2,11,Room,24.9,8.7,FB-03,1000,407,226,Yes,High,2,5,0.407,0.94,23.3,1,0
+DON-0354,2026-02-14,Jalandhar,Punjab,Restaurant,Dairy,131.4,74.9,31,Room,24.9,16.6,FB-04,800,609,416,Yes,Medium,2,5,0.761,0.57,23.64,0,0
+DON-0329,2026-01-27,Bathinda,Punjab,Hostel Mess,Rice,97.1,67.0,59,Room,24.9,11.9,FB-05,1500,1154,210,Yes,Medium,1,1,0.769,0.69,16.28,0,0
+DON-0534,2026-03-07,Ludhiana,Punjab,Restaurant,Dairy,90.3,75.1,31,No Storage,30.2,9.5,FB-03,800,342,393,Yes,Medium,3,5,0.428,0.832,37.43,0,0
+DON-0282,2026-03-08,Ludhiana,Punjab,Restaurant,Fruits,86.8,60.4,43,Room,24.9,11.9,FB-02,1000,371,226,Yes,Medium,3,6,0.371,0.696,17.52,0,0
+DON-0488,2026-02-28,Bathinda,Punjab,Supermarket,Cooked Meals,80.7,45.0,5,Room,24.9,6.0,FB-03,500,459,120,Yes,Medium,2,5,0.918,0.558,17.14,1,0
+DON-0235,2026-01-22,Patiala,Punjab,Restaurant,Vegetables,70.3,70.3,31,Cold,4.2,13.2,FB-02,1000,458,169,Yes,Medium,1,3,0.458,1.0,11.9,0,1
+DON-0132,2026-02-14,Chandigarh,Chandigarh Ut,Gurudwara Langar,Cooked Meals,45.3,33.9,5,Cold,4.2,10.3,FB-01,1000,138,275,Yes,High,2,5,0.138,0.748,24.34,1,1
+DON-0003,2026-02-02,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,82.3,78.1,24,Room,24.9,14.0,FB-05,800,446,287,Yes,Medium,2,0,0.558,0.949,19.13,0,0
+DON-0228,2026-02-27,Jalandhar,Punjab,Supermarket,Fruits,190.1,155.6,46,No Storage,30.2,9.1,FB-01,1000,807,88,Yes,Medium,2,4,0.807,0.819,8.71,0,0
+DON-0577,2026-02-05,Ludhiana,Punjab,Hostel Mess,Bread/Bakery,46.4,37.8,15,Room,24.9,16.0,FB-05,1000,142,124,Yes,Medium,2,3,0.142,0.815,7.29,1,0
+DON-0427,2026-02-15,Bathinda,Punjab,Restaurant,Dairy,63.8,53.7,18,Cold,4.2,27.6,FB-02,500,361,236,No,Medium,2,6,0.722,0.842,8.25,1,1
+DON-0185,2026-02-23,Chandigarh,Chandigarh Ut,Restaurant,Rice,119.9,67.7,105,Cold,4.2,7.2,FB-04,1000,771,154,Yes,Medium,2,0,0.771,0.565,18.78,0,1
+DON-0399,2026-02-17,Chandigarh,Chandigarh Ut,Supermarket,Dairy,98.7,75.7,33,No Storage,30.2,2.6,FB-01,800,288,247,Yes,Medium,2,1,0.36,0.767,68.61,0,0
+DON-0375,2026-03-07,Ludhiana,Punjab,Farm,Dairy,77.2,67.0,30,Room,24.9,11.5,FB-04,1000,542,177,Yes,Medium,3,5,0.542,0.868,14.16,0,0
+DON-0079,2026-02-25,Bathinda,Punjab,Restaurant,Rice,56.7,34.9,57,No Storage,30.2,9.4,FB-04,500,266,197,No,Medium,2,2,0.532,0.616,18.94,0,0
+DON-0248,2026-01-05,Amritsar,Punjab,Gurudwara Langar,Rice,102.3,74.1,33,Cold,4.2,4.9,FB-02,800,753,94,Yes,Medium,1,0,0.941,0.724,15.93,0,1
+DON-0056,2026-02-07,Ludhiana,Punjab,Gurudwara Langar,Fruits,92.5,62.7,64,No Storage,30.2,15.9,FB-04,800,596,227,No,Low,2,5,0.745,0.678,13.43,0,0
+DON-0221,2026-02-25,Chandigarh,Chandigarh Ut,Household,Dairy,95.4,66.0,22,Cold,4.2,10.9,FB-03,500,79,264,Yes,Medium,2,2,0.158,0.692,22.18,1,1
+DON-0524,2026-02-13,Patiala,Punjab,Gurudwara Langar,Wheat Flour,65.9,67.0,79,Room,24.9,25.8,FB-04,1000,749,467,Yes,Medium,2,4,0.749,1.017,17.43,0,0
+DON-0249,2026-02-17,Amritsar,Punjab,Hostel Mess,Vegetables,153.5,153.5,47,Cold,4.2,15.2,FB-03,1500,1250,591,Yes,Medium,2,1,0.833,1.0,36.48,0,1
+DON-0383,2026-01-22,Patiala,Punjab,Hostel Mess,Fruits,38.2,21.5,54,Cold,4.2,10.0,FB-03,1000,505,132,Yes,Medium,1,3,0.505,0.563,12.0,0,1
+DON-0500,2026-01-22,Ludhiana,Punjab,Wedding Hall,Bread/Bakery,89.1,73.0,14,Room,24.9,17.5,FB-02,1500,582,231,No,Medium,1,3,0.388,0.819,12.49,1,0
+DON-0553,2026-01-16,Ludhiana,Punjab,Household,Dairy,76.7,61.2,19,Room,24.9,14.0,FB-01,1500,843,72,Yes,Medium,1,4,0.562,0.798,4.8,1,0
+DON-0040,2026-02-02,Bathinda,Punjab,Gurudwara Langar,Wheat Flour,40.2,37.6,99,Cold,4.2,28.7,FB-02,800,460,44,Yes,Low,2,0,0.575,0.935,1.48,0,1
+DON-0146,2026-02-03,Delhi,Delhi,Restaurant,Cooked Meals,71.3,63.3,9,Room,24.9,6.8,FB-03,500,263,274,No,Medium,2,1,0.526,0.888,35.13,1,0
+DON-0378,2026-02-10,Jaipur,Rajasthan,Restaurant,Bread/Bakery,65.5,50.8,11,Cold,4.2,17.0,FB-05,500,342,512,No,Medium,2,1,0.684,0.776,28.44,1,1
+DON-0078,2026-03-05,Bathinda,Punjab,Hostel Mess,Vegetables,55.2,50.0,39,Cold,4.2,0.9,FB-05,1500,1140,258,No,Medium,3,3,0.76,0.906,135.79,0,1
+DON-0119,2026-01-17,Delhi,Delhi,Gurudwara Langar,Fruits,165.3,110.5,43,No Storage,30.2,11.7,FB-03,800,293,152,No,Medium,1,5,0.366,0.668,11.97,0,0
+DON-0401,2026-01-14,Ludhiana,Punjab,Restaurant,Vegetables,70.6,54.0,36,Room,24.9,7.7,FB-05,1000,259,522,Yes,Medium,1,2,0.259,0.765,60.0,0,0
+DON-0149,2026-01-07,Bathinda,Punjab,Supermarket,Fruits,175.2,133.7,46,No Storage,30.2,20.9,FB-05,500,57,383,Yes,Medium,1,2,0.114,0.763,17.49,0,0
+DON-0332,2026-01-06,Jalandhar,Punjab,Farm,Wheat Flour,39.1,29.6,109,No Storage,30.2,7.6,FB-02,1500,657,186,Yes,Medium,1,1,0.438,0.757,21.63,0,0
+DON-0133,2026-03-02,Amritsar,Punjab,Restaurant,Dairy,82.2,82.2,18,Cold,4.2,20.0,FB-02,800,301,287,No,Medium,3,0,0.376,1.0,13.67,1,1
+DON-0216,2026-02-04,Chandigarh,Chandigarh Ut,Gurudwara Langar,Bread/Bakery,91.9,61.2,19,Cold,4.2,28.2,FB-04,500,144,112,Yes,Medium,2,2,0.288,0.666,3.84,1,1
+DON-0585,2026-03-09,Patiala,Punjab,Household,Vegetables,117.1,100.8,24,No Storage,30.2,21.7,FB-03,800,403,357,Yes,High,3,0,0.504,0.861,15.73,0,0
+DON-0438,2026-01-17,Ludhiana,Punjab,Household,Dairy,82.0,48.2,28,Room,24.9,44.7,FB-01,500,142,321,Yes,Medium,1,5,0.284,0.588,7.02,0,0
+DON-0087,2026-02-27,Amritsar,Punjab,Wedding Hall,Wheat Flour,97.2,57.6,166,Cold,4.2,6.3,FB-05,500,285,285,No,Medium,2,4,0.57,0.593,39.04,0,1
+DON-0322,2026-03-04,Ludhiana,Punjab,Wedding Hall,Fruits,100.9,67.0,51,Room,24.9,11.6,FB-02,500,251,209,Yes,Medium,3,2,0.502,0.664,16.59,0,0
+DON-0337,2026-01-16,Delhi,Delhi,Restaurant,Rice,34.6,23.5,76,Room,24.9,16.8,FB-01,500,444,134,Yes,Low,1,4,0.888,0.679,7.53,0,0
+DON-0077,2026-01-14,Patiala,Punjab,Household,Rice,228.0,187.0,80,Room,24.9,9.9,FB-03,800,232,363,Yes,High,1,2,0.29,0.82,33.3,0,0
+DON-0236,2026-02-26,Jaipur,Rajasthan,Farm,Dairy,62.1,60.0,22,No Storage,30.2,23.7,FB-05,800,407,149,No,Medium,2,3,0.509,0.966,6.03,1,0
+DON-0486,2026-02-05,Delhi,Delhi,Supermarket,Vegetables,58.3,35.3,29,Room,24.9,14.1,FB-04,500,281,321,Yes,High,2,3,0.562,0.605,21.26,0,0
+DON-0278,2026-02-19,Bathinda,Punjab,Gurudwara Langar,Cooked Meals,98.4,78.9,6,Cold,4.2,8.1,FB-02,1500,846,211,No,Medium,2,3,0.564,0.802,23.19,1,1
+DON-0011,2026-03-09,Amritsar,Punjab,Gurudwara Langar,Vegetables,75.0,61.8,41,No Storage,29.9,3.4,FB-01,500,147,146,Yes,Medium,3,0,0.294,0.824,33.18,0,0
+DON-0209,2026-01-19,Ludhiana,Punjab,Gurudwara Langar,Rice,56.4,50.2,47,Room,22.9,10.9,FB-02,800,566,279,Yes,Medium,1,0,0.708,0.89,23.45,0,0
+DON-0466,2026-03-09,Jalandhar,Punjab,Farm,Dairy,86.2,53.8,37,Cold,2.8,11.6,FB-05,800,415,268,No,Medium,3,0,0.519,0.624,21.27,0,1
+DON-0394,2026-02-22,Chandigarh,Chandigarh Ut,Hostel Mess,Vegetables,98.7,82.4,33,No Storage,33.9,18.4,FB-05,1500,1385,296,Yes,Medium,2,6,0.923,0.835,15.26,0,0
+DON-0347,2026-01-30,Jaipur,Rajasthan,Farm,Vegetables,65.4,60.1,26,Cold,4.8,25.1,FB-04,1500,1211,231,Yes,Medium,1,4,0.807,0.919,8.85,0,1
+DON-0566,2026-03-06,Patiala,Punjab,Gurudwara Langar,Wheat Flour,37.6,35.4,156,Cold,4.9,8.3,FB-02,1000,398,387,Yes,Medium,3,4,0.398,0.941,41.61,0,1
+DON-0031,2026-01-28,Patiala,Punjab,Restaurant,Cooked Meals,205.0,192.1,4,Room,26.5,12.2,FB-01,1000,143,58,Yes,High,1,2,0.143,0.937,4.39,1,0
+DON-0574,2026-01-06,Chandigarh,Chandigarh Ut,Supermarket,Rice,72.5,58.7,64,Room,28.0,6.5,FB-01,1000,418,184,No,Medium,1,1,0.418,0.81,24.53,0,0
+DON-0205,2026-01-30,Jalandhar,Punjab,Gurudwara Langar,Rice,46.8,42.5,61,Room,23.2,9.8,FB-03,1500,1175,469,Yes,Medium,1,4,0.783,0.908,43.43,0,0
+DON-0312,2026-02-01,Delhi,Delhi,Hostel Mess,Fruits,92.1,51.3,41,Room,28.4,11.7,FB-05,500,125,213,No,Medium,2,6,0.25,0.557,16.77,0,0
+DON-0512,2026-01-14,Jalandhar,Punjab,Farm,Wheat Flour,146.6,126.2,107,Room,26.2,7.3,FB-04,500,181,119,Yes,Medium,1,2,0.362,0.861,14.34,0,0
+DON-0141,2026-02-09,Patiala,Punjab,Restaurant,Vegetables,32.6,19.4,41,Cold,4.5,7.9,FB-04,1000,315,487,No,Medium,2,0,0.315,0.595,54.72,0,1
+DON-0474,2026-01-13,Delhi,Delhi,Household,Dairy,48.7,37.7,22,No Storage,33.5,22.4,FB-04,1000,872,138,No,Medium,1,1,0.872,0.774,5.9,1,0
+DON-0578,2026-02-03,Bathinda,Punjab,Farm,Cooked Meals,74.7,54.5,7,Room,20.7,17.3,FB-03,800,340,494,Yes,High,2,1,0.425,0.73,26.99,1,0
+DON-0057,2026-01-13,Amritsar,Punjab,Farm,Vegetables,68.8,51.8,22,Cold,4.2,18.5,FB-04,800,394,201,Yes,Medium,1,1,0.492,0.753,10.31,1,1
+DON-0589,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,Rice,75.3,71.3,69,Room,25.8,13.6,FB-05,500,119,270,Yes,Medium,2,1,0.238,0.947,18.49,0,0
+DON-0506,2026-03-07,Ludhiana,Punjab,Hostel Mess,Fruits,58.0,52.7,55,Room,29.9,22.8,FB-01,800,424,258,No,Low,3,5,0.53,0.909,10.84,0,0
+DON-0229,2026-01-30,Amritsar,Punjab,Restaurant,Dairy,136.8,101.7,18,Room,26.8,5.3,FB-02,500,255,256,No,Medium,1,4,0.51,0.743,40.63,1,0
+DON-0210,2026-01-15,Jaipur,Rajasthan,Farm,Cooked Meals,55.0,43.4,5,Room,26.7,14.5,FB-05,800,221,272,Yes,High,1,3,0.276,0.789,17.55,1,0
+DON-0025,2026-01-08,Amritsar,Punjab,Supermarket,Cooked Meals,65.3,38.0,8,Room,25.5,22.9,FB-05,800,219,337,Yes,High,1,3,0.274,0.582,14.1,1,0
+DON-0479,2026-03-04,Jalandhar,Punjab,Farm,Bread/Bakery,96.4,56.0,23,Cold,4.4,11.1,FB-03,1000,480,89,No,Medium,3,2,0.48,0.581,7.36,1,1
+DON-0369,2026-01-27,Jaipur,Rajasthan,Hostel Mess,Cooked Meals,70.5,66.5,10,No Storage,32.9,24.2,FB-02,800,314,130,Yes,Medium,1,1,0.392,0.943,5.16,1,0
+DON-0362,2026-03-07,Patiala,Punjab,Farm,Bread/Bakery,94.7,67.0,22,Room,30.1,3.5,FB-04,800,633,233,Yes,Medium,3,5,0.791,0.707,51.78,1,0
+DON-0364,2026-02-08,Ludhiana,Punjab,Supermarket,Vegetables,213.4,152.9,56,Room,19.4,19.0,FB-05,1500,878,172,Yes,Medium,2,6,0.585,0.716,8.6,0,0
+DON-0469,2026-02-26,Ludhiana,Punjab,Supermarket,Dairy,83.2,70.1,7,Room,24.7,12.2,FB-01,1500,1016,209,Yes,High,2,3,0.677,0.843,15.83,1,0
+DON-0071,2026-01-13,Ludhiana,Punjab,Hostel Mess,Bread/Bakery,86.4,51.5,9,No Storage,29.7,9.6,FB-03,500,305,237,No,Medium,1,1,0.61,0.596,22.36,1,0
+DON-0353,2026-02-19,Jaipur,Rajasthan,Gurudwara Langar,Wheat Flour,101.2,83.4,97,Room,29.0,7.2,FB-05,1000,590,191,Yes,Medium,2,3,0.59,0.824,23.29,0,0
+DON-0177,2026-01-23,Amritsar,Punjab,Farm,Bread/Bakery,65.9,47.8,20,No Storage,32.0,12.8,FB-03,1000,897,158,Yes,Medium,1,4,0.897,0.725,11.45,1,0
+DON-0370,2026-02-25,Jaipur,Rajasthan,Hostel Mess,Rice,86.4,64.2,72,Room,21.7,30.9,FB-02,1500,1289,404,Yes,Medium,2,2,0.859,0.743,12.66,0,0
+DON-0061,2026-03-06,Bathinda,Punjab,Gurudwara Langar,Bread/Bakery,71.6,40.7,10,Room,22.5,5.5,FB-01,1000,493,179,No,Medium,3,4,0.493,0.568,27.54,1,0
+DON-0600,2026-01-12,Chandigarh,Chandigarh Ut,Supermarket,Rice,69.5,47.3,60,Room,24.5,11.7,FB-04,800,511,200,No,Medium,1,0,0.639,0.681,15.75,0,0
+DON-0102,2026-03-04,Chandigarh,Chandigarh Ut,Household,Rice,86.94999999999999,103.1,82,Room,31.7,13.75,FB-05,500,79,86,Yes,Medium,3,2,0.158,1.186,5.83,0,0
+DON-0204,2026-02-28,Jaipur,Rajasthan,Supermarket,Bread/Bakery,179.1,67.0,12,No Storage,29.9,7.1,FB-04,800,499,279,Yes,High,2,5,0.624,0.374,34.44,1,0
+DON-0589,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,Rice,75.3,71.3,69,Room,25.8,13.6,FB-05,500,119,270,Yes,Medium,2,1,0.238,0.947,18.49,0,0
+DON-0091,2026-01-08,Bathinda,Punjab,Gurudwara Langar,Fruits,56.9,35.3,58,Room,26.3,10.7,FB-05,1500,1173,296,Yes,Medium,1,3,0.782,0.62,25.3,0,0
+DON-0540,2026-01-22,Delhi,Delhi,Gurudwara Langar,Fruits,161.5,151.6,39,No Storage,29.0,21.6,FB-05,800,686,458,No,Medium,1,3,0.858,0.939,20.27,0,0
+DON-0471,2026-01-11,Bathinda,Punjab,Household,Fruits,102.6,86.1,61,Room,21.2,4.0,FB-03,800,738,203,Yes,Medium,1,6,0.922,0.839,40.6,0,0
+DON-0568,2026-01-12,Delhi,Delhi,Gurudwara Langar,Fruits,48.5,40.5,64,Room,26.1,6.8,FB-01,800,729,50,No,Low,1,0,0.911,0.835,6.41,0,0
+DON-0030,2026-01-12,Jalandhar,Punjab,Hostel Mess,Dairy,75.8,45.1,30,Room,21.1,15.6,FB-01,1500,602,197,No,Low,1,0,0.401,0.595,11.87,0,0
+DON-0111,2026-01-10,Bathinda,Punjab,Household,Dairy,93.4,71.7,23,Cold,4.6,11.8,FB-05,800,158,469,Yes,High,1,5,0.198,0.768,36.64,1,1
+DON-0510,2026-01-18,Patiala,Punjab,Gurudwara Langar,Rice,156.2,122.7,66,Room,21.5,14.9,FB-05,1500,1131,258,No,Medium,1,6,0.754,0.786,16.23,0,0
+DON-0213,2026-01-30,Chandigarh,Chandigarh Ut,Restaurant,Rice,63.3,56.8,63,No Storage,32.2,17.8,FB-05,800,305,148,Yes,Medium,1,4,0.381,0.897,7.87,0,0
+DON-0545,2026-02-06,Jalandhar,Punjab,Household,Wheat Flour,79.2,75.1,113,Room,23.7,28.8,FB-01,500,401,267,Yes,Medium,2,4,0.802,0.948,8.96,0,0
+DON-0323,2026-02-25,Delhi,Delhi,Gurudwara Langar,Cooked Meals,88.2,63.7,8,Cold,4.6,5.3,FB-01,800,278,214,Yes,High,2,2,0.348,0.722,33.97,1,1
+DON-0290,2026-01-23,Jalandhar,Punjab,Hostel Mess,Wheat Flour,82.7,47.3,70,No Storage,30.7,17.8,FB-05,500,405,432,Yes,Medium,1,4,0.81,0.572,22.98,0,0
+DON-0530,2026-02-07,Bathinda,Punjab,Wedding Hall,Vegetables,11.2,10.0,53,Room,26.9,5.2,FB-01,500,462,121,No,Low,2,5,0.924,0.893,19.52,0,0
+DON-0463,2026-02-18,Jalandhar,Punjab,Farm,Fruits,103.9,91.0,61,Room,18.3,30.2,FB-01,500,159,198,Yes,Medium,2,2,0.318,0.876,6.35,0,0
+DON-0453,2026-03-02,Amritsar,Punjab,Hostel Mess,Rice,86.94999999999999,125.8,67,Cold,5.2,16.4,FB-04,800,562,204,Yes,Medium,3,0,0.702,1.447,11.72,0,1
+DON-0156,2026-02-27,Bathinda,Punjab,Supermarket,Fruits,102.7,82.0,52,Cold,5.7,16.6,FB-03,1000,134,227,Yes,Medium,2,4,0.134,0.798,12.9,0,1
+DON-0082,2026-02-16,Jaipur,Rajasthan,Hostel Mess,Cooked Meals,81.5,53.7,7,Room,28.9,2.8,FB-01,1500,724,226,Yes,High,2,0,0.483,0.659,59.47,1,0
+DON-0251,2026-02-07,Patiala,Punjab,Hostel Mess,Cooked Meals,32.8,22.5,3,Cold,3.8,16.3,FB-01,1000,822,235,Yes,Medium,2,5,0.822,0.686,13.58,1,1
+DON-0595,2026-03-07,Chandigarh,Chandigarh Ut,Restaurant,Cooked Meals,88.3,71.2,11,Room,25.4,2.2,FB-05,1000,648,229,No,Medium,3,5,0.648,0.806,71.56,1,0
+DON-0239,2026-03-03,Jaipur,Rajasthan,Gurudwara Langar,Bread/Bakery,56.1,44.5,25,No Storage,26.6,12.2,FB-05,800,716,329,No,Medium,3,1,0.895,0.793,24.92,0,0
+DON-0406,2026-02-09,Ludhiana,Punjab,Supermarket,Rice,62.0,46.8,55,Room,24.1,11.9,FB-03,800,315,195,Yes,Medium,2,0,0.394,0.755,15.12,0,0
+DON-0064,2026-01-10,Delhi,Delhi,Gurudwara Langar,Rice,31.0,22.8,77,Cold,6.3,11.2,FB-05,1000,664,401,Yes,Medium,1,5,0.664,0.735,32.87,0,1
+DON-0272,2026-03-03,Ludhiana,Punjab,Farm,Fruits,182.6,102.7,69,Room,24.2,36.2,FB-01,800,277,334,Yes,Medium,3,1,0.346,0.562,8.98,0,0
+DON-0073,2026-02-15,Amritsar,Punjab,Restaurant,Fruits,79.6,64.6,25,Room,24.7,8.3,FB-01,500,56,477,No,Medium,2,6,0.112,0.812,51.29,0,0
+DON-0257,2026-01-13,Amritsar,Punjab,Gurudwara Langar,Fruits,81.5,75.2,54,Cold,4.2,9.0,FB-02,500,404,103,Yes,Medium,1,1,0.808,0.923,10.3,0,1
+DON-0555,2026-02-13,Jalandhar,Punjab,Farm,Cooked Meals,40.4,22.8,5,Room,25.7,13.75,FB-01,1000,882,158,Yes,Medium,2,4,0.882,0.564,10.71,1,0
+DON-0336,2026-02-05,Ludhiana,Punjab,Household,Wheat Flour,112.5,64.0,51,Room,23.9,7.0,FB-05,1000,141,71,Yes,Medium,2,3,0.141,0.569,8.88,0,0
+DON-0579,2026-02-27,Amritsar,Punjab,Farm,Dairy,58.9,46.3,9,Room,23.8,15.2,FB-03,500,86,142,No,Medium,2,4,0.172,0.786,8.77,1,0
+DON-0400,2026-02-19,Chandigarh,Chandigarh Ut,Restaurant,Cooked Meals,120.4,94.0,6,No Storage,24.1,13.8,FB-02,1000,700,173,Yes,High,2,3,0.7,0.781,11.69,1,0
+DON-0261,2026-01-09,Ludhiana,Punjab,Wedding Hall,Dairy,102.4,102.4,32,Cold,4.4,9.9,FB-03,1500,1382,364,Yes,Medium,1,4,0.921,1.0,33.39,0,1
+DON-0136,2026-01-17,Jalandhar,Punjab,Supermarket,Vegetables,119.1,66.8,45,No Storage,33.1,7.2,FB-01,500,460,230,No,Medium,1,5,0.92,0.561,28.05,0,0
+DON-0341,2026-01-17,Delhi,Delhi,Hostel Mess,Vegetables,95.7,74.9,35,Room,33.1,25.0,FB-02,500,101,440,Yes,Medium,1,5,0.202,0.783,16.92,0,0
+DON-0111,2026-01-10,Bathinda,Punjab,Household,Dairy,93.4,71.7,23,Cold,4.6,11.8,FB-05,800,158,469,Yes,High,1,5,0.198,0.768,36.64,1,1
+DON-0212,2026-01-11,Ludhiana,Punjab,Household,Rice,46.1,31.5,79,Room,27.3,5.3,FB-01,1500,1163,385,Yes,Medium,1,6,0.775,0.683,61.11,0,0
+DON-0542,2026-01-21,Chandigarh,Chandigarh Ut,Restaurant,Fruits,106.5,84.3,60,Room,28.7,35.6,FB-05,500,52,378,Yes,Medium,1,2,0.104,0.792,10.33,0,0
+DON-0300,2026-01-16,Delhi,Delhi,Farm,Rice,156.3,129.6,66,Room,31.6,22.9,FB-05,1000,444,223,Yes,Medium,1,4,0.444,0.829,9.33,0,0
+DON-0481,2026-01-23,Chandigarh,Chandigarh Ut,Supermarket,Cooked Meals,116.2,78.4,7,Cold,4.4,6.2,FB-05,500,57,532,Yes,High,1,4,0.114,0.675,73.89,1,1
+DON-0007,2026-01-23,Ludhiana,Punjab,Gurudwara Langar,Bread/Bakery,71.6,51.8,14,Cold,2.7,23.8,FB-01,1000,618,162,No,Medium,1,4,0.618,0.723,6.53,1,1
+DON-0105,2026-01-12,Amritsar,Punjab,Restaurant,Fruits,57.8,32.9,41,No Storage,21.7,17.9,FB-01,500,278,116,Yes,Low,1,0,0.556,0.569,6.14,0,0
+DON-0115,2026-01-25,Ludhiana,Punjab,Supermarket,Bread/Bakery,63.8,50.8,24,No Storage,18.2,19.9,FB-05,800,571,253,Yes,Medium,1,6,0.714,0.796,12.11,0,0
+DON-0159,2026-01-24,Amritsar,Punjab,Restaurant,Dairy,82.9,68.3,15,Room,31.0,11.3,FB-01,1000,245,271,Yes,Medium,1,5,0.245,0.824,22.03,1,0
+DON-0182,2026-01-10,Bathinda,Punjab,Farm,Bread/Bakery,105.1,75.6,19,Cold,2.3,10.1,FB-04,500,228,75,Yes,Medium,1,5,0.456,0.719,6.76,1,1
+DON-0532,2026-01-07,Bathinda,Punjab,Hostel Mess,Fruits,111.7,76.7,30,Cold,2.1,6.0,FB-02,1000,477,276,Yes,Medium,1,2,0.477,0.687,39.43,0,1
+DON-0365,2026-02-02,Bathinda,Punjab,Household,Vegetables,123.9,115.3,20,Cold,4.6,24.3,FB-03,1000,141,227,Yes,Medium,2,0,0.141,0.931,8.97,1,1
+DON-0178,2026-01-12,Jalandhar,Punjab,Supermarket,Vegetables,106.7,70.4,48,Cold,2.4,27.3,FB-04,1500,349,118,Yes,Low,1,0,0.233,0.66,4.17,0,1
+DON-0594,2026-02-10,Jaipur,Rajasthan,Wedding Hall,Rice,101.6,59.0,80,Cold,4.2,29.1,FB-04,1000,190,378,Yes,Medium,2,1,0.19,0.581,12.56,0,1
+DON-0200,2026-02-17,Chandigarh,Chandigarh Ut,Restaurant,Bread/Bakery,103.8,84.3,10,Cold,3.7,15.8,FB-02,1000,802,82,Yes,Medium,2,1,0.802,0.812,4.88,1,1
+DON-0422,2026-02-21,Patiala,Punjab,Supermarket,Cooked Meals,52.5,35.1,6,Room,23.9,4.4,FB-03,500,166,166,Yes,High,2,5,0.332,0.669,30.74,1,0
+DON-0301,2026-01-27,Chandigarh,Chandigarh Ut,Gurudwara Langar,Cooked Meals,37.6,22.8,7,Cold,3.9,13.4,FB-04,1000,786,147,No,Medium,1,1,0.786,0.606,10.21,1,1
+DON-0409,2026-01-19,Chandigarh,Chandigarh Ut,Hostel Mess,Wheat Flour,64.1,53.1,181,Room,23.0,9.8,FB-02,500,64,365,No,Medium,1,0,0.128,0.828,33.8,0,0
+DON-0397,2026-03-03,Jalandhar,Punjab,Household,Cooked Meals,100.8,73.6,2,Room,25.1,6.4,FB-01,1500,966,206,No,Medium,3,1,0.644,0.73,27.84,1,0
+DON-0287,2026-03-02,Chandigarh,Chandigarh Ut,Gurudwara Langar,Vegetables,71.9,47.5,25,Cold,1.5,4.3,FB-01,800,184,124,Yes,Medium,3,0,0.23,0.661,23.4,0,1
+DON-0258,2026-03-09,Bathinda,Punjab,Restaurant,Bread/Bakery,102.1,86.7,17,Room,28.2,16.9,FB-01,500,369,107,Yes,Medium,3,0,0.738,0.849,5.98,1,0
+DON-0260,2026-01-13,Jalandhar,Punjab,Hostel Mess,Bread/Bakery,139.5,106.8,17,Room,18.9,26.7,FB-05,1500,1068,651,Yes,High,1,1,0.712,0.766,23.5,1,0
+DON-0056,2026-02-07,Ludhiana,Punjab,Gurudwara Langar,Fruits,92.5,62.7,64,No Storage,31.7,15.9,FB-04,800,596,78,No,Low,2,5,0.745,0.678,4.62,0,0
+DON-0043,2026-01-22,Patiala,Punjab,Household,Vegetables,132.7,97.2,35,Cold,4.5,20.9,FB-03,800,749,112,Yes,Medium,1,3,0.936,0.732,5.11,0,1
+DON-0074,2026-01-12,Chandigarh,Chandigarh Ut,Gurudwara Langar,Fruits,53.1,30.8,37,Room,20.3,21.9,FB-05,800,306,319,Yes,Medium,1,0,0.382,0.58,13.93,0,0
+DON-0538,2026-01-08,Chandigarh,Chandigarh Ut,Restaurant,Cooked Meals,80.8,60.0,6,Cold,4.8,14.3,FB-02,1000,661,288,Yes,High,1,3,0.661,0.743,18.82,1,1
+DON-0067,2026-01-08,Amritsar,Punjab,Restaurant,Cooked Meals,104.0,87.5,9,Room,22.7,23.8,FB-05,1000,727,202,Yes,High,1,3,0.727,0.841,8.15,1,0
+DON-0012,2026-01-27,Amritsar,Punjab,Household,Dairy,84.3,81.3,29,No Storage,28.2,22.1,FB-01,800,716,310,Yes,High,1,1,0.895,0.964,13.42,0,0
+DON-0164,2026-01-20,Bathinda,Punjab,Supermarket,Cooked Meals,69.7,68.1,5,Room,21.9,11.2,FB-01,1000,575,380,No,High,1,1,0.575,0.977,31.15,1,0
+DON-0444,2026-01-12,Bathinda,Punjab,Wedding Hall,Rice,49.3,47.0,92,Cold,3.4,13.75,FB-03,500,469,137,Yes,Medium,1,0,0.938,0.953,9.29,0,1
+DON-0211,2026-02-28,Bathinda,Punjab,Restaurant,Vegetables,58.0,48.7,44,Room,22.6,18.9,FB-03,500,375,252,No,Low,2,5,0.75,0.84,12.66,0,0
+DON-0333,2026-02-03,Amritsar,Punjab,Gurudwara Langar,Wheat Flour,61.7,54.0,145,No Storage,27.1,4.2,FB-02,1000,540,202,No,Medium,2,1,0.54,0.875,38.85,0,0
+DON-0084,2026-03-04,Amritsar,Punjab,Gurudwara Langar,Rice,81.0,61.2,69,No Storage,26.0,13.3,FB-04,800,167,300,Yes,Medium,3,2,0.209,0.756,20.98,0,0
+DON-0279,2026-02-28,Jaipur,Rajasthan,Restaurant,Vegetables,86.94999999999999,52.3,38,Room,23.0,5.9,FB-02,500,213,316,Yes,Medium,2,5,0.426,0.601,45.8,0,0
+DON-0449,2026-02-14,Ludhiana,Punjab,Wedding Hall,Wheat Flour,52.2,46.5,151,Cold,2.9,13.4,FB-04,1000,306,328,Yes,Medium,2,5,0.306,0.891,22.78,0,1
+DON-0080,2026-02-26,Patiala,Punjab,Supermarket,Bread/Bakery,127.9,106.3,21,Room,33.1,6.4,FB-02,800,407,173,Yes,High,2,3,0.509,0.831,23.38,1,0
+DON-0024,2026-02-22,Patiala,Punjab,Farm,Fruits,84.3,79.7,57,Cold,4.2,6.4,FB-02,1500,1406,428,No,Medium,2,6,0.937,0.945,57.84,0,1
+DON-0288,2026-03-06,Delhi,Delhi,Supermarket,Bread/Bakery,61.2,36.9,31,No Storage,33.3,15.2,FB-02,800,653,424,No,Medium,3,4,0.816,0.603,26.17,0,0
+DON-0302,2026-03-06,Bathinda,Punjab,Restaurant,Cooked Meals,105.2,68.4,9,No Storage,32.5,9.4,FB-05,500,474,371,No,High,3,4,0.948,0.65,35.67,1,0
+DON-0281,2026-01-31,Jalandhar,Punjab,Farm,Rice,100.9,60.1,52,Room,26.5,3.1,FB-02,1000,420,326,Yes,Medium,1,5,0.42,0.596,79.51,0,0
+DON-0245,2026-01-25,Ludhiana,Punjab,Restaurant,Bread/Bakery,133.3,127.0,8,Room,25.8,28.7,FB-04,800,426,269,No,Medium,1,6,0.532,0.953,9.06,1,0
+DON-0291,2026-02-08,Amritsar,Punjab,Wedding Hall,Cooked Meals,167.6,102.4,8,Cold,2.6,23.9,FB-02,800,92,118,Yes,Medium,2,6,0.115,0.611,4.74,1,1
+DON-0330,2026-01-25,Bathinda,Punjab,Supermarket,Dairy,80.4,46.7,30,Cold,4.6,3.9,FB-02,1000,836,449,No,Medium,1,6,0.836,0.581,91.63,0,1
+DON-0138,2026-02-27,Bathinda,Punjab,Gurudwara Langar,Cooked Meals,84.7,68.6,9,Cold,3.0,6.4,FB-04,500,322,384,Yes,High,2,4,0.644,0.81,51.89,1,1
+DON-0189,2026-01-06,Bathinda,Punjab,Farm,Vegetables,47.5,28.4,18,Cold,6.5,17.7,FB-02,500,335,277,Yes,Medium,1,1,0.67,0.598,14.81,1,1
+DON-0166,2026-01-26,Patiala,Punjab,Supermarket,Dairy,69.4,67.1,30,Room,22.0,26.2,FB-01,1000,818,174,Yes,Medium,1,0,0.818,0.967,6.4,0,0
+DON-0297,2026-02-27,Bathinda,Punjab,Gurudwara Langar,Vegetables,78.9,55.3,32,Cold,5.6,15.0,FB-02,1500,743,257,Yes,Medium,2,4,0.495,0.701,16.06,0,1
+DON-0010,2026-01-12,Amritsar,Punjab,Gurudwara Langar,Wheat Flour,111.0,98.3,130,Room,27.5,6.2,FB-05,500,124,229,Yes,Medium,1,0,0.248,0.886,31.81,0,0
+DON-0197,2026-02-26,Jaipur,Rajasthan,Household,Dairy,63.9,53.3,38,Cold,2.8,13.2,FB-05,800,352,119,Yes,Medium,2,3,0.44,0.834,8.38,0,1
+DON-0232,2026-01-08,Delhi,Delhi,Restaurant,Dairy,116.0,97.1,10,Room,27.3,17.0,FB-03,500,289,122,Yes,High,1,3,0.578,0.837,6.78,1,0
+DON-0320,2026-01-12,Ludhiana,Punjab,Restaurant,Rice,62.4,39.7,33,Cold,2.0,17.0,FB-05,1500,1396,167,Yes,Medium,1,0,0.931,0.636,9.28,0,1
+DON-0182,2026-01-10,Bathinda,Punjab,Farm,Bread/Bakery,105.1,75.6,19,Cold,2.3,10.1,FB-04,500,228,75,Yes,Medium,1,5,0.456,0.719,6.76,1,1
+DON-0266,2026-01-09,Jaipur,Rajasthan,Restaurant,Bread/Bakery,132.8,120.6,17,No Storage,33.0,9.3,FB-03,1000,873,455,Yes,High,1,4,0.873,0.908,44.17,1,0
+DON-0085,2026-01-26,Amritsar,Punjab,Restaurant,Vegetables,81.1,48.8,38,Room,27.6,12.5,FB-05,800,652,264,No,Medium,1,0,0.815,0.602,19.56,0,0
+DON-0175,2026-01-26,Chandigarh,Chandigarh Ut,Supermarket,Dairy,92.0,67.0,10,Cold,2.7,4.9,FB-01,500,295,204,No,High,1,0,0.59,0.728,34.58,1,1
+DON-0548,2026-01-12,Jalandhar,Punjab,Hostel Mess,Dairy,77.4,71.1,22,Room,27.7,9.5,FB-05,800,237,322,Yes,High,1,0,0.296,0.919,30.67,1,0
+DON-0219,2026-02-27,Amritsar,Punjab,Wedding Hall,Cooked Meals,122.5,115.7,7,Room,27.4,13.1,FB-03,1000,792,148,No,High,2,4,0.792,0.944,10.5,1,0
+DON-0317,2026-01-21,Patiala,Punjab,Household,Dairy,91.0,65.3,31,Cold,2.9,23.4,FB-03,1000,453,344,Yes,Medium,1,2,0.453,0.718,14.1,0,1
+DON-0491,2026-01-31,Delhi,Delhi,Hostel Mess,Bread/Bakery,88.7,55.7,23,Room,22.2,21.6,FB-02,1500,900,337,No,Medium,1,5,0.6,0.628,14.91,1,0
+DON-0391,2026-02-09,Delhi,Delhi,Gurudwara Langar,Dairy,99.6,77.2,27,Room,21.7,13.6,FB-04,500,65,277,No,Medium,2,0,0.13,0.775,18.97,0,0
+DON-0214,2026-01-11,Chandigarh,Chandigarh Ut,Gurudwara Langar,Wheat Flour,60.6,39.5,116,No Storage,32.5,19.2,FB-05,1000,169,409,Yes,Medium,1,6,0.169,0.652,20.25,0,0
+DON-0154,2026-02-26,Amritsar,Punjab,Farm,Rice,142.4,127.1,62,Cold,2.4,18.9,FB-05,1500,393,132,Yes,Medium,2,3,0.262,0.893,6.63,0,1
+DON-0076,2026-03-05,Amritsar,Punjab,Farm,Vegetables,119.7,81.4,46,Cold,2.9,20.5,FB-04,800,384,277,Yes,Medium,3,3,0.48,0.68,12.88,0,1
+DON-0093,2026-02-06,Jaipur,Rajasthan,Farm,Bread/Bakery,128.3,116.2,20,Room,22.5,5.9,FB-04,500,127,128,No,Medium,2,4,0.254,0.906,18.55,1,0
+DON-0431,2026-02-15,Ludhiana,Punjab,Supermarket,Wheat Flour,129.1,118.4,127,No Storage,28.6,14.2,FB-05,1500,934,79,Yes,Medium,2,6,0.623,0.917,5.2,0,0
+DON-0069,2026-02-20,Bathinda,Punjab,Hostel Mess,Rice,178.2,100.0,47,Room,28.1,28.6,FB-02,1500,1368,301,Yes,Medium,2,4,0.912,0.561,10.17,0,0
+DON-0016,2026-01-14,Bathinda,Punjab,Farm,Fruits,104.5,76.3,71,Cold,5.9,21.2,FB-02,800,414,112,Yes,Low,1,2,0.518,0.73,5.05,0,1
+DON-0193,2026-01-24,Jalandhar,Punjab,Supermarket,Rice,25.9,24.2,29,Room,24.6,16.2,FB-01,1000,727,375,Yes,Medium,1,5,0.727,0.934,21.8,0,0
+DON-0376,2026-02-21,Chandigarh,Chandigarh Ut,Restaurant,Vegetables,164.0,151.9,46,Room,24.7,17.7,FB-03,1500,1146,111,Yes,Medium,2,5,0.764,0.926,5.94,0,0
+DON-0089,2026-01-28,Bathinda,Punjab,Restaurant,Bread/Bakery,63.1,48.5,15,Cold,4.5,46.7,FB-04,1500,560,193,Yes,Medium,1,2,0.373,0.769,4.05,1,1
+DON-0519,2026-02-16,Bathinda,Punjab,Restaurant,Vegetables,50.7,37.4,44,Cold,5.2,16.6,FB-02,800,724,155,Yes,Medium,2,0,0.905,0.738,8.81,0,1
+DON-0118,2026-02-22,Bathinda,Punjab,Supermarket,Cooked Meals,17.8,14.6,8,Cold,2.3,18.9,FB-04,500,439,159,No,Medium,2,6,0.878,0.82,7.99,1,1
+DON-0410,2026-01-16,Jaipur,Rajasthan,Gurudwara Langar,Rice,68.5,62.7,88,Room,19.0,10.5,FB-02,1000,551,137,Yes,Medium,1,4,0.551,0.915,11.91,0,0
+DON-0435,2026-01-25,Patiala,Punjab,Gurudwara Langar,Dairy,108.9,81.3,34,Cold,2.8,16.2,FB-03,1500,1245,254,Yes,Medium,1,6,0.83,0.747,14.77,0,1
+DON-0034,2026-02-24,Jaipur,Rajasthan,Farm,Fruits,67.6,60.3,40,Cold,3.4,2.7,FB-01,800,635,274,Yes,Medium,2,1,0.794,0.892,74.05,0,1
+DON-0001,2026-03-05,Delhi,Delhi,Hostel Mess,Bread/Bakery,116.8,72.1,26,Cold,4.4,10.0,FB-04,800,436,85,Yes,Medium,3,3,0.545,0.617,7.73,0,1
+DON-0119,2026-01-17,Delhi,Delhi,Gurudwara Langar,Fruits,165.3,67.0,43,No Storage,34.5,11.7,FB-03,800,293,152,No,Medium,1,5,0.366,0.405,11.97,0,0
+DON-0554,2026-01-26,Delhi,Delhi,Farm,Fruits,158.2,128.5,45,Room,24.2,41.2,FB-04,500,266,92,Yes,Medium,1,0,0.532,0.812,2.18,0,0
+DON-0370,2026-02-25,Jaipur,Rajasthan,Hostel Mess,Rice,86.4,64.2,31,Room,21.7,30.9,FB-02,1500,1289,404,Yes,Medium,2,2,0.859,0.743,12.66,0,0
+DON-0356,2026-02-09,Jaipur,Rajasthan,Household,Bread/Bakery,159.8,122.2,31,Cold,4.6,32.8,FB-03,1000,604,251,Yes,Medium,2,0,0.604,0.765,7.43,0,1
+DON-0454,2026-01-29,Amritsar,Punjab,Household,Fruits,57.5,52.4,17,Cold,3.7,20.3,FB-05,800,307,158,Yes,Medium,1,3,0.384,0.911,7.42,1,1
+DON-0552,2026-01-13,Ludhiana,Punjab,Restaurant,Bread/Bakery,104.6,87.0,17,Cold,5.2,14.3,FB-02,1500,722,328,Yes,High,1,1,0.481,0.832,21.44,1,1
+DON-0023,2026-01-21,Bathinda,Punjab,Wedding Hall,Wheat Flour,97.7,55.6,116,Room,22.5,2.9,FB-04,500,464,174,Yes,Medium,1,2,0.928,0.569,44.62,0,0
+DON-0473,2026-02-06,Chandigarh,Chandigarh Ut,Restaurant,Vegetables,26.0,19.3,28,Room,24.8,11.0,FB-01,800,372,83,No,Low,2,4,0.465,0.742,6.92,0,0
+DON-0117,2026-02-03,Jalandhar,Punjab,Hostel Mess,Rice,35.5,27.2,86,Cold,5.4,7.2,FB-03,800,298,153,Yes,Medium,2,1,0.372,0.766,18.66,0,1
+DON-0090,2026-01-13,Bathinda,Punjab,Hostel Mess,Wheat Flour,52.0,38.3,113,Cold,4.7,19.1,FB-04,1500,1151,204,Yes,Medium,1,1,0.767,0.737,10.15,0,1
+DON-0183,2026-02-09,Jalandhar,Punjab,Gurudwara Langar,Rice,151.4,109.2,72,Cold,4.7,12.0,FB-04,1500,673,332,Yes,High,2,0,0.449,0.721,25.54,0,1
+DON-0496,2026-01-29,Bathinda,Punjab,Household,Fruits,60.2,36.2,35,No Storage,33.5,6.2,FB-04,500,238,72,Yes,Medium,1,3,0.476,0.601,10.0,0,0
+DON-0412,2026-01-09,Chandigarh,Chandigarh Ut,Hostel Mess,Fruits,57.8,40.9,43,No Storage,27.2,4.2,FB-02,1000,757,284,Yes,Medium,1,4,0.757,0.708,54.62,0,0
+DON-0019,2026-02-25,Delhi,Delhi,Farm,Bread/Bakery,64.3,59.1,26,Room,28.9,20.2,FB-04,500,434,196,Yes,Medium,2,2,0.868,0.919,9.25,0,0
+DON-0429,2026-02-20,Amritsar,Punjab,Gurudwara Langar,Vegetables,58.4,44.5,22,Room,25.9,8.4,FB-03,1000,251,222,Yes,Medium,2,4,0.251,0.762,23.62,1,0
+DON-0536,2026-01-31,Amritsar,Punjab,Restaurant,Dairy,103.2,96.1,27,Room,22.0,14.0,FB-05,1500,697,227,Yes,Medium,1,5,0.465,0.931,15.13,0,0
+DON-0145,2026-01-29,Chandigarh,Chandigarh Ut,Farm,Cooked Meals,34.3,20.5,11,No Storage,33.8,12.2,FB-01,1500,1328,410,Yes,High,1,3,0.885,0.598,31.06,1,0
+DON-0303,2026-03-10,Amritsar,Punjab,Gurudwara Langar,Dairy,74.1,42.7,30,No Storage,32.8,17.4,FB-01,1000,304,231,No,Low,3,1,0.304,0.576,12.55,0,0
+DON-0566,2026-03-06,Patiala,Punjab,Gurudwara Langar,Wheat Flour,37.6,35.4,156,Cold,4.9,8.3,FB-02,1000,398,387,Yes,Medium,3,4,0.398,0.941,41.61,0,1
+DON-0558,2026-01-16,Patiala,Punjab,Gurudwara Langar,Dairy,76.4,59.0,26,Cold,6.6,9.5,FB-01,800,237,287,Yes,Medium,1,4,0.296,0.772,27.33,0,1
+DON-0426,2026-01-15,Chandigarh,Chandigarh Ut,Gurudwara Langar,Dairy,83.1,54.6,23,Cold,2.9,10.1,FB-04,1000,756,77,No,Medium,1,3,0.756,0.657,6.94,1,1
+DON-0273,2026-02-08,Chandigarh,Chandigarh Ut,Supermarket,Rice,159.9,131.4,48,Room,25.7,30.0,FB-04,800,660,199,No,Medium,2,6,0.825,0.822,6.42,0,0
+DON-0262,2026-03-10,Amritsar,Punjab,Restaurant,Dairy,137.0,79.9,18,Room,21.5,23.1,FB-02,800,529,302,No,Medium,3,1,0.661,0.583,12.53,1,0
+DON-0363,2026-03-01,Chandigarh,Chandigarh Ut,Supermarket,Wheat Flour,69.8,40.4,167,Room,24.9,24.8,FB-03,1000,214,128,Yes,Medium,3,6,0.214,0.579,4.96,0,0
+DON-0430,2026-02-28,Jalandhar,Punjab,Supermarket,Cooked Meals,156.2,125.6,6,Room,21.9,24.0,FB-03,1000,739,275,Yes,High,2,5,0.739,0.804,11.0,1,0
+DON-0168,2026-02-25,Chandigarh,Chandigarh Ut,Supermarket,Cooked Meals,103.8,88.7,8,Room,27.3,10.8,FB-01,1500,800,163,Yes,High,2,2,0.533,0.855,13.81,1,0
+DON-0055,2026-03-03,Patiala,Punjab,Restaurant,Vegetables,166.5,113.1,32,Room,28.6,9.8,FB-05,1000,798,276,No,Medium,3,1,0.798,0.679,25.56,0,0
+DON-0442,2026-02-12,Bathinda,Punjab,Supermarket,Dairy,66.5,47.3,34,Room,22.8,13.4,FB-05,800,109,396,Yes,Medium,2,3,0.136,0.711,27.5,0,0
+DON-0047,2026-01-28,Amritsar,Punjab,Household,Bread/Bakery,93.1,73.5,15,Room,23.9,19.5,FB-03,1000,776,425,Yes,Medium,1,2,0.776,0.789,20.73,1,0
+DON-0094,2026-02-11,Bathinda,Punjab,Hostel Mess,Rice,158.3,128.8,76,Cold,3.6,7.8,FB-02,800,666,475,No,Medium,2,2,0.832,0.814,53.98,0,1
+DON-0305,2026-03-08,Amritsar,Punjab,Restaurant,Dairy,35.6,23.7,31,No Storage,27.5,8.3,FB-02,500,385,51,Yes,Low,3,6,0.77,0.666,5.48,0,0
+DON-0109,2026-02-21,Bathinda,Punjab,Restaurant,Cooked Meals,130.0,97.6,10,Room,25.2,16.1,FB-03,1000,828,374,Yes,High,2,5,0.828,0.751,21.87,1,0
+DON-0293,2026-02-08,Chandigarh,Chandigarh Ut,Supermarket,Cooked Meals,91.7,67.0,6,Cold,3.9,4.5,FB-01,1500,1122,236,Yes,High,2,6,0.748,0.731,42.91,1,1
+DON-0196,2026-02-18,Bathinda,Punjab,Restaurant,Cooked Meals,115.8,79.0,8,Room,25.7,4.0,FB-01,800,397,229,Yes,High,2,2,0.496,0.682,45.8,1,0
+DON-0213,2026-01-30,Chandigarh,Chandigarh Ut,Restaurant,Rice,63.3,56.8,63,No Storage,32.2,17.8,FB-05,800,305,148,Yes,Medium,1,4,0.381,0.897,7.87,0,0
+DON-0514,2026-01-12,Jaipur,Rajasthan,Farm,Rice,63.7,54.7,75,No Storage,34.6,14.2,FB-03,1000,869,245,Yes,Medium,1,0,0.869,0.859,16.12,0,0
+DON-0468,2026-02-24,Chandigarh,Chandigarh Ut,Supermarket,Vegetables,44.5,41.7,31,No Storage,20.5,9.7,FB-01,1500,665,373,Yes,Medium,2,1,0.443,0.937,34.86,0,0
+DON-0371,2026-01-19,Bathinda,Punjab,Hostel Mess,Bread/Bakery,88.7,62.3,11,Cold,5.1,20.3,FB-04,1000,932,182,Yes,Medium,1,0,0.932,0.702,8.54,1,1
+DON-0408,2026-01-30,Bathinda,Punjab,Hostel Mess,Dairy,138.5,81.1,22,Room,25.1,6.4,FB-05,1000,616,228,Yes,High,1,4,0.616,0.586,30.81,1,0
+DON-0008,2026-01-24,Bathinda,Punjab,Supermarket,Dairy,89.2,74.8,18,Room,29.2,19.2,FB-01,500,186,589,Yes,Medium,1,5,0.372,0.839,29.16,1,0
+DON-0413,2026-01-11,Chandigarh,Chandigarh Ut,Gurudwara Langar,Bread/Bakery,155.9,67.0,24,No Storage,35.8,2.8,FB-01,800,134,470,No,High,1,6,0.168,0.43,123.68,0,0
+DON-0424,2026-01-23,Chandigarh,Chandigarh Ut,Hostel Mess,Dairy,192.2,192.2,24,No Storage,31.7,3.2,FB-05,1500,268,346,No,High,1,4,0.179,1.0,82.38,0,0
+DON-0285,2026-02-16,Amritsar,Punjab,Wedding Hall,Wheat Flour,56.4,47.2,31,Cold,4.0,13.2,FB-03,500,326,158,Yes,Medium,2,0,0.652,0.837,11.13,0,1
+DON-0276,2026-03-05,Delhi,Delhi,Restaurant,Cooked Meals,113.5,100.1,7,Room,26.6,9.8,FB-01,500,454,634,Yes,High,3,3,0.908,0.882,58.7,1,0
+DON-0582,2026-01-30,Bathinda,Punjab,Wedding Hall,Rice,178.7,153.8,78,No Storage,36.7,7.7,FB-05,800,314,120,Yes,Medium,1,4,0.392,0.861,13.79,0,0
+DON-0070,2026-01-11,Delhi,Delhi,Gurudwara Langar,Wheat Flour,50.0,31.7,102,Cold,4.7,15.6,FB-02,1500,1064,268,Yes,Medium,1,6,0.709,0.634,16.14,0,1
+DON-0265,2026-01-22,Jalandhar,Punjab,Gurudwara Langar,Dairy,43.1,34.4,41,Cold,8.0,20.6,FB-04,1500,451,292,Yes,Medium,1,3,0.301,0.798,13.52,0,1
+DON-0433,2026-02-02,Patiala,Punjab,Supermarket,Wheat Flour,99.9,67.6,55,Cold,4.8,5.3,FB-01,800,536,249,Yes,Medium,2,0,0.67,0.677,39.52,0,1
+DON-0299,2026-03-04,Ludhiana,Punjab,Restaurant,Rice,215.7,148.3,41,Cold,6.6,16.6,FB-04,1500,220,227,Yes,Medium,3,2,0.147,0.688,12.9,0,1
+DON-0250,2026-01-24,Delhi,Delhi,Wedding Hall,Bread/Bakery,56.4,45.1,16,Room,22.1,54.2,FB-04,1500,715,265,Yes,Medium,1,5,0.477,0.8,4.8,1,0
+DON-0573,2026-03-01,Jaipur,Rajasthan,Restaurant,Vegetables,58.7,57.5,24,No Storage,33.6,10.7,FB-02,800,276,173,No,Medium,3,6,0.345,0.98,14.79,0,0
+DON-0275,2026-01-22,Chandigarh,Chandigarh Ut,Hostel Mess,Dairy,61.9,39.5,22,Cold,5.0,11.7,FB-02,800,584,376,Yes,High,1,3,0.73,0.638,29.61,1,1
+DON-0150,2026-02-24,Bathinda,Punjab,Gurudwara Langar,Rice,100.4,90.7,109,No Storage,29.0,29.3,FB-02,500,425,150,No,Medium,2,1,0.85,0.903,4.95,0,0
+DON-0125,2026-02-26,Ludhiana,Punjab,Farm,Fruits,161.3,121.6,48,No Storage,27.4,9.1,FB-02,500,382,168,Yes,Medium,2,3,0.764,0.754,16.63,0,0
+DON-0470,2026-01-27,Jalandhar,Punjab,Gurudwara Langar,Wheat Flour,119.8,109.7,176,Room,27.5,20.1,FB-05,800,421,266,Yes,Medium,1,1,0.526,0.916,12.61,0,0
+DON-0531,2026-02-28,Ludhiana,Punjab,Household,Rice,170.5,67.0,78,Cold,3.9,4.8,FB-04,800,668,492,Yes,High,2,5,0.835,0.393,84.83,0,1
+DON-0186,2026-01-20,Chandigarh,Chandigarh Ut,Supermarket,Dairy,50.5,49.3,30,Cold,4.9,15.7,FB-05,1500,939,96,Yes,Low,1,1,0.626,0.976,5.75,0,1
+DON-0334,2026-02-16,Jalandhar,Punjab,Gurudwara Langar,Rice,86.94999999999999,62.7,82,Cold,4.0,17.6,FB-02,800,253,247,Yes,Medium,2,0,0.316,0.721,13.28,0,1
+DON-0313,2026-03-07,Ludhiana,Punjab,Household,Fruits,132.7,115.6,48,Room,23.7,13.3,FB-01,1000,611,343,No,Medium,3,5,0.611,0.871,23.99,0,0
+DON-0478,2026-01-27,Bathinda,Punjab,Household,Vegetables,129.9,85.2,50,Room,22.0,35.9,FB-04,500,117,122,No,Medium,1,1,0.234,0.656,3.31,0,0
+DON-0311,2026-01-20,Delhi,Delhi,Restaurant,Wheat Flour,36.2,27.1,192,No Storage,28.7,22.1,FB-01,800,140,299,Yes,Low,1,1,0.175,0.749,12.94,0,0
+DON-0350,2026-02-05,Patiala,Punjab,Hostel Mess,Wheat Flour,95.8,67.0,86,Room,21.5,16.0,FB-03,500,98,230,No,Medium,2,3,0.196,0.699,13.53,0,0
+DON-0032,2026-01-07,Patiala,Punjab,Household,Vegetables,179.9,154.5,35,Room,24.7,19.8,FB-04,1000,701,206,No,Medium,1,2,0.701,0.859,9.9,0,0
+DON-0587,2026-02-08,Delhi,Delhi,Restaurant,Wheat Flour,103.6,82.4,122,Room,27.2,7.7,FB-04,500,97,234,No,Medium,2,6,0.194,0.795,26.9,0,0
+DON-0507,2026-03-10,Amritsar,Punjab,Restaurant,Rice,43.2,67.0,83,No Storage,30.8,18.6,FB-04,1500,241,216,Yes,Medium,3,1,0.161,1.551,11.02,0,0
+DON-0569,2026-01-25,Jalandhar,Punjab,Gurudwara Langar,Vegetables,86.0,50.2,23,No Storage,28.2,14.6,FB-01,1000,838,305,Yes,High,1,6,0.838,0.584,19.55,1,0
+DON-0487,2026-01-10,Chandigarh,Chandigarh Ut,Supermarket,Rice,120.4,116.8,66,No Storage,30.3,13.7,FB-01,1500,825,174,No,Medium,1,5,0.55,0.97,11.84,0,0
+DON-0142,2026-02-16,Jaipur,Rajasthan,Wedding Hall,Dairy,59.7,56.3,22,Room,20.2,28.6,FB-02,800,565,273,Yes,Medium,2,0,0.706,0.943,9.22,1,0
+DON-0020,2026-01-12,Jaipur,Rajasthan,Supermarket,Wheat Flour,140.7,134.6,197,Room,26.2,14.5,FB-05,1500,242,300,Yes,Medium,1,0,0.161,0.957,19.35,0,0
+DON-0173,2026-01-27,Amritsar,Punjab,Hostel Mess,Fruits,54.1,42.1,47,Cold,1.2,22.7,FB-04,1000,891,242,Yes,Medium,1,1,0.891,0.778,10.21,0,1
+DON-0484,2026-03-07,Delhi,Delhi,Hostel Mess,Cooked Meals,131.1,97.0,7,Room,30.0,16.5,FB-04,1000,207,517,No,High,3,5,0.207,0.74,29.54,1,0
+DON-0483,2026-03-08,Bathinda,Punjab,Gurudwara Langar,Rice,166.4,128.0,88,Room,22.4,19.9,FB-01,1000,152,331,Yes,Medium,3,6,0.152,0.769,15.84,0,0
+DON-0026,2026-02-11,Amritsar,Punjab,Wedding Hall,Rice,60.7,47.0,65,Room,25.2,33.9,FB-01,500,106,449,Yes,Medium,2,2,0.212,0.774,12.87,0,0
+DON-0447,2026-03-03,Ludhiana,Punjab,Farm,Vegetables,97.8,86.6,54,Cold,5.3,10.3,FB-01,800,319,109,Yes,Medium,3,1,0.399,0.885,9.65,0,1
+DON-0590,2026-01-27,Jalandhar,Punjab,Wedding Hall,Wheat Flour,73.8,64.2,64,Room,21.6,12.4,FB-04,500,265,226,Yes,Medium,1,1,0.53,0.87,16.87,0,0
+DON-0285,2026-02-16,Amritsar,Punjab,Wedding Hall,Wheat Flour,56.4,67.0,149,Cold,4.0,13.2,FB-03,500,326,158,Yes,Medium,2,0,0.652,1.188,11.13,0,1
+DON-0319,2026-02-07,Ludhiana,Punjab,Gurudwara Langar,Dairy,70.9,47.1,18,Cold,5.0,7.3,FB-05,500,432,187,Yes,Medium,2,5,0.864,0.664,22.53,1,1
+DON-0246,2026-02-25,Jaipur,Rajasthan,Household,Bread/Bakery,91.6,60.7,14,Room,24.6,22.1,FB-02,500,216,486,Yes,Medium,2,2,0.432,0.663,21.04,1,0
+DON-0339,2026-02-05,Jaipur,Rajasthan,Household,Dairy,70.7,42.5,29,Cold,3.4,19.1,FB-05,800,240,173,Yes,Medium,2,3,0.3,0.601,8.61,0,1
+DON-0155,2026-03-04,Jaipur,Rajasthan,Wedding Hall,Dairy,119.3,105.3,19,Cold,4.7,23.0,FB-04,1500,1244,207,Yes,Medium,3,2,0.829,0.883,8.62,1,1
+DON-0127,2026-01-30,Chandigarh,Chandigarh Ut,Wedding Hall,Dairy,147.7,108.7,13,Cold,3.6,14.2,FB-01,800,483,270,Yes,High,1,4,0.604,0.736,17.76,1,1
+DON-0368,2026-02-08,Patiala,Punjab,Hostel Mess,Vegetables,86.0,83.6,31,Room,25.2,15.4,FB-05,500,370,78,Yes,Medium,2,6,0.74,0.972,4.76,0,0
+DON-0114,2026-02-24,Delhi,Delhi,Hostel Mess,Fruits,102.4,67.0,71,Room,27.0,13.75,FB-02,1500,514,311,Yes,High,2,1,0.343,0.654,21.08,0,0
+DON-0174,2026-03-08,Jaipur,Rajasthan,Gurudwara Langar,Cooked Meals,124.8,72.7,6,Room,22.5,12.1,FB-04,1000,659,137,Yes,High,3,6,0.659,0.583,10.46,1,0
+DON-0058,2026-02-19,Amritsar,Punjab,Restaurant,Dairy,41.1,28.1,28,Room,17.7,21.1,FB-01,1500,1144,227,Yes,Medium,2,3,0.763,0.684,10.27,0,0
+DON-0345,2026-01-23,Ludhiana,Punjab,Farm,Dairy,91.5,83.5,19,No Storage,29.6,37.1,FB-05,1000,347,181,No,Medium,1,4,0.347,0.913,4.75,1,0
+DON-0223,2026-02-09,Ludhiana,Punjab,Gurudwara Langar,Fruits,227.7,189.3,31,Cold,2.6,9.4,FB-05,1000,321,172,No,Medium,2,0,0.321,0.831,16.54,0,1
+DON-0018,2026-02-09,Jalandhar,Punjab,Gurudwara Langar,Rice,128.3,115.5,61,Cold,4.5,16.5,FB-05,500,169,227,No,Medium,2,0,0.338,0.9,12.97,0,1
+DON-0321,2026-03-03,Patiala,Punjab,Farm,Bread/Bakery,66.7,61.5,19,No Storage,32.5,5.1,FB-02,800,524,150,Yes,Medium,3,1,0.655,0.922,24.59,1,0
+DON-0256,2026-01-06,Patiala,Punjab,Restaurant,Vegetables,89.0,59.1,29,No Storage,22.4,13.8,FB-03,1500,1423,199,Yes,Medium,1,1,0.949,0.664,13.45,0,0
+DON-0328,2026-02-17,Delhi,Delhi,Gurudwara Langar,Fruits,101.1,79.8,29,Room,22.8,13.75,FB-05,1500,818,229,Yes,Medium,2,1,0.545,0.789,15.53,0,0
+DON-0592,2026-01-22,Jalandhar,Punjab,Supermarket,Bread/Bakery,97.8,60.3,25,Room,34.4,24.4,FB-03,1000,388,84,Yes,Medium,1,3,0.388,0.617,3.31,0,0
+DON-0191,2026-01-31,Jalandhar,Punjab,Restaurant,Fruits,71.1,58.5,44,Room,28.5,3.3,FB-04,500,403,321,Yes,Medium,1,5,0.806,0.823,74.65,0,0
+DON-0342,2026-01-27,Chandigarh,Chandigarh Ut,Restaurant,Rice,100.0,67.2,97,No Storage,28.4,15.6,FB-04,500,76,126,Yes,Medium,1,1,0.152,0.672,7.59,0,0
+DON-0544,2026-02-21,Jaipur,Rajasthan,Hostel Mess,Fruits,77.4,50.7,51,No Storage,32.0,20.4,FB-05,500,408,182,Yes,Medium,2,5,0.816,0.655,8.5,0,0
+DON-0292,2026-03-10,Chandigarh,Chandigarh Ut,Farm,Fruits,43.8,39.3,28,Room,25.9,7.4,FB-05,500,295,205,Yes,Medium,3,1,0.59,0.897,24.4,0,0
+DON-0095,2026-01-30,Ludhiana,Punjab,Household,Wheat Flour,79.3,50.5,94,Cold,3.2,16.6,FB-04,800,242,202,No,Low,1,4,0.302,0.637,11.48,0,1
+DON-0181,2026-02-03,Jalandhar,Punjab,Household,Vegetables,144.5,118.0,52,No Storage,24.5,4.0,FB-02,1000,854,165,Yes,Medium,2,1,0.854,0.817,33.0,0,0
+DON-0396,2026-02-18,Ludhiana,Punjab,Farm,Cooked Meals,114.6,76.3,8,Cold,4.4,16.9,FB-03,1000,223,291,Yes,Medium,2,2,0.223,0.666,16.26,1,1
+DON-0355,2026-02-02,Delhi,Delhi,Wedding Hall,Bread/Bakery,100.8,77.1,10,Room,27.3,26.0,FB-03,800,431,159,No,Medium,2,0,0.539,0.765,5.89,1,0
+DON-0551,2026-01-15,Jalandhar,Punjab,Supermarket,Rice,76.1,67.0,34,Cold,3.6,12.0,FB-03,500,225,144,Yes,Medium,1,3,0.45,0.88,11.08,0,1
+DON-0335,2026-02-02,Bathinda,Punjab,Wedding Hall,Rice,141.0,98.1,122,No Storage,37.6,14.6,FB-03,1000,833,131,No,Medium,2,0,0.833,0.696,8.4,0,0
+DON-0006,2026-02-10,Chandigarh,Chandigarh Ut,Supermarket,Vegetables,73.5,68.6,50,No Storage,28.7,10.9,FB-01,1000,105,101,Yes,Medium,2,1,0.105,0.933,8.49,0,0
+DON-0046,2026-01-16,Amritsar,Punjab,Wedding Hall,Rice,54.5,31.8,31,No Storage,37.8,20.3,FB-05,800,513,413,No,Medium,1,4,0.641,0.583,19.39,0,0
+DON-0575,2026-03-07,Jalandhar,Punjab,Gurudwara Langar,Bread/Bakery,80.1,73.0,8,Room,23.3,20.7,FB-01,500,399,255,Yes,Medium,3,5,0.798,0.911,11.75,1,0
+DON-0417,2026-01-17,Bathinda,Punjab,Farm,Vegetables,60.3,57.2,28,No Storage,29.3,7.1,FB-05,1500,1137,373,Yes,High,1,5,0.758,0.949,46.05,0,0
+DON-0526,2026-01-09,Patiala,Punjab,Wedding Hall,Fruits,120.6,71.5,28,Room,24.9,14.1,FB-02,1500,1284,423,Yes,High,1,4,0.856,0.593,28.01,0,0
+DON-0017,2026-02-02,Ludhiana,Punjab,Supermarket,Fruits,85.0,69.3,52,No Storage,37.2,15.8,FB-04,1000,797,200,Yes,Medium,2,0,0.797,0.815,11.9,0,0
+DON-0049,2026-01-19,Jaipur,Rajasthan,Household,Wheat Flour,70.4,57.7,170,No Storage,26.5,21.4,FB-02,1500,1062,93,Yes,Low,1,0,0.708,0.82,4.15,0,0
+DON-0598,2026-01-05,Jaipur,Rajasthan,Gurudwara Langar,Fruits,62.4,35.7,55,Cold,3.9,11.7,FB-04,1500,1142,407,No,Medium,1,0,0.761,0.572,32.05,0,1
+DON-0564,2026-02-06,Chandigarh,Chandigarh Ut,Farm,Vegetables,150.6,109.4,37,Room,24.2,12.9,FB-02,500,100,252,Yes,Medium,2,4,0.2,0.726,18.13,0,0
+DON-0004,2026-02-20,Amritsar,Punjab,Restaurant,Cooked Meals,92.4,58.7,10,Room,24.4,4.9,FB-05,1000,602,382,Yes,High,2,4,0.602,0.635,64.75,1,0
+DON-0350,2026-02-05,Patiala,Punjab,Hostel Mess,Wheat Flour,95.8,87.9,86,Room,21.5,16.0,FB-03,500,98,230,No,Medium,2,3,0.196,0.918,13.53,0,0
+DON-0556,2026-01-25,Amritsar,Punjab,Farm,Bread/Bakery,52.5,30.1,14,Cold,1.6,28.0,FB-02,1000,729,188,No,Medium,1,6,0.729,0.573,6.48,1,1
+DON-0470,2026-01-27,Jalandhar,Punjab,Gurudwara Langar,Wheat Flour,119.8,109.7,176,Room,27.5,20.1,FB-05,800,421,266,Yes,Medium,1,1,0.526,0.916,12.61,0,0
+DON-0389,2026-01-18,Jalandhar,Punjab,Wedding Hall,Fruits,62.8,50.4,31,Cold,3.5,12.9,FB-03,500,72,88,Yes,Medium,1,6,0.144,0.803,6.33,0,1
+DON-0465,2026-02-25,Chandigarh,Chandigarh Ut,Gurudwara Langar,Bread/Bakery,204.0,144.8,19,Room,29.8,9.2,FB-02,1500,1401,176,Yes,High,2,2,0.934,0.71,17.25,1,0
+DON-0395,2026-01-25,Jaipur,Rajasthan,Restaurant,Bread/Bakery,55.8,40.8,31,No Storage,28.2,12.1,FB-05,1000,271,221,Yes,Medium,1,6,0.271,0.731,16.87,0,0
+DON-0226,2026-03-07,Ludhiana,Punjab,Gurudwara Langar,Rice,76.9,43.1,89,Room,24.5,19.3,FB-05,1500,337,173,Yes,Medium,3,5,0.225,0.56,8.52,0,0
+DON-0027,2026-02-16,Chandigarh,Chandigarh Ut,Farm,Wheat Flour,128.0,89.6,174,Room,27.9,13.7,FB-05,800,502,334,Yes,High,2,0,0.628,0.7,22.72,0,0
+DON-0584,2026-02-17,Amritsar,Punjab,Gurudwara Langar,Rice,95.9,66.6,53,Room,22.7,21.7,FB-05,800,434,255,Yes,Medium,2,1,0.542,0.694,11.23,0,0
+DON-0264,2026-01-05,Delhi,Delhi,Wedding Hall,Wheat Flour,88.0,83.5,165,Cold,3.8,11.2,FB-02,500,310,259,Yes,Medium,1,0,0.62,0.949,21.23,0,1
+DON-0051,2026-01-15,Amritsar,Punjab,Household,Dairy,110.7,85.6,32,Room,25.5,13.1,FB-05,1000,129,357,No,Medium,1,3,0.129,0.773,25.32,0,0
+DON-0230,2026-01-20,Chandigarh,Chandigarh Ut,Hostel Mess,Cooked Meals,91.3,60.1,10,Room,24.0,18.0,FB-04,1500,1078,454,Yes,Medium,1,1,0.719,0.658,23.89,1,0
+DON-0038,2026-01-06,Jaipur,Rajasthan,Hostel Mess,Wheat Flour,118.0,70.6,122,Room,23.2,24.6,FB-01,1000,438,169,No,Low,1,1,0.438,0.598,6.6,0,0
+DON-0158,2026-02-14,Jaipur,Rajasthan,Farm,Wheat Flour,81.2,52.0,140,No Storage,27.6,14.9,FB-02,1000,675,300,Yes,Medium,2,5,0.675,0.64,18.87,0,0
+DON-0238,2026-02-13,Chandigarh,Chandigarh Ut,Wedding Hall,Bread/Bakery,102.5,83.9,31,Cold,2.5,16.4,FB-04,500,208,315,No,Medium,2,4,0.416,0.819,18.1,0,1
+DON-0593,2026-01-21,Bathinda,Punjab,Supermarket,Wheat Flour,112.1,112.1,174,Room,24.2,14.6,FB-04,1500,821,159,No,Medium,1,2,0.547,1.0,10.19,0,0
+DON-0176,2026-03-03,Bathinda,Punjab,Hostel Mess,Dairy,68.3,67.0,31,Room,24.8,5.8,FB-05,1000,764,144,Yes,Medium,3,1,0.764,0.981,21.18,0,0
+DON-0520,2026-01-31,Bathinda,Punjab,Restaurant,Cooked Meals,33.7,23.0,3,Cold,2.4,16.1,FB-05,1000,191,216,Yes,Medium,1,5,0.191,0.682,12.63,1,1
+DON-0437,2026-02-12,Amritsar,Punjab,Gurudwara Langar,Rice,58.1,39.2,31,No Storage,20.9,12.8,FB-03,800,395,189,Yes,Medium,2,3,0.494,0.675,13.7,0,0
+DON-0195,2026-01-16,Delhi,Delhi,Gurudwara Langar,Rice,63.0,59.9,34,Room,30.1,6.7,FB-03,1000,496,245,Yes,Medium,1,4,0.496,0.951,31.82,0,0
+DON-0522,2026-02-04,Ludhiana,Punjab,Hostel Mess,Vegetables,99.2,91.7,40,No Storage,28.8,11.5,FB-03,1000,779,368,Yes,High,2,2,0.779,0.924,29.44,0,0
+DON-0384,2026-01-21,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,70.0,59.9,12,Cold,5.8,14.9,FB-05,800,166,71,Yes,Medium,1,2,0.208,0.856,4.47,1,1
+DON-0597,2026-01-26,Chandigarh,Chandigarh Ut,Hostel Mess,Fruits,128.6,95.3,55,Room,26.2,7.7,FB-03,800,504,275,Yes,Medium,1,0,0.63,0.741,31.61,0,0
+DON-0528,2026-02-25,Delhi,Delhi,Farm,Dairy,84.6,48.7,36,Cold,3.1,22.9,FB-04,1000,573,175,Yes,Medium,2,2,0.573,0.576,7.32,0,1
+DON-0068,2026-02-19,Ludhiana,Punjab,Wedding Hall,Cooked Meals,123.6,83.8,7,Room,20.6,38.2,FB-05,500,303,63,Yes,Medium,2,3,0.606,0.678,1.61,1,0
+DON-0415,2026-02-15,Chandigarh,Chandigarh Ut,Gurudwara Langar,Cooked Meals,147.0,91.1,8,No Storage,27.9,19.1,FB-03,1000,681,421,Yes,High,2,6,0.681,0.62,20.95,1,0
+DON-0169,2026-02-23,Patiala,Punjab,Restaurant,Rice,89.1,67.0,105,No Storage,36.2,36.3,FB-02,500,414,344,No,Medium,2,0,0.828,0.752,9.22,0,0
+DON-0501,2026-01-17,Jaipur,Rajasthan,Gurudwara Langar,Rice,86.94999999999999,55.1,53,No Storage,29.6,12.9,FB-04,1500,906,227,Yes,Medium,1,5,0.604,0.634,16.33,0,0
+DON-0163,2026-03-02,Delhi,Delhi,Hostel Mess,Dairy,138.9,85.6,23,Cold,2.7,15.9,FB-03,1500,498,129,Yes,Medium,3,0,0.332,0.616,7.63,1,1
+DON-0310,2026-01-06,Jaipur,Rajasthan,Gurudwara Langar,Cooked Meals,110.6,93.8,7,Cold,1.8,14.5,FB-04,1000,341,213,Yes,High,1,1,0.341,0.848,13.74,1,1
+DON-0194,2026-02-24,Chandigarh,Chandigarh Ut,Household,Wheat Flour,50.9,34.2,136,Room,26.0,12.0,FB-03,800,282,353,No,Medium,2,1,0.352,0.672,27.15,0,0
+DON-0153,2026-01-15,Delhi,Delhi,Farm,Fruits,119.2,119.2,74,Cold,5.7,8.0,FB-05,1000,832,163,No,Medium,1,3,0.832,1.0,18.11,0,1
+DON-0351,2026-01-22,Patiala,Punjab,Restaurant,Wheat Flour,180.8,147.8,82,Room,31.9,8.5,FB-01,500,349,430,Yes,High,1,3,0.698,0.817,45.26,0,0
+DON-0361,2026-03-01,Amritsar,Punjab,Gurudwara Langar,Fruits,54.8,40.2,66,Cold,5.3,20.7,FB-03,800,231,285,Yes,Medium,3,6,0.289,0.734,13.13,0,1
+DON-0227,2026-01-13,Bathinda,Punjab,Farm,Dairy,79.1,68.7,31,Room,20.8,6.7,FB-04,800,421,100,Yes,Medium,1,1,0.526,0.869,12.99,0,0
+DON-0357,2026-03-06,Bathinda,Punjab,Wedding Hall,Wheat Flour,107.9,91.6,98,Cold,5.7,11.7,FB-02,1500,220,164,Yes,Medium,3,4,0.147,0.849,12.91,0,1
+DON-0104,2026-02-11,Jalandhar,Punjab,Hostel Mess,Cooked Meals,52.5,32.6,7,Cold,3.9,26.2,FB-04,1500,448,142,No,Medium,2,2,0.299,0.621,5.22,1,1
+DON-0420,2026-02-21,Patiala,Punjab,Household,Bread/Bakery,199.1,143.1,15,No Storage,30.6,14.4,FB-05,1500,814,346,Yes,High,2,5,0.543,0.719,22.47,1,0
+DON-0075,2026-01-25,Bathinda,Punjab,Farm,Bread/Bakery,189.7,148.0,17,Room,28.9,9.9,FB-05,1500,1331,104,No,Medium,1,6,0.887,0.78,9.54,1,0
+DON-0452,2026-02-02,Patiala,Punjab,Restaurant,Cooked Meals,78.5,71.1,9,No Storage,36.5,2.8,FB-05,800,666,165,No,Medium,2,0,0.832,0.906,43.42,1,0
+DON-0596,2026-01-12,Jaipur,Rajasthan,Supermarket,Wheat Flour,118.8,105.8,53,Room,23.8,5.0,FB-05,800,272,148,Yes,Medium,1,0,0.34,0.891,24.67,0,0
+DON-0120,2026-01-16,Chandigarh,Chandigarh Ut,Gurudwara Langar,Vegetables,63.1,50.0,39,No Storage,28.3,9.5,FB-05,500,168,276,Yes,Medium,1,4,0.336,0.792,26.29,0,0
+DON-0416,2026-02-17,Ludhiana,Punjab,Farm,Dairy,58.5,67.0,21,Cold,3.4,17.9,FB-05,1500,419,183,Yes,Medium,2,1,0.279,1.145,9.68,1,1
+DON-0439,2026-02-13,Delhi,Delhi,Hostel Mess,Dairy,48.5,36.3,31,Room,31.1,6.0,FB-04,1500,353,275,Yes,Medium,2,4,0.235,0.748,39.29,0,0
+DON-0581,2026-01-05,Jaipur,Rajasthan,Restaurant,Dairy,57.2,53.8,19,Cold,4.3,19.9,FB-03,1500,544,282,Yes,Medium,1,0,0.363,0.941,13.49,1,1
+DON-0208,2026-01-27,Jalandhar,Punjab,Gurudwara Langar,Dairy,78.9,47.8,19,Room,29.1,9.8,FB-01,500,260,257,Yes,Medium,1,1,0.52,0.606,23.8,1,0
+DON-0358,2026-02-15,Ludhiana,Punjab,Supermarket,Cooked Meals,82.8,64.9,5,Room,25.7,6.7,FB-04,500,106,138,Yes,High,2,6,0.212,0.784,17.92,1,0
+DON-0527,2026-01-21,Jalandhar,Punjab,Farm,Wheat Flour,81.7,75.2,31,Cold,3.6,13.5,FB-04,1500,541,209,Yes,Medium,1,2,0.361,0.92,14.41,0,1
+DON-0366,2026-03-06,Bathinda,Punjab,Restaurant,Vegetables,83.1,47.0,25,Cold,5.5,8.2,FB-04,800,575,222,Yes,Medium,3,4,0.719,0.566,24.13,0,1
+DON-0434,2026-02-18,Bathinda,Punjab,Farm,Dairy,178.0,139.9,44,Room,24.6,23.1,FB-02,1500,1206,181,Yes,Medium,2,2,0.804,0.786,7.51,0,0
+DON-0009,2026-02-05,Patiala,Punjab,Restaurant,Wheat Flour,69.8,66.6,159,Room,25.2,22.3,FB-02,1000,294,243,Yes,Medium,2,3,0.294,0.954,10.43,0,0
+DON-0405,2026-02-25,Chandigarh,Chandigarh Ut,Restaurant,Rice,76.8,53.8,59,No Storage,23.5,2.8,FB-02,1000,257,195,Yes,Medium,2,2,0.257,0.701,51.32,0,0
+DON-0037,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,Wheat Flour,84.7,62.0,131,Cold,5.1,7.6,FB-04,1500,1321,399,Yes,Medium,2,1,0.881,0.732,46.4,0,1
+DON-0140,2026-03-04,Jaipur,Rajasthan,Farm,Dairy,100.6,95.4,16,Cold,6.6,13.1,FB-05,800,558,227,Yes,High,3,2,0.698,0.948,16.1,1,1
+DON-0254,2026-01-15,Patiala,Punjab,Gurudwara Langar,Vegetables,136.6,122.8,44,Cold,6.5,6.5,FB-02,500,218,511,Yes,High,1,3,0.436,0.899,68.13,0,1
+DON-0304,2026-01-18,Jalandhar,Punjab,Wedding Hall,Dairy,107.3,72.1,11,No Storage,36.7,7.7,FB-04,500,288,111,Yes,Medium,1,6,0.576,0.672,12.76,1,0
+DON-0529,2026-02-11,Ludhiana,Punjab,Household,Bread/Bakery,75.2,57.2,13,Cold,6.8,14.2,FB-02,800,725,351,Yes,High,2,2,0.906,0.761,23.09,1,1
+DON-0060,2026-02-28,Amritsar,Punjab,Restaurant,Cooked Meals,119.2,106.7,8,Cold,4.2,27.7,FB-01,1500,1082,163,Yes,High,2,5,0.721,0.895,5.68,1,1
+DON-0112,2026-01-05,Patiala,Punjab,Supermarket,Fruits,42.2,33.0,26,Cold,6.6,18.4,FB-02,800,256,114,Yes,Medium,1,0,0.32,0.782,5.88,0,1
+DON-0502,2026-03-06,Bathinda,Punjab,Restaurant,Rice,73.2,45.1,94,Cold,3.4,3.3,FB-04,1500,780,146,No,Medium,3,4,0.52,0.616,33.95,0,1
+DON-0559,2026-01-07,Bathinda,Punjab,Supermarket,Fruits,146.2,140.6,58,Room,27.3,9.1,FB-02,800,184,127,Yes,Medium,1,2,0.23,0.962,12.57,0,0
+DON-0381,2026-02-02,Patiala,Punjab,Supermarket,Rice,96.0,60.3,63,Cold,2.8,22.6,FB-05,1500,1189,88,No,Low,2,0,0.793,0.628,3.73,0,1
+DON-0263,2026-02-27,Amritsar,Punjab,Restaurant,Fruits,135.5,84.2,35,Cold,4.8,10.4,FB-04,1500,1312,189,Yes,Medium,2,4,0.875,0.621,16.58,0,1
+DON-0516,2026-03-03,Chandigarh,Chandigarh Ut,Hostel Mess,Cooked Meals,98.8,93.1,6,Cold,5.3,12.5,FB-02,800,415,271,Yes,High,3,1,0.519,0.942,20.07,1,1
+DON-0298,2026-02-04,Bathinda,Punjab,Household,Cooked Meals,115.0,109.8,4,No Storage,37.0,38.6,FB-03,500,275,359,Yes,High,2,2,0.55,0.955,9.07,1,0
+DON-0151,2026-02-03,Jaipur,Rajasthan,Restaurant,Dairy,86.6,67.8,19,Room,24.1,6.8,FB-03,1000,414,159,No,Medium,2,1,0.414,0.783,20.38,1,0
+DON-0267,2026-02-22,Ludhiana,Punjab,Supermarket,Wheat Flour,46.3,42.9,88,Cold,5.3,28.8,FB-02,500,339,341,Yes,Medium,2,6,0.678,0.927,11.44,0,1
+DON-0535,2026-02-11,Jalandhar,Punjab,Gurudwara Langar,Bread/Bakery,82.5,50.3,17,Room,24.6,12.3,FB-02,1500,1311,308,Yes,High,2,2,0.874,0.61,23.16,1,0
+DON-0360,2026-01-17,Bathinda,Punjab,Wedding Hall,Dairy,141.9,134.4,23,Cold,5.1,31.4,FB-04,500,321,133,No,Medium,1,5,0.642,0.947,4.1,1,1
+DON-0547,2026-01-17,Amritsar,Punjab,Household,Cooked Meals,87.1,62.8,7,Cold,4.2,11.0,FB-04,1000,203,210,No,Medium,1,5,0.203,0.721,17.5,1,1
+DON-0039,2026-02-22,Jalandhar,Punjab,Wedding Hall,Cooked Meals,72.9,47.9,8,Room,22.9,8.8,FB-01,1000,929,608,Yes,High,2,6,0.929,0.657,62.04,1,0
+DON-0515,2026-02-19,Jalandhar,Punjab,Restaurant,Dairy,98.7,89.7,27,Room,23.2,5.7,FB-05,800,285,629,No,High,2,3,0.356,0.909,93.88,0,0
+DON-0308,2026-02-11,Amritsar,Punjab,Supermarket,Rice,121.7,113.8,86,Cold,5.3,20.0,FB-02,800,298,172,Yes,Medium,2,2,0.372,0.935,8.19,0,1
+DON-0199,2026-01-31,Delhi,Delhi,Supermarket,Dairy,51.8,39.1,31,Room,25.6,17.7,FB-05,800,537,48,No,Low,1,5,0.671,0.755,2.57,0,0
+DON-0498,2026-01-13,Ludhiana,Punjab,Farm,Bread/Bakery,79.4,70.2,15,Room,27.1,33.1,FB-05,500,135,203,No,Medium,1,1,0.27,0.884,5.95,1,0
+DON-0382,2026-02-10,Jaipur,Rajasthan,Restaurant,Bread/Bakery,101.7,65.8,12,Cold,5.3,16.2,FB-02,500,431,68,Yes,Medium,2,1,0.862,0.647,3.95,1,1
+DON-0147,2026-01-14,Chandigarh,Chandigarh Ut,Gurudwara Langar,Bread/Bakery,77.4,67.0,12,Cold,5.1,6.0,FB-01,800,192,236,Yes,Medium,1,2,0.24,0.866,33.71,1,1
+DON-0504,2026-01-22,Jalandhar,Punjab,Supermarket,Fruits,90.9,62.2,45,Cold,5.9,9.4,FB-04,500,421,199,Yes,Medium,1,3,0.842,0.684,19.13,0,1
+DON-0549,2026-02-21,Jalandhar,Punjab,Wedding Hall,Bread/Bakery,74.6,53.2,18,Room,22.5,22.4,FB-01,1500,275,147,Yes,Medium,2,5,0.183,0.713,6.28,1,0
+DON-0148,2026-01-17,Jalandhar,Punjab,Gurudwara Langar,Cooked Meals,65.6,43.0,5,Cold,5.8,14.1,FB-01,800,672,146,Yes,High,1,5,0.84,0.655,9.67,1,1
+DON-0450,2026-01-13,Jalandhar,Punjab,Gurudwara Langar,Bread/Bakery,94.3,94.3,17,No Storage,27.6,17.0,FB-04,500,224,541,No,Medium,1,1,0.448,1.0,30.06,1,0
+DON-0349,2026-01-21,Ludhiana,Punjab,Supermarket,Fruits,148.8,99.3,63,Cold,3.4,17.2,FB-01,800,604,276,No,Medium,1,2,0.755,0.667,15.16,0,1
+DON-0326,2026-01-29,Patiala,Punjab,Restaurant,Cooked Meals,86.94999999999999,86.6,4,No Storage,38.1,18.0,FB-01,1000,649,442,Yes,High,1,3,0.649,0.996,23.26,1,0
+DON-0421,2026-02-15,Ludhiana,Punjab,Household,Rice,86.94999999999999,61.3,109,Room,21.7,25.1,FB-04,800,171,58,Yes,Low,2,6,0.214,0.705,2.22,0,0
+DON-0124,2026-02-02,Bathinda,Punjab,Gurudwara Langar,Fruits,147.3,121.7,36,Room,27.4,14.9,FB-03,1500,1148,205,Yes,Medium,2,0,0.765,0.826,12.89,0,0
+DON-0537,2026-01-25,Delhi,Delhi,Gurudwara Langar,Bread/Bakery,115.6,92.1,21,No Storage,31.1,12.4,FB-03,500,295,161,Yes,High,1,6,0.59,0.797,12.01,1,0
+DON-0097,2026-01-05,Patiala,Punjab,Restaurant,Wheat Flour,149.3,139.7,120,Room,24.7,21.3,FB-03,1500,299,301,Yes,Medium,1,0,0.199,0.936,13.5,0,0
+DON-0144,2026-01-05,Patiala,Punjab,Gurudwara Langar,Dairy,73.7,60.8,33,No Storage,31.5,10.3,FB-03,800,94,232,Yes,Medium,1,0,0.118,0.825,20.53,0,0
+DON-0240,2026-02-09,Ludhiana,Punjab,Supermarket,Fruits,146.7,139.3,33,Cold,5.0,9.4,FB-04,800,748,424,Yes,High,2,0,0.935,0.95,40.77,0,1
+DON-0404,2026-01-16,Jaipur,Rajasthan,Wedding Hall,Dairy,107.7,60.1,25,No Storage,28.1,11.1,FB-01,1000,316,264,Yes,Medium,1,4,0.316,0.558,21.82,0,0
+DON-0098,2026-01-07,Bathinda,Punjab,Farm,Fruits,105.1,59.1,36,No Storage,31.9,12.0,FB-04,1500,1409,263,Yes,Medium,1,2,0.939,0.562,20.23,0,0
+DON-0372,2026-01-25,Amritsar,Punjab,Restaurant,Bread/Bakery,80.8,59.7,8,Cold,4.8,20.0,FB-04,500,254,227,No,Medium,1,6,0.508,0.739,10.81,1,1
+DON-0325,2026-02-17,Bathinda,Punjab,Wedding Hall,Cooked Meals,117.9,82.4,5,Cold,5.2,20.9,FB-03,500,347,146,Yes,High,2,1,0.694,0.699,6.67,1,1
+DON-0280,2026-03-06,Jaipur,Rajasthan,Restaurant,Fruits,74.2,66.8,51,No Storage,20.7,21.3,FB-05,800,413,263,Yes,Medium,3,4,0.516,0.9,11.79,0,0
+DON-0294,2026-01-06,Delhi,Delhi,Farm,Bread/Bakery,63.6,61.8,17,Room,25.1,14.9,FB-01,500,440,132,Yes,Medium,1,1,0.88,0.972,8.3,1,0
+DON-0588,2026-01-26,Patiala,Punjab,Hostel Mess,Vegetables,145.3,102.6,49,Room,19.5,10.2,FB-04,500,181,273,Yes,Medium,1,0,0.362,0.706,24.38,0,0
+DON-0123,2026-02-20,Jalandhar,Punjab,Supermarket,Cooked Meals,123.5,82.1,9,Cold,4.6,4.2,FB-04,800,662,194,Yes,High,2,4,0.828,0.665,37.31,1,1
+DON-0184,2026-03-08,Bathinda,Punjab,Restaurant,Vegetables,33.0,19.3,29,Cold,-0.4,4.5,FB-03,500,293,307,Yes,Medium,3,6,0.586,0.585,55.82,0,1
+DON-0203,2026-03-02,Amritsar,Punjab,Farm,Cooked Meals,91.7,73.7,3,No Storage,34.5,25.1,FB-05,1000,571,353,Yes,High,3,0,0.571,0.804,13.52,1,0
+DON-0324,2026-01-31,Amritsar,Punjab,Wedding Hall,Dairy,121.0,110.4,24,Cold,2.4,12.7,FB-02,1000,666,202,Yes,High,1,5,0.666,0.912,14.74,0,1
+DON-0247,2026-03-07,Ludhiana,Punjab,Gurudwara Langar,Bread/Bakery,74.9,53.8,13,Room,26.8,20.5,FB-03,1500,1154,511,Yes,Medium,3,5,0.769,0.718,23.77,1,0
+DON-0448,2026-03-07,Bathinda,Punjab,Restaurant,Wheat Flour,98.4,61.3,153,Room,28.0,10.2,FB-04,1500,326,298,Yes,Medium,3,5,0.217,0.623,26.61,0,0
+DON-0031,2026-01-28,Patiala,Punjab,Restaurant,Cooked Meals,205.0,192.1,4,Room,26.5,12.2,FB-01,1000,143,58,Yes,High,1,2,0.143,0.937,4.39,1,0
+DON-0513,2026-02-13,Chandigarh,Chandigarh Ut,Household,Cooked Meals,55.1,30.6,8,Room,26.2,31.8,FB-05,1000,743,245,Yes,Medium,2,4,0.743,0.555,7.47,1,0
+DON-0440,2026-01-05,Amritsar,Punjab,Household,Rice,107.1,88.5,67,Cold,6.2,18.3,FB-03,1500,163,395,Yes,Medium,1,0,0.109,0.826,20.47,0,1
+DON-0546,2026-01-13,Jaipur,Rajasthan,Farm,Bread/Bakery,131.1,97.7,23,Room,24.9,10.4,FB-01,800,662,98,Yes,Medium,1,1,0.828,0.745,8.6,1,0
+DON-0418,2026-01-25,Jalandhar,Punjab,Restaurant,Rice,93.3,67.0,34,No Storage,34.1,22.1,FB-03,500,237,328,No,Medium,1,6,0.474,0.718,14.2,0,0
+DON-0126,2026-01-10,Delhi,Delhi,Wedding Hall,Wheat Flour,147.2,84.8,87,Room,25.6,13.7,FB-01,800,285,159,No,Medium,1,5,0.356,0.576,10.82,0,0
+DON-0403,2026-02-27,Jalandhar,Punjab,Restaurant,Rice,77.8,75.6,36,Room,29.6,3.5,FB-03,1500,793,115,Yes,Medium,2,4,0.529,0.972,25.56,0,0
+DON-0457,2026-02-18,Jaipur,Rajasthan,Gurudwara Langar,Fruits,206.4,159.8,29,Room,29.1,8.8,FB-02,1000,909,373,No,High,2,2,0.909,0.774,38.06,0,0
+DON-0443,2026-02-18,Jaipur,Rajasthan,Supermarket,Bread/Bakery,117.7,114.5,20,No Storage,32.4,8.6,FB-05,500,214,218,Yes,High,2,2,0.428,0.973,22.71,1,0
+DON-0224,2026-03-06,Jalandhar,Punjab,Household,Fruits,150.0,122.5,48,Room,24.6,28.6,FB-01,1000,733,297,No,Medium,3,4,0.733,0.817,10.03,0,0
+DON-0343,2026-03-09,Chandigarh,Chandigarh Ut,Gurudwara Langar,Vegetables,125.1,95.5,30,Cold,3.7,3.5,FB-03,1500,531,248,Yes,Medium,3,0,0.354,0.763,55.11,0,1
+DON-0054,2026-03-05,Delhi,Delhi,Restaurant,Rice,90.1,60.7,99,Room,25.3,5.6,FB-03,1500,286,259,Yes,Medium,3,3,0.191,0.674,39.24,0,0
+DON-0220,2026-03-05,Ludhiana,Punjab,Supermarket,Wheat Flour,68.2,45.7,156,Room,27.7,19.8,FB-01,1000,376,109,Yes,Low,3,3,0.376,0.67,5.24,0,0
+DON-0130,2026-03-10,Bathinda,Punjab,Supermarket,Wheat Flour,157.2,150.7,98,Room,23.2,4.6,FB-04,500,152,231,Yes,Medium,3,1,0.304,0.959,41.25,0,0
+DON-0560,2026-01-23,Chandigarh,Chandigarh Ut,Gurudwara Langar,Fruits,38.4,22.4,42,Cold,5.7,5.9,FB-01,1500,855,237,Yes,Medium,1,4,0.57,0.583,34.35,0,1
+DON-0423,2026-01-19,Amritsar,Punjab,Supermarket,Dairy,64.8,64.8,25,Cold,4.0,26.1,FB-03,1500,1091,252,Yes,Medium,1,0,0.727,1.0,9.3,0,1
+DON-0480,2026-01-31,Bathinda,Punjab,Gurudwara Langar,Wheat Flour,132.5,109.4,152,Room,25.0,3.1,FB-03,1500,588,169,Yes,Medium,1,5,0.392,0.826,41.22,0,0
+DON-0562,2026-02-13,Patiala,Punjab,Wedding Hall,Bread/Bakery,99.5,81.9,18,Room,24.7,8.9,FB-01,800,213,450,Yes,High,2,4,0.266,0.823,45.45,1,0
+DON-0425,2026-01-22,Jalandhar,Punjab,Hostel Mess,Vegetables,223.1,134.2,38,Cold,3.5,8.1,FB-02,500,407,191,Yes,Medium,1,3,0.814,0.602,20.99,0,1
+DON-0101,2026-01-26,Delhi,Delhi,Gurudwara Langar,Cooked Meals,70.5,38.8,7,Room,23.3,12.0,FB-03,1500,172,132,Yes,High,1,0,0.115,0.55,10.15,1,0
+DON-0432,2026-01-31,Patiala,Punjab,Restaurant,Rice,188.9,108.5,89,Cold,5.2,24.3,FB-05,500,296,177,Yes,Medium,1,5,0.592,0.574,7.0,0,1
+DON-0387,2026-02-26,Delhi,Delhi,Supermarket,Vegetables,54.3,52.2,47,Room,24.9,9.4,FB-02,1000,595,60,Yes,Medium,2,3,0.595,0.961,5.77,0,0
+DON-0599,2026-01-24,Patiala,Punjab,Household,Rice,95.5,92.5,77,Room,22.7,13.75,FB-04,1500,868,278,No,Medium,1,5,0.579,0.969,18.85,0,0
+DON-0295,2026-03-07,Bathinda,Punjab,Gurudwara Langar,Vegetables,65.9,40.9,49,Room,26.5,15.8,FB-01,1000,309,350,Yes,Medium,3,5,0.309,0.621,20.83,0,0
+DON-0268,2026-03-02,Chandigarh,Chandigarh Ut,Household,Rice,58.7,55.2,76,Cold,3.0,14.5,FB-04,800,620,168,No,Medium,3,0,0.775,0.94,10.84,0,1
+DON-0495,2026-01-21,Patiala,Punjab,Restaurant,Fruits,85.4,47.6,42,Room,27.7,25.8,FB-01,800,100,139,Yes,Medium,1,2,0.125,0.557,5.19,0,0
+DON-0445,2026-01-30,Jaipur,Rajasthan,Gurudwara Langar,Fruits,81.3,76.8,57,No Storage,28.6,22.6,FB-01,800,118,470,Yes,Medium,1,4,0.148,0.945,19.92,0,0
+DON-0113,2026-01-15,Bathinda,Punjab,Supermarket,Bread/Bakery,59.7,38.2,21,Cold,5.3,33.4,FB-05,500,352,198,Yes,Medium,1,3,0.704,0.64,5.76,1,1
+DON-0180,2026-02-05,Bathinda,Punjab,Supermarket,Vegetables,89.1,58.6,53,Room,24.2,11.9,FB-02,1000,705,128,Yes,Medium,2,3,0.705,0.658,9.92,0,0
+DON-0451,2026-01-11,Bathinda,Punjab,Restaurant,Rice,80.4,61.6,75,Cold,4.2,18.5,FB-01,500,226,192,Yes,Medium,1,6,0.452,0.766,9.85,0,1
+DON-0494,2026-01-17,Ludhiana,Punjab,Gurudwara Langar,Fruits,118.9,102.8,41,Room,26.1,11.3,FB-02,500,414,451,Yes,High,1,5,0.828,0.865,36.67,0,0
+DON-0482,2026-03-03,Ludhiana,Punjab,Farm,Dairy,96.9,58.8,20,Cold,6.6,5.8,FB-05,1000,308,154,No,Medium,3,1,0.308,0.607,22.65,1,1
+DON-0374,2026-01-20,Amritsar,Punjab,Wedding Hall,Wheat Flour,82.5,80.0,159,Room,21.0,16.8,FB-01,1500,1366,109,Yes,Low,1,1,0.911,0.97,6.12,0,0
+DON-0315,2026-01-14,Jaipur,Rajasthan,Farm,Bread/Bakery,118.1,80.4,9,Room,23.1,9.0,FB-02,1500,742,234,No,High,1,2,0.495,0.681,23.4,1,0
+DON-0152,2026-01-10,Amritsar,Punjab,Gurudwara Langar,Bread/Bakery,86.94999999999999,66.2,21,Room,26.2,19.6,FB-01,1000,670,433,Yes,Medium,1,5,0.67,0.761,21.02,1,0
+DON-0172,2026-02-03,Ludhiana,Punjab,Gurudwara Langar,Dairy,47.6,32.2,30,Cold,5.7,7.4,FB-02,1500,1115,130,Yes,Medium,2,1,0.743,0.676,15.48,0,1
+DON-0234,2026-02-06,Ludhiana,Punjab,Gurudwara Langar,Fruits,79.8,68.8,60,No Storage,30.6,10.1,FB-03,800,537,132,Yes,Medium,2,4,0.671,0.862,11.89,0,0
+DON-0307,2026-02-04,Bathinda,Punjab,Supermarket,Wheat Flour,124.6,96.6,162,Room,24.4,10.8,FB-01,500,272,471,Yes,High,2,2,0.544,0.775,39.92,0,0
+DON-0458,2026-02-22,Jaipur,Rajasthan,Wedding Hall,Cooked Meals,83.3,78.5,5,Room,25.4,17.8,FB-04,1000,730,329,Yes,High,2,6,0.73,0.942,17.5,1,0
+DON-0165,2026-02-26,Patiala,Punjab,Supermarket,Dairy,149.8,139.7,24,Room,28.3,17.3,FB-05,1500,506,220,No,Medium,2,3,0.337,0.933,12.02,0,0
+DON-0318,2026-03-04,Amritsar,Punjab,Restaurant,Fruits,45.2,37.2,59,Cold,4.1,4.7,FB-01,1500,486,473,Yes,Medium,3,2,0.324,0.823,82.98,0,1
+DON-0137,2026-01-16,Chandigarh,Chandigarh Ut,Farm,Vegetables,65.9,61.2,31,Room,27.9,8.4,FB-03,800,646,230,Yes,Medium,1,4,0.808,0.929,24.47,0,0
+DON-0411,2026-02-11,Ludhiana,Punjab,Gurudwara Langar,Dairy,79.7,64.5,25,Room,28.0,14.0,FB-01,1000,403,209,Yes,Medium,2,2,0.403,0.809,13.93,0,0
+DON-0198,2026-02-21,Ludhiana,Punjab,Gurudwara Langar,Bread/Bakery,134.0,93.6,19,No Storage,33.4,15.0,FB-04,500,110,205,Yes,Medium,2,5,0.22,0.699,12.81,1,0
+DON-0571,2026-01-22,Jalandhar,Punjab,Gurudwara Langar,Vegetables,50.2,31.6,55,Cold,5.1,13.75,FB-01,1000,101,99,Yes,Medium,1,3,0.101,0.629,6.71,0,1
+DON-0259,2026-01-05,Amritsar,Punjab,Supermarket,Vegetables,106.4,101.8,28,No Storage,29.0,19.1,FB-04,800,294,324,Yes,High,1,0,0.368,0.957,16.12,0,0
+DON-0233,2026-01-18,Jalandhar,Punjab,Household,Cooked Meals,103.2,64.9,7,Cold,0.9,9.0,FB-05,1500,478,185,Yes,High,1,6,0.319,0.629,18.5,1,1
+DON-0116,2026-02-07,Jalandhar,Punjab,Gurudwara Langar,Cooked Meals,84.3,48.9,7,Cold,4.3,16.6,FB-02,800,270,288,Yes,Medium,2,5,0.338,0.58,16.36,1,1
+DON-0121,2026-02-18,Bathinda,Punjab,Supermarket,Bread/Bakery,61.5,45.3,10,Room,23.5,10.5,FB-02,1500,623,442,No,High,2,2,0.415,0.737,38.43,1,0
+DON-0464,2026-01-22,Chandigarh,Chandigarh Ut,Hostel Mess,Vegetables,132.9,119.2,36,Room,23.0,13.1,FB-02,1500,860,225,Yes,Medium,1,3,0.573,0.897,15.96,0,0
+DON-0508,2026-02-10,Amritsar,Punjab,Hostel Mess,Wheat Flour,45.8,33.4,118,Cold,3.6,41.7,FB-03,800,553,254,Yes,Medium,2,1,0.691,0.729,5.95,0,1
+DON-0377,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,Rice,65.3,39.5,87,Room,30.4,30.7,FB-03,1000,660,400,No,Medium,2,1,0.66,0.605,12.62,0,0
+DON-0385,2026-01-08,Amritsar,Punjab,Farm,Vegetables,150.4,84.4,41,No Storage,29.7,10.4,FB-05,800,438,186,Yes,Medium,1,3,0.548,0.561,16.32,0,0
+DON-0225,2026-03-04,Jaipur,Rajasthan,Household,Rice,128.8,103.9,62,Cold,5.8,23.5,FB-01,1500,612,107,Yes,Medium,3,2,0.408,0.807,4.37,0,1
+DON-0586,2026-01-28,Chandigarh,Chandigarh Ut,Farm,Bread/Bakery,54.9,31.9,18,Room,25.4,14.8,FB-01,500,265,170,Yes,Medium,1,2,0.53,0.581,10.76,1,0
+DON-0489,2026-03-01,Delhi,Delhi,Gurudwara Langar,Cooked Meals,51.3,48.7,4,No Storage,24.5,7.6,FB-04,1000,437,379,Yes,High,3,6,0.437,0.949,44.07,1,0
+DON-0348,2026-01-07,Delhi,Delhi,Gurudwara Langar,Rice,47.6,36.3,77,No Storage,32.4,3.3,FB-01,1000,375,351,No,Medium,1,2,0.375,0.763,81.63,0,0
+DON-0128,2026-02-09,Bathinda,Punjab,Household,Rice,60.5,67.0,106,Room,26.6,8.6,FB-01,1000,916,301,No,Medium,2,0,0.916,1.107,31.35,0,0
+DON-0079,2026-02-25,Bathinda,Punjab,Restaurant,Rice,56.7,34.9,57,No Storage,28.7,9.4,FB-04,500,266,197,No,Medium,2,2,0.532,0.616,18.94,0,0
+DON-0446,2026-01-17,Delhi,Delhi,Supermarket,Wheat Flour,36.9,25.5,104,Cold,4.0,4.0,FB-03,500,405,186,Yes,Medium,1,5,0.81,0.691,37.2,0,1
+DON-0286,2026-01-27,Chandigarh,Chandigarh Ut,Restaurant,Vegetables,72.6,58.5,30,Cold,3.0,28.5,FB-03,800,185,310,Yes,Medium,1,1,0.231,0.806,10.51,0,1
+DON-0570,2026-02-08,Ludhiana,Punjab,Restaurant,Bread/Bakery,17.8,15.6,14,Room,25.5,17.1,FB-05,1500,915,227,No,Low,2,6,0.61,0.876,12.54,1,0
+DON-0044,2026-03-09,Patiala,Punjab,Supermarket,Rice,93.0,67.0,61,Cold,4.8,32.6,FB-05,500,227,368,Yes,Medium,3,0,0.454,0.72,10.95,0,1
+DON-0108,2026-02-28,Delhi,Delhi,Farm,Rice,143.5,67.0,34,No Storage,27.6,17.0,FB-03,1500,1413,300,Yes,Medium,2,5,0.942,0.467,16.67,0,0
+DON-0523,2026-01-16,Chandigarh,Chandigarh Ut,Restaurant,Rice,163.2,106.9,62,Room,24.8,12.1,FB-02,800,375,186,No,Medium,1,4,0.469,0.655,14.2,0,0
+DON-0557,2026-01-18,Ludhiana,Punjab,Household,Rice,129.0,118.0,54,Room,24.9,7.4,FB-01,800,132,353,No,Medium,1,6,0.165,0.915,42.02,0,0
+DON-0134,2026-03-10,Delhi,Delhi,Hostel Mess,Bread/Bakery,119.5,73.4,13,Room,23.5,14.9,FB-01,500,305,374,Yes,High,3,1,0.61,0.614,23.52,1,0
+DON-0441,2026-01-26,Ludhiana,Punjab,Gurudwara Langar,Vegetables,81.1,56.4,31,Cold,5.3,6.5,FB-02,800,626,227,Yes,Medium,1,0,0.782,0.695,30.27,0,1
+DON-0062,2026-02-15,Chandigarh,Chandigarh Ut,Household,Rice,98.0,84.5,94,Room,23.3,15.4,FB-05,800,509,165,No,Medium,2,6,0.636,0.862,10.06,0,0
+DON-0045,2026-02-13,Amritsar,Punjab,Restaurant,Vegetables,80.6,69.3,49,Room,26.7,12.8,FB-03,1000,815,275,Yes,Medium,2,4,0.815,0.86,19.93,0,0
+DON-0170,2026-03-03,Bathinda,Punjab,Hostel Mess,Dairy,79.8,53.9,20,Cold,5.8,18.8,FB-05,1000,530,317,Yes,Medium,3,1,0.53,0.675,16.01,1,1
+DON-0066,2026-01-12,Delhi,Delhi,Supermarket,Bread/Bakery,59.5,40.6,20,Room,21.8,36.4,FB-02,500,406,247,Yes,Medium,1,0,0.812,0.682,6.6,1,0
+DON-0284,2026-03-01,Delhi,Delhi,Hostel Mess,Wheat Flour,81.5,67.2,88,No Storage,27.8,18.1,FB-02,1000,944,295,No,Low,3,6,0.944,0.825,15.45,0,0
+DON-0086,2026-03-03,Chandigarh,Chandigarh Ut,Supermarket,Fruits,85.4,85.4,46,Cold,5.9,33.1,FB-03,1000,190,366,Yes,Medium,3,1,0.19,1.0,10.73,0,1
+DON-0243,2026-02-25,Chandigarh,Chandigarh Ut,Household,Dairy,170.2,156.8,28,Cold,4.6,14.4,FB-03,800,498,47,Yes,Medium,2,2,0.622,0.921,3.05,0,1
+DON-0187,2026-01-23,Delhi,Delhi,Household,Wheat Flour,35.1,21.3,127,Room,24.4,5.3,FB-05,800,618,225,Yes,Medium,1,4,0.772,0.607,35.71,0,0
+DON-0327,2026-01-27,Amritsar,Punjab,Household,Bread/Bakery,63.4,47.5,17,Room,22.1,37.6,FB-03,1500,784,138,Yes,Medium,1,1,0.523,0.749,3.58,1,0
+DON-0160,2026-02-18,Patiala,Punjab,Supermarket,Dairy,97.6,80.6,30,Cold,3.4,21.0,FB-02,800,702,105,Yes,Medium,2,2,0.878,0.826,4.77,0,1
+DON-0013,2026-01-18,Ludhiana,Punjab,Hostel Mess,Cooked Meals,177.9,108.3,9,Cold,6.7,8.7,FB-04,500,132,253,Yes,High,1,6,0.264,0.609,26.08,1,1
+DON-0036,2026-02-09,Amritsar,Punjab,Restaurant,Dairy,87.7,66.9,21,Room,22.7,14.3,FB-05,1000,447,661,Yes,High,2,0,0.447,0.763,43.2,1,0
+DON-0029,2026-03-04,Ludhiana,Punjab,Hostel Mess,Cooked Meals,54.8,42.2,7,Cold,2.4,21.5,FB-04,1000,551,227,Yes,Medium,3,2,0.551,0.77,10.09,1,1
+DON-0171,2026-01-18,Amritsar,Punjab,Gurudwara Langar,Vegetables,79.8,54.6,29,Room,22.5,10.4,FB-04,1000,178,122,Yes,Medium,1,6,0.178,0.684,10.7,0,0
+DON-0143,2026-01-10,Jaipur,Rajasthan,Gurudwara Langar,Rice,113.1,91.7,59,No Storage,31.8,5.4,FB-01,1000,727,254,Yes,Medium,1,5,0.727,0.811,39.69,0,0
+DON-0237,2026-01-20,Ludhiana,Punjab,Household,Fruits,132.0,76.2,32,Room,25.8,15.9,FB-05,800,552,279,Yes,Medium,1,1,0.69,0.577,16.51,0,0
+DON-0497,2026-02-05,Ludhiana,Punjab,Gurudwara Langar,Vegetables,86.5,79.7,5,Room,28.0,19.3,FB-04,800,555,130,Yes,Medium,2,3,0.694,0.921,6.4,1,0
+DON-0517,2026-01-25,Bathinda,Punjab,Farm,Rice,134.6,106.3,44,Cold,0.9,18.4,FB-05,500,122,112,Yes,Medium,1,6,0.244,0.79,5.77,0,1
+DON-0580,2026-01-24,Jaipur,Rajasthan,Farm,Dairy,115.9,83.1,26,Room,30.4,35.1,FB-03,800,341,198,Yes,Medium,1,5,0.426,0.717,5.48,0,0
+DON-0222,2026-01-20,Chandigarh,Chandigarh Ut,Restaurant,Wheat Flour,174.6,129.1,113,Room,24.9,27.0,FB-03,1000,933,240,No,Medium,1,1,0.933,0.739,8.57,0,0
+DON-0591,2026-03-05,Patiala,Punjab,Hostel Mess,Bread/Bakery,93.8,82.4,17,Cold,3.6,6.3,FB-03,1500,1321,79,Yes,Medium,3,3,0.881,0.878,10.82,1,1
+DON-0096,2026-02-15,Jaipur,Rajasthan,Supermarket,Vegetables,82.2,68.4,70,No Storage,22.7,15.5,FB-04,500,319,182,Yes,Medium,2,6,0.638,0.832,11.03,0,0
+DON-0052,2026-02-13,Jalandhar,Punjab,Restaurant,Cooked Meals,86.3,74.7,7,Cold,3.6,13.75,FB-04,500,471,351,Yes,High,2,4,0.942,0.866,23.8,1,1
+DON-0241,2026-02-08,Bathinda,Punjab,Hostel Mess,Wheat Flour,128.4,82.7,161,Room,21.7,8.1,FB-05,800,402,327,Yes,High,2,6,0.502,0.644,35.93,0,0
+DON-0525,2026-02-06,Jaipur,Rajasthan,Hostel Mess,Dairy,81.4,74.4,40,Cold,3.8,23.5,FB-03,1000,593,92,No,Low,2,4,0.593,0.914,3.76,0,1
+DON-0352,2026-02-26,Amritsar,Punjab,Restaurant,Dairy,93.4,60.7,24,Room,23.4,24.1,FB-05,500,410,281,Yes,Medium,2,3,0.82,0.65,11.2,0,0
+DON-0533,2026-03-09,Ludhiana,Punjab,Farm,Rice,37.5,28.7,86,Cold,6.0,14.4,FB-05,1500,820,300,Yes,Medium,3,0,0.547,0.765,19.48,0,1
+DON-0179,2026-01-10,Amritsar,Punjab,Gurudwara Langar,Rice,78.1,74.3,76,Room,29.4,37.6,FB-04,800,640,272,No,Low,1,5,0.8,0.951,7.05,0,0
+DON-0461,2026-01-12,Jalandhar,Punjab,Supermarket,Bread/Bakery,71.5,68.2,15,Room,27.3,10.1,FB-05,500,460,228,No,Medium,1,0,0.92,0.954,20.54,1,0
+DON-0543,2026-02-11,Chandigarh,Chandigarh Ut,Gurudwara Langar,Dairy,85.7,83.8,26,Cold,3.1,14.6,FB-05,1000,743,91,Yes,Medium,2,2,0.743,0.978,5.83,0,1
+DON-0042,2026-02-26,Jaipur,Rajasthan,Wedding Hall,Dairy,109.5,78.9,16,Cold,4.9,6.0,FB-04,1500,945,148,Yes,Medium,2,3,0.63,0.721,21.14,1,1
+DON-0572,2026-01-17,Bathinda,Punjab,Household,Fruits,109.3,86.3,24,Room,27.8,13.5,FB-04,1500,1398,128,Yes,High,1,5,0.932,0.79,8.83,0,0
+DON-0539,2026-01-05,Delhi,Delhi,Gurudwara Langar,Rice,61.4,44.4,108,Cold,2.4,11.1,FB-03,1500,879,74,No,Low,1,0,0.586,0.723,6.12,0,1
+DON-0207,2026-01-29,Jaipur,Rajasthan,Gurudwara Langar,Bread/Bakery,49.9,39.5,22,Room,27.0,11.8,FB-05,800,364,646,Yes,High,1,3,0.455,0.792,50.47,1,0
+DON-0393,2026-02-14,Ludhiana,Punjab,Restaurant,Vegetables,85.9,64.0,44,Room,21.5,14.1,FB-04,500,339,325,Yes,Medium,2,5,0.678,0.745,21.52,0,0
+DON-0283,2026-01-23,Jalandhar,Punjab,Household,Rice,47.2,44.5,6,Cold,3.4,12.1,FB-03,1000,835,211,No,Medium,1,4,0.835,0.943,16.11,1,1
+DON-0359,2026-02-28,Amritsar,Punjab,Hostel Mess,Bread/Bakery,31.1,20.4,13,No Storage,30.6,8.5,FB-04,500,330,255,Yes,Medium,2,5,0.66,0.656,26.84,1,0
+DON-0398,2026-01-26,Chandigarh,Chandigarh Ut,Household,Vegetables,133.8,103.0,27,No Storage,30.2,24.5,FB-01,1500,481,283,Yes,Medium,1,0,0.321,0.77,11.1,0,0
+DON-0255,2026-01-06,Patiala,Punjab,Supermarket,Bread/Bakery,36.6,27.9,12,Room,21.5,6.7,FB-03,800,561,217,No,Medium,1,1,0.701,0.762,28.18,1,0
+DON-0518,2026-02-21,Chandigarh,Chandigarh Ut,Hostel Mess,Cooked Meals,77.6,75.5,8,Room,23.9,3.2,FB-04,1000,276,302,Yes,High,2,5,0.276,0.973,71.9,1,0
+DON-0218,2026-01-31,Chandigarh,Chandigarh Ut,Gurudwara Langar,Cooked Meals,123.8,71.0,7,Cold,1.9,20.2,FB-03,800,675,140,Yes,Medium,1,5,0.844,0.574,6.6,1,1
+DON-0005,2026-02-18,Bathinda,Punjab,Farm,Bread/Bakery,67.3,42.9,19,No Storage,26.9,17.6,FB-03,500,147,206,No,Medium,2,2,0.294,0.637,11.08,1,0
+DON-0550,2026-01-29,Chandigarh,Chandigarh Ut,Wedding Hall,Rice,72.6,61.9,91,Room,21.9,15.3,FB-04,1500,938,93,No,Low,1,3,0.625,0.853,5.71,0,0
+DON-0099,2026-02-06,Chandigarh,Chandigarh Ut,Restaurant,Fruits,120.8,71.0,39,No Storage,32.4,6.5,FB-01,500,392,552,Yes,Medium,2,4,0.784,0.588,73.6,0,0
+DON-0407,2026-02-22,Jaipur,Rajasthan,Gurudwara Langar,Fruits,44.1,37.6,61,Cold,1.3,14.9,FB-03,1500,985,115,No,Low,2,6,0.657,0.853,7.23,0,1
+DON-0503,2026-02-28,Bathinda,Punjab,Farm,Cooked Meals,71.2,65.5,13,Cold,3.8,8.4,FB-02,500,295,319,No,Medium,2,5,0.59,0.92,33.94,1,1
+DON-0048,2026-01-17,Bathinda,Punjab,Restaurant,Fruits,21.5,15.9,68,No Storage,31.9,15.1,FB-04,800,363,491,Yes,Low,1,5,0.454,0.74,30.5,0,0
+DON-0033,2026-02-08,Ludhiana,Punjab,Supermarket,Fruits,94.5,94.5,62,Cold,3.1,8.8,FB-01,500,403,275,Yes,Medium,2,6,0.806,1.0,28.06,0,1
+DON-0201,2026-01-07,Ludhiana,Punjab,Hostel Mess,Cooked Meals,137.5,90.3,7,Room,25.0,18.3,FB-03,800,449,301,Yes,High,1,2,0.561,0.657,15.6,1,0
+DON-0135,2026-02-28,Jalandhar,Punjab,Gurudwara Langar,Cooked Meals,55.9,34.6,7,Cold,4.3,11.0,FB-05,1000,201,181,Yes,High,2,5,0.201,0.619,15.08,1,1
+DON-0028,2026-02-18,Jalandhar,Punjab,Supermarket,Bread/Bakery,104.1,72.7,12,No Storage,28.2,10.3,FB-05,800,269,217,Yes,Medium,2,2,0.336,0.698,19.2,1,0
+DON-0541,2026-01-12,Delhi,Delhi,Household,Cooked Meals,73.4,42.7,8,Room,30.9,19.5,FB-03,500,389,268,Yes,Medium,1,0,0.778,0.582,13.07,1,0
+DON-0231,2026-01-27,Patiala,Punjab,Farm,Dairy,117.3,73.5,12,Cold,5.5,17.9,FB-03,500,127,189,Yes,Medium,1,1,0.254,0.627,10.0,1,1
+DON-0490,2026-02-23,Jaipur,Rajasthan,Supermarket,Fruits,55.9,51.1,54,Room,23.1,10.2,FB-02,1500,520,44,Yes,Medium,2,0,0.347,0.914,3.93,0,0
+DON-0379,2026-02-27,Chandigarh,Chandigarh Ut,Supermarket,Cooked Meals,117.6,80.1,7,Room,25.1,14.9,FB-02,1000,350,54,No,Medium,2,4,0.35,0.681,3.4,1,0
+DON-0289,2026-02-06,Ludhiana,Punjab,Supermarket,Rice,150.0,109.3,62,Cold,3.3,11.4,FB-02,1000,430,305,No,Medium,2,4,0.43,0.729,24.6,0,1
+DON-0419,2026-01-31,Chandigarh,Chandigarh Ut,Farm,Bread/Bakery,156.3,116.3,26,Room,23.4,11.6,FB-02,500,391,39,Yes,Medium,1,5,0.782,0.744,3.1,0,0
+DON-0392,2026-02-23,Jaipur,Rajasthan,Hostel Mess,Fruits,70.0,44.1,29,Cold,4.3,18.1,FB-05,1500,1317,158,Yes,Medium,2,0,0.878,0.63,8.27,0,1
+DON-0499,2026-01-24,Chandigarh,Chandigarh Ut,Supermarket,Dairy,20.5,11.8,24,Room,25.2,28.6,FB-01,1500,1257,175,Yes,Medium,1,5,0.838,0.576,5.91,0,0
+DON-0139,2026-02-08,Jaipur,Rajasthan,Gurudwara Langar,Rice,158.9,88.2,31,Cold,3.9,5.6,FB-01,1000,541,258,Yes,Medium,2,6,0.541,0.555,39.09,0,1
+DON-0063,2026-03-01,Ludhiana,Punjab,Gurudwara Langar,Fruits,105.3,77.7,45,Room,30.4,16.1,FB-04,800,663,157,Yes,Medium,3,6,0.829,0.738,9.18,0,0
+DON-0472,2026-02-18,Delhi,Delhi,Supermarket,Vegetables,66.1,50.8,40,Cold,3.2,6.4,FB-03,1000,171,325,Yes,Medium,2,2,0.171,0.769,43.92,0,1
+DON-0129,2026-01-05,Jaipur,Rajasthan,Farm,Bread/Bakery,106.3,67.0,22,Room,24.5,13.7,FB-02,1500,518,178,No,Medium,1,0,0.345,0.63,12.11,1,0
+DON-0420,2026-02-21,Patiala,Punjab,Household,Bread/Bakery,199.1,143.1,15,No Storage,30.6,14.4,FB-05,1500,814,346,Yes,High,2,5,0.543,0.719,22.47,1,0
+DON-0521,2026-03-04,Patiala,Punjab,Supermarket,Fruits,147.4,81.9,57,Room,26.1,20.9,FB-04,500,194,28,Yes,Medium,3,2,0.388,0.556,1.28,0,0
+DON-0065,2026-02-12,Patiala,Punjab,Gurudwara Langar,Rice,85.6,55.6,75,Cold,3.3,7.9,FB-03,1000,114,472,No,Medium,2,3,0.114,0.65,53.03,0,1
+DON-0015,2026-02-21,Jaipur,Rajasthan,Household,Vegetables,83.3,47.3,31,Room,22.8,12.8,FB-01,800,702,150,Yes,Medium,2,5,0.878,0.568,10.87,0,0
+DON-0157,2026-03-06,Patiala,Punjab,Farm,Wheat Flour,79.9,44.5,128,Cold,4.7,4.0,FB-04,500,321,97,Yes,Medium,3,4,0.642,0.557,19.4,0,1
+DON-0041,2026-02-07,Jalandhar,Punjab,Gurudwara Langar,Rice,91.5,88.8,92,No Storage,23.5,16.8,FB-05,1500,282,175,Yes,Medium,2,5,0.188,0.97,9.83,0,0
+DON-0493,2026-02-05,Ludhiana,Punjab,Gurudwara Langar,Bread/Bakery,82.4,67.0,17,Cold,3.3,25.2,FB-02,800,690,157,Yes,Medium,2,3,0.862,0.813,5.99,1,1
+DON-0380,2026-01-22,Ludhiana,Punjab,Farm,Rice,100.4,67.0,29,Room,24.3,22.3,FB-05,1000,283,335,Yes,Medium,1,3,0.283,0.667,14.38,0,0
+DON-0188,2026-02-10,Jaipur,Rajasthan,Restaurant,Wheat Flour,72.6,58.5,152,Room,30.3,10.0,FB-05,800,550,309,Yes,Medium,2,1,0.688,0.806,28.09,0,0
+DON-0217,2026-02-12,Amritsar,Punjab,Restaurant,Wheat Flour,93.3,54.3,155,Room,29.2,18.4,FB-01,1000,489,178,No,Low,2,3,0.489,0.582,9.18,0,0
+DON-0053,2026-02-26,Amritsar,Punjab,Hostel Mess,Wheat Flour,90.4,59.3,110,Cold,3.6,15.5,FB-01,1000,847,212,No,Low,2,3,0.847,0.656,12.85,0,1
+DON-0338,2026-02-06,Chandigarh,Chandigarh Ut,Restaurant,Cooked Meals,139.1,115.6,12,Cold,1.9,6.7,FB-02,1000,706,50,Yes,Medium,2,4,0.706,0.831,6.49,1,1
+DON-0296,2026-01-12,Bathinda,Punjab,Hostel Mess,Dairy,82.5,70.0,18,No Storage,27.3,3.5,FB-01,1500,1275,271,No,Medium,1,0,0.85,0.848,60.22,1,0
+DON-0252,2026-01-13,Chandigarh,Chandigarh Ut,Household,Wheat Flour,110.4,100.8,104,Room,24.0,6.6,FB-02,1500,264,134,No,Medium,1,1,0.176,0.913,17.63,0,0
+DON-0462,2026-03-10,Delhi,Delhi,Wedding Hall,Bread/Bakery,54.3,34.6,23,Cold,4.7,15.2,FB-03,1000,364,291,Yes,Medium,3,1,0.364,0.637,17.96,1,1
+DON-0456,2026-01-21,Bathinda,Punjab,Wedding Hall,Vegetables,106.1,80.0,42,Room,26.7,35.5,FB-01,1500,273,133,Yes,Medium,1,2,0.182,0.754,3.64,0,0
+DON-0235,2026-01-22,Patiala,Punjab,Restaurant,Vegetables,70.3,44.6,53,Cold,4.0,13.2,FB-02,1000,458,169,Yes,Medium,1,3,0.458,0.634,11.9,0,1
+DON-0270,2026-03-02,Ludhiana,Punjab,Farm,Fruits,52.1,67.0,31,Room,24.4,7.0,FB-04,800,268,70,Yes,Medium,3,0,0.335,1.286,8.75,0,0
+DON-0202,2026-02-14,Patiala,Punjab,Gurudwara Langar,Wheat Flour,84.1,63.7,99,Room,25.6,13.9,FB-05,1000,846,299,Yes,Medium,2,5,0.846,0.757,20.07,0,0
+DON-0162,2026-02-09,Ludhiana,Punjab,Restaurant,Vegetables,85.3,67.0,22,Cold,5.8,10.3,FB-05,800,93,182,Yes,High,2,0,0.116,0.785,16.11,1,1
+DON-0402,2026-01-28,Bathinda,Punjab,Household,Bread/Bakery,60.1,38.6,18,Room,26.6,25.7,FB-04,1500,1073,374,Yes,Medium,1,2,0.715,0.642,14.01,1,0
+DON-0477,2026-01-19,Delhi,Delhi,Hostel Mess,Wheat Flour,72.0,58.4,160,Room,27.8,13.8,FB-02,500,153,280,Yes,Medium,1,0,0.306,0.811,18.92,0,0
+DON-0106,2026-03-06,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,102.0,69.0,25,No Storage,26.5,16.1,FB-01,1000,519,187,Yes,Medium,3,4,0.519,0.676,10.94,0,0
+DON-0390,2026-02-26,Amritsar,Punjab,Hostel Mess,Bread/Bakery,101.2,83.3,20,No Storage,32.5,10.8,FB-05,1000,745,288,Yes,High,2,3,0.745,0.823,24.41,1,0
+DON-0002,2026-01-10,Chandigarh,Chandigarh Ut,Gurudwara Langar,Bread/Bakery,69.0,51.8,20,Room,18.9,21.3,FB-03,800,345,126,No,Medium,1,5,0.431,0.751,5.65,1,0
+DON-0576,2026-01-09,Jaipur,Rajasthan,Farm,Rice,93.6,90.0,71,Cold,3.4,14.5,FB-05,1500,1407,527,No,Medium,1,4,0.938,0.962,34.0,0,1
+DON-0081,2026-01-17,Bathinda,Punjab,Restaurant,Cooked Meals,105.2,82.6,10,Cold,3.8,25.8,FB-01,500,217,145,No,Medium,1,5,0.434,0.785,5.41,1,1
+DON-0206,2026-02-17,Jaipur,Rajasthan,Wedding Hall,Dairy,95.3,80.1,24,Room,21.5,38.8,FB-05,1000,397,326,Yes,High,2,1,0.397,0.841,8.19,0,0
+DON-0035,2026-03-02,Delhi,Delhi,Supermarket,Cooked Meals,102.4,80.3,7,No Storage,30.7,19.0,FB-04,1000,846,489,Yes,High,3,0,0.846,0.784,24.45,1,0
+DON-0509,2026-02-05,Jaipur,Rajasthan,Wedding Hall,Fruits,105.9,88.1,63,No Storage,26.8,11.5,FB-05,1000,177,252,Yes,Medium,2,3,0.177,0.832,20.16,0,0
+DON-0428,2026-02-10,Ludhiana,Punjab,Supermarket,Dairy,226.3,189.5,16,Room,23.9,21.6,FB-05,800,174,343,Yes,High,2,1,0.218,0.837,15.18,1,0
+DON-0455,2026-02-25,Jalandhar,Punjab,Wedding Hall,Rice,116.5,105.3,82,Cold,4.1,8.2,FB-05,1500,257,170,Yes,Medium,2,2,0.171,0.904,18.48,0,1
+DON-0367,2026-01-28,Jaipur,Rajasthan,Farm,Cooked Meals,70.1,42.9,5,Cold,6.0,13.75,FB-04,1000,227,292,No,Medium,1,2,0.227,0.612,19.8,1,1
+DON-0092,2026-02-05,Ludhiana,Punjab,Household,Cooked Meals,72.2,68.4,7,Room,22.1,3.4,FB-04,500,257,52,No,Medium,2,3,0.514,0.947,11.82,1,0
+DON-0340,2026-02-18,Jalandhar,Punjab,Supermarket,Dairy,149.8,109.8,24,Cold,4.4,20.3,FB-01,1000,521,114,No,Medium,2,2,0.521,0.733,5.35,0,1
+DON-0565,2026-01-22,Jaipur,Rajasthan,Gurudwara Langar,Wheat Flour,105.0,90.6,136,Room,21.6,12.1,FB-02,800,254,353,Yes,High,1,3,0.318,0.863,26.95,0,0
+DON-0346,2026-01-17,Chandigarh,Chandigarh Ut,Gurudwara Langar,Cooked Meals,137.9,137.9,8,Room,24.9,20.4,FB-02,500,420,71,Yes,Medium,1,5,0.84,1.0,3.32,1,0
+DON-0242,2026-03-09,Delhi,Delhi,Restaurant,Dairy,59.2,43.0,36,Room,25.3,13.5,FB-02,1000,873,309,No,Medium,3,0,0.873,0.726,21.31,0,0
+DON-0014,2026-02-28,Patiala,Punjab,Farm,Bread/Bakery,50.4,49.0,24,No Storage,22.0,17.6,FB-04,1500,1380,400,Yes,Medium,2,5,0.92,0.972,21.51,0,0
+DON-0316,2026-02-23,Bathinda,Punjab,Gurudwara Langar,Fruits,136.9,78.5,56,Room,24.9,18.9,FB-02,800,588,128,Yes,Medium,2,0,0.735,0.573,6.43,0,0
+DON-0388,2026-03-03,Patiala,Punjab,Gurudwara Langar,Cooked Meals,185.4,181.5,9,No Storage,32.9,18.5,FB-04,800,508,159,Yes,High,3,1,0.635,0.979,8.15,1,0
+DON-0274,2026-01-15,Delhi,Delhi,Restaurant,Wheat Flour,49.6,29.6,154,No Storage,33.3,7.4,FB-03,1500,933,120,Yes,Low,1,3,0.622,0.597,14.29,0,0
+DON-0167,2026-01-20,Bathinda,Punjab,Hostel Mess,Rice,109.3,77.8,55,Room,23.1,15.0,FB-03,500,248,302,No,Medium,1,1,0.496,0.712,18.88,0,0
+DON-0110,2026-02-04,Jalandhar,Punjab,Farm,Vegetables,113.5,70.5,10,Room,26.3,16.8,FB-03,800,485,402,Yes,High,2,2,0.606,0.621,22.58,1,0
+DON-0485,2026-01-25,Bathinda,Punjab,Hostel Mess,Dairy,125.7,72.1,29,Room,22.6,8.0,FB-04,1000,156,175,Yes,Medium,1,6,0.156,0.574,19.44,0,0
+DON-0078,2026-03-05,Bathinda,Punjab,Hostel Mess,Vegetables,55.2,50.0,39,Cold,2.8,0.9,FB-05,1500,1140,227,No,Medium,3,3,0.76,0.906,119.47,0,1
+DON-0505,2026-02-13,Bathinda,Punjab,Supermarket,Bread/Bakery,136.9,97.6,19,Cold,3.3,11.2,FB-04,800,595,324,Yes,High,2,4,0.744,0.713,26.56,1,1
+DON-0244,2026-01-13,Patiala,Punjab,Gurudwara Langar,Vegetables,81.6,45.1,28,Room,24.6,11.3,FB-03,500,91,136,Yes,Medium,1,1,0.182,0.553,11.06,0,0
+DON-0567,2026-03-08,Delhi,Delhi,Hostel Mess,Bread/Bakery,51.9,28.7,14,Cold,4.3,10.7,FB-02,800,730,246,Yes,Medium,3,6,0.912,0.553,21.03,1,1
+DON-0563,2026-02-06,Patiala,Punjab,Gurudwara Langar,Wheat Flour,86.0,55.1,138,Room,24.1,12.6,FB-01,1000,761,205,Yes,Medium,2,4,0.761,0.641,15.07,0,0
+DON-0190,2026-01-27,Ludhiana,Punjab,Restaurant,Vegetables,51.3,36.2,39,Room,25.9,12.8,FB-05,1500,921,346,Yes,Medium,1,1,0.614,0.706,25.07,0,0
+DON-0476,2026-01-30,Jalandhar,Punjab,Restaurant,Bread/Bakery,36.1,35.4,14,Room,28.8,60.9,FB-04,1000,750,149,Yes,Medium,1,4,0.75,0.981,2.41,1,0
+DON-0511,2026-01-25,Jalandhar,Punjab,Supermarket,Vegetables,76.0,42.2,38,Cold,3.9,31.9,FB-04,500,123,189,No,Low,1,6,0.246,0.555,5.74,0,1
+DON-0059,2026-01-10,Jaipur,Rajasthan,Supermarket,Vegetables,68.7,54.3,26,Room,22.0,34.6,FB-02,800,193,312,Yes,Medium,1,5,0.241,0.79,8.76,0,0
+DON-0475,2026-01-17,Amritsar,Punjab,Gurudwara Langar,Wheat Flour,165.8,67.0,44,Room,27.3,11.0,FB-02,800,632,287,Yes,Medium,1,5,0.79,0.404,23.92,0,0
+DON-0561,2026-01-13,Delhi,Delhi,Farm,Vegetables,145.2,136.4,29,Cold,2.9,13.9,FB-05,1500,1393,292,No,Medium,1,1,0.929,0.939,19.6,0,1
+DON-0253,2026-01-06,Bathinda,Punjab,Gurudwara Langar,Vegetables,130.8,95.5,31,Room,21.0,8.0,FB-05,1000,647,214,Yes,High,1,1,0.647,0.73,23.78,0,0
+DON-0022,2026-01-19,Patiala,Punjab,Household,Bread/Bakery,60.2,44.4,31,No Storage,28.9,13.0,FB-04,500,157,180,Yes,Medium,1,0,0.314,0.738,12.86,0,0
+DON-0314,2026-02-07,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,58.6,52.6,12,Cold,5.9,4.2,FB-01,1000,569,96,No,Medium,2,5,0.569,0.898,18.46,1,1
+DON-0460,2026-02-10,Patiala,Punjab,Supermarket,Cooked Meals,95.6,64.6,10,Cold,3.7,3.2,FB-04,500,414,109,Yes,Medium,2,1,0.828,0.676,25.95,1,1
+DON-0161,2026-02-02,Bathinda,Punjab,Hostel Mess,Bread/Bakery,116.3,74.0,21,Room,26.7,10.5,FB-05,1000,436,270,No,Medium,2,0,0.436,0.636,23.48,1,0
+DON-0277,2026-01-05,Delhi,Delhi,Gurudwara Langar,Cooked Meals,144.0,82.3,3,No Storage,32.1,18.7,FB-01,1500,417,368,No,High,1,0,0.278,0.572,18.68,1,0
+DON-0192,2026-02-12,Jaipur,Rajasthan,Hostel Mess,Bread/Bakery,113.8,67.1,7,No Storage,28.2,26.2,FB-05,1500,437,183,Yes,Medium,2,3,0.291,0.59,6.73,1,0
+DON-0386,2026-01-16,Chandigarh,Chandigarh Ut,Household,Cooked Meals,135.1,80.9,7,Room,26.5,6.5,FB-03,1000,459,188,Yes,High,1,4,0.459,0.599,25.07,1,0
+DON-0414,2026-03-06,Bathinda,Punjab,Wedding Hall,Cooked Meals,31.3,23.3,4,Room,26.5,22.7,FB-04,1000,631,173,Yes,Medium,3,4,0.631,0.744,7.3,1,0
+DON-0492,2026-03-05,Amritsar,Punjab,Gurudwara Langar,Wheat Flour,55.3,40.8,140,No Storage,30.2,7.5,FB-02,800,233,188,Yes,Medium,3,3,0.291,0.738,22.12,0,0
+DON-0344,2026-01-08,Bathinda,Punjab,Gurudwara Langar,Vegetables,58.6,34.8,9,Cold,5.9,3.9,FB-03,1500,1224,388,Yes,High,1,3,0.816,0.594,79.18,1,1
+DON-0309,2026-01-28,Jaipur,Rajasthan,Supermarket,Rice,65.4,58.4,31,No Storage,28.1,22.4,FB-03,1500,1209,109,Yes,Low,1,2,0.806,0.893,4.66,0,0
+DON-0131,2026-02-14,Bathinda,Punjab,Supermarket,Wheat Flour,57.1,41.9,153,Cold,3.3,11.4,FB-02,1500,784,382,Yes,Medium,2,5,0.523,0.734,30.81,0,1
+DON-0100,2026-01-13,Jaipur,Rajasthan,Restaurant,Wheat Flour,72.2,66.3,127,Cold,3.2,23.9,FB-05,1000,748,443,Yes,Medium,1,1,0.748,0.918,17.79,0,1
+DON-0373,2026-03-05,Amritsar,Punjab,Restaurant,Bread/Bakery,125.2,93.0,8,Room,27.7,10.1,FB-02,1000,891,318,Yes,High,3,3,0.891,0.743,28.65,1,0
+DON-0088,2026-01-08,Chandigarh,Chandigarh Ut,Gurudwara Langar,Rice,122.8,112.0,96,Room,25.0,6.0,FB-03,800,346,485,Yes,High,1,3,0.432,0.912,69.29,0,0
+DON-0459,2026-01-28,Ludhiana,Punjab,Supermarket,Dairy,143.4,124.4,15,Cold,4.6,19.9,FB-02,500,216,289,Yes,Medium,1,2,0.432,0.868,13.83,1,1
+DON-0331,2026-02-24,Patiala,Punjab,Restaurant,Cooked Meals,140.1,122.5,7,Room,24.0,21.3,FB-04,500,296,171,Yes,High,2,1,0.592,0.874,7.67,1,0
+DON-0215,2026-01-21,Patiala,Punjab,Gurudwara Langar,Wheat Flour,161.1,126.6,141,Room,22.4,17.2,FB-03,1500,747,276,No,Medium,1,2,0.498,0.786,15.16,0,0
+DON-0467,2026-02-12,Delhi,Delhi,Supermarket,Vegetables,139.2,114.0,41,Cold,5.4,9.3,FB-02,1000,826,208,Yes,Medium,2,3,0.826,0.819,20.19,0,1
+DON-0122,2026-01-18,Amritsar,Punjab,Restaurant,Bread/Bakery,104.3,59.7,14,Room,22.0,18.5,FB-05,1500,277,127,No,Medium,1,6,0.185,0.572,6.51,1,0
+DON-0021,2026-02-12,Amritsar,Punjab,Household,Cooked Meals,127.7,89.5,7,Room,21.9,8.8,FB-02,1500,878,77,No,Medium,2,3,0.585,0.701,7.86,1,0
+DON-0072,2026-02-06,Delhi,Delhi,Farm,Rice,121.2,95.7,66,Cold,5.6,22.5,FB-03,1500,340,123,No,Medium,2,4,0.227,0.79,5.23,0,1
+DON-0107,2026-01-19,Bathinda,Punjab,Gurudwara Langar,Fruits,66.1,63.5,31,Cold,4.6,21.7,FB-04,800,142,118,Yes,Low,1,0,0.178,0.961,5.2,0,1
+DON-0271,2026-01-16,Jalandhar,Punjab,Hostel Mess,Cooked Meals,66.0,46.0,8,Room,20.7,21.9,FB-05,1000,328,342,Yes,High,1,4,0.328,0.697,14.93,1,0
+DON-0436,2026-01-11,Amritsar,Punjab,Gurudwara Langar,Rice,66.7,49.8,114,Cold,5.5,10.1,FB-05,1500,304,176,Yes,Medium,1,6,0.203,0.747,15.86,0,1
+DON-0103,2026-03-06,Patiala,Punjab,Restaurant,Vegetables,111.3,93.2,45,Cold,4.3,14.4,FB-04,500,304,392,Yes,High,3,4,0.608,0.837,25.45,0,1

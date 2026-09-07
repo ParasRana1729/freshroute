@@ -1,0 +1,81 @@
+{
+  "raw_rows": 636,
+  "raw_cols": 20,
+  "missing_before": {
+    "quantity_available_kg": 29,
+    "shelf_life_hours": 18,
+    "storage_temp_C": 49,
+    "beneficiaries_count": 13,
+    "transport_available": 30,
+    "remarks": 147
+  },
+  "exact_duplicates_before": 18,
+  "rows_after_dedup": 618,
+  "dropped_irrelevant": [
+    "donor_contact_number",
+    "remarks"
+  ],
+  "incorrect_fixed": "negatives/0/500h/60C capped to NaN; available>donated capped",
+  "missing_after": 0,
+  "label_mapping": {
+    "High": 0,
+    "Low": 1,
+    "Medium": 2
+  },
+  "X_shape": [
+    618,
+    44
+  ],
+  "y_distribution": {
+    "Medium": 456,
+    "High": 122,
+    "Low": 40
+  },
+  "X_columns": [
+    "quantity_donated_kg",
+    "quantity_available_kg",
+    "shelf_life_hours",
+    "storage_temp_C",
+    "distance_to_foodbank_km",
+    "foodbank_capacity_kg",
+    "current_stock_kg",
+    "beneficiaries_count",
+    "donation_month",
+    "donation_dayofweek",
+    "stock_pressure",
+    "surplus_ratio",
+    "need_per_km",
+    "is_perishable",
+    "cold_chain_ok",
+    "city_Bathinda",
+    "city_Chandigarh",
+    "city_Delhi",
+    "city_Jaipur",
+    "city_Jalandhar",
+    "city_Ludhiana",
+    "city_Patiala",
+    "state_Delhi",
+    "state_Punjab",
+    "state_Rajasthan",
+    "donor_type_Gurudwara Langar",
+    "donor_type_Hostel Mess",
+    "donor_type_Household",
+    "donor_type_Restaurant",
+    "donor_type_Supermarket",
+    "donor_type_Wedding Hall",
+    "food_type_Cooked Meals",
+    "food_type_Dairy",
+    "food_type_Fruits",
+    "food_type_Rice",
+    "food_type_Vegetables",
+    "food_type_Wheat Flour",
+    "storage_condition_No Storage",
+    "storage_condition_Room",
+    "foodbank_id_FB-02",
+    "foodbank_id_FB-03",
+    "foodbank_id_FB-04",
+    "foodbank_id_FB-05",
+    "transport_available_Yes"
+  ],
+  "final_rows": 618
+}

@@ -1,0 +1,637 @@
+donation_id,donation_date,city,state,donor_type,food_type,quantity_donated_kg,quantity_available_kg,shelf_life_hours,storage_condition,storage_temp_C,distance_to_foodbank_km,foodbank_id,foodbank_capacity_kg,current_stock_kg,beneficiaries_count,transport_available,redistribution_priority,donor_contact_number,remarks
+DON-0050,2026-03-02,Jaipur,Rajasthan,Restaurant,Wheat Flour,116.3,103.3,114.0,No Storage,,6.6,FB-03,1500,1351,276.0,Yes,Medium,+91-988456985,ok
+DON-0583,2026-02-02,amritsar ,Punjab,Restaurant,Fruits,77.4,52.2,59.0,Cold,,20.0,FB-03,500,446,98.0,No,low ,+91-985048745,
+DON-0083,2026-01-12,Jaipur,Rajasthan,Restaurant,Cooked Meals,99.5,86.3,4.0,Cold,,10.5,FB-02,800,136,183.0,,High,+91-986497191,ok
+DON-0306,2026-01-26,Patiala,Punjab,Wedding Hall,Wheat Flour,134.2,94.9,207.0,No Storage,,-6.8,FB-03,1000,839,152.0,,med,+91-982936983,ok
+DON-0110,2026-02-04,Jalandhar,Punjab,Farm,vegetables,113.5,70.5,10.0,Room,,16.8,FB-03,800,485,402.0,yes,HIGH ,+91-984325315,ok
+DON-0011,2026-03-09,Amritsar,Punjab,Gurudwara Langar,vegetables,75.0,61.8,41.0,No Storage,,3.4,FB-01,500,147,146.0,YES ,med,+91-985041776,
+DON-0269,2026-02-28,Jalandhar,Punjab,Farm,Cooked Meals,77.9,73.2,11.0,Room,,8.7,FB-03,1000,407,226.0,Yes,high,+91-981561548,festival surplus
+DON-0354,2026-02-14,Jalandhar,Punjab,Restaurant,Dairy,131.4,74.9,,Room,,16.6,FB-04,800,609,416.0,yes,Medium,+91-988100282,urgent pickup
+DON-0329,2026-01-27,Bathinda,Punjab,Hostel Mess,Rice,97.1,,59.0,Room,,11.9,FB-05,1500,1154,210.0,yes,MEDIUM ,+91-986210558,ok
+DON-0534,2026-03-07,ludhiana,Punjab,Restaurant,Dairy,90.3,75.1,,No Storage,,9.5,FB-03,800,342,393.0,yes,MEDIUM ,+91-985599000,
+DON-0282,2026-03-08,Ludhiana,Punjab,Restaurant,Fruits,86.8,60.4,43.0,Room,,11.9,FB-02,1000,371,226.0,yes,MEDIUM ,+91-982650522,ok
+DON-0488,2026-02-28,Bathinda,Punjab,Supermarket,cooked meals ,80.7,45.0,5.0,Room,,6.0,FB-03,500,459,120.0,Yes,Medium,+91-987006172,festival surplus
+DON-0235,2026-01-22,Patiala,Punjab,Restaurant,VEGETABLES ,70.3,98.42,,Cold,,13.2,FB-02,1000,458,169.0,Yes,MEDIUM ,+91-982698413,urgent pickup
+DON-0132,2026-02-14,chandigarh ,Chandigarh UT,Gurudwara Langar,cooked meals ,45.3,33.9,5.0,Cold,,10.3,FB-01,1000,138,275.0,Yes,high,+91-981049976,ok
+DON-0003,2026-02-02,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,82.3,78.1,24.0,Room,,14.0,FB-05,800,446,287.0,Yes,Medium,+91-987080526,ok
+DON-0228,2026-02-27,Jalandhar,Punjab,Supermarket,Fruits,190.1,155.6,46.0,No Storage,,9.1,FB-01,1000,807,88.0,YES ,med,+91-983242365,ok
+DON-0577,2026-02-05,LUDHIANA ,Punjab,Hostel Mess,Bread/Bakery,46.4,37.8,15.0,Room,,16.0,FB-05,1000,142,124.0,yes,med,+91-985647193,ok
+DON-0427,2026-02-15,Bathinda,Punjab,Restaurant,Dairy,63.8,53.7,18.0,Cold,,27.6,FB-02,500,361,236.0,N,Medium,+91-987380798,
+DON-0185,2026-02-23,CHANDIGARH,Chandigarh UT,Restaurant,RICE,119.9,67.7,105.0,Cold,,7.2,FB-04,1000,771,154.0,yes,MEDIUM ,+91-981287635,festival surplus
+DON-0399,2026-02-17,CHANDIGARH,Chandigarh UT,Supermarket,Dairy,98.7,75.7,33.0,No Storage,,2.6,FB-01,800,288,247.0,Y,med,+91-986221995,
+DON-0375,2026-03-07,Ludhiana,Punjab,Farm,Dairy,77.2,67.0,30.0,Room,,11.5,FB-04,1000,542,177.0,,MEDIUM ,+91-987616243,
+DON-0079,2026-02-25,Bathinda,Punjab,Restaurant,rice ,56.7,34.9,57.0,No Storage,,9.4,FB-04,500,266,197.0,No,MEDIUM ,+91-989064220,
+DON-0248,2026-01-05,Amritsar,Punjab,Gurudwara Langar,Rice,102.3,74.1,33.0,Cold,,4.9,FB-02,800,753,94.0,Y,MEDIUM ,+91-987874399,
+DON-0056,2026-02-07,ludhiana,Punjab,Gurudwara Langar,Fruits,92.5,62.7,64.0,No Storage,,15.9,FB-04,800,596,,No,LOW,+91-985897954,
+DON-0221,2026-02-25,chandigarh ,Chandigarh UT,Household,Dairy,95.4,66.0,22.0,Cold,,10.9,FB-03,500,79,264.0,Yes,Medium,+91-986888852,ok
+DON-0524,2026-02-13,Patiala,Punjab,Gurudwara Langar,Wheat Flour,65.9,,79.0,Room,,25.8,FB-04,1000,749,467.0,,MEDIUM ,+91-988741734,
+DON-0249,2026-02-17,amritsar ,Punjab,Hostel Mess,vegetables,153.5,214.9,47.0,Cold,,15.2,FB-03,1500,1250,591.0,YES ,med,+91-984827271,urgent pickup
+DON-0383,2026-01-22,Patiala,Punjab,Hostel Mess,Fruits,38.2,21.5,54.0,Cold,,10.0,FB-03,1000,505,132.0,Y,Medium,+91-983027842,urgent pickup
+DON-0500,2026-01-22,Ludhiana,Punjab,Wedding Hall,Bread/Bakery,89.1,73.0,14.0,Room,,17.5,FB-02,1500,582,231.0,No,Medium,+91-986275615,urgent pickup
+DON-0553,2026-01-16,LUDHIANA ,Punjab,Household,Dairy,76.7,61.2,19.0,Room,,14.0,FB-01,1500,843,72.0,Y,med,+91-988770326,urgent pickup
+DON-0040,2026-02-02,Bathinda,Punjab,Gurudwara Langar,Wheat Flour,40.2,37.6,99.0,Cold,,28.7,FB-02,800,460,44.0,Y,Low,+91-986517366,festival surplus
+DON-0146,2026-02-03,Delhi,Delhi,Restaurant,Cooked Meals,71.3,63.3,9.0,Room,,6.8,FB-03,500,263,274.0,N,MEDIUM ,+91-988347000,festival surplus
+DON-0378,2026-02-10,Jaipur,Rajasthan,Restaurant,Bread/Bakery,65.5,50.8,11.0,Cold,,17.0,FB-05,500,342,512.0,N,MEDIUM ,+91-981049892,urgent pickup
+DON-0078,2026-03-05,Bathinda,Punjab,Hostel Mess,vegetables,55.2,50.0,39.0,Cold,,0.9,FB-05,1500,1140,258.0,No,Medium,+91-981864645,
+DON-0119,2026-01-17,Delhi,Delhi,Gurudwara Langar,Fruits,165.3,110.5,43.0,No Storage,,11.7,FB-03,800,293,152.0,N,med,+91-983188370,ok
+DON-0401,2026-01-14,ludhiana,Punjab,Restaurant,VEGETABLES ,70.6,54.0,36.0,Room,,7.7,FB-05,1000,259,522.0,Yes,Medium,+91-984929301,
+DON-0149,2026-01-07,Bathinda,Punjab,Supermarket,Fruits,175.2,133.7,46.0,No Storage,,20.9,FB-05,500,57,383.0,yes,MEDIUM ,+91-989953038,ok
+DON-0332,2026-01-06,Jalandhar,Punjab,Farm,Wheat Flour,39.1,29.6,109.0,No Storage,,7.6,FB-02,1500,657,186.0,,MEDIUM ,+91-985372472,ok
+DON-0133,2026-03-02,amritsar ,Punjab,Restaurant,Dairy,82.2,115.08,18.0,Cold,,20.0,FB-02,800,301,287.0,N,Medium,+91-985411887,festival surplus
+DON-0216,2026-02-04,CHANDIGARH,Chandigarh UT,Gurudwara Langar,Bread/Bakery,91.9,61.2,19.0,Cold,,28.2,FB-04,500,144,112.0,Yes,Medium,+91-984411647,ok
+DON-0585,2026-03-09,Patiala,Punjab,Household,vegetables,117.1,100.8,24.0,No Storage,,21.7,FB-03,800,403,357.0,yes,HIGH ,+91-989543813,festival surplus
+DON-0438,2026-01-17,LUDHIANA ,Punjab,Household,Dairy,82.0,48.2,28.0,Room,,44.7,FB-01,500,142,321.0,Y,Medium,+91-985375979,festival surplus
+DON-0087,2026-02-27,AMRITSAR,Punjab,Wedding Hall,Wheat Flour,97.2,57.6,166.0,Cold,,6.3,FB-05,500,285,285.0,no ,Medium,+91-983788363,ok
+DON-0322,2026-03-04,ludhiana,Punjab,Wedding Hall,Fruits,100.9,,51.0,Room,,11.6,FB-02,500,251,209.0,YES ,med,+91-987525940,ok
+DON-0337,2026-01-16,Delhi,Delhi,Restaurant,rice ,34.6,23.5,76.0,Room,,16.8,FB-01,500,444,134.0,Yes,Low,+91-984983063,
+DON-0077,2026-01-14,Patiala,Punjab,Household,rice ,228.0,187.0,80.0,Room,,9.9,FB-03,800,232,363.0,Yes,High,+91-985057025,ok
+DON-0236,2026-02-26,Jaipur,Rajasthan,Farm,Dairy,62.1,60.0,22.0,No Storage,,23.7,FB-05,800,407,149.0,N,MEDIUM ,+91-981078840,
+DON-0486,2026-02-05,Delhi,Delhi,Supermarket,Vegetables,58.3,35.3,29.0,Room,,14.1,FB-04,500,281,321.0,yes,high,+91-985728257,urgent pickup
+DON-0278,2026-02-19,Bathinda,Punjab,Gurudwara Langar,Cooked Meals,98.4,78.9,6.0,Cold,,8.1,FB-02,1500,846,211.0,no ,MEDIUM ,+91-984767263,urgent pickup
+DON-0011,2026-03-09,amritsar ,Punjab,Gurudwara Langar,VEGETABLES ,75.0,61.8,41.0,No Storage,29.9,3.4,FB-01,500,147,146.0,Y,Medium,+91-985041776,
+DON-0209,2026-01-19,LUDHIANA ,Punjab,Gurudwara Langar,Rice,56.4,50.2,47.0,Room,22.9,10.9,FB-02,800,566,279.0,YES ,med,+91-984146243,festival surplus
+DON-0466,2026-03-09,Jalandhar,Punjab,Farm,Dairy,86.2,53.8,37.0,Cold,2.8,11.6,FB-05,800,415,268.0,N,med,+91-989987831,ok
+DON-0394,2026-02-22,chandigarh ,Chandigarh UT,Hostel Mess,VEGETABLES ,98.7,82.4,33.0,No Storage,33.9,18.4,FB-05,1500,1385,296.0,yes,Medium,+91-983763049,
+DON-0347,2026-01-30,Jaipur,Rajasthan,Farm,Vegetables,65.4,60.1,26.0,Cold,4.8,25.1,FB-04,1500,1211,231.0,Y,med,+91-988613312,
+DON-0566,2026-03-06,Patiala,Punjab,Gurudwara Langar,Wheat Flour,37.6,35.4,156.0,Cold,4.9,8.3,FB-02,1000,398,387.0,Yes,med,+91-983114564,festival surplus
+DON-0031,2026-01-28,Patiala,Punjab,Restaurant,COOKED MEALS,205.0,192.1,4.0,Room,26.5,12.2,FB-01,1000,143,58.0,yes,high,+91-989929285,urgent pickup
+DON-0574,2026-01-06,Chandigarh,Chandigarh UT,Supermarket,rice ,72.5,58.7,64.0,Room,28.0,6.5,FB-01,1000,418,184.0,N,med,+91-984453203,
+DON-0205,2026-01-30,Jalandhar,Punjab,Gurudwara Langar,RICE,46.8,42.5,61.0,Room,23.2,9.8,FB-03,1500,1175,469.0,Y,Medium,+91-988542242,
+DON-0312,2026-02-01,Delhi,Delhi,Hostel Mess,Fruits,92.1,51.3,41.0,Room,28.4,11.7,FB-05,500,125,213.0,NO,med,+91-989173542,ok
+DON-0512,2026-01-14,Jalandhar,Punjab,Farm,Wheat Flour,146.6,126.2,107.0,Room,26.2,7.3,FB-04,500,181,119.0,Yes,Medium,+91-985056150,urgent pickup
+DON-0141,2026-02-09,Patiala,Punjab,Restaurant,Vegetables,32.6,19.4,41.0,Cold,4.5,7.9,FB-04,1000,315,487.0,N,MEDIUM ,+91-981264237,urgent pickup
+DON-0474,2026-01-13,Delhi,Delhi,Household,Dairy,48.7,37.7,22.0,No Storage,33.5,22.4,FB-04,1000,872,138.0,NO,Medium,+91-982334996,
+DON-0578,2026-02-03,Bathinda,Punjab,Farm,COOKED MEALS,74.7,54.5,7.0,Room,20.7,17.3,FB-03,800,340,494.0,yes,high,+91-981011957,ok
+DON-0057,2026-01-13,Amritsar,Punjab,Farm,VEGETABLES ,68.8,51.8,22.0,Cold,4.2,18.5,FB-04,800,394,201.0,yes,MEDIUM ,+91-986609125,
+DON-0589,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,RICE,75.3,71.3,69.0,Room,25.8,13.6,FB-05,500,119,270.0,Yes,med,+91-989892812,festival surplus
+DON-0506,2026-03-07,ludhiana,Punjab,Hostel Mess,Fruits,58.0,52.7,55.0,Room,29.9,22.8,FB-01,800,424,258.0,N,low ,+91-982180034,urgent pickup
+DON-0229,2026-01-30,Amritsar,Punjab,Restaurant,Dairy,136.8,101.7,18.0,Room,26.8,5.3,FB-02,500,255,256.0,No,med,+91-981444874,urgent pickup
+DON-0210,2026-01-15,Jaipur,Rajasthan,Farm,Cooked Meals,55.0,43.4,5.0,Room,26.7,14.5,FB-05,800,221,272.0,YES ,High,+91-989164962,ok
+DON-0025,2026-01-08,Amritsar,Punjab,Supermarket,COOKED MEALS,65.3,38.0,8.0,Room,25.5,22.9,FB-05,800,219,337.0,Yes,high,+91-989934845,ok
+DON-0479,2026-03-04,Jalandhar,Punjab,Farm,Bread/Bakery,96.4,56.0,23.0,Cold,4.4,11.1,FB-03,1000,480,89.0,N,MEDIUM ,+91-989650353,
+DON-0369,2026-01-27,Jaipur,Rajasthan,Hostel Mess,cooked meals ,70.5,66.5,10.0,No Storage,32.9,24.2,FB-02,800,314,130.0,yes,MEDIUM ,+91-982908151,
+DON-0362,2026-03-07,Patiala,Punjab,Farm,Bread/Bakery,94.7,,22.0,Room,30.1,3.5,FB-04,800,633,233.0,Yes,med,+91-982103248,urgent pickup
+DON-0364,2026-02-08,ludhiana,Punjab,Supermarket,Vegetables,213.4,152.9,56.0,Room,19.4,19.0,FB-05,1500,878,172.0,yes,med,+91-985773147,festival surplus
+DON-0469,2026-02-26,LUDHIANA ,Punjab,Supermarket,Dairy,83.2,70.1,7.0,Room,24.7,12.2,FB-01,1500,1016,209.0,YES ,HIGH ,+91-987149620,ok
+DON-0071,2026-01-13,LUDHIANA ,Punjab,Hostel Mess,Bread/Bakery,86.4,51.5,9.0,No Storage,29.7,9.6,FB-03,500,305,237.0,NO,MEDIUM ,+91-984329049,ok
+DON-0353,2026-02-19,Jaipur,Rajasthan,Gurudwara Langar,Wheat Flour,101.2,83.4,97.0,Room,29.0,7.2,FB-05,1000,590,191.0,YES ,med,+91-989314052,urgent pickup
+DON-0177,2026-01-23,AMRITSAR,Punjab,Farm,Bread/Bakery,65.9,47.8,20.0,No Storage,32.0,12.8,FB-03,1000,897,158.0,Y,MEDIUM ,+91-985343699,
+DON-0370,2026-02-25,Jaipur,Rajasthan,Hostel Mess,RICE,86.4,64.2,72.0,Room,21.7,30.9,FB-02,1500,1289,404.0,YES ,Medium,+91-989584036,
+DON-0061,2026-03-06,Bathinda,Punjab,Gurudwara Langar,Bread/Bakery,71.6,40.7,10.0,Room,22.5,5.5,FB-01,1000,493,179.0,no ,med,+91-985188891,
+DON-0600,2026-01-12,CHANDIGARH,Chandigarh UT,Supermarket,RICE,69.5,47.3,60.0,Room,24.5,11.7,FB-04,800,511,200.0,no ,med,+91-983803943,ok
+DON-0102,2026-03-04,chandigarh ,Chandigarh UT,Household,rice ,-126.2,103.1,82.0,Room,31.7,-39.2,FB-05,500,79,86.0,yes,Medium,+91-985319453,ok
+DON-0204,2026-02-28,Jaipur,Rajasthan,Supermarket,Bread/Bakery,179.1,,12.0,No Storage,29.9,7.1,FB-04,800,499,279.0,Yes,HIGH ,+91-986050058,festival surplus
+DON-0589,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,rice ,75.3,71.3,69.0,Room,25.8,13.6,FB-05,500,119,270.0,Y,MEDIUM ,+91-989892812,festival surplus
+DON-0091,2026-01-08,Bathinda,Punjab,Gurudwara Langar,Fruits,56.9,35.3,58.0,Room,26.3,10.7,FB-05,1500,1173,296.0,yes,med,+91-986913318,festival surplus
+DON-0540,2026-01-22,Delhi,Delhi,Gurudwara Langar,Fruits,161.5,151.6,39.0,No Storage,29.0,21.6,FB-05,800,686,458.0,NO,Medium,+91-983647349,festival surplus
+DON-0471,2026-01-11,Bathinda,Punjab,Household,Fruits,102.6,86.1,61.0,Room,21.2,4.0,FB-03,800,738,203.0,yes,med,+91-982170025,ok
+DON-0568,2026-01-12,Delhi,Delhi,Gurudwara Langar,Fruits,48.5,40.5,64.0,Room,26.1,6.8,FB-01,800,729,50.0,no ,low ,+91-989708825,urgent pickup
+DON-0030,2026-01-12,Jalandhar,Punjab,Hostel Mess,Dairy,75.8,45.1,30.0,Room,21.1,15.6,FB-01,1500,602,197.0,No,low ,+91-983568103,ok
+DON-0111,2026-01-10,Bathinda,Punjab,Household,Dairy,93.4,71.7,23.0,Cold,4.6,11.8,FB-05,800,158,469.0,Y,high,+91-986928643,urgent pickup
+DON-0510,2026-01-18,Patiala,Punjab,Gurudwara Langar,RICE,156.2,122.7,66.0,Room,21.5,14.9,FB-05,1500,1131,258.0,no ,med,+91-982196845,festival surplus
+DON-0213,2026-01-30,Chandigarh,Chandigarh UT,Restaurant,RICE,63.3,56.8,63.0,No Storage,32.2,17.8,FB-05,800,305,148.0,,Medium,+91-986942654,festival surplus
+DON-0545,2026-02-06,Jalandhar,Punjab,Household,Wheat Flour,79.2,75.1,113.0,Room,23.7,28.8,FB-01,500,401,267.0,yes,MEDIUM ,+91-982021983,
+DON-0323,2026-02-25,Delhi,Delhi,Gurudwara Langar,Cooked Meals,88.2,63.7,8.0,Cold,4.6,5.3,FB-01,800,278,214.0,Y,high,+91-988352245,
+DON-0290,2026-01-23,Jalandhar,Punjab,Hostel Mess,Wheat Flour,82.7,47.3,70.0,No Storage,30.7,17.8,FB-05,500,405,432.0,yes,MEDIUM ,+91-985607455,festival surplus
+DON-0530,2026-02-07,Bathinda,Punjab,Wedding Hall,Vegetables,11.2,10.0,53.0,Room,26.9,5.2,FB-01,500,462,121.0,no ,LOW,+91-988346866,urgent pickup
+DON-0463,2026-02-18,Jalandhar,Punjab,Farm,Fruits,103.9,91.0,61.0,Room,18.3,30.2,FB-01,500,159,198.0,yes,MEDIUM ,+91-987383244,
+DON-0453,2026-03-02,Amritsar,Punjab,Hostel Mess,rice ,-128.6,125.8,67.0,Cold,5.2,16.4,FB-04,800,562,204.0,yes,MEDIUM ,+91-983093787,festival surplus
+DON-0156,2026-02-27,Bathinda,Punjab,Supermarket,Fruits,102.7,82.0,52.0,Cold,5.7,16.6,FB-03,1000,134,,Yes,MEDIUM ,+91-989503197,festival surplus
+DON-0082,2026-02-16,Jaipur,Rajasthan,Hostel Mess,Cooked Meals,81.5,53.7,7.0,Room,28.9,2.8,FB-01,1500,724,226.0,yes,HIGH ,+91-988609964,festival surplus
+DON-0251,2026-02-07,Patiala,Punjab,Hostel Mess,cooked meals ,32.8,22.5,3.0,Cold,3.8,16.3,FB-01,1000,822,235.0,Yes,Medium,+91-987849221,urgent pickup
+DON-0595,2026-03-07,chandigarh ,Chandigarh UT,Restaurant,cooked meals ,88.3,71.2,11.0,Room,25.4,2.2,FB-05,1000,648,229.0,NO,MEDIUM ,+91-989402477,festival surplus
+DON-0239,2026-03-03,Jaipur,Rajasthan,Gurudwara Langar,Bread/Bakery,56.1,44.5,25.0,No Storage,26.6,12.2,FB-05,800,716,329.0,N,med,+91-981526925,festival surplus
+DON-0406,2026-02-09,ludhiana,Punjab,Supermarket,Rice,62.0,46.8,55.0,Room,24.1,11.9,FB-03,800,315,195.0,yes,MEDIUM ,+91-987631430,
+DON-0064,2026-01-10,Delhi,Delhi,Gurudwara Langar,rice ,31.0,22.8,77.0,Cold,6.3,11.2,FB-05,1000,664,401.0,yes,MEDIUM ,+91-984622138,ok
+DON-0272,2026-03-03,ludhiana,Punjab,Farm,Fruits,182.6,102.7,69.0,Room,24.2,36.2,FB-01,800,277,334.0,yes,Medium,+91-984348549,urgent pickup
+DON-0073,2026-02-15,AMRITSAR,Punjab,Restaurant,Fruits,79.6,64.6,25.0,Room,24.7,8.3,FB-01,500,56,477.0,no ,MEDIUM ,+91-984105958,ok
+DON-0257,2026-01-13,AMRITSAR,Punjab,Gurudwara Langar,Fruits,81.5,75.2,54.0,Cold,60.0,9.0,FB-02,500,404,103.0,YES ,MEDIUM ,+91-988135580,urgent pickup
+DON-0555,2026-02-13,Jalandhar,Punjab,Farm,Cooked Meals,40.4,22.8,5.0,Room,25.7,-12.8,FB-01,1000,882,158.0,yes,med,+91-985833461,urgent pickup
+DON-0336,2026-02-05,Ludhiana,Punjab,Household,Wheat Flour,112.5,64.0,51.0,Room,23.9,7.0,FB-05,1000,141,71.0,Yes,med,+91-985100321,
+DON-0579,2026-02-27,Amritsar,Punjab,Farm,Dairy,58.9,46.3,9.0,Room,23.8,15.2,FB-03,500,86,142.0,No,Medium,+91-988073026,festival surplus
+DON-0400,2026-02-19,Chandigarh,Chandigarh UT,Restaurant,Cooked Meals,120.4,94.0,6.0,No Storage,24.1,13.8,FB-02,1000,700,173.0,yes,HIGH ,+91-985763090,
+DON-0261,2026-01-09,ludhiana,Punjab,Wedding Hall,Dairy,102.4,143.36,32.0,Cold,4.4,9.9,FB-03,1500,1382,364.0,Yes,MEDIUM ,+91-989234025,
+DON-0136,2026-01-17,Jalandhar,Punjab,Supermarket,VEGETABLES ,119.1,66.8,45.0,No Storage,33.1,7.2,FB-01,500,460,230.0,no ,med,+91-983473199,
+DON-0341,2026-01-17,Delhi,Delhi,Hostel Mess,vegetables,95.7,74.9,35.0,Room,33.1,25.0,FB-02,500,101,440.0,YES ,med,+91-982215442,ok
+DON-0111,2026-01-10,Bathinda,Punjab,Household,Dairy,93.4,71.7,23.0,Cold,4.6,11.8,FB-05,800,158,469.0,yes,High,+91-986928643,urgent pickup
+DON-0212,2026-01-11,LUDHIANA ,Punjab,Household,rice ,46.1,31.5,79.0,Room,27.3,5.3,FB-01,1500,1163,385.0,yes,med,+91-984884175,festival surplus
+DON-0542,2026-01-21,chandigarh ,Chandigarh UT,Restaurant,Fruits,106.5,84.3,60.0,Room,28.7,35.6,FB-05,500,52,378.0,Y,Medium,+91-986816272,
+DON-0300,2026-01-16,Delhi,Delhi,Farm,rice ,156.3,129.6,66.0,Room,31.6,22.9,FB-05,1000,444,223.0,Y,MEDIUM ,+91-989809609,festival surplus
+DON-0481,2026-01-23,Chandigarh,Chandigarh UT,Supermarket,COOKED MEALS,116.2,78.4,7.0,Cold,4.4,6.2,FB-05,500,57,532.0,yes,High,+91-983577697,urgent pickup
+DON-0007,2026-01-23,LUDHIANA ,Punjab,Gurudwara Langar,Bread/Bakery,71.6,51.8,14.0,Cold,2.7,23.8,FB-01,1000,618,162.0,No,med,+91-985372093,urgent pickup
+DON-0105,2026-01-12,amritsar ,Punjab,Restaurant,Fruits,57.8,32.9,41.0,No Storage,21.7,17.9,FB-01,500,278,116.0,Yes,Low,+91-987722090,
+DON-0115,2026-01-25,LUDHIANA ,Punjab,Supermarket,Bread/Bakery,63.8,50.8,24.0,No Storage,18.2,19.9,FB-05,800,571,253.0,YES ,Medium,+91-986910184,
+DON-0159,2026-01-24,Amritsar,Punjab,Restaurant,Dairy,82.9,68.3,15.0,Room,31.0,11.3,FB-01,1000,245,271.0,yes,med,+91-981243877,festival surplus
+DON-0182,2026-01-10,Bathinda,Punjab,Farm,Bread/Bakery,105.1,75.6,19.0,Cold,2.3,10.1,FB-04,500,228,75.0,Yes,MEDIUM ,+91-982569720,
+DON-0532,2026-01-07,Bathinda,Punjab,Hostel Mess,Fruits,111.7,76.7,30.0,Cold,2.1,6.0,FB-02,1000,477,276.0,Yes,MEDIUM ,+91-989543133,festival surplus
+DON-0365,2026-02-02,Bathinda,Punjab,Household,vegetables,123.9,115.3,20.0,Cold,4.6,24.3,FB-03,1000,141,227.0,YES ,Medium,+91-987259225,festival surplus
+DON-0178,2026-01-12,Jalandhar,Punjab,Supermarket,vegetables,106.7,70.4,48.0,Cold,2.4,27.3,FB-04,1500,349,118.0,Y,Low,+91-985370602,festival surplus
+DON-0594,2026-02-10,Jaipur,Rajasthan,Wedding Hall,Rice,101.6,59.0,80.0,Cold,4.2,29.1,FB-04,1000,190,378.0,YES ,med,+91-986533198,festival surplus
+DON-0200,2026-02-17,chandigarh ,Chandigarh UT,Restaurant,Bread/Bakery,103.8,84.3,10.0,Cold,3.7,15.8,FB-02,1000,802,82.0,Yes,med,+91-988663998,urgent pickup
+DON-0422,2026-02-21,Patiala,Punjab,Supermarket,COOKED MEALS,52.5,35.1,6.0,Room,23.9,4.4,FB-03,500,166,166.0,Yes,High,+91-984971586,ok
+DON-0301,2026-01-27,Chandigarh,Chandigarh UT,Gurudwara Langar,Cooked Meals,37.6,22.8,7.0,Cold,3.9,13.4,FB-04,1000,786,147.0,No,med,+91-986214802,urgent pickup
+DON-0409,2026-01-19,CHANDIGARH,Chandigarh UT,Hostel Mess,Wheat Flour,64.1,53.1,181.0,Room,23.0,9.8,FB-02,500,64,365.0,NO,MEDIUM ,+91-984816707,
+DON-0397,2026-03-03,Jalandhar,Punjab,Household,COOKED MEALS,100.8,73.6,2.0,Room,25.1,6.4,FB-01,1500,966,206.0,NO,med,+91-983288786,urgent pickup
+DON-0287,2026-03-02,chandigarh ,Chandigarh UT,Gurudwara Langar,VEGETABLES ,71.9,47.5,25.0,Cold,1.5,4.3,FB-01,800,184,124.0,YES ,MEDIUM ,+91-987779617,festival surplus
+DON-0258,2026-03-09,Bathinda,Punjab,Restaurant,Bread/Bakery,102.1,86.7,17.0,Room,28.2,16.9,FB-01,500,369,107.0,Yes,med,+91-984507145,ok
+DON-0260,2026-01-13,Jalandhar,Punjab,Hostel Mess,Bread/Bakery,139.5,106.8,17.0,Room,18.9,26.7,FB-05,1500,1068,651.0,Y,HIGH ,+91-987483214,urgent pickup
+DON-0056,2026-02-07,ludhiana,Punjab,Gurudwara Langar,Fruits,92.5,62.7,64.0,No Storage,31.7,15.9,FB-04,800,596,78.0,no ,low ,+91-985897954,
+DON-0043,2026-01-22,Patiala,Punjab,Household,VEGETABLES ,132.7,97.2,35.0,Cold,4.5,20.9,FB-03,800,749,112.0,,med,+91-983420564,urgent pickup
+DON-0074,2026-01-12,Chandigarh,Chandigarh UT,Gurudwara Langar,Fruits,53.1,30.8,37.0,Room,20.3,21.9,FB-05,800,306,319.0,YES ,med,+91-983551331,ok
+DON-0538,2026-01-08,chandigarh ,Chandigarh UT,Restaurant,Cooked Meals,80.8,60.0,6.0,Cold,4.8,14.3,FB-02,1000,661,288.0,yes,high,+91-983748881,
+DON-0067,2026-01-08,Amritsar,Punjab,Restaurant,cooked meals ,104.0,87.5,9.0,Room,22.7,23.8,FB-05,1000,727,202.0,Yes,High,+91-983887698,urgent pickup
+DON-0012,2026-01-27,Amritsar,Punjab,Household,Dairy,84.3,81.3,29.0,No Storage,28.2,22.1,FB-01,800,716,310.0,YES ,High,+91-982105534,festival surplus
+DON-0164,2026-01-20,Bathinda,Punjab,Supermarket,Cooked Meals,69.7,68.1,5.0,Room,21.9,11.2,FB-01,1000,575,380.0,No,High,+91-981464310,festival surplus
+DON-0444,2026-01-12,Bathinda,Punjab,Wedding Hall,rice ,49.3,47.0,92.0,Cold,3.4,-11.4,FB-03,500,469,137.0,Yes,med,+91-986482571,urgent pickup
+DON-0211,2026-02-28,Bathinda,Punjab,Restaurant,Vegetables,58.0,48.7,44.0,Room,22.6,18.9,FB-03,500,375,252.0,N,LOW,+91-988778512,ok
+DON-0333,2026-02-03,amritsar ,Punjab,Gurudwara Langar,Wheat Flour,61.7,54.0,145.0,No Storage,27.1,4.2,FB-02,1000,540,202.0,no ,MEDIUM ,+91-985773598,festival surplus
+DON-0084,2026-03-04,amritsar ,Punjab,Gurudwara Langar,RICE,81.0,61.2,69.0,No Storage,26.0,13.3,FB-04,800,167,300.0,Y,MEDIUM ,+91-989181883,urgent pickup
+DON-0279,2026-02-28,Jaipur,Rajasthan,Restaurant,VEGETABLES ,-60.8,52.3,38.0,Room,23.0,5.9,FB-02,500,213,316.0,,MEDIUM ,+91-988561743,festival surplus
+DON-0449,2026-02-14,ludhiana,Punjab,Wedding Hall,Wheat Flour,52.2,46.5,151.0,Cold,2.9,13.4,FB-04,1000,306,328.0,,med,+91-988883150,urgent pickup
+DON-0080,2026-02-26,Patiala,Punjab,Supermarket,Bread/Bakery,127.9,106.3,21.0,Room,33.1,6.4,FB-02,800,407,173.0,YES ,HIGH ,+91-984246417,ok
+DON-0024,2026-02-22,Patiala,Punjab,Farm,Fruits,84.3,79.7,57.0,Cold,4.2,6.4,FB-02,1500,1406,428.0,N,med,+91-985345760,urgent pickup
+DON-0288,2026-03-06,Delhi,Delhi,Supermarket,Bread/Bakery,61.2,36.9,,No Storage,33.3,15.2,FB-02,800,653,424.0,no ,med,+91-983873798,urgent pickup
+DON-0302,2026-03-06,Bathinda,Punjab,Restaurant,cooked meals ,105.2,68.4,9.0,No Storage,32.5,9.4,FB-05,500,474,371.0,N,High,+91-988249433,festival surplus
+DON-0281,2026-01-31,Jalandhar,Punjab,Farm,RICE,100.9,60.1,52.0,Room,26.5,3.1,FB-02,1000,420,326.0,Yes,MEDIUM ,+91-988334291,ok
+DON-0245,2026-01-25,LUDHIANA ,Punjab,Restaurant,Bread/Bakery,133.3,127.0,8.0,Room,25.8,28.7,FB-04,800,426,269.0,no ,med,+91-981254043,festival surplus
+DON-0291,2026-02-08,AMRITSAR,Punjab,Wedding Hall,Cooked Meals,167.6,102.4,8.0,Cold,2.6,23.9,FB-02,800,92,118.0,Y,med,+91-983429488,urgent pickup
+DON-0330,2026-01-25,Bathinda,Punjab,Supermarket,Dairy,80.4,46.7,30.0,Cold,4.6,3.9,FB-02,1000,836,449.0,NO,MEDIUM ,+91-986306175,festival surplus
+DON-0138,2026-02-27,Bathinda,Punjab,Gurudwara Langar,cooked meals ,84.7,68.6,9.0,Cold,3.0,6.4,FB-04,500,322,384.0,YES ,High,+91-989935827,ok
+DON-0189,2026-01-06,Bathinda,Punjab,Farm,Vegetables,47.5,28.4,18.0,Cold,6.5,17.7,FB-02,500,335,277.0,Y,MEDIUM ,+91-984600952,urgent pickup
+DON-0166,2026-01-26,Patiala,Punjab,Supermarket,Dairy,69.4,67.1,30.0,Room,22.0,26.2,FB-01,1000,818,174.0,YES ,med,+91-988199107,ok
+DON-0297,2026-02-27,Bathinda,Punjab,Gurudwara Langar,vegetables,78.9,55.3,32.0,Cold,5.6,15.0,FB-02,1500,743,257.0,Yes,Medium,+91-986766392,urgent pickup
+DON-0010,2026-01-12,amritsar ,Punjab,Gurudwara Langar,Wheat Flour,111.0,98.3,130.0,Room,27.5,6.2,FB-05,500,124,229.0,,Medium,+91-987730886,festival surplus
+DON-0197,2026-02-26,Jaipur,Rajasthan,Household,Dairy,63.9,53.3,38.0,Cold,2.8,13.2,FB-05,800,352,119.0,yes,med,+91-988729578,urgent pickup
+DON-0232,2026-01-08,Delhi,Delhi,Restaurant,Dairy,116.0,97.1,10.0,Room,27.3,17.0,FB-03,500,289,122.0,YES ,HIGH ,+91-983812753,ok
+DON-0320,2026-01-12,LUDHIANA ,Punjab,Restaurant,Rice,62.4,39.7,33.0,Cold,2.0,17.0,FB-05,1500,1396,167.0,Y,med,+91-982940483,festival surplus
+DON-0182,2026-01-10,Bathinda,Punjab,Farm,Bread/Bakery,105.1,75.6,19.0,Cold,2.3,10.1,FB-04,500,228,75.0,Y,Medium,+91-982569720,
+DON-0266,2026-01-09,Jaipur,Rajasthan,Restaurant,Bread/Bakery,132.8,120.6,17.0,No Storage,33.0,9.3,FB-03,1000,873,455.0,Yes,High,+91-982764688,urgent pickup
+DON-0085,2026-01-26,amritsar ,Punjab,Restaurant,vegetables,81.1,48.8,38.0,Room,27.6,12.5,FB-05,800,652,264.0,NO,med,+91-982265898,ok
+DON-0175,2026-01-26,chandigarh ,Chandigarh UT,Supermarket,Dairy,92.0,,10.0,Cold,2.7,4.9,FB-01,500,295,204.0,No,High,+91-984383973,festival surplus
+DON-0548,2026-01-12,Jalandhar,Punjab,Hostel Mess,Dairy,77.4,71.1,22.0,Room,27.7,9.5,FB-05,800,237,322.0,Yes,HIGH ,+91-982861591,urgent pickup
+DON-0219,2026-02-27,amritsar ,Punjab,Wedding Hall,COOKED MEALS,122.5,115.7,7.0,Room,27.4,13.1,FB-03,1000,792,148.0,NO,high,+91-983029341,urgent pickup
+DON-0317,2026-01-21,Patiala,Punjab,Household,Dairy,91.0,65.3,,Cold,2.9,23.4,FB-03,1000,453,344.0,yes,med,+91-981174588,festival surplus
+DON-0491,2026-01-31,Delhi,Delhi,Hostel Mess,Bread/Bakery,88.7,55.7,23.0,Room,22.2,21.6,FB-02,1500,900,337.0,No,Medium,+91-985926423,ok
+DON-0391,2026-02-09,Delhi,Delhi,Gurudwara Langar,Dairy,99.6,77.2,27.0,Room,21.7,13.6,FB-04,500,65,277.0,N,Medium,+91-988342451,ok
+DON-0214,2026-01-11,CHANDIGARH,Chandigarh UT,Gurudwara Langar,Wheat Flour,60.6,39.5,116.0,No Storage,32.5,19.2,FB-05,1000,169,409.0,Yes,MEDIUM ,+91-987192357,festival surplus
+DON-0154,2026-02-26,AMRITSAR,Punjab,Farm,Rice,142.4,127.1,62.0,Cold,2.4,18.9,FB-05,1500,393,132.0,Y,med,+91-986735630,
+DON-0076,2026-03-05,Amritsar,Punjab,Farm,VEGETABLES ,119.7,81.4,46.0,Cold,2.9,20.5,FB-04,800,384,277.0,Y,Medium,+91-982794291,urgent pickup
+DON-0093,2026-02-06,Jaipur,Rajasthan,Farm,Bread/Bakery,128.3,116.2,20.0,Room,22.5,5.9,FB-04,500,127,128.0,NO,med,+91-981206487,ok
+DON-0431,2026-02-15,LUDHIANA ,Punjab,Supermarket,Wheat Flour,129.1,118.4,127.0,No Storage,28.6,14.2,FB-05,1500,934,79.0,YES ,MEDIUM ,+91-988436391,ok
+DON-0069,2026-02-20,Bathinda,Punjab,Hostel Mess,Rice,178.2,100.0,47.0,Room,28.1,28.6,FB-02,1500,1368,301.0,Yes,MEDIUM ,+91-985156532,
+DON-0016,2026-01-14,Bathinda,Punjab,Farm,Fruits,104.5,76.3,71.0,Cold,5.9,21.2,FB-02,800,414,112.0,YES ,LOW,+91-984693305,festival surplus
+DON-0193,2026-01-24,Jalandhar,Punjab,Supermarket,Rice,25.9,24.2,29.0,Room,24.6,16.2,FB-01,1000,727,375.0,YES ,med,+91-988583491,festival surplus
+DON-0376,2026-02-21,chandigarh ,Chandigarh UT,Restaurant,Vegetables,164.0,151.9,46.0,Room,24.7,17.7,FB-03,1500,1146,111.0,Yes,MEDIUM ,+91-981556831,
+DON-0089,2026-01-28,Bathinda,Punjab,Restaurant,Bread/Bakery,63.1,48.5,15.0,Cold,4.5,46.7,FB-04,1500,560,193.0,Yes,MEDIUM ,+91-987444345,urgent pickup
+DON-0519,2026-02-16,Bathinda,Punjab,Restaurant,VEGETABLES ,50.7,37.4,44.0,Cold,5.2,16.6,FB-02,800,724,155.0,Yes,med,+91-987798161,festival surplus
+DON-0118,2026-02-22,Bathinda,Punjab,Supermarket,Cooked Meals,17.8,14.6,8.0,Cold,2.3,18.9,FB-04,500,439,159.0,no ,med,+91-986070414,ok
+DON-0410,2026-01-16,Jaipur,Rajasthan,Gurudwara Langar,Rice,68.5,62.7,88.0,Room,19.0,10.5,FB-02,1000,551,137.0,yes,Medium,+91-989757529,urgent pickup
+DON-0435,2026-01-25,Patiala,Punjab,Gurudwara Langar,Dairy,108.9,81.3,34.0,Cold,2.8,16.2,FB-03,1500,1245,254.0,YES ,MEDIUM ,+91-981824026,ok
+DON-0034,2026-02-24,Jaipur,Rajasthan,Farm,Fruits,67.6,60.3,40.0,Cold,3.4,2.7,FB-01,800,635,274.0,YES ,MEDIUM ,+91-983562469,ok
+DON-0001,2026-03-05,Delhi,Delhi,Hostel Mess,Bread/Bakery,116.8,72.1,26.0,Cold,4.4,10.0,FB-04,800,436,85.0,Y,MEDIUM ,+91-984275709,festival surplus
+DON-0119,2026-01-17,Delhi,Delhi,Gurudwara Langar,Fruits,165.3,,43.0,No Storage,34.5,11.7,FB-03,800,293,152.0,No,med,+91-983188370,ok
+DON-0554,2026-01-26,Delhi,Delhi,Farm,Fruits,158.2,128.5,45.0,Room,24.2,41.2,FB-04,500,266,92.0,Yes,Medium,+91-987344661,ok
+DON-0370,2026-02-25,Jaipur,Rajasthan,Hostel Mess,Rice,86.4,64.2,0.0,Room,21.7,30.9,FB-02,1500,1289,404.0,Y,Medium,+91-989584036,
+DON-0356,2026-02-09,Jaipur,Rajasthan,Household,Bread/Bakery,159.8,122.2,,Cold,4.6,32.8,FB-03,1000,604,251.0,Y,med,+91-982410124,ok
+DON-0454,2026-01-29,amritsar ,Punjab,Household,Fruits,57.5,52.4,17.0,Cold,3.7,20.3,FB-05,800,307,158.0,YES ,Medium,+91-982743579,urgent pickup
+DON-0552,2026-01-13,ludhiana,Punjab,Restaurant,Bread/Bakery,104.6,87.0,17.0,Cold,5.2,14.3,FB-02,1500,722,328.0,YES ,high,+91-984320938,ok
+DON-0023,2026-01-21,Bathinda,Punjab,Wedding Hall,Wheat Flour,97.7,55.6,116.0,Room,22.5,2.9,FB-04,500,464,174.0,Y,Medium,+91-985010912,ok
+DON-0473,2026-02-06,Chandigarh,Chandigarh UT,Restaurant,VEGETABLES ,26.0,19.3,28.0,Room,24.8,11.0,FB-01,800,372,83.0,NO,LOW,+91-989969028,urgent pickup
+DON-0117,2026-02-03,Jalandhar,Punjab,Hostel Mess,Rice,35.5,27.2,86.0,Cold,5.4,7.2,FB-03,800,298,153.0,Yes,MEDIUM ,+91-989291860,festival surplus
+DON-0090,2026-01-13,Bathinda,Punjab,Hostel Mess,Wheat Flour,52.0,38.3,113.0,Cold,4.7,19.1,FB-04,1500,1151,204.0,YES ,med,+91-985698713,
+DON-0183,2026-02-09,Jalandhar,Punjab,Gurudwara Langar,RICE,151.4,109.2,72.0,Cold,4.7,12.0,FB-04,1500,673,332.0,YES ,High,+91-984861460,
+DON-0496,2026-01-29,Bathinda,Punjab,Household,Fruits,60.2,36.2,35.0,No Storage,33.5,6.2,FB-04,500,238,72.0,yes,MEDIUM ,+91-986851605,urgent pickup
+DON-0412,2026-01-09,CHANDIGARH,Chandigarh UT,Hostel Mess,Fruits,57.8,40.9,43.0,No Storage,27.2,4.2,FB-02,1000,757,284.0,YES ,MEDIUM ,+91-985463593,festival surplus
+DON-0019,2026-02-25,Delhi,Delhi,Farm,Bread/Bakery,64.3,59.1,26.0,Room,28.9,20.2,FB-04,500,434,196.0,Yes,med,+91-984599865,festival surplus
+DON-0429,2026-02-20,Amritsar,Punjab,Gurudwara Langar,Vegetables,58.4,44.5,22.0,Room,25.9,8.4,FB-03,1000,251,222.0,yes,med,+91-981684143,ok
+DON-0536,2026-01-31,Amritsar,Punjab,Restaurant,Dairy,103.2,96.1,27.0,Room,22.0,14.0,FB-05,1500,697,,YES ,Medium,+91-984291508,ok
+DON-0145,2026-01-29,chandigarh ,Chandigarh UT,Farm,Cooked Meals,34.3,20.5,11.0,No Storage,33.8,12.2,FB-01,1500,1328,410.0,YES ,High,+91-987086932,ok
+DON-0303,2026-03-10,Amritsar,Punjab,Gurudwara Langar,Dairy,74.1,42.7,30.0,No Storage,32.8,17.4,FB-01,1000,304,231.0,No,Low,+91-988020480,
+DON-0566,2026-03-06,Patiala,Punjab,Gurudwara Langar,Wheat Flour,37.6,35.4,156.0,Cold,4.9,8.3,FB-02,1000,398,387.0,YES ,MEDIUM ,+91-983114564,festival surplus
+DON-0558,2026-01-16,Patiala,Punjab,Gurudwara Langar,Dairy,76.4,59.0,26.0,Cold,6.6,9.5,FB-01,800,237,287.0,Y,Medium,+91-985779577,ok
+DON-0426,2026-01-15,Chandigarh,Chandigarh UT,Gurudwara Langar,Dairy,83.1,54.6,23.0,Cold,2.9,10.1,FB-04,1000,756,77.0,NO,MEDIUM ,+91-981677551,ok
+DON-0273,2026-02-08,chandigarh ,Chandigarh UT,Supermarket,RICE,159.9,131.4,48.0,Room,25.7,30.0,FB-04,800,660,199.0,No,med,+91-988074533,festival surplus
+DON-0262,2026-03-10,Amritsar,Punjab,Restaurant,Dairy,137.0,79.9,18.0,Room,21.5,23.1,FB-02,800,529,302.0,No,MEDIUM ,+91-988138512,festival surplus
+DON-0363,2026-03-01,chandigarh ,Chandigarh UT,Supermarket,Wheat Flour,69.8,40.4,167.0,Room,24.9,24.8,FB-03,1000,214,128.0,Yes,MEDIUM ,+91-983097951,
+DON-0430,2026-02-28,Jalandhar,Punjab,Supermarket,cooked meals ,156.2,125.6,6.0,Room,21.9,24.0,FB-03,1000,739,275.0,Yes,high,+91-981502939,ok
+DON-0168,2026-02-25,chandigarh ,Chandigarh UT,Supermarket,Cooked Meals,103.8,88.7,8.0,Room,27.3,10.8,FB-01,1500,800,163.0,Y,High,+91-982308014,ok
+DON-0055,2026-03-03,Patiala,Punjab,Restaurant,VEGETABLES ,166.5,113.1,32.0,Room,28.6,9.8,FB-05,1000,798,276.0,no ,Medium,+91-985421590,urgent pickup
+DON-0442,2026-02-12,Bathinda,Punjab,Supermarket,Dairy,66.5,47.3,34.0,Room,22.8,13.4,FB-05,800,109,396.0,Y,MEDIUM ,+91-983123120,ok
+DON-0047,2026-01-28,Amritsar,Punjab,Household,Bread/Bakery,93.1,73.5,15.0,Room,23.9,19.5,FB-03,1000,776,425.0,Yes,Medium,+91-989948331,
+DON-0094,2026-02-11,Bathinda,Punjab,Hostel Mess,rice ,158.3,128.8,76.0,Cold,3.6,7.8,FB-02,800,666,475.0,N,Medium,+91-988370683,festival surplus
+DON-0305,2026-03-08,amritsar ,Punjab,Restaurant,Dairy,35.6,23.7,31.0,No Storage,27.5,8.3,FB-02,500,385,51.0,YES ,Low,+91-982350093,
+DON-0109,2026-02-21,Bathinda,Punjab,Restaurant,COOKED MEALS,130.0,97.6,10.0,Room,25.2,16.1,FB-03,1000,828,374.0,YES ,High,+91-983538143,urgent pickup
+DON-0293,2026-02-08,CHANDIGARH,Chandigarh UT,Supermarket,Cooked Meals,91.7,,6.0,Cold,3.9,4.5,FB-01,1500,1122,236.0,Yes,High,+91-984033932,
+DON-0196,2026-02-18,Bathinda,Punjab,Restaurant,cooked meals ,115.8,79.0,8.0,Room,25.7,4.0,FB-01,800,397,229.0,Y,High,+91-989009806,urgent pickup
+DON-0213,2026-01-30,chandigarh ,Chandigarh UT,Restaurant,RICE,63.3,56.8,63.0,No Storage,32.2,17.8,FB-05,800,305,148.0,Y,med,+91-986942654,festival surplus
+DON-0514,2026-01-12,Jaipur,Rajasthan,Farm,Rice,63.7,54.7,75.0,No Storage,34.6,14.2,FB-03,1000,869,245.0,yes,med,+91-987920343,
+DON-0468,2026-02-24,Chandigarh,Chandigarh UT,Supermarket,VEGETABLES ,44.5,41.7,31.0,No Storage,20.5,9.7,FB-01,1500,665,373.0,Yes,Medium,+91-985010673,festival surplus
+DON-0371,2026-01-19,Bathinda,Punjab,Hostel Mess,Bread/Bakery,88.7,62.3,11.0,Cold,5.1,20.3,FB-04,1000,932,182.0,Y,MEDIUM ,+91-984014130,
+DON-0408,2026-01-30,Bathinda,Punjab,Hostel Mess,Dairy,138.5,81.1,22.0,Room,25.1,6.4,FB-05,1000,616,228.0,Yes,high,+91-988017191,urgent pickup
+DON-0008,2026-01-24,Bathinda,Punjab,Supermarket,Dairy,89.2,74.8,18.0,Room,29.2,19.2,FB-01,500,186,589.0,YES ,med,+91-988473915,festival surplus
+DON-0413,2026-01-11,CHANDIGARH,Chandigarh UT,Gurudwara Langar,Bread/Bakery,155.9,,24.0,No Storage,35.8,2.8,FB-01,800,134,470.0,NO,high,+91-987157703,
+DON-0424,2026-01-23,chandigarh ,Chandigarh UT,Hostel Mess,Dairy,192.2,269.08,24.0,No Storage,31.7,3.2,FB-05,1500,268,346.0,No,HIGH ,+91-987216618,
+DON-0285,2026-02-16,AMRITSAR,Punjab,Wedding Hall,Wheat Flour,56.4,47.2,,Cold,4.0,13.2,FB-03,500,326,158.0,Yes,Medium,+91-981944353,urgent pickup
+DON-0276,2026-03-05,Delhi,Delhi,Restaurant,COOKED MEALS,113.5,100.1,7.0,Room,26.6,9.8,FB-01,500,454,634.0,yes,High,+91-987955038,festival surplus
+DON-0582,2026-01-30,Bathinda,Punjab,Wedding Hall,rice ,178.7,153.8,78.0,No Storage,36.7,7.7,FB-05,800,314,120.0,YES ,Medium,+91-981316575,
+DON-0070,2026-01-11,Delhi,Delhi,Gurudwara Langar,Wheat Flour,50.0,31.7,102.0,Cold,4.7,15.6,FB-02,1500,1064,268.0,Y,Medium,+91-987143326,
+DON-0265,2026-01-22,Jalandhar,Punjab,Gurudwara Langar,Dairy,43.1,34.4,41.0,Cold,8.0,20.6,FB-04,1500,451,292.0,yes,Medium,+91-986768212,
+DON-0433,2026-02-02,Patiala,Punjab,Supermarket,Wheat Flour,99.9,67.6,55.0,Cold,4.8,5.3,FB-01,800,536,249.0,yes,med,+91-989762927,ok
+DON-0299,2026-03-04,ludhiana,Punjab,Restaurant,RICE,215.7,148.3,41.0,Cold,6.6,16.6,FB-04,1500,220,,Yes,med,+91-986523632,
+DON-0250,2026-01-24,Delhi,Delhi,Wedding Hall,Bread/Bakery,56.4,45.1,16.0,Room,22.1,54.2,FB-04,1500,715,265.0,Yes,med,+91-984762853,festival surplus
+DON-0573,2026-03-01,Jaipur,Rajasthan,Restaurant,vegetables,58.7,57.5,24.0,No Storage,33.6,10.7,FB-02,800,276,173.0,N,Medium,+91-982923413,festival surplus
+DON-0275,2026-01-22,CHANDIGARH,Chandigarh UT,Hostel Mess,Dairy,61.9,39.5,22.0,Cold,5.0,11.7,FB-02,800,584,376.0,Yes,High,+91-987604168,urgent pickup
+DON-0150,2026-02-24,Bathinda,Punjab,Gurudwara Langar,rice ,100.4,90.7,109.0,No Storage,29.0,29.3,FB-02,500,425,150.0,N,MEDIUM ,+91-982493551,urgent pickup
+DON-0125,2026-02-26,Ludhiana,Punjab,Farm,Fruits,161.3,121.6,48.0,No Storage,27.4,9.1,FB-02,500,382,168.0,Yes,med,+91-981734275,festival surplus
+DON-0470,2026-01-27,Jalandhar,Punjab,Gurudwara Langar,Wheat Flour,119.8,109.7,176.0,Room,27.5,20.1,FB-05,800,421,266.0,Y,MEDIUM ,+91-988290985,festival surplus
+DON-0531,2026-02-28,Ludhiana,Punjab,Household,Rice,170.5,,78.0,Cold,3.9,4.8,FB-04,800,668,492.0,YES ,High,+91-985930952,festival surplus
+DON-0186,2026-01-20,Chandigarh,Chandigarh UT,Supermarket,Dairy,50.5,49.3,30.0,Cold,4.9,15.7,FB-05,1500,939,96.0,yes,Low,+91-982417231,urgent pickup
+DON-0334,2026-02-16,Jalandhar,Punjab,Gurudwara Langar,Rice,-105.2,62.7,82.0,Cold,4.0,17.6,FB-02,800,253,247.0,yes,Medium,+91-987432975,ok
+DON-0313,2026-03-07,LUDHIANA ,Punjab,Household,Fruits,132.7,115.6,48.0,Room,23.7,13.3,FB-01,1000,611,343.0,NO,med,+91-986162425,urgent pickup
+DON-0478,2026-01-27,Bathinda,Punjab,Household,Vegetables,129.9,85.2,50.0,Room,22.0,35.9,FB-04,500,117,122.0,No,med,+91-987162043,urgent pickup
+DON-0311,2026-01-20,Delhi,Delhi,Restaurant,Wheat Flour,36.2,27.1,192.0,No Storage,28.7,22.1,FB-01,800,140,299.0,Y,low ,+91-981524658,ok
+DON-0350,2026-02-05,Patiala,Punjab,Hostel Mess,Wheat Flour,95.8,,86.0,Room,21.5,16.0,FB-03,500,98,230.0,no ,med,+91-986842488,urgent pickup
+DON-0032,2026-01-07,Patiala,Punjab,Household,Vegetables,179.9,154.5,35.0,Room,24.7,19.8,FB-04,1000,701,206.0,NO,med,+91-985476576,urgent pickup
+DON-0587,2026-02-08,Delhi,Delhi,Restaurant,Wheat Flour,103.6,82.4,122.0,Room,27.2,7.7,FB-04,500,97,234.0,NO,Medium,+91-982100100,ok
+DON-0507,2026-03-10,Amritsar,Punjab,Restaurant,Rice,43.2,,83.0,No Storage,30.8,18.6,FB-04,1500,241,216.0,yes,Medium,+91-985725326,ok
+DON-0569,2026-01-25,Jalandhar,Punjab,Gurudwara Langar,vegetables,86.0,50.2,23.0,No Storage,28.2,14.6,FB-01,1000,838,305.0,yes,HIGH ,+91-982913894,urgent pickup
+DON-0487,2026-01-10,chandigarh ,Chandigarh UT,Supermarket,RICE,120.4,116.8,66.0,No Storage,30.3,13.7,FB-01,1500,825,174.0,N,MEDIUM ,+91-983552387,festival surplus
+DON-0142,2026-02-16,Jaipur,Rajasthan,Wedding Hall,Dairy,59.7,56.3,22.0,Room,20.2,28.6,FB-02,800,565,273.0,yes,med,+91-987296495,urgent pickup
+DON-0020,2026-01-12,Jaipur,Rajasthan,Supermarket,Wheat Flour,140.7,134.6,197.0,Room,26.2,14.5,FB-05,1500,242,300.0,YES ,med,+91-987243669,
+DON-0173,2026-01-27,AMRITSAR,Punjab,Hostel Mess,Fruits,54.1,42.1,47.0,Cold,1.2,22.7,FB-04,1000,891,242.0,Yes,med,+91-983023615,festival surplus
+DON-0484,2026-03-07,Delhi,Delhi,Hostel Mess,Cooked Meals,131.1,97.0,7.0,Room,30.0,16.5,FB-04,1000,207,517.0,No,high,+91-983981899,festival surplus
+DON-0483,2026-03-08,Bathinda,Punjab,Gurudwara Langar,Rice,166.4,128.0,88.0,Room,22.4,19.9,FB-01,1000,152,331.0,,med,+91-981280759,festival surplus
+DON-0026,2026-02-11,Amritsar,Punjab,Wedding Hall,Rice,60.7,47.0,65.0,Room,25.2,33.9,FB-01,500,106,449.0,Y,Medium,+91-981317537,urgent pickup
+DON-0447,2026-03-03,Ludhiana,Punjab,Farm,vegetables,97.8,86.6,54.0,Cold,5.3,10.3,FB-01,800,319,109.0,yes,med,+91-982053580,urgent pickup
+DON-0590,2026-01-27,Jalandhar,Punjab,Wedding Hall,Wheat Flour,73.8,64.2,64.0,Room,21.6,12.4,FB-04,500,265,226.0,YES ,med,+91-981531088,urgent pickup
+DON-0285,2026-02-16,amritsar ,Punjab,Wedding Hall,Wheat Flour,56.4,,149.0,Cold,4.0,13.2,FB-03,500,326,158.0,Yes,MEDIUM ,+91-981944353,urgent pickup
+DON-0319,2026-02-07,LUDHIANA ,Punjab,Gurudwara Langar,Dairy,70.9,47.1,18.0,Cold,5.0,7.3,FB-05,500,432,187.0,YES ,Medium,+91-988322933,festival surplus
+DON-0246,2026-02-25,Jaipur,Rajasthan,Household,Bread/Bakery,91.6,60.7,14.0,Room,24.6,22.1,FB-02,500,216,486.0,Y,med,+91-989940203,ok
+DON-0339,2026-02-05,Jaipur,Rajasthan,Household,Dairy,70.7,42.5,29.0,Cold,3.4,19.1,FB-05,800,240,173.0,YES ,Medium,+91-984801082,ok
+DON-0155,2026-03-04,Jaipur,Rajasthan,Wedding Hall,Dairy,119.3,105.3,19.0,Cold,4.7,23.0,FB-04,1500,1244,207.0,yes,Medium,+91-985603623,festival surplus
+DON-0127,2026-01-30,CHANDIGARH,Chandigarh UT,Wedding Hall,Dairy,147.7,108.7,13.0,Cold,3.6,14.2,FB-01,800,483,270.0,yes,HIGH ,+91-986440107,festival surplus
+DON-0368,2026-02-08,Patiala,Punjab,Hostel Mess,VEGETABLES ,86.0,83.6,31.0,Room,25.2,15.4,FB-05,500,370,78.0,,med,+91-984430460,urgent pickup
+DON-0114,2026-02-24,Delhi,Delhi,Hostel Mess,Fruits,102.4,,71.0,Room,27.0,-11.2,FB-02,1500,514,311.0,Yes,HIGH ,+91-982162189,festival surplus
+DON-0174,2026-03-08,Jaipur,Rajasthan,Gurudwara Langar,Cooked Meals,124.8,72.7,6.0,Room,22.5,12.1,FB-04,1000,659,137.0,yes,High,+91-984503548,ok
+DON-0058,2026-02-19,Amritsar,Punjab,Restaurant,Dairy,41.1,28.1,28.0,Room,17.7,21.1,FB-01,1500,1144,227.0,Yes,MEDIUM ,+91-989033951,festival surplus
+DON-0345,2026-01-23,LUDHIANA ,Punjab,Farm,Dairy,91.5,83.5,19.0,No Storage,29.6,37.1,FB-05,1000,347,181.0,NO,MEDIUM ,+91-981872109,ok
+DON-0223,2026-02-09,ludhiana,Punjab,Gurudwara Langar,Fruits,227.7,189.3,500.0,Cold,2.6,9.4,FB-05,1000,321,172.0,No,Medium,+91-986857846,
+DON-0018,2026-02-09,Jalandhar,Punjab,Gurudwara Langar,Rice,128.3,115.5,61.0,Cold,4.5,16.5,FB-05,500,169,,N,MEDIUM ,+91-984970001,ok
+DON-0321,2026-03-03,Patiala,Punjab,Farm,Bread/Bakery,66.7,61.5,19.0,No Storage,32.5,5.1,FB-02,800,524,150.0,Yes,MEDIUM ,+91-983916596,urgent pickup
+DON-0256,2026-01-06,Patiala,Punjab,Restaurant,VEGETABLES ,89.0,59.1,29.0,No Storage,22.4,13.8,FB-03,1500,1423,199.0,Y,MEDIUM ,+91-984631453,ok
+DON-0328,2026-02-17,Delhi,Delhi,Gurudwara Langar,Fruits,101.1,79.8,29.0,Room,22.8,-1.6,FB-05,1500,818,229.0,YES ,med,+91-985325001,festival surplus
+DON-0592,2026-01-22,Jalandhar,Punjab,Supermarket,Bread/Bakery,97.8,60.3,25.0,Room,34.4,24.4,FB-03,1000,388,84.0,yes,med,+91-989248892,
+DON-0191,2026-01-31,Jalandhar,Punjab,Restaurant,Fruits,71.1,58.5,44.0,Room,28.5,3.3,FB-04,500,403,321.0,yes,med,+91-982596246,
+DON-0342,2026-01-27,chandigarh ,Chandigarh UT,Restaurant,rice ,100.0,67.2,97.0,No Storage,28.4,15.6,FB-04,500,76,126.0,YES ,Medium,+91-982245749,urgent pickup
+DON-0544,2026-02-21,Jaipur,Rajasthan,Hostel Mess,Fruits,77.4,50.7,51.0,No Storage,32.0,20.4,FB-05,500,408,182.0,Y,Medium,+91-989622654,
+DON-0292,2026-03-10,Chandigarh,Chandigarh UT,Farm,Fruits,43.8,39.3,28.0,Room,25.9,7.4,FB-05,500,295,205.0,Y,Medium,+91-981209720,festival surplus
+DON-0095,2026-01-30,ludhiana,Punjab,Household,Wheat Flour,79.3,50.5,94.0,Cold,3.2,16.6,FB-04,800,242,202.0,NO,low ,+91-988440449,ok
+DON-0181,2026-02-03,Jalandhar,Punjab,Household,VEGETABLES ,144.5,118.0,52.0,No Storage,24.5,4.0,FB-02,1000,854,165.0,yes,Medium,+91-981297883,urgent pickup
+DON-0396,2026-02-18,Ludhiana,Punjab,Farm,cooked meals ,114.6,76.3,8.0,Cold,4.4,16.9,FB-03,1000,223,291.0,Y,MEDIUM ,+91-989726458,ok
+DON-0355,2026-02-02,Delhi,Delhi,Wedding Hall,Bread/Bakery,100.8,77.1,10.0,Room,27.3,26.0,FB-03,800,431,159.0,N,med,+91-986473024,festival surplus
+DON-0551,2026-01-15,Jalandhar,Punjab,Supermarket,Rice,76.1,,34.0,Cold,3.6,12.0,FB-03,500,225,144.0,yes,Medium,+91-988736334,
+DON-0335,2026-02-02,Bathinda,Punjab,Wedding Hall,Rice,141.0,98.1,122.0,No Storage,37.6,14.6,FB-03,1000,833,131.0,No,Medium,+91-982193728,festival surplus
+DON-0006,2026-02-10,chandigarh ,Chandigarh UT,Supermarket,vegetables,73.5,68.6,50.0,No Storage,28.7,10.9,FB-01,1000,105,101.0,yes,Medium,+91-985422880,festival surplus
+DON-0046,2026-01-16,amritsar ,Punjab,Wedding Hall,rice ,54.5,31.8,,No Storage,37.8,20.3,FB-05,800,513,413.0,NO,MEDIUM ,+91-988597626,urgent pickup
+DON-0575,2026-03-07,Jalandhar,Punjab,Gurudwara Langar,Bread/Bakery,80.1,73.0,8.0,Room,23.3,20.7,FB-01,500,399,255.0,Yes,med,+91-984927526,
+DON-0417,2026-01-17,Bathinda,Punjab,Farm,VEGETABLES ,60.3,57.2,28.0,No Storage,29.3,7.1,FB-05,1500,1137,373.0,yes,HIGH ,+91-983916971,festival surplus
+DON-0526,2026-01-09,Patiala,Punjab,Wedding Hall,Fruits,120.6,71.5,28.0,Room,24.9,14.1,FB-02,1500,1284,423.0,Yes,HIGH ,+91-986329953,festival surplus
+DON-0017,2026-02-02,LUDHIANA ,Punjab,Supermarket,Fruits,85.0,69.3,52.0,No Storage,37.2,15.8,FB-04,1000,797,200.0,Yes,Medium,+91-983976242,urgent pickup
+DON-0049,2026-01-19,Jaipur,Rajasthan,Household,Wheat Flour,70.4,57.7,170.0,No Storage,26.5,21.4,FB-02,1500,1062,93.0,Y,Low,+91-987503216,ok
+DON-0598,2026-01-05,Jaipur,Rajasthan,Gurudwara Langar,Fruits,62.4,35.7,55.0,Cold,3.9,11.7,FB-04,1500,1142,407.0,N,med,+91-987454935,urgent pickup
+DON-0564,2026-02-06,Chandigarh,Chandigarh UT,Farm,Vegetables,150.6,109.4,37.0,Room,24.2,12.9,FB-02,500,100,252.0,Y,med,+91-984208136,festival surplus
+DON-0004,2026-02-20,Amritsar,Punjab,Restaurant,COOKED MEALS,92.4,58.7,10.0,Room,24.4,4.9,FB-05,1000,602,382.0,Y,HIGH ,+91-986401218,ok
+DON-0350,2026-02-05,Patiala,Punjab,Hostel Mess,Wheat Flour,95.8,87.9,86.0,Room,21.5,16.0,FB-03,500,98,230.0,No,med,+91-986842488,urgent pickup
+DON-0556,2026-01-25,AMRITSAR,Punjab,Farm,Bread/Bakery,52.5,30.1,14.0,Cold,1.6,28.0,FB-02,1000,729,188.0,N,MEDIUM ,+91-987378001,
+DON-0470,2026-01-27,Jalandhar,Punjab,Gurudwara Langar,Wheat Flour,119.8,109.7,176.0,Room,27.5,20.1,FB-05,800,421,266.0,Y,med,+91-988290985,festival surplus
+DON-0389,2026-01-18,Jalandhar,Punjab,Wedding Hall,Fruits,62.8,50.4,,Cold,3.5,12.9,FB-03,500,72,88.0,Y,MEDIUM ,+91-985872367,urgent pickup
+DON-0465,2026-02-25,CHANDIGARH,Chandigarh UT,Gurudwara Langar,Bread/Bakery,204.0,144.8,19.0,Room,29.8,9.2,FB-02,1500,1401,176.0,Yes,high,+91-981787560,festival surplus
+DON-0395,2026-01-25,Jaipur,Rajasthan,Restaurant,Bread/Bakery,55.8,40.8,0.0,No Storage,28.2,12.1,FB-05,1000,271,221.0,YES ,MEDIUM ,+91-988859498,ok
+DON-0226,2026-03-07,Ludhiana,Punjab,Gurudwara Langar,Rice,76.9,43.1,89.0,Room,24.5,19.3,FB-05,1500,337,173.0,yes,Medium,+91-982195344,ok
+DON-0027,2026-02-16,chandigarh ,Chandigarh UT,Farm,Wheat Flour,128.0,89.6,174.0,Room,27.9,13.7,FB-05,800,502,334.0,YES ,HIGH ,+91-989007407,festival surplus
+DON-0584,2026-02-17,amritsar ,Punjab,Gurudwara Langar,rice ,95.9,66.6,53.0,Room,22.7,21.7,FB-05,800,434,255.0,YES ,med,+91-988237234,urgent pickup
+DON-0264,2026-01-05,Delhi,Delhi,Wedding Hall,Wheat Flour,88.0,83.5,165.0,Cold,3.8,11.2,FB-02,500,310,259.0,YES ,MEDIUM ,+91-982330363,
+DON-0051,2026-01-15,AMRITSAR,Punjab,Household,Dairy,110.7,85.6,32.0,Room,25.5,13.1,FB-05,1000,129,357.0,no ,Medium,+91-983339767,festival surplus
+DON-0230,2026-01-20,Chandigarh,Chandigarh UT,Hostel Mess,COOKED MEALS,91.3,60.1,10.0,Room,24.0,18.0,FB-04,1500,1078,454.0,,MEDIUM ,+91-984517778,urgent pickup
+DON-0038,2026-01-06,Jaipur,Rajasthan,Hostel Mess,Wheat Flour,118.0,70.6,122.0,Room,23.2,24.6,FB-01,1000,438,169.0,no ,LOW,+91-984678086,urgent pickup
+DON-0158,2026-02-14,Jaipur,Rajasthan,Farm,Wheat Flour,81.2,52.0,140.0,No Storage,27.6,14.9,FB-02,1000,675,300.0,YES ,med,+91-988831038,ok
+DON-0238,2026-02-13,Chandigarh,Chandigarh UT,Wedding Hall,Bread/Bakery,102.5,83.9,,Cold,2.5,16.4,FB-04,500,208,315.0,NO,MEDIUM ,+91-987214294,festival surplus
+DON-0593,2026-01-21,Bathinda,Punjab,Supermarket,Wheat Flour,112.1,156.93999999999997,174.0,Room,24.2,14.6,FB-04,1500,821,159.0,No,med,+91-989367137,urgent pickup
+DON-0176,2026-03-03,Bathinda,Punjab,Hostel Mess,Dairy,68.3,,31.0,Room,24.8,5.8,FB-05,1000,764,144.0,Yes,MEDIUM ,+91-982171248,festival surplus
+DON-0520,2026-01-31,Bathinda,Punjab,Restaurant,COOKED MEALS,33.7,23.0,3.0,Cold,2.4,16.1,FB-05,1000,191,216.0,YES ,MEDIUM ,+91-984200034,ok
+DON-0437,2026-02-12,amritsar ,Punjab,Gurudwara Langar,rice ,58.1,39.2,,No Storage,20.9,12.8,FB-03,800,395,189.0,YES ,med,+91-985463588,festival surplus
+DON-0195,2026-01-16,Delhi,Delhi,Gurudwara Langar,rice ,63.0,59.9,34.0,Room,30.1,6.7,FB-03,1000,496,245.0,Y,med,+91-981732722,ok
+DON-0522,2026-02-04,ludhiana,Punjab,Hostel Mess,VEGETABLES ,99.2,91.7,40.0,No Storage,28.8,11.5,FB-03,1000,779,368.0,Y,HIGH ,+91-985932206,
+DON-0384,2026-01-21,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,70.0,59.9,12.0,Cold,5.8,14.9,FB-05,800,166,71.0,Y,Medium,+91-988223153,ok
+DON-0597,2026-01-26,CHANDIGARH,Chandigarh UT,Hostel Mess,Fruits,128.6,95.3,55.0,Room,26.2,7.7,FB-03,800,504,275.0,YES ,Medium,+91-985127196,urgent pickup
+DON-0528,2026-02-25,Delhi,Delhi,Farm,Dairy,84.6,48.7,36.0,Cold,3.1,22.9,FB-04,1000,573,175.0,yes,MEDIUM ,+91-988851347,ok
+DON-0068,2026-02-19,LUDHIANA ,Punjab,Wedding Hall,Cooked Meals,123.6,83.8,7.0,Room,20.6,38.2,FB-05,500,303,63.0,Yes,Medium,+91-982912584,festival surplus
+DON-0415,2026-02-15,chandigarh ,Chandigarh UT,Gurudwara Langar,COOKED MEALS,147.0,91.1,8.0,No Storage,27.9,19.1,FB-03,1000,681,421.0,Yes,High,+91-987357722,ok
+DON-0169,2026-02-23,Patiala,Punjab,Restaurant,RICE,89.1,,105.0,No Storage,36.2,36.3,FB-02,500,414,344.0,NO,Medium,+91-988058021,ok
+DON-0501,2026-01-17,Jaipur,Rajasthan,Gurudwara Langar,rice ,-56.2,55.1,53.0,No Storage,29.6,12.9,FB-04,1500,906,,Y,MEDIUM ,+91-988596477,urgent pickup
+DON-0163,2026-03-02,Delhi,Delhi,Hostel Mess,Dairy,138.9,85.6,23.0,Cold,2.7,15.9,FB-03,1500,498,129.0,yes,med,+91-982471926,urgent pickup
+DON-0310,2026-01-06,Jaipur,Rajasthan,Gurudwara Langar,COOKED MEALS,110.6,93.8,7.0,Cold,1.8,14.5,FB-04,1000,341,213.0,Yes,HIGH ,+91-984867293,
+DON-0194,2026-02-24,CHANDIGARH,Chandigarh UT,Household,Wheat Flour,50.9,34.2,136.0,Room,26.0,12.0,FB-03,800,282,353.0,no ,Medium,+91-987477006,festival surplus
+DON-0153,2026-01-15,Delhi,Delhi,Farm,Fruits,119.2,166.88,74.0,Cold,5.7,8.0,FB-05,1000,832,163.0,No,Medium,+91-982805518,
+DON-0351,2026-01-22,Patiala,Punjab,Restaurant,Wheat Flour,180.8,147.8,82.0,Room,31.9,8.5,FB-01,500,349,430.0,yes,HIGH ,+91-982750652,festival surplus
+DON-0361,2026-03-01,Amritsar,Punjab,Gurudwara Langar,Fruits,54.8,40.2,66.0,Cold,5.3,20.7,FB-03,800,231,285.0,,med,+91-982378148,festival surplus
+DON-0227,2026-01-13,Bathinda,Punjab,Farm,Dairy,79.1,68.7,31.0,Room,20.8,6.7,FB-04,800,421,100.0,Yes,MEDIUM ,+91-987630604,festival surplus
+DON-0357,2026-03-06,Bathinda,Punjab,Wedding Hall,Wheat Flour,107.9,91.6,98.0,Cold,5.7,11.7,FB-02,1500,220,164.0,Y,Medium,+91-985935500,festival surplus
+DON-0104,2026-02-11,Jalandhar,Punjab,Hostel Mess,COOKED MEALS,52.5,32.6,7.0,Cold,3.9,26.2,FB-04,1500,448,142.0,No,med,+91-983661637,urgent pickup
+DON-0420,2026-02-21,Patiala,Punjab,Household,Bread/Bakery,199.1,143.1,15.0,No Storage,30.6,14.4,FB-05,1500,814,346.0,YES ,High,+91-984458332,festival surplus
+DON-0075,2026-01-25,Bathinda,Punjab,Farm,Bread/Bakery,189.7,148.0,17.0,Room,28.9,9.9,FB-05,1500,1331,104.0,no ,med,+91-986859046,
+DON-0452,2026-02-02,Patiala,Punjab,Restaurant,Cooked Meals,78.5,71.1,9.0,No Storage,36.5,2.8,FB-05,800,666,165.0,N,med,+91-983794937,
+DON-0596,2026-01-12,Jaipur,Rajasthan,Supermarket,Wheat Flour,118.8,105.8,53.0,Room,23.8,5.0,FB-05,800,272,148.0,YES ,med,+91-988655628,
+DON-0120,2026-01-16,CHANDIGARH,Chandigarh UT,Gurudwara Langar,Vegetables,63.1,50.0,39.0,No Storage,28.3,9.5,FB-05,500,168,276.0,yes,MEDIUM ,+91-986630761,ok
+DON-0416,2026-02-17,ludhiana,Punjab,Farm,Dairy,58.5,,21.0,Cold,3.4,17.9,FB-05,1500,419,183.0,Y,Medium,+91-987643509,urgent pickup
+DON-0439,2026-02-13,Delhi,Delhi,Hostel Mess,Dairy,48.5,36.3,31.0,Room,31.1,6.0,FB-04,1500,353,275.0,Y,Medium,+91-982499666,festival surplus
+DON-0581,2026-01-05,Jaipur,Rajasthan,Restaurant,Dairy,57.2,53.8,19.0,Cold,4.3,19.9,FB-03,1500,544,282.0,Yes,med,+91-988023684,ok
+DON-0208,2026-01-27,Jalandhar,Punjab,Gurudwara Langar,Dairy,78.9,47.8,19.0,Room,29.1,9.8,FB-01,500,260,257.0,yes,MEDIUM ,+91-988891784,ok
+DON-0358,2026-02-15,Ludhiana,Punjab,Supermarket,Cooked Meals,82.8,64.9,5.0,Room,25.7,6.7,FB-04,500,106,138.0,yes,High,+91-989731896,
+DON-0527,2026-01-21,Jalandhar,Punjab,Farm,Wheat Flour,81.7,75.2,,Cold,3.6,13.5,FB-04,1500,541,209.0,yes,med,+91-983520022,ok
+DON-0366,2026-03-06,Bathinda,Punjab,Restaurant,vegetables,83.1,47.0,25.0,Cold,5.5,8.2,FB-04,800,575,222.0,Yes,MEDIUM ,+91-987225175,festival surplus
+DON-0434,2026-02-18,Bathinda,Punjab,Farm,Dairy,178.0,139.9,44.0,Room,24.6,23.1,FB-02,1500,1206,181.0,Y,Medium,+91-988997781,ok
+DON-0009,2026-02-05,Patiala,Punjab,Restaurant,Wheat Flour,69.8,66.6,159.0,Room,25.2,22.3,FB-02,1000,294,243.0,Y,Medium,+91-982241082,festival surplus
+DON-0405,2026-02-25,CHANDIGARH,Chandigarh UT,Restaurant,RICE,76.8,53.8,59.0,No Storage,23.5,2.8,FB-02,1000,257,195.0,Yes,med,+91-986174895,
+DON-0037,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,Wheat Flour,84.7,62.0,131.0,Cold,5.1,7.6,FB-04,1500,1321,399.0,Y,med,+91-989887324,urgent pickup
+DON-0140,2026-03-04,Jaipur,Rajasthan,Farm,Dairy,100.6,95.4,16.0,Cold,6.6,13.1,FB-05,800,558,,yes,High,+91-987721635,festival surplus
+DON-0254,2026-01-15,Patiala,Punjab,Gurudwara Langar,VEGETABLES ,136.6,122.8,44.0,Cold,6.5,6.5,FB-02,500,218,511.0,yes,High,+91-981026505,urgent pickup
+DON-0304,2026-01-18,Jalandhar,Punjab,Wedding Hall,Dairy,107.3,72.1,11.0,No Storage,36.7,7.7,FB-04,500,288,111.0,yes,MEDIUM ,+91-987243383,
+DON-0529,2026-02-11,ludhiana,Punjab,Household,Bread/Bakery,75.2,57.2,13.0,Cold,6.8,14.2,FB-02,800,725,351.0,YES ,High,+91-989916726,festival surplus
+DON-0060,2026-02-28,Amritsar,Punjab,Restaurant,COOKED MEALS,119.2,106.7,8.0,Cold,4.2,27.7,FB-01,1500,1082,163.0,yes,high,+91-987152941,
+DON-0112,2026-01-05,Patiala,Punjab,Supermarket,Fruits,42.2,33.0,26.0,Cold,6.6,18.4,FB-02,800,256,114.0,yes,Medium,+91-985093886,
+DON-0502,2026-03-06,Bathinda,Punjab,Restaurant,rice ,73.2,45.1,94.0,Cold,3.4,3.3,FB-04,1500,780,146.0,NO,med,+91-982419702,festival surplus
+DON-0559,2026-01-07,Bathinda,Punjab,Supermarket,Fruits,146.2,140.6,58.0,Room,27.3,9.1,FB-02,800,184,127.0,Y,Medium,+91-982836301,
+DON-0381,2026-02-02,Patiala,Punjab,Supermarket,RICE,96.0,60.3,63.0,Cold,2.8,22.6,FB-05,1500,1189,88.0,N,Low,+91-985827976,
+DON-0263,2026-02-27,amritsar ,Punjab,Restaurant,Fruits,135.5,84.2,35.0,Cold,4.8,10.4,FB-04,1500,1312,189.0,Yes,MEDIUM ,+91-983342094,
+DON-0516,2026-03-03,CHANDIGARH,Chandigarh UT,Hostel Mess,COOKED MEALS,98.8,93.1,6.0,Cold,5.3,12.5,FB-02,800,415,271.0,Yes,High,+91-986865874,urgent pickup
+DON-0298,2026-02-04,Bathinda,Punjab,Household,Cooked Meals,115.0,109.8,4.0,No Storage,37.0,38.6,FB-03,500,275,359.0,YES ,HIGH ,+91-984894325,
+DON-0151,2026-02-03,Jaipur,Rajasthan,Restaurant,Dairy,86.6,67.8,19.0,Room,24.1,6.8,FB-03,1000,414,159.0,NO,med,+91-987562877,
+DON-0267,2026-02-22,ludhiana,Punjab,Supermarket,Wheat Flour,46.3,42.9,88.0,Cold,5.3,28.8,FB-02,500,339,341.0,yes,Medium,+91-983818767,festival surplus
+DON-0535,2026-02-11,Jalandhar,Punjab,Gurudwara Langar,Bread/Bakery,82.5,50.3,17.0,Room,24.6,12.3,FB-02,1500,1311,308.0,Y,High,+91-986287468,urgent pickup
+DON-0360,2026-01-17,Bathinda,Punjab,Wedding Hall,Dairy,141.9,134.4,23.0,Cold,5.1,31.4,FB-04,500,321,133.0,no ,Medium,+91-985095228,ok
+DON-0547,2026-01-17,Amritsar,Punjab,Household,COOKED MEALS,87.1,62.8,7.0,Cold,4.2,11.0,FB-04,1000,203,210.0,no ,Medium,+91-982226642,festival surplus
+DON-0039,2026-02-22,Jalandhar,Punjab,Wedding Hall,COOKED MEALS,72.9,47.9,8.0,Room,22.9,8.8,FB-01,1000,929,608.0,Y,High,+91-988022336,
+DON-0515,2026-02-19,Jalandhar,Punjab,Restaurant,Dairy,98.7,89.7,27.0,Room,23.2,5.7,FB-05,800,285,629.0,N,high,+91-982168964,festival surplus
+DON-0308,2026-02-11,Amritsar,Punjab,Supermarket,RICE,121.7,113.8,86.0,Cold,5.3,20.0,FB-02,800,298,172.0,Yes,MEDIUM ,+91-985826176,urgent pickup
+DON-0199,2026-01-31,Delhi,Delhi,Supermarket,Dairy,51.8,39.1,31.0,Room,25.6,17.7,FB-05,800,537,48.0,N,low ,+91-989605094,ok
+DON-0498,2026-01-13,Ludhiana,Punjab,Farm,Bread/Bakery,79.4,70.2,15.0,Room,27.1,33.1,FB-05,500,135,203.0,N,med,+91-983816300,ok
+DON-0382,2026-02-10,Jaipur,Rajasthan,Restaurant,Bread/Bakery,101.7,65.8,12.0,Cold,5.3,16.2,FB-02,500,431,68.0,yes,Medium,+91-988696124,
+DON-0147,2026-01-14,chandigarh ,Chandigarh UT,Gurudwara Langar,Bread/Bakery,77.4,,12.0,Cold,5.1,6.0,FB-01,800,192,236.0,Yes,MEDIUM ,+91-988845870,
+DON-0504,2026-01-22,Jalandhar,Punjab,Supermarket,Fruits,90.9,62.2,45.0,Cold,5.9,9.4,FB-04,500,421,199.0,Yes,MEDIUM ,+91-982100620,festival surplus
+DON-0549,2026-02-21,Jalandhar,Punjab,Wedding Hall,Bread/Bakery,74.6,53.2,18.0,Room,22.5,22.4,FB-01,1500,275,147.0,yes,Medium,+91-981862634,
+DON-0148,2026-01-17,Jalandhar,Punjab,Gurudwara Langar,Cooked Meals,65.6,43.0,5.0,Cold,5.8,14.1,FB-01,800,672,146.0,yes,high,+91-986113728,urgent pickup
+DON-0450,2026-01-13,Jalandhar,Punjab,Gurudwara Langar,Bread/Bakery,94.3,132.01999999999998,17.0,No Storage,27.6,17.0,FB-04,500,224,541.0,NO,med,+91-982409849,
+DON-0349,2026-01-21,Ludhiana,Punjab,Supermarket,Fruits,148.8,99.3,63.0,Cold,3.4,17.2,FB-01,800,604,276.0,N,med,+91-981626776,urgent pickup
+DON-0326,2026-01-29,Patiala,Punjab,Restaurant,Cooked Meals,-116.8,86.6,4.0,No Storage,38.1,18.0,FB-01,1000,649,442.0,yes,HIGH ,+91-986600068,ok
+DON-0421,2026-02-15,Ludhiana,Punjab,Household,Rice,-63.6,61.3,109.0,Room,21.7,25.1,FB-04,800,171,58.0,,low ,+91-988940312,ok
+DON-0124,2026-02-02,Bathinda,Punjab,Gurudwara Langar,Fruits,147.3,121.7,36.0,Room,27.4,14.9,FB-03,1500,1148,205.0,YES ,med,+91-988184872,ok
+DON-0537,2026-01-25,Delhi,Delhi,Gurudwara Langar,Bread/Bakery,115.6,92.1,21.0,No Storage,31.1,12.4,FB-03,500,295,161.0,YES ,HIGH ,+91-982738746,ok
+DON-0097,2026-01-05,Patiala,Punjab,Restaurant,Wheat Flour,149.3,139.7,120.0,Room,24.7,21.3,FB-03,1500,299,301.0,yes,MEDIUM ,+91-985226156,festival surplus
+DON-0144,2026-01-05,Patiala,Punjab,Gurudwara Langar,Dairy,73.7,60.8,33.0,No Storage,31.5,10.3,FB-03,800,94,232.0,Yes,Medium,+91-989686594,urgent pickup
+DON-0240,2026-02-09,ludhiana,Punjab,Supermarket,Fruits,146.7,139.3,33.0,Cold,5.0,9.4,FB-04,800,748,424.0,yes,HIGH ,+91-985025282,ok
+DON-0404,2026-01-16,Jaipur,Rajasthan,Wedding Hall,Dairy,107.7,60.1,25.0,No Storage,28.1,11.1,FB-01,1000,316,264.0,YES ,med,+91-981414399,festival surplus
+DON-0098,2026-01-07,Bathinda,Punjab,Farm,Fruits,105.1,59.1,36.0,No Storage,31.9,12.0,FB-04,1500,1409,263.0,yes,med,+91-984932747,
+DON-0372,2026-01-25,AMRITSAR,Punjab,Restaurant,Bread/Bakery,80.8,59.7,8.0,Cold,4.8,20.0,FB-04,500,254,,NO,MEDIUM ,+91-984476452,
+DON-0325,2026-02-17,Bathinda,Punjab,Wedding Hall,Cooked Meals,117.9,82.4,5.0,Cold,5.2,20.9,FB-03,500,347,146.0,Y,HIGH ,+91-983871712,
+DON-0280,2026-03-06,Jaipur,Rajasthan,Restaurant,Fruits,74.2,66.8,51.0,No Storage,20.7,21.3,FB-05,800,413,263.0,Yes,med,+91-981240346,urgent pickup
+DON-0294,2026-01-06,Delhi,Delhi,Farm,Bread/Bakery,63.6,61.8,17.0,Room,25.1,14.9,FB-01,500,440,132.0,,MEDIUM ,+91-985528268,festival surplus
+DON-0588,2026-01-26,Patiala,Punjab,Hostel Mess,Vegetables,145.3,102.6,49.0,Room,19.5,10.2,FB-04,500,181,273.0,Yes,Medium,+91-985927653,urgent pickup
+DON-0123,2026-02-20,Jalandhar,Punjab,Supermarket,COOKED MEALS,123.5,82.1,9.0,Cold,4.6,4.2,FB-04,800,662,194.0,Yes,high,+91-983345704,urgent pickup
+DON-0184,2026-03-08,Bathinda,Punjab,Restaurant,vegetables,33.0,19.3,29.0,Cold,-0.4,4.5,FB-03,500,293,307.0,YES ,Medium,+91-988300259,urgent pickup
+DON-0203,2026-03-02,amritsar ,Punjab,Farm,cooked meals ,91.7,73.7,3.0,No Storage,34.5,25.1,FB-05,1000,571,353.0,yes,high,+91-984128411,festival surplus
+DON-0324,2026-01-31,Amritsar,Punjab,Wedding Hall,Dairy,121.0,110.4,24.0,Cold,2.4,12.7,FB-02,1000,666,202.0,yes,HIGH ,+91-986897162,ok
+DON-0247,2026-03-07,Ludhiana,Punjab,Gurudwara Langar,Bread/Bakery,74.9,53.8,13.0,Room,26.8,20.5,FB-03,1500,1154,511.0,yes,MEDIUM ,+91-987453859,festival surplus
+DON-0448,2026-03-07,Bathinda,Punjab,Restaurant,Wheat Flour,98.4,61.3,153.0,Room,28.0,10.2,FB-04,1500,326,298.0,,med,+91-981692101,festival surplus
+DON-0031,2026-01-28,Patiala,Punjab,Restaurant,COOKED MEALS,205.0,192.1,4.0,Room,26.5,12.2,FB-01,1000,143,58.0,YES ,HIGH ,+91-989929285,urgent pickup
+DON-0513,2026-02-13,Chandigarh,Chandigarh UT,Household,cooked meals ,55.1,30.6,8.0,Room,26.2,31.8,FB-05,1000,743,245.0,yes,Medium,+91-988364308,festival surplus
+DON-0440,2026-01-05,amritsar ,Punjab,Household,Rice,107.1,88.5,67.0,Cold,6.2,18.3,FB-03,1500,163,395.0,Y,MEDIUM ,+91-984573258,festival surplus
+DON-0546,2026-01-13,Jaipur,Rajasthan,Farm,Bread/Bakery,131.1,97.7,23.0,Room,24.9,10.4,FB-01,800,662,98.0,Y,Medium,+91-988396822,ok
+DON-0418,2026-01-25,Jalandhar,Punjab,Restaurant,rice ,93.3,,34.0,No Storage,34.1,22.1,FB-03,500,237,328.0,No,MEDIUM ,+91-984058321,ok
+DON-0126,2026-01-10,Delhi,Delhi,Wedding Hall,Wheat Flour,147.2,84.8,87.0,Room,25.6,13.7,FB-01,800,285,159.0,No,MEDIUM ,+91-986438757,urgent pickup
+DON-0403,2026-02-27,Jalandhar,Punjab,Restaurant,rice ,77.8,75.6,36.0,Room,29.6,3.5,FB-03,1500,793,115.0,yes,Medium,+91-981112035,urgent pickup
+DON-0457,2026-02-18,Jaipur,Rajasthan,Gurudwara Langar,Fruits,206.4,159.8,29.0,Room,29.1,8.8,FB-02,1000,909,373.0,No,High,+91-984022927,festival surplus
+DON-0443,2026-02-18,Jaipur,Rajasthan,Supermarket,Bread/Bakery,117.7,114.5,20.0,No Storage,32.4,8.6,FB-05,500,214,218.0,Yes,high,+91-989550162,
+DON-0224,2026-03-06,Jalandhar,Punjab,Household,Fruits,150.0,122.5,48.0,Room,24.6,28.6,FB-01,1000,733,297.0,N,MEDIUM ,+91-986167373,
+DON-0343,2026-03-09,chandigarh ,Chandigarh UT,Gurudwara Langar,vegetables,125.1,95.5,30.0,Cold,3.7,3.5,FB-03,1500,531,248.0,yes,med,+91-984959015,festival surplus
+DON-0054,2026-03-05,Delhi,Delhi,Restaurant,rice ,90.1,60.7,99.0,Room,25.3,5.6,FB-03,1500,286,259.0,Yes,med,+91-985068316,urgent pickup
+DON-0220,2026-03-05,ludhiana,Punjab,Supermarket,Wheat Flour,68.2,45.7,156.0,Room,27.7,19.8,FB-01,1000,376,109.0,yes,LOW,+91-989018205,ok
+DON-0130,2026-03-10,Bathinda,Punjab,Supermarket,Wheat Flour,157.2,150.7,98.0,Room,23.2,4.6,FB-04,500,152,231.0,Yes,med,+91-986277420,ok
+DON-0560,2026-01-23,Chandigarh,Chandigarh UT,Gurudwara Langar,Fruits,38.4,22.4,42.0,Cold,5.7,5.9,FB-01,1500,855,237.0,yes,MEDIUM ,+91-989384640,ok
+DON-0423,2026-01-19,Amritsar,Punjab,Supermarket,Dairy,64.8,90.71999999999998,25.0,Cold,4.0,26.1,FB-03,1500,1091,252.0,Yes,MEDIUM ,+91-987575046,
+DON-0480,2026-01-31,Bathinda,Punjab,Gurudwara Langar,Wheat Flour,132.5,109.4,152.0,Room,25.0,3.1,FB-03,1500,588,169.0,Y,MEDIUM ,+91-982059288,
+DON-0562,2026-02-13,Patiala,Punjab,Wedding Hall,Bread/Bakery,99.5,81.9,18.0,Room,24.7,8.9,FB-01,800,213,450.0,Yes,HIGH ,+91-988461821,ok
+DON-0425,2026-01-22,Jalandhar,Punjab,Hostel Mess,Vegetables,223.1,134.2,38.0,Cold,3.5,8.1,FB-02,500,407,191.0,Yes,Medium,+91-984931067,ok
+DON-0101,2026-01-26,Delhi,Delhi,Gurudwara Langar,cooked meals ,70.5,38.8,7.0,Room,23.3,12.0,FB-03,1500,172,132.0,yes,high,+91-983822136,festival surplus
+DON-0432,2026-01-31,Patiala,Punjab,Restaurant,rice ,188.9,108.5,89.0,Cold,5.2,24.3,FB-05,500,296,177.0,yes,Medium,+91-983376629,ok
+DON-0387,2026-02-26,Delhi,Delhi,Supermarket,VEGETABLES ,54.3,52.2,47.0,Room,60.0,9.4,FB-02,1000,595,60.0,,Medium,+91-981287249,festival surplus
+DON-0599,2026-01-24,Patiala,Punjab,Household,rice ,95.5,92.5,77.0,Room,22.7,-14.8,FB-04,1500,868,278.0,No,Medium,+91-989863441,festival surplus
+DON-0295,2026-03-07,Bathinda,Punjab,Gurudwara Langar,Vegetables,65.9,40.9,49.0,Room,26.5,15.8,FB-01,1000,309,350.0,yes,med,+91-982926252,festival surplus
+DON-0268,2026-03-02,chandigarh ,Chandigarh UT,Household,rice ,58.7,55.2,76.0,Cold,3.0,14.5,FB-04,800,620,168.0,NO,Medium,+91-985272513,urgent pickup
+DON-0495,2026-01-21,Patiala,Punjab,Restaurant,Fruits,85.4,47.6,42.0,Room,27.7,25.8,FB-01,800,100,139.0,YES ,med,+91-985254567,ok
+DON-0445,2026-01-30,Jaipur,Rajasthan,Gurudwara Langar,Fruits,81.3,76.8,57.0,No Storage,28.6,22.6,FB-01,800,118,470.0,YES ,MEDIUM ,+91-988914871,urgent pickup
+DON-0113,2026-01-15,Bathinda,Punjab,Supermarket,Bread/Bakery,59.7,38.2,21.0,Cold,5.3,33.4,FB-05,500,352,198.0,yes,Medium,+91-989152885,ok
+DON-0180,2026-02-05,Bathinda,Punjab,Supermarket,Vegetables,89.1,58.6,53.0,Room,24.2,11.9,FB-02,1000,705,128.0,Yes,med,+91-981490999,urgent pickup
+DON-0451,2026-01-11,Bathinda,Punjab,Restaurant,rice ,80.4,61.6,75.0,Cold,4.2,18.5,FB-01,500,226,192.0,yes,MEDIUM ,+91-981908521,ok
+DON-0494,2026-01-17,LUDHIANA ,Punjab,Gurudwara Langar,Fruits,118.9,102.8,41.0,Room,26.1,11.3,FB-02,500,414,451.0,YES ,HIGH ,+91-986748413,festival surplus
+DON-0482,2026-03-03,ludhiana,Punjab,Farm,Dairy,96.9,58.8,20.0,Cold,6.6,5.8,FB-05,1000,308,154.0,N,med,+91-989820939,urgent pickup
+DON-0374,2026-01-20,Amritsar,Punjab,Wedding Hall,Wheat Flour,82.5,80.0,159.0,Room,21.0,16.8,FB-01,1500,1366,109.0,YES ,Low,+91-986698485,festival surplus
+DON-0315,2026-01-14,Jaipur,Rajasthan,Farm,Bread/Bakery,118.1,80.4,9.0,Room,23.1,9.0,FB-02,1500,742,234.0,No,high,+91-981211463,ok
+DON-0152,2026-01-10,Amritsar,Punjab,Gurudwara Langar,Bread/Bakery,-114.5,66.2,21.0,Room,26.2,19.6,FB-01,1000,670,433.0,Y,Medium,+91-989497552,
+DON-0172,2026-02-03,ludhiana,Punjab,Gurudwara Langar,Dairy,47.6,32.2,30.0,Cold,5.7,7.4,FB-02,1500,1115,130.0,Yes,MEDIUM ,+91-982160152,
+DON-0234,2026-02-06,Ludhiana,Punjab,Gurudwara Langar,Fruits,79.8,68.8,60.0,No Storage,30.6,10.1,FB-03,800,537,132.0,Yes,med,+91-988517201,
+DON-0307,2026-02-04,Bathinda,Punjab,Supermarket,Wheat Flour,124.6,96.6,162.0,Room,24.4,10.8,FB-01,500,272,471.0,yes,High,+91-987151990,ok
+DON-0458,2026-02-22,Jaipur,Rajasthan,Wedding Hall,Cooked Meals,83.3,78.5,5.0,Room,25.4,17.8,FB-04,1000,730,329.0,Y,High,+91-982727386,urgent pickup
+DON-0165,2026-02-26,Patiala,Punjab,Supermarket,Dairy,149.8,139.7,24.0,Room,28.3,17.3,FB-05,1500,506,220.0,No,MEDIUM ,+91-986580509,festival surplus
+DON-0318,2026-03-04,AMRITSAR,Punjab,Restaurant,Fruits,45.2,37.2,59.0,Cold,4.1,4.7,FB-01,1500,486,473.0,yes,med,+91-985657448,
+DON-0137,2026-01-16,chandigarh ,Chandigarh UT,Farm,vegetables,65.9,61.2,,Room,27.9,8.4,FB-03,800,646,230.0,Yes,med,+91-981245300,festival surplus
+DON-0411,2026-02-11,Ludhiana,Punjab,Gurudwara Langar,Dairy,79.7,64.5,25.0,Room,28.0,14.0,FB-01,1000,403,209.0,Y,med,+91-981301951,urgent pickup
+DON-0198,2026-02-21,Ludhiana,Punjab,Gurudwara Langar,Bread/Bakery,134.0,93.6,19.0,No Storage,33.4,15.0,FB-04,500,110,205.0,yes,MEDIUM ,+91-986271513,
+DON-0571,2026-01-22,Jalandhar,Punjab,Gurudwara Langar,Vegetables,50.2,31.6,55.0,Cold,5.1,-8.9,FB-01,1000,101,99.0,yes,MEDIUM ,+91-986727288,ok
+DON-0259,2026-01-05,amritsar ,Punjab,Supermarket,VEGETABLES ,106.4,101.8,28.0,No Storage,29.0,19.1,FB-04,800,294,324.0,yes,High,+91-981855695,ok
+DON-0233,2026-01-18,Jalandhar,Punjab,Household,cooked meals ,103.2,64.9,7.0,Cold,0.9,9.0,FB-05,1500,478,185.0,yes,high,+91-983286319,urgent pickup
+DON-0116,2026-02-07,Jalandhar,Punjab,Gurudwara Langar,Cooked Meals,84.3,48.9,7.0,Cold,4.3,16.6,FB-02,800,270,288.0,YES ,med,+91-989547900,festival surplus
+DON-0121,2026-02-18,Bathinda,Punjab,Supermarket,Bread/Bakery,61.5,45.3,10.0,Room,23.5,10.5,FB-02,1500,623,442.0,no ,High,+91-984360492,urgent pickup
+DON-0464,2026-01-22,chandigarh ,Chandigarh UT,Hostel Mess,vegetables,132.9,119.2,36.0,Room,23.0,13.1,FB-02,1500,860,225.0,Y,Medium,+91-983554131,festival surplus
+DON-0508,2026-02-10,Amritsar,Punjab,Hostel Mess,Wheat Flour,45.8,33.4,118.0,Cold,3.6,41.7,FB-03,800,553,254.0,YES ,med,+91-981313678,
+DON-0377,2026-02-24,Jalandhar,Punjab,Gurudwara Langar,RICE,65.3,39.5,87.0,Room,30.4,30.7,FB-03,1000,660,400.0,no ,Medium,+91-986614058,ok
+DON-0385,2026-01-08,AMRITSAR,Punjab,Farm,Vegetables,150.4,84.4,41.0,No Storage,29.7,10.4,FB-05,800,438,186.0,Y,med,+91-989124897,
+DON-0225,2026-03-04,Jaipur,Rajasthan,Household,rice ,128.8,103.9,62.0,Cold,5.8,23.5,FB-01,1500,612,107.0,Y,Medium,+91-981676337,urgent pickup
+DON-0586,2026-01-28,CHANDIGARH,Chandigarh UT,Farm,Bread/Bakery,54.9,31.9,18.0,Room,25.4,14.8,FB-01,500,265,170.0,,med,+91-985386262,
+DON-0489,2026-03-01,Delhi,Delhi,Gurudwara Langar,cooked meals ,51.3,48.7,4.0,No Storage,24.5,7.6,FB-04,1000,437,379.0,yes,high,+91-982696941,festival surplus
+DON-0348,2026-01-07,Delhi,Delhi,Gurudwara Langar,RICE,47.6,36.3,77.0,No Storage,32.4,3.3,FB-01,1000,375,351.0,No,Medium,+91-984171553,ok
+DON-0128,2026-02-09,Bathinda,Punjab,Household,RICE,60.5,,106.0,Room,26.6,8.6,FB-01,1000,916,301.0,NO,med,+91-987702692,
+DON-0079,2026-02-25,Bathinda,Punjab,Restaurant,Rice,56.7,34.9,57.0,No Storage,28.7,9.4,FB-04,500,266,197.0,No,med,+91-989064220,
+DON-0446,2026-01-17,Delhi,Delhi,Supermarket,Wheat Flour,36.9,25.5,104.0,Cold,4.0,4.0,FB-03,500,405,186.0,,MEDIUM ,+91-987675789,ok
+DON-0286,2026-01-27,chandigarh ,Chandigarh UT,Restaurant,vegetables,72.6,58.5,30.0,Cold,3.0,28.5,FB-03,800,185,310.0,Yes,Medium,+91-989896161,festival surplus
+DON-0570,2026-02-08,Ludhiana,Punjab,Restaurant,Bread/Bakery,17.8,15.6,14.0,Room,25.5,17.1,FB-05,1500,915,,N,low ,+91-984898486,ok
+DON-0044,2026-03-09,Patiala,Punjab,Supermarket,RICE,93.0,,61.0,Cold,4.8,32.6,FB-05,500,227,368.0,Y,Medium,+91-987854453,festival surplus
+DON-0108,2026-02-28,Delhi,Delhi,Farm,rice ,143.5,,34.0,No Storage,27.6,17.0,FB-03,1500,1413,300.0,Yes,Medium,+91-984999694,urgent pickup
+DON-0523,2026-01-16,CHANDIGARH,Chandigarh UT,Restaurant,rice ,163.2,106.9,62.0,Room,24.8,12.1,FB-02,800,375,186.0,NO,MEDIUM ,+91-986318259,urgent pickup
+DON-0557,2026-01-18,Ludhiana,Punjab,Household,RICE,129.0,118.0,54.0,Room,24.9,7.4,FB-01,800,132,353.0,no ,med,+91-986969709,festival surplus
+DON-0134,2026-03-10,Delhi,Delhi,Hostel Mess,Bread/Bakery,119.5,73.4,13.0,Room,23.5,14.9,FB-01,500,305,374.0,YES ,high,+91-987263998,ok
+DON-0441,2026-01-26,Ludhiana,Punjab,Gurudwara Langar,vegetables,81.1,56.4,,Cold,5.3,6.5,FB-02,800,626,,Y,MEDIUM ,+91-987627735,
+DON-0062,2026-02-15,CHANDIGARH,Chandigarh UT,Household,rice ,98.0,84.5,94.0,Room,23.3,15.4,FB-05,800,509,165.0,NO,Medium,+91-988537165,urgent pickup
+DON-0045,2026-02-13,AMRITSAR,Punjab,Restaurant,Vegetables,80.6,69.3,49.0,Room,26.7,12.8,FB-03,1000,815,275.0,yes,Medium,+91-987984720,ok
+DON-0170,2026-03-03,Bathinda,Punjab,Hostel Mess,Dairy,79.8,53.9,20.0,Cold,5.8,18.8,FB-05,1000,530,317.0,Yes,Medium,+91-986180703,ok
+DON-0066,2026-01-12,Delhi,Delhi,Supermarket,Bread/Bakery,59.5,40.6,20.0,Room,21.8,36.4,FB-02,500,406,247.0,Y,MEDIUM ,+91-986701934,
+DON-0284,2026-03-01,Delhi,Delhi,Hostel Mess,Wheat Flour,81.5,67.2,88.0,No Storage,27.8,18.1,FB-02,1000,944,295.0,NO,LOW,+91-982220682,festival surplus
+DON-0086,2026-03-03,Chandigarh,Chandigarh UT,Supermarket,Fruits,85.4,119.56,46.0,Cold,5.9,33.1,FB-03,1000,190,366.0,Y,med,+91-987524559,
+DON-0243,2026-02-25,Chandigarh,Chandigarh UT,Household,Dairy,170.2,156.8,28.0,Cold,4.6,14.4,FB-03,800,498,47.0,YES ,med,+91-983596882,ok
+DON-0187,2026-01-23,Delhi,Delhi,Household,Wheat Flour,35.1,21.3,127.0,Room,24.4,5.3,FB-05,800,618,225.0,yes,Medium,+91-985102553,festival surplus
+DON-0327,2026-01-27,AMRITSAR,Punjab,Household,Bread/Bakery,63.4,47.5,17.0,Room,22.1,37.6,FB-03,1500,784,138.0,Y,MEDIUM ,+91-989927811,urgent pickup
+DON-0160,2026-02-18,Patiala,Punjab,Supermarket,Dairy,97.6,80.6,30.0,Cold,3.4,21.0,FB-02,800,702,105.0,yes,Medium,+91-986759919,festival surplus
+DON-0013,2026-01-18,Ludhiana,Punjab,Hostel Mess,Cooked Meals,177.9,108.3,9.0,Cold,6.7,8.7,FB-04,500,132,253.0,Yes,high,+91-989837590,festival surplus
+DON-0036,2026-02-09,amritsar ,Punjab,Restaurant,Dairy,87.7,66.9,21.0,Room,22.7,14.3,FB-05,1000,447,661.0,yes,high,+91-986735193,festival surplus
+DON-0029,2026-03-04,Ludhiana,Punjab,Hostel Mess,COOKED MEALS,54.8,42.2,7.0,Cold,2.4,21.5,FB-04,1000,551,,yes,MEDIUM ,+91-982307506,festival surplus
+DON-0171,2026-01-18,amritsar ,Punjab,Gurudwara Langar,Vegetables,79.8,54.6,29.0,Room,22.5,10.4,FB-04,1000,178,122.0,Y,Medium,+91-987021656,festival surplus
+DON-0143,2026-01-10,Jaipur,Rajasthan,Gurudwara Langar,rice ,113.1,91.7,59.0,No Storage,31.8,5.4,FB-01,1000,727,254.0,yes,Medium,+91-987766886,ok
+DON-0237,2026-01-20,ludhiana,Punjab,Household,Fruits,132.0,76.2,32.0,Room,25.8,15.9,FB-05,800,552,279.0,Yes,med,+91-981253078,
+DON-0497,2026-02-05,LUDHIANA ,Punjab,Gurudwara Langar,VEGETABLES ,86.5,79.7,5.0,Room,28.0,19.3,FB-04,800,555,130.0,Yes,Medium,+91-982678575,festival surplus
+DON-0517,2026-01-25,Bathinda,Punjab,Farm,RICE,134.6,106.3,44.0,Cold,0.9,18.4,FB-05,500,122,112.0,yes,med,+91-982778650,urgent pickup
+DON-0580,2026-01-24,Jaipur,Rajasthan,Farm,Dairy,115.9,83.1,26.0,Room,30.4,35.1,FB-03,800,341,198.0,yes,MEDIUM ,+91-983034730,festival surplus
+DON-0222,2026-01-20,chandigarh ,Chandigarh UT,Restaurant,Wheat Flour,174.6,129.1,113.0,Room,60.0,27.0,FB-03,1000,933,240.0,N,Medium,+91-988372801,urgent pickup
+DON-0591,2026-03-05,Patiala,Punjab,Hostel Mess,Bread/Bakery,93.8,82.4,17.0,Cold,3.6,6.3,FB-03,1500,1321,79.0,YES ,Medium,+91-987573104,festival surplus
+DON-0096,2026-02-15,Jaipur,Rajasthan,Supermarket,vegetables,82.2,68.4,70.0,No Storage,22.7,15.5,FB-04,500,319,182.0,YES ,med,+91-983519507,urgent pickup
+DON-0052,2026-02-13,Jalandhar,Punjab,Restaurant,Cooked Meals,86.3,74.7,7.0,Cold,3.6,-14.2,FB-04,500,471,351.0,Y,high,+91-986203916,ok
+DON-0241,2026-02-08,Bathinda,Punjab,Hostel Mess,Wheat Flour,128.4,82.7,161.0,Room,21.7,8.1,FB-05,800,402,327.0,Y,HIGH ,+91-987575273,urgent pickup
+DON-0525,2026-02-06,Jaipur,Rajasthan,Hostel Mess,Dairy,81.4,74.4,40.0,Cold,3.8,23.5,FB-03,1000,593,92.0,no ,low ,+91-983141997,festival surplus
+DON-0352,2026-02-26,amritsar ,Punjab,Restaurant,Dairy,93.4,60.7,24.0,Room,23.4,24.1,FB-05,500,410,281.0,YES ,MEDIUM ,+91-987401391,ok
+DON-0533,2026-03-09,LUDHIANA ,Punjab,Farm,RICE,37.5,28.7,86.0,Cold,6.0,14.4,FB-05,1500,820,300.0,Yes,MEDIUM ,+91-981483843,festival surplus
+DON-0179,2026-01-10,amritsar ,Punjab,Gurudwara Langar,rice ,78.1,74.3,76.0,Room,29.4,37.6,FB-04,800,640,272.0,no ,low ,+91-988595959,urgent pickup
+DON-0461,2026-01-12,Jalandhar,Punjab,Supermarket,Bread/Bakery,71.5,68.2,15.0,Room,27.3,10.1,FB-05,500,460,228.0,No,med,+91-988540155,
+DON-0543,2026-02-11,chandigarh ,Chandigarh UT,Gurudwara Langar,Dairy,85.7,83.8,26.0,Cold,3.1,14.6,FB-05,1000,743,91.0,,Medium,+91-983988506,
+DON-0042,2026-02-26,Jaipur,Rajasthan,Wedding Hall,Dairy,109.5,78.9,16.0,Cold,4.9,6.0,FB-04,1500,945,148.0,Y,med,+91-987429611,festival surplus
+DON-0572,2026-01-17,Bathinda,Punjab,Household,Fruits,109.3,86.3,24.0,Room,27.8,13.5,FB-04,1500,1398,128.0,yes,high,+91-987441168,festival surplus
+DON-0539,2026-01-05,Delhi,Delhi,Gurudwara Langar,Rice,61.4,44.4,108.0,Cold,2.4,11.1,FB-03,1500,879,74.0,NO,LOW,+91-985570634,urgent pickup
+DON-0207,2026-01-29,Jaipur,Rajasthan,Gurudwara Langar,Bread/Bakery,49.9,39.5,22.0,Room,27.0,11.8,FB-05,800,364,646.0,YES ,HIGH ,+91-987234408,urgent pickup
+DON-0393,2026-02-14,ludhiana,Punjab,Restaurant,VEGETABLES ,85.9,64.0,44.0,Room,21.5,14.1,FB-04,500,339,325.0,Y,MEDIUM ,+91-984701339,ok
+DON-0283,2026-01-23,Jalandhar,Punjab,Household,Rice,47.2,44.5,6.0,Cold,3.4,12.1,FB-03,1000,835,211.0,N,Medium,+91-985171364,ok
+DON-0359,2026-02-28,AMRITSAR,Punjab,Hostel Mess,Bread/Bakery,31.1,20.4,13.0,No Storage,30.6,8.5,FB-04,500,330,255.0,Y,Medium,+91-983390514,ok
+DON-0398,2026-01-26,Chandigarh,Chandigarh UT,Household,vegetables,133.8,103.0,27.0,No Storage,30.2,24.5,FB-01,1500,481,283.0,Y,med,+91-981286172,ok
+DON-0255,2026-01-06,Patiala,Punjab,Supermarket,Bread/Bakery,36.6,27.9,12.0,Room,21.5,6.7,FB-03,800,561,217.0,NO,Medium,+91-986607423,urgent pickup
+DON-0518,2026-02-21,Chandigarh,Chandigarh UT,Hostel Mess,COOKED MEALS,77.6,75.5,8.0,Room,23.9,3.2,FB-04,1000,276,302.0,Y,HIGH ,+91-988045158,festival surplus
+DON-0218,2026-01-31,chandigarh ,Chandigarh UT,Gurudwara Langar,Cooked Meals,123.8,71.0,7.0,Cold,1.9,20.2,FB-03,800,675,140.0,yes,med,+91-988907386,
+DON-0005,2026-02-18,Bathinda,Punjab,Farm,Bread/Bakery,67.3,42.9,19.0,No Storage,26.9,17.6,FB-03,500,147,206.0,No,Medium,+91-983539448,ok
+DON-0550,2026-01-29,Chandigarh,Chandigarh UT,Wedding Hall,RICE,72.6,61.9,91.0,Room,21.9,15.3,FB-04,1500,938,93.0,No,LOW,+91-987442627,festival surplus
+DON-0099,2026-02-06,CHANDIGARH,Chandigarh UT,Restaurant,Fruits,120.8,71.0,39.0,No Storage,32.4,6.5,FB-01,500,392,552.0,YES ,med,+91-986432019,ok
+DON-0407,2026-02-22,Jaipur,Rajasthan,Gurudwara Langar,Fruits,44.1,37.6,61.0,Cold,1.3,14.9,FB-03,1500,985,115.0,no ,low ,+91-984177640,
+DON-0503,2026-02-28,Bathinda,Punjab,Farm,Cooked Meals,71.2,65.5,13.0,Cold,3.8,8.4,FB-02,500,295,319.0,No,Medium,+91-988978503,
+DON-0048,2026-01-17,Bathinda,Punjab,Restaurant,Fruits,21.5,15.9,68.0,No Storage,31.9,15.1,FB-04,800,363,491.0,,LOW,+91-987843532,urgent pickup
+DON-0033,2026-02-08,LUDHIANA ,Punjab,Supermarket,Fruits,94.5,132.29999999999998,62.0,Cold,3.1,8.8,FB-01,500,403,275.0,yes,med,+91-983869760,
+DON-0201,2026-01-07,ludhiana,Punjab,Hostel Mess,cooked meals ,137.5,90.3,7.0,Room,25.0,18.3,FB-03,800,449,301.0,Y,high,+91-984716434,urgent pickup
+DON-0135,2026-02-28,Jalandhar,Punjab,Gurudwara Langar,Cooked Meals,55.9,34.6,7.0,Cold,4.3,11.0,FB-05,1000,201,181.0,Yes,High,+91-981708672,ok
+DON-0028,2026-02-18,Jalandhar,Punjab,Supermarket,Bread/Bakery,104.1,72.7,12.0,No Storage,28.2,10.3,FB-05,800,269,217.0,YES ,med,+91-986455770,ok
+DON-0541,2026-01-12,Delhi,Delhi,Household,Cooked Meals,73.4,42.7,8.0,Room,30.9,19.5,FB-03,500,389,268.0,,MEDIUM ,+91-988629038,urgent pickup
+DON-0231,2026-01-27,Patiala,Punjab,Farm,Dairy,117.3,73.5,12.0,Cold,5.5,17.9,FB-03,500,127,189.0,Yes,Medium,+91-981822564,ok
+DON-0490,2026-02-23,Jaipur,Rajasthan,Supermarket,Fruits,55.9,51.1,54.0,Room,23.1,10.2,FB-02,1500,520,44.0,Yes,Medium,+91-988816186,urgent pickup
+DON-0379,2026-02-27,CHANDIGARH,Chandigarh UT,Supermarket,COOKED MEALS,117.6,80.1,7.0,Room,25.1,14.9,FB-02,1000,350,54.0,no ,MEDIUM ,+91-989683790,ok
+DON-0289,2026-02-06,Ludhiana,Punjab,Supermarket,Rice,150.0,109.3,62.0,Cold,3.3,11.4,FB-02,1000,430,305.0,no ,med,+91-981045807,urgent pickup
+DON-0419,2026-01-31,CHANDIGARH,Chandigarh UT,Farm,Bread/Bakery,156.3,116.3,26.0,Room,23.4,11.6,FB-02,500,391,39.0,Yes,MEDIUM ,+91-981052055,urgent pickup
+DON-0392,2026-02-23,Jaipur,Rajasthan,Hostel Mess,Fruits,70.0,44.1,29.0,Cold,4.3,18.1,FB-05,1500,1317,158.0,Y,Medium,+91-988146423,festival surplus
+DON-0499,2026-01-24,Chandigarh,Chandigarh UT,Supermarket,Dairy,20.5,11.8,24.0,Room,25.2,28.6,FB-01,1500,1257,175.0,Yes,Medium,+91-987346502,festival surplus
+DON-0139,2026-02-08,Jaipur,Rajasthan,Gurudwara Langar,RICE,158.9,88.2,0.0,Cold,3.9,5.6,FB-01,1000,541,258.0,yes,MEDIUM ,+91-988706113,
+DON-0063,2026-03-01,ludhiana,Punjab,Gurudwara Langar,Fruits,105.3,77.7,45.0,Room,30.4,16.1,FB-04,800,663,157.0,YES ,Medium,+91-985600108,festival surplus
+DON-0472,2026-02-18,Delhi,Delhi,Supermarket,VEGETABLES ,66.1,50.8,40.0,Cold,3.2,6.4,FB-03,1000,171,325.0,,Medium,+91-984986752,festival surplus
+DON-0129,2026-01-05,Jaipur,Rajasthan,Farm,Bread/Bakery,106.3,,22.0,Room,24.5,13.7,FB-02,1500,518,178.0,NO,Medium,+91-989343199,ok
+DON-0420,2026-02-21,Patiala,Punjab,Household,Bread/Bakery,199.1,143.1,15.0,No Storage,30.6,14.4,FB-05,1500,814,346.0,Y,High,+91-984458332,festival surplus
+DON-0521,2026-03-04,Patiala,Punjab,Supermarket,Fruits,147.4,81.9,57.0,Room,26.1,20.9,FB-04,500,194,28.0,YES ,MEDIUM ,+91-986063834,
+DON-0065,2026-02-12,Patiala,Punjab,Gurudwara Langar,RICE,85.6,55.6,75.0,Cold,3.3,7.9,FB-03,1000,114,472.0,NO,med,+91-987935774,
+DON-0015,2026-02-21,Jaipur,Rajasthan,Household,Vegetables,83.3,47.3,,Room,22.8,12.8,FB-01,800,702,150.0,YES ,med,+91-981176615,ok
+DON-0157,2026-03-06,Patiala,Punjab,Farm,Wheat Flour,79.9,44.5,128.0,Cold,4.7,4.0,FB-04,500,321,97.0,yes,med,+91-984071640,
+DON-0041,2026-02-07,Jalandhar,Punjab,Gurudwara Langar,Rice,91.5,88.8,92.0,No Storage,23.5,16.8,FB-05,1500,282,175.0,Yes,MEDIUM ,+91-983694946,
+DON-0493,2026-02-05,LUDHIANA ,Punjab,Gurudwara Langar,Bread/Bakery,82.4,,17.0,Cold,3.3,25.2,FB-02,800,690,157.0,Y,med,+91-982646673,urgent pickup
+DON-0380,2026-01-22,LUDHIANA ,Punjab,Farm,rice ,100.4,,29.0,Room,24.3,22.3,FB-05,1000,283,335.0,,MEDIUM ,+91-985782969,
+DON-0188,2026-02-10,Jaipur,Rajasthan,Restaurant,Wheat Flour,72.6,58.5,152.0,Room,30.3,10.0,FB-05,800,550,309.0,Y,Medium,+91-989537333,
+DON-0217,2026-02-12,amritsar ,Punjab,Restaurant,Wheat Flour,93.3,54.3,155.0,Room,29.2,18.4,FB-01,1000,489,178.0,No,Low,+91-983328033,urgent pickup
+DON-0053,2026-02-26,amritsar ,Punjab,Hostel Mess,Wheat Flour,90.4,59.3,110.0,Cold,3.6,15.5,FB-01,1000,847,212.0,no ,low ,+91-986672605,festival surplus
+DON-0338,2026-02-06,Chandigarh,Chandigarh UT,Restaurant,cooked meals ,139.1,115.6,12.0,Cold,1.9,6.7,FB-02,1000,706,50.0,YES ,med,+91-987409363,urgent pickup
+DON-0296,2026-01-12,Bathinda,Punjab,Hostel Mess,Dairy,82.5,70.0,18.0,No Storage,27.3,3.5,FB-01,1500,1275,271.0,NO,med,+91-989966309,urgent pickup
+DON-0252,2026-01-13,Chandigarh,Chandigarh UT,Household,Wheat Flour,110.4,100.8,104.0,Room,24.0,6.6,FB-02,1500,264,134.0,no ,med,+91-986681868,festival surplus
+DON-0462,2026-03-10,Delhi,Delhi,Wedding Hall,Bread/Bakery,54.3,34.6,23.0,Cold,4.7,15.2,FB-03,1000,364,291.0,,Medium,+91-989882014,
+DON-0456,2026-01-21,Bathinda,Punjab,Wedding Hall,VEGETABLES ,106.1,80.0,42.0,Room,26.7,35.5,FB-01,1500,273,133.0,yes,med,+91-987150158,urgent pickup
+DON-0235,2026-01-22,Patiala,Punjab,Restaurant,VEGETABLES ,70.3,44.6,53.0,Cold,4.0,13.2,FB-02,1000,458,169.0,Yes,Medium,+91-982698413,urgent pickup
+DON-0270,2026-03-02,ludhiana,Punjab,Farm,Fruits,52.1,,500.0,Room,24.4,7.0,FB-04,800,268,70.0,YES ,Medium,+91-989817518,ok
+DON-0202,2026-02-14,Patiala,Punjab,Gurudwara Langar,Wheat Flour,84.1,63.7,99.0,Room,25.6,13.9,FB-05,1000,846,299.0,Y,MEDIUM ,+91-982804053,
+DON-0162,2026-02-09,ludhiana,Punjab,Restaurant,vegetables,85.3,,22.0,Cold,5.8,10.3,FB-05,800,93,182.0,,high,+91-982846357,
+DON-0402,2026-01-28,Bathinda,Punjab,Household,Bread/Bakery,60.1,38.6,18.0,Room,26.6,25.7,FB-04,1500,1073,374.0,Yes,med,+91-985590585,
+DON-0477,2026-01-19,Delhi,Delhi,Hostel Mess,Wheat Flour,72.0,58.4,160.0,Room,27.8,13.8,FB-02,500,153,280.0,Yes,MEDIUM ,+91-985278639,urgent pickup
+DON-0106,2026-03-06,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,102.0,69.0,25.0,No Storage,26.5,16.1,FB-01,1000,519,187.0,YES ,MEDIUM ,+91-982549420,
+DON-0390,2026-02-26,AMRITSAR,Punjab,Hostel Mess,Bread/Bakery,101.2,83.3,20.0,No Storage,32.5,10.8,FB-05,1000,745,288.0,Y,high,+91-982088894,festival surplus
+DON-0002,2026-01-10,chandigarh ,Chandigarh UT,Gurudwara Langar,Bread/Bakery,69.0,51.8,20.0,Room,18.9,21.3,FB-03,800,345,126.0,N,med,+91-984910197,urgent pickup
+DON-0576,2026-01-09,Jaipur,Rajasthan,Farm,rice ,93.6,90.0,71.0,Cold,3.4,14.5,FB-05,1500,1407,527.0,no ,med,+91-983338782,ok
+DON-0081,2026-01-17,Bathinda,Punjab,Restaurant,cooked meals ,105.2,82.6,10.0,Cold,3.8,25.8,FB-01,500,217,145.0,no ,Medium,+91-982428080,ok
+DON-0206,2026-02-17,Jaipur,Rajasthan,Wedding Hall,Dairy,95.3,80.1,24.0,Room,21.5,38.8,FB-05,1000,397,326.0,Y,high,+91-981360306,festival surplus
+DON-0035,2026-03-02,Delhi,Delhi,Supermarket,Cooked Meals,102.4,80.3,7.0,No Storage,30.7,19.0,FB-04,1000,846,489.0,,HIGH ,+91-986275034,festival surplus
+DON-0509,2026-02-05,Jaipur,Rajasthan,Wedding Hall,Fruits,105.9,88.1,63.0,No Storage,26.8,11.5,FB-05,1000,177,252.0,yes,Medium,+91-989193300,
+DON-0428,2026-02-10,ludhiana,Punjab,Supermarket,Dairy,226.3,189.5,16.0,Room,23.9,21.6,FB-05,800,174,343.0,Y,HIGH ,+91-988878239,festival surplus
+DON-0455,2026-02-25,Jalandhar,Punjab,Wedding Hall,Rice,116.5,105.3,82.0,Cold,4.1,8.2,FB-05,1500,257,170.0,YES ,Medium,+91-981742476,urgent pickup
+DON-0367,2026-01-28,Jaipur,Rajasthan,Farm,Cooked Meals,70.1,42.9,5.0,Cold,6.0,-19.1,FB-04,1000,227,292.0,N,Medium,+91-981312051,festival surplus
+DON-0092,2026-02-05,LUDHIANA ,Punjab,Household,COOKED MEALS,72.2,68.4,7.0,Room,22.1,3.4,FB-04,500,257,52.0,No,Medium,+91-987208714,
+DON-0340,2026-02-18,Jalandhar,Punjab,Supermarket,Dairy,149.8,109.8,24.0,Cold,4.4,20.3,FB-01,1000,521,114.0,No,Medium,+91-989052377,urgent pickup
+DON-0565,2026-01-22,Jaipur,Rajasthan,Gurudwara Langar,Wheat Flour,105.0,90.6,136.0,Room,21.6,12.1,FB-02,800,254,353.0,YES ,HIGH ,+91-986295986,festival surplus
+DON-0346,2026-01-17,Chandigarh,Chandigarh UT,Gurudwara Langar,Cooked Meals,137.9,193.06,8.0,Room,60.0,20.4,FB-02,500,420,71.0,Yes,Medium,+91-983791671,ok
+DON-0242,2026-03-09,Delhi,Delhi,Restaurant,Dairy,59.2,43.0,36.0,Room,25.3,13.5,FB-02,1000,873,309.0,NO,MEDIUM ,+91-989491485,
+DON-0014,2026-02-28,Patiala,Punjab,Farm,Bread/Bakery,50.4,49.0,24.0,No Storage,22.0,17.6,FB-04,1500,1380,400.0,yes,MEDIUM ,+91-988019431,
+DON-0316,2026-02-23,Bathinda,Punjab,Gurudwara Langar,Fruits,136.9,78.5,56.0,Room,60.0,18.9,FB-02,800,588,128.0,Y,Medium,+91-984890702,ok
+DON-0388,2026-03-03,Patiala,Punjab,Gurudwara Langar,COOKED MEALS,185.4,181.5,9.0,No Storage,32.9,18.5,FB-04,800,508,159.0,,HIGH ,+91-983896355,
+DON-0274,2026-01-15,Delhi,Delhi,Restaurant,Wheat Flour,49.6,29.6,154.0,No Storage,33.3,7.4,FB-03,1500,933,120.0,YES ,LOW,+91-985859382,urgent pickup
+DON-0167,2026-01-20,Bathinda,Punjab,Hostel Mess,rice ,109.3,77.8,55.0,Room,23.1,15.0,FB-03,500,248,302.0,No,MEDIUM ,+91-989471414,urgent pickup
+DON-0110,2026-02-04,Jalandhar,Punjab,Farm,Vegetables,113.5,70.5,10.0,Room,26.3,16.8,FB-03,800,485,402.0,yes,HIGH ,+91-984325315,ok
+DON-0485,2026-01-25,Bathinda,Punjab,Hostel Mess,Dairy,125.7,72.1,29.0,Room,22.6,8.0,FB-04,1000,156,175.0,yes,med,+91-982401170,ok
+DON-0078,2026-03-05,Bathinda,Punjab,Hostel Mess,Vegetables,55.2,50.0,39.0,Cold,2.8,0.9,FB-05,1500,1140,,NO,med,+91-981864645,
+DON-0505,2026-02-13,Bathinda,Punjab,Supermarket,Bread/Bakery,136.9,97.6,19.0,Cold,3.3,11.2,FB-04,800,595,324.0,YES ,high,+91-988818014,festival surplus
+DON-0244,2026-01-13,Patiala,Punjab,Gurudwara Langar,Vegetables,81.6,45.1,28.0,Room,24.6,11.3,FB-03,500,91,136.0,Y,MEDIUM ,+91-981787600,ok
+DON-0567,2026-03-08,Delhi,Delhi,Hostel Mess,Bread/Bakery,51.9,28.7,14.0,Cold,4.3,10.7,FB-02,800,730,246.0,yes,Medium,+91-983125542,urgent pickup
+DON-0563,2026-02-06,Patiala,Punjab,Gurudwara Langar,Wheat Flour,86.0,55.1,138.0,Room,24.1,12.6,FB-01,1000,761,205.0,YES ,med,+91-989837039,urgent pickup
+DON-0190,2026-01-27,ludhiana,Punjab,Restaurant,vegetables,51.3,36.2,39.0,Room,25.9,12.8,FB-05,1500,921,346.0,Y,med,+91-985776415,ok
+DON-0476,2026-01-30,Jalandhar,Punjab,Restaurant,Bread/Bakery,36.1,35.4,14.0,Room,28.8,60.9,FB-04,1000,750,149.0,YES ,MEDIUM ,+91-982972645,
+DON-0511,2026-01-25,Jalandhar,Punjab,Supermarket,VEGETABLES ,76.0,42.2,38.0,Cold,3.9,31.9,FB-04,500,123,189.0,NO,LOW,+91-988200622,
+DON-0059,2026-01-10,Jaipur,Rajasthan,Supermarket,vegetables,68.7,54.3,26.0,Room,22.0,34.6,FB-02,800,193,312.0,YES ,MEDIUM ,+91-985409352,urgent pickup
+DON-0475,2026-01-17,amritsar ,Punjab,Gurudwara Langar,Wheat Flour,165.8,,44.0,Room,27.3,11.0,FB-02,800,632,287.0,yes,med,+91-987801693,urgent pickup
+DON-0561,2026-01-13,Delhi,Delhi,Farm,vegetables,145.2,136.4,29.0,Cold,2.9,13.9,FB-05,1500,1393,292.0,No,Medium,+91-982135583,festival surplus
+DON-0253,2026-01-06,Bathinda,Punjab,Gurudwara Langar,vegetables,130.8,95.5,,Room,21.0,8.0,FB-05,1000,647,214.0,yes,High,+91-989654584,ok
+DON-0022,2026-01-19,Patiala,Punjab,Household,Bread/Bakery,60.2,44.4,,No Storage,28.9,13.0,FB-04,500,157,180.0,Y,med,+91-987081950,ok
+DON-0314,2026-02-07,Patiala,Punjab,Gurudwara Langar,Bread/Bakery,58.6,52.6,12.0,Cold,5.9,4.2,FB-01,1000,569,96.0,No,med,+91-982743227,urgent pickup
+DON-0460,2026-02-10,Patiala,Punjab,Supermarket,Cooked Meals,95.6,64.6,10.0,Cold,3.7,3.2,FB-04,500,414,109.0,YES ,med,+91-982641455,urgent pickup
+DON-0161,2026-02-02,Bathinda,Punjab,Hostel Mess,Bread/Bakery,116.3,74.0,21.0,Room,26.7,10.5,FB-05,1000,436,270.0,N,med,+91-985706797,festival surplus
+DON-0277,2026-01-05,Delhi,Delhi,Gurudwara Langar,Cooked Meals,144.0,82.3,3.0,No Storage,32.1,18.7,FB-01,1500,417,368.0,NO,High,+91-983196274,ok
+DON-0192,2026-02-12,Jaipur,Rajasthan,Hostel Mess,Bread/Bakery,113.8,67.1,7.0,No Storage,28.2,26.2,FB-05,1500,437,183.0,Yes,MEDIUM ,+91-981995893,
+DON-0386,2026-01-16,Chandigarh,Chandigarh UT,Household,Cooked Meals,135.1,80.9,7.0,Room,26.5,6.5,FB-03,1000,459,188.0,Y,HIGH ,+91-987630064,urgent pickup
+DON-0414,2026-03-06,Bathinda,Punjab,Wedding Hall,Cooked Meals,31.3,23.3,4.0,Room,26.5,22.7,FB-04,1000,631,173.0,Yes,MEDIUM ,+91-983513614,urgent pickup
+DON-0492,2026-03-05,AMRITSAR,Punjab,Gurudwara Langar,Wheat Flour,55.3,40.8,140.0,No Storage,30.2,7.5,FB-02,800,233,188.0,Yes,MEDIUM ,+91-989341353,urgent pickup
+DON-0344,2026-01-08,Bathinda,Punjab,Gurudwara Langar,vegetables,58.6,34.8,9.0,Cold,5.9,3.9,FB-03,1500,1224,388.0,yes,High,+91-987387952,urgent pickup
+DON-0309,2026-01-28,Jaipur,Rajasthan,Supermarket,Rice,65.4,58.4,,No Storage,28.1,22.4,FB-03,1500,1209,109.0,Yes,LOW,+91-983612761,urgent pickup
+DON-0131,2026-02-14,Bathinda,Punjab,Supermarket,Wheat Flour,57.1,41.9,153.0,Cold,3.3,11.4,FB-02,1500,784,382.0,Y,Medium,+91-981225391,festival surplus
+DON-0100,2026-01-13,Jaipur,Rajasthan,Restaurant,Wheat Flour,72.2,66.3,127.0,Cold,3.2,23.9,FB-05,1000,748,443.0,,Medium,+91-983148091,ok
+DON-0373,2026-03-05,AMRITSAR,Punjab,Restaurant,Bread/Bakery,125.2,93.0,8.0,Room,27.7,10.1,FB-02,1000,891,318.0,Y,high,+91-983233969,
+DON-0088,2026-01-08,CHANDIGARH,Chandigarh UT,Gurudwara Langar,rice ,122.8,112.0,96.0,Room,25.0,6.0,FB-03,800,346,485.0,yes,HIGH ,+91-988008443,ok
+DON-0459,2026-01-28,LUDHIANA ,Punjab,Supermarket,Dairy,143.4,124.4,15.0,Cold,4.6,19.9,FB-02,500,216,289.0,Y,Medium,+91-988572307,festival surplus
+DON-0331,2026-02-24,Patiala,Punjab,Restaurant,cooked meals ,140.1,122.5,7.0,Room,24.0,21.3,FB-04,500,296,171.0,YES ,High,+91-981791624,
+DON-0215,2026-01-21,Patiala,Punjab,Gurudwara Langar,Wheat Flour,161.1,126.6,141.0,Room,22.4,17.2,FB-03,1500,747,276.0,N,MEDIUM ,+91-987562865,urgent pickup
+DON-0467,2026-02-12,Delhi,Delhi,Supermarket,VEGETABLES ,139.2,114.0,41.0,Cold,5.4,9.3,FB-02,1000,826,208.0,Yes,med,+91-989357646,ok
+DON-0122,2026-01-18,Amritsar,Punjab,Restaurant,Bread/Bakery,104.3,59.7,14.0,Room,22.0,18.5,FB-05,1500,277,127.0,N,med,+91-981737954,ok
+DON-0021,2026-02-12,AMRITSAR,Punjab,Household,cooked meals ,127.7,89.5,7.0,Room,21.9,8.8,FB-02,1500,878,77.0,NO,Medium,+91-986806466,ok
+DON-0072,2026-02-06,Delhi,Delhi,Farm,RICE,121.2,95.7,66.0,Cold,5.6,22.5,FB-03,1500,340,123.0,NO,med,+91-989143478,ok
+DON-0107,2026-01-19,Bathinda,Punjab,Gurudwara Langar,Fruits,66.1,63.5,500.0,Cold,4.6,21.7,FB-04,800,142,118.0,yes,Low,+91-982372070,urgent pickup
+DON-0271,2026-01-16,Jalandhar,Punjab,Hostel Mess,Cooked Meals,66.0,46.0,8.0,Room,20.7,21.9,FB-05,1000,328,342.0,YES ,HIGH ,+91-981676935,ok
+DON-0436,2026-01-11,amritsar ,Punjab,Gurudwara Langar,rice ,66.7,49.8,114.0,Cold,5.5,10.1,FB-05,1500,304,176.0,YES ,Medium,+91-986778994,ok
+DON-0103,2026-03-06,Patiala,Punjab,Restaurant,vegetables,111.3,93.2,45.0,Cold,4.3,14.4,FB-04,500,304,392.0,yes,high,+91-986994376,
+DON-0067,2026-01-08,Amritsar,Punjab,Restaurant,cooked meals ,104.0,87.5,9.0,Room,22.7,23.8,FB-05,1000,727,202.0,Yes,High,+91-983887698,urgent pickup
+DON-0227,2026-01-13,Bathinda,Punjab,Farm,Dairy,79.1,68.7,31.0,Room,20.8,6.7,FB-04,800,421,100.0,Yes,MEDIUM ,+91-987630604,festival surplus
+DON-0070,2026-01-11,Delhi,Delhi,Gurudwara Langar,Wheat Flour,50.0,31.7,102.0,Cold,4.7,15.6,FB-02,1500,1064,268.0,Y,Medium,+91-987143326,
+DON-0501,2026-01-17,Jaipur,Rajasthan,Gurudwara Langar,rice ,-56.2,55.1,53.0,No Storage,29.6,12.9,FB-04,1500,906,,Y,MEDIUM ,+91-988596477,urgent pickup
+DON-0161,2026-02-02,Bathinda,Punjab,Hostel Mess,Bread/Bakery,116.3,74.0,21.0,Room,26.7,10.5,FB-05,1000,436,270.0,N,med,+91-985706797,festival surplus
+DON-0400,2026-02-19,Chandigarh,Chandigarh UT,Restaurant,Cooked Meals,120.4,94.0,6.0,No Storage,24.1,13.8,FB-02,1000,700,173.0,yes,HIGH ,+91-985763090,
+DON-0033,2026-02-08,LUDHIANA ,Punjab,Supermarket,Fruits,94.5,132.29999999999998,62.0,Cold,3.1,8.8,FB-01,500,403,275.0,yes,med,+91-983869760,
+DON-0258,2026-03-09,Bathinda,Punjab,Restaurant,Bread/Bakery,102.1,86.7,17.0,Room,28.2,16.9,FB-01,500,369,107.0,Yes,med,+91-984507145,ok
+DON-0166,2026-01-26,Patiala,Punjab,Supermarket,Dairy,69.4,67.1,30.0,Room,22.0,26.2,FB-01,1000,818,174.0,YES ,med,+91-988199107,ok
+DON-0053,2026-02-26,amritsar ,Punjab,Hostel Mess,Wheat Flour,90.4,59.3,110.0,Cold,3.6,15.5,FB-01,1000,847,212.0,no ,low ,+91-986672605,festival surplus
+DON-0573,2026-03-01,Jaipur,Rajasthan,Restaurant,vegetables,58.7,57.5,24.0,No Storage,33.6,10.7,FB-02,800,276,173.0,N,Medium,+91-982923413,festival surplus
+DON-0347,2026-01-30,Jaipur,Rajasthan,Farm,Vegetables,65.4,60.1,26.0,Cold,4.8,25.1,FB-04,1500,1211,231.0,Y,med,+91-988613312,
+DON-0429,2026-02-20,Amritsar,Punjab,Gurudwara Langar,Vegetables,58.4,44.5,22.0,Room,25.9,8.4,FB-03,1000,251,222.0,yes,med,+91-981684143,ok
+DON-0239,2026-03-03,Jaipur,Rajasthan,Gurudwara Langar,Bread/Bakery,56.1,44.5,25.0,No Storage,26.6,12.2,FB-05,800,716,329.0,N,med,+91-981526925,festival surplus
+DON-0546,2026-01-13,Jaipur,Rajasthan,Farm,Bread/Bakery,131.1,97.7,23.0,Room,24.9,10.4,FB-01,800,662,98.0,Y,Medium,+91-988396822,ok
+DON-0289,2026-02-06,Ludhiana,Punjab,Supermarket,Rice,150.0,109.3,62.0,Cold,3.3,11.4,FB-02,1000,430,305.0,no ,med,+91-981045807,urgent pickup
+DON-0013,2026-01-18,Ludhiana,Punjab,Hostel Mess,Cooked Meals,177.9,108.3,9.0,Cold,6.7,8.7,FB-04,500,132,253.0,Yes,high,+91-989837590,festival surplus
+DON-0020,2026-01-12,Jaipur,Rajasthan,Supermarket,Wheat Flour,140.7,134.6,197.0,Room,26.2,14.5,FB-05,1500,242,300.0,YES ,med,+91-987243669,
