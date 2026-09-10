@@ -1,91 +1,94 @@
 # FreshRoute — Food Bank Distribution Optimizer (India)
-## CE-1 Iteration-1 Product Spec Sheet (built on REAL data)
+## CE-1 Iteration-1 Product Spec Sheet (built on REAL India data)
 
 ### 1. Title & overview
 FreshRoute predicts a **redistribution priority (Low / Medium / High)** for each
-food-bank distribution record so volunteers move the most urgent supply first.
-Primary data: 1020 real monthly distribution records from the Blue Ridge Area
-Food Bank (Virginia Open Data Portal, Jan 2019–Jun 2021). India framing anchored
-on India's real UNEP Food Waste Index row (50 kg/capita/yr household,
-68.76M tonnes/yr). Reproduce: `python scripts/clean_dataset.py`.
+APMC mandi-commodity-day so volunteers move the most urgent glut first.
+Primary data: 383,753 real APMC arrivals + price records (DMI, 28 states,
+2,705 markets, 304 commodities, 2025-10-27–2025-11-19). India-native, no US proxy.
+Reproduce: `python scripts/clean_dataset.py`.
 
 ### 2. Problem statement
 Edible surplus spoils while nearby shelters face shortages because no one ranks
-*what should move first*. Donors don't see food-bank need; food banks don't see
-incoming surplus in time. Fixed rules ("first come, first served") ignore the
-perishability × need tradeoff. India wastes ~68.76M tonnes/yr at household level
-alone (UNEP 2021) — routing intelligence, not just more food, is the gap.
+*what should move first*. APMC mandis see daily volume gluts that crash wholesale
+prices — an observable glut signal. Fixed rules ("first come, first served")
+ignore the arrival-surge × price-drop tradeoff.
 
 ### 3. Objectives
-1. Curate a **real, cited dataset** (1020 records) — no invented donation logs.
+1. Curate a **real India-native cited dataset** (383k records) — no Virginia proxy,
+   no invented donation logs.
 2. Deliver **zero-missing, encoded, ML-ready data** with a frozen X/y contract.
-3. Derive a **disclosed triage label** (rule + thresholds saved, not hidden).
+3. Derive a **disclosed triage label** (Surplus Intensity S + quantile thresholds
+   saved, not hidden).
 4. Produce **6 EDA figures with observations** that justify features and expose bias.
-5. Anchor an **India pilot design** (donor/hub reference tables) on real UNEP volumes.
+5. Enable a **Maharashtra/India pilot design** (mandi → priority → ranked hub).
 
 ### 4. Dataset collection & description
 | File | Shape | Source |
 |---|---|---|
-| `data/raw/brafb_virginia_foodbank.csv` | 1020 × 8 | Virginia Open Data Portal (BRAFB, real ops records) |
-| `data/raw/food_waste_by_country.csv` | 214 × 12 | UNEP Food Waste Index 2021 (via mirror) |
-| `data/processed/freshroute_foodbank_cleaned.csv` | 1020 × 16 | this pipeline |
-| `data/processed/freshroute_foodbank_encoded.csv` | 1020 × 58 | this pipeline |
-| `data/reference/india_waste_anchor.csv` | 1 × 9 | India's UNEP row (real) |
-| `data/reference/india_network_reference.csv` | 6 × 3 | donor/hub design, sources labeled |
-Raw columns: Year, Month, Locality, Households/Individuals Served,
-Pounds Distributed, Children Served + Child-nutrition Pounds.
+| `data/raw/apmc_arrivals_prices.csv` | 394258 × 22 raw | DMI via data.gov.in / CEDA mirror (real mandi ops) |
+| `data/processed/freshroute_foodbank_cleaned.csv` | 383753 × 22 | this pipeline |
+| `data/processed/freshroute_foodbank_encoded.csv` | 383753 × 62 | this pipeline |
+Raw columns: date, state/district/market, commodity/variety/grade,
+lat/lon, arrival_quantity, min/max/modal_price, price_unit.
 Full provenance: `data/SOURCES.md`.
 
 ### 5. Data cleaning
 - Duplicates: 0 exact dupes found (checked, not assumed).
-- Text: Month/Locality stripped + uppercased; Month cast to ordered JAN..DEC.
-- Impossible values: 1 negative pound figure → NaN → median (logged in report).
-- Float artifacts from the portal export (e.g. 177361.59854, 386.99 people)
-  → counts rounded to int, pounds to 1 decimal.
-- Program-only rows (30, e.g. PITTSYLVANIA: no household service, child-program
-  activity only) → Households/Individuals NaN treated as true 0 + flag column,
-  not silently dropped.
+- Text: state/district/market/commodity stripped + uppercased; date to datetime.
+- Units: Rs./Quintal → Rs./kg (`/100`); 10,503 Bundle/Unit rows dropped
+  (not convertible, logged).
+- Impossible values: negatives → NaN → dropped/median (logged).
+- Geo: 140,784 rows missing lat/lon → state median + `geo_missing` flag.
+- Variety/grade NaN → UNKNOWN.
+- Outliers: per-commodity IQR winsorize price (k=3), arrivals (k=5).
 
 ### 6. Handling missing values
 | Column | Missing | Treatment |
 |---|---|---|
-| Households / Individuals Served | 30 (2.9%) | true 0 + `is_program_only_record` flag |
-| Children Served | 591 (58%) | median (87) + `child_data_missing` flag (missingness kept as signal) |
-| Child-nutrition Pounds | leftover after negative fix | median |
+| modal_price/date/market | 4 total | drop |
+| lat/lon | 140,784 (37%) | state median + `geo_missing` flag |
+| variety/grade | 1 each | UNKNOWN |
 | **After** | **0 total** | verified by assert in script |
 
 ### 7. Categorical encoding
-- One-Hot (`drop_first=True`, int): Month (11 cols), Locality (30+ cols).
+- One-Hot (`drop_first=True`, int): state_name (27 cols), commodity_top top-20 + OTHER (20 cols).
+- Market/district (2705/528 cards) kept in cleaned for ranking, excluded from X.
 - Label target only: High→0, Low→1, Medium→2 (saved in `cleaning_report.json`).
-- Dropped from X: nothing PII-like present. Scaling deferred to CE-2 pipeline.
+- X = 61 cols (14 numeric/flags + 47 dummies) | y = `redistribution_priority`.
+- Contract: `train_test_split(stratify=y, random_state=42)` mandatory in CE-2.
 
 ### 8. EDA & visualization (`reports/figures/`)
-1. `01_priority_dist.png` — Medium 425 / Low 330 / High 265: usable, mildly imbalanced → stratify in CE-2.
-2. `02_pounds_hist.png` — right-skewed volumes; a few mega-months dominate.
-3. `03_monthly_trend.png` — visible 2020 (covid-era) surge → kept as `is_covid_era` feature.
-4. `04_top_localities.png` — LYNCHBURG/LOUDOUN dominate → locality dummies + per-capita features prevent "big place always wins".
-5. `05_need_vs_supply.png` — priority separates cleanly on need × supply-per-person, validating the rule.
-6. `06_corr_heatmap.png` — engineered per-capita cols correlate with parents (expected); no hidden |r|>0.85 surprises among base numerics.
+1. `01_priority_dist.png` — Medium 158k / Low 129k / High 95k: usable, mildly imbalanced → stratify in CE-2.
+2. `02_pounds_hist.png` — price_per_kg right-skewed; p99 clip for view.
+3. `03_monthly_trend.png` — 24-day window only; no seasonality claim — needs WFP long baseline.
+4. `04_top_localities.png` — top commodities Onion/Wheat/Potato/Tomato; Tamil Nadu 35% of rows → state dummies + per-kg features prevent "big state always wins".
+5. `05_need_vs_supply.png` — arrival_z vs price_z separates by S, validating the glut rule.
+6. `06_corr_heatmap.png` — S correlates with arrival_z / -price_z by construction; no hidden |r|>0.85 among base numerics.
 
 ### 9. Features
-Engineered: `pounds_per_household`, `pounds_per_individual`, `child_pound_share`,
-`is_covid_era`, `month_num`, `is_program_only_record`, `child_data_missing`.
-X = 57 cols (9 numeric/flags + 48 dummies) | y = `redistribution_priority`.
+Engineered: `price_per_kg`, `arrival_tonnes`, `baseline_mean/std`, `arr_mean/std`,
+`price_z`, `arrival_z`, `surplus_S`, `log_arrival`, `price_spread`,
+`month_num`, `day_num`, `is_weekend`, `geo_missing`.
+X = 61 cols | y = `redistribution_priority`.
 Contract: `train_test_split(stratify=y, random_state=42)` mandatory in CE-2.
 
 ### 10. Pre-processed screenshot
-`freshroute_foodbank_cleaned.csv` head (8 rows) — reproduce table any time:
-`python -c "import pandas as pd; print(pd.read_csv('data/processed/freshroute_foodbank_cleaned.csv').head(8).to_string())"`.
-Cleaned 1020×16, missing=0; encoded 1020×58; y = Medium 425 / Low 330 / High 265.
+`freshroute_foodbank_cleaned.csv` head (3 rows) — reproduce any time:
+`python -c "import pandas as pd; print(pd.read_csv('data/processed/freshroute_foodbank_cleaned.csv').head(3).to_string())"`.
+Cleaned 383753×22, missing=0; encoded 383753×62; y = Medium 158026 / Low 129788 / High 95939.
 
 ### 11. Conclusion
-CE-1 done on fully real, cited data: messy 1020×8 → clean 1020×16 →
-encoded 1020×58, frozen X/y, 6 EDA figures, disclosed label rule, India anchor.
-Finding: distribution urgency separates on need × supply-per-person, not raw volume.
-Biases logged: US geography, covid-era surge, program-only rows flagged.
+CE-1 done on fully real India-native data: messy 394k×22 → clean 383k×22 →
+encoded 383k×62, frozen X/y, 6 EDA figures, disclosed S-rule, no Virginia proxy.
+Finding: redistribution urgency separates on arrival-surge × price-drop (S),
+not raw volume.
+Biases logged: Tamil Nadu dominance, 24-day window (no seasonality),
+37% geo-imputed, perishables over-represented.
 
 ### 12. Planning & future scope
-CE-2: Logistic/RandomForest/XGBoost on F1-macro, stratified split, per-locality
-audit. Then India pilot layer: donor → priority → ranked hub (Rajpura/Patiala/
-Chandigarh), volunteer dispatch, FSSAI-aligned logging. Field pilot needed before
-any real-world impact claim.
+CE-2: Logistic/RandomForest/XGBoost on F1-macro, stratified split, per-state
+audit. Then demand layer: Maharashtra PDS AAY/PHH → vulnerability `V_d`,
+WFP long prices for seasonality, mandi → hub Haversine ranking, volunteer
+dispatch, FSSAI-aligned logging. Field pilot needed before any real-world
+impact claim.

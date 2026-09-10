@@ -1,2 +1,6 @@
 __pycache__/
 .ipynb_checkpoints/
+# Large India APMC data — local only, re-download via data/SOURCES.md
+data/raw/apmc_arrivals_prices.csv
+data/processed/freshroute_foodbank_cleaned.csv
+data/processed/freshroute_foodbank_encoded.csv
