@@ -1,0 +1,7 @@
+entity,role,source
+donor: Gurudwara langar,"surplus cooked meals, daily",FSSAI Food Sharing Alliance program context (project assumption)
+donor: wedding/religious hall,event-driven bulk surplus,project assumption
+donor: hostel/college mess,daily cooked surplus,project assumption
+donor: restaurant/hotel,daily perishable surplus,UNEP food-service estimate context
+donor: retailer/mandi,produce near expiry,UNEP retail estimate context
+hub: district food bank (Rajpura/Patiala/Chandigarh pilot),"receives, sorts, dispatches to NGOs/shelters",project design

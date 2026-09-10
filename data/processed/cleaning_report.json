@@ -1,0 +1,110 @@
+{
+  "fixes": [
+    "dropped 0 exact duplicate rows",
+    "30 program-only rows: Households/Individuals NaN -> 0 + flag",
+    "children-served NaN -> median (87.0) + child_data_missing flag",
+    "leftover NaN in 'Pounds of food distributed via non-federal child nutrition prog.' -> median",
+    "counts rounded to int; pounds to 1dp; Month ordered JAN..DEC"
+  ],
+  "raw_shape": [
+    1020,
+    8
+  ],
+  "raw_missing": {
+    "Households Served": 30,
+    "Individuals Served": 30,
+    "Children Served via non-federal child nutrition programs": 591
+  },
+  "negatives_fixed": {
+    "Pounds of food distributed via non-federal child nutrition prog.": 1
+  },
+  "engineered": [
+    "pounds_per_household",
+    "pounds_per_individual",
+    "child_pound_share",
+    "is_covid_era",
+    "month_num",
+    "is_program_only_record",
+    "child_data_missing"
+  ],
+  "priority_rule": {
+    "note": "DERIVED label for triage demo, not an observed quantity",
+    "need_hi_individuals": 1770.5,
+    "supply_lo_ppi": 21.707,
+    "supply_hi_ppi": 33.277,
+    "rule": "High if individuals>=need_hi AND ppi<=supply_lo (program-only rows default Medium); Low if ppi>=supply_hi; else Medium"
+  },
+  "target_distribution": {
+    "Medium": 425,
+    "Low": 330,
+    "High": 265
+  },
+  "target_mapping": {
+    "High": 0,
+    "Low": 1,
+    "Medium": 2
+  },
+  "X_columns": [
+    "Year",
+    "Households Served",
+    "Individuals Served",
+    "Pounds of Food Distributed",
+    "Children Served via non-federal child nutrition programs",
+    "Pounds of food distributed via non-federal child nutrition prog.",
+    "is_program_only_record",
+    "child_data_missing",
+    "pounds_per_household",
+    "pounds_per_individual",
+    "child_pound_share",
+    "is_covid_era",
+    "month_num",
+    "Month_FEB",
+    "Month_MAR",
+    "Month_APR",
+    "Month_MAY",
+    "Month_JUN",
+    "Month_JUL",
+    "Month_AUG",
+    "Month_SEP",
+    "Month_OCT",
+    "Month_NOV",
+    "Month_DEC",
+    "Locality_AMHERST",
+    "Locality_APPOMATTOX",
+    "Locality_AUGUSTA",
+    "Locality_BATH",
+    "Locality_BEDFORD COUNTY",
+    "Locality_BUCKINGHAM",
+    "Locality_BUENA VISTA",
+    "Locality_CAMPBELL",
+    "Locality_CHARLOTTESVILLE",
+    "Locality_CLARKE COUNTY",
+    "Locality_CULPEPER",
+    "Locality_FAUQUIER",
+    "Locality_FLUVANNA",
+    "Locality_FREDERICK",
+    "Locality_GREENE",
+    "Locality_HARRISONBURG",
+    "Locality_HIGHLAND",
+    "Locality_LEXINGTON",
+    "Locality_LOUDOUN",
+    "Locality_LYNCHBURG",
+    "Locality_MADISON",
+    "Locality_NELSON",
+    "Locality_ORANGE",
+    "Locality_PAGE COUNTY",
+    "Locality_PITTSYLVANIA",
+    "Locality_RAPPAHANNOCK",
+    "Locality_ROCKBRIDGE",
+    "Locality_ROCKINGHAM",
+    "Locality_SHENANDOAH",
+    "Locality_STAUNTON CITY",
+    "Locality_WARREN",
+    "Locality_WAYNESBORO",
+    "Locality_WINCHESTER"
+  ],
+  "encoded_shape": [
+    1020,
+    58
+  ]
+}
