@@ -1,0 +1,29 @@
+{
+  "task": "next-day priority forecast X(t)->y(t+1), time split",
+  "test_target_dates": [
+    "2025-11-14",
+    "2025-11-19"
+  ],
+  "n_train": 267804,
+  "n_test": 84694,
+  "results": {
+    "Baseline_majority": {
+      "f1_macro": 0.1811,
+      "accuracy": 0.3731
+    },
+    "LogReg": {
+      "f1_macro": 0.3039,
+      "accuracy": 0.3838
+    },
+    "RandomForest": {
+      "f1_macro": 0.5159,
+      "accuracy": 0.5489
+    },
+    "XGBoost": {
+      "f1_macro": 0.5171,
+      "accuracy": 0.5644
+    }
+  },
+  "winner": "XGBoost",
+  "dispatch_demo_rows": 50
+}
