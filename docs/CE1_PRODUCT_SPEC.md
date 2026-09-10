@@ -65,6 +65,10 @@ Full provenance: `data/SOURCES.md`.
 4. `04_top_localities.png` — top commodities Onion/Wheat/Potato/Tomato; Tamil Nadu 35% of rows → state dummies + per-kg features prevent "big state always wins".
 5. `05_need_vs_supply.png` — arrival_z vs price_z separates by S, validating the glut rule.
 6. `06_corr_heatmap.png` — S correlates with arrival_z / -price_z by construction; no hidden |r|>0.85 among base numerics.
+### 8b. Supplementary EDA (bias checks & operations, frozen 01–06 unchanged)
+7. `07_state_high_rate.png` — High-rate by state: Tamil Nadu 0.232, below 0.25 average despite ~34% of rows → volume dominance ≠ label dominance.
+8. `08_perishable_vs_staple.png` — perishables 0.270 vs staples 0.257: small gap, consistent with spoilage framing but not confirmation in 24 days.
+9. `09_top_markets_high.png` — top markets by High count (Tiruvannamalai 376, Gonda 362, Vellore 362); Uzhavar Sandhai density caveat — pair with tonnage before dispatch.
 
 ### 9. Features
 Engineered: `price_per_kg`, `arrival_tonnes`, `baseline_mean/std`, `arr_mean/std`,
