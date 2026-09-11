@@ -1,5 +1,7 @@
 # FreshRoute — Food Bank Distribution Optimizer (India)
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ParasRana1729/freshroute/blob/main/notebooks/FreshRoute_Colab.ipynb)
+
 **In one line:** every day, Indian farm markets (*mandis*) get sudden gluts of
 produce that can rot before anyone moves it. FreshRoute looks at today's arrivals
 and prices, predicts *tomorrow's* urgent gluts, and hands volunteers a
