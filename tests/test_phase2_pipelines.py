@@ -304,3 +304,54 @@ def test_phase2_expanding_walk_forward_cv_runs_leak_free() -> None:
         "track_1b_mae_reduction_mean",
         "track_1b_surge_ndcg10_lift_mean",
     }
+
+
+def test_ceda_fetch_joins_prices_and_quantities_and_caches(tmp_path: Path) -> None:
+    mock_session = MagicMock()
+
+    def _resp(payload: dict, rem: str = "10") -> MagicMock:
+        r = MagicMock()
+        r.status_code = 200
+        r.headers = {"RateLimit-Remaining": rem}
+        r.json.return_value = payload
+        return r
+
+    mock_session.get.side_effect = [
+        _resp({"output": {"data": [{"commodity_id": 78, "commodity_name": "Tomato"}]}}),
+        _resp({"output": {"data": [{"census_state_id": 27, "census_state_name": "Maharashtra", "census_district_id": 521, "census_district_name": "Pune"}]}}),
+    ]
+    mock_session.post.side_effect = [
+        _resp({"output": {"data": [{"date": "2024-11-01T00:00:00.000Z", "commodity_id": 78, "census_state_id": 27, "census_district_id": 521, "market_id": 101, "min_price": 1800, "max_price": 2200, "modal_price": 2000}]}}),
+        _resp({"output": {"data": [{"date": "2024-11-01T00:00:00.000Z", "commodity_id": 78, "census_state_id": 27, "census_district_id": 521, "market_id": 101, "quantity": 12.5}]}}),
+    ]
+
+    df1 = fah.fetch_ceda_history(
+        target_states=["MAHARASHTRA"],
+        target_commodities=["TOMATO"],
+        start_date="2024-11-01",
+        end_date="2024-11-05",
+        cache_dir=tmp_path / "ceda_cache",
+        api_key="dummy-key",
+        session=mock_session,
+        backoff_seconds=0.0,
+    )
+    assert len(df1) == 1
+    assert df1.at[0, "market_center_name"] == "CEDA_MKT_101"
+    assert np.isclose(df1.at[0, "arrival_tonnes"], 12.5)
+    assert np.isclose(df1.at[0, "price_per_kg"], 20.0)
+
+    # Second run hits disk cache with 0 network calls
+    mock_session.reset_mock()
+    df2 = fah.fetch_ceda_history(
+        target_states=["MAHARASHTRA"],
+        target_commodities=["TOMATO"],
+        start_date="2024-11-01",
+        end_date="2024-11-05",
+        cache_dir=tmp_path / "ceda_cache",
+        api_key="dummy-key",
+        session=mock_session,
+        backoff_seconds=0.0,
+    )
+    assert mock_session.get.call_count == 0
+    assert mock_session.post.call_count == 0
+    pd.testing.assert_frame_equal(df1, df2)

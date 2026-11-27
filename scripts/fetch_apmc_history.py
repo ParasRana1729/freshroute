@@ -225,6 +225,166 @@ def ingest_agmarknet_exports(
     return normalize_and_dedupe_apmc(combined, target_states, target_commodities)
 
 
+def _ceda_get_json_cached(
+    client: requests.Session,
+    url: str,
+    headers: dict[str, str],
+    cache_file: Path,
+    max_retries: int = 3,
+    backoff_seconds: float = 2.0,
+    wait_on_hourly_limit: bool = False,
+) -> dict[str, Any]:
+    if cache_file.exists():
+        return json.loads(cache_file.read_text(encoding="utf-8"))
+    last_err: Exception | None = None
+    for attempt in range(max_retries):
+        try:
+            resp = client.get(url, headers=headers, timeout=30)
+            if resp.status_code == 429:
+                wait_s = float(resp.headers.get("Retry-After") or resp.headers.get("RateLimit-Reset") or 62.0)
+                if wait_s > 120 and not wait_on_hourly_limit:
+                    raise RuntimeError(
+                        f"CEDA hourly rate limit reached (policy={resp.headers.get('RateLimit-Policy', '40;w=3600')}, "
+                        f"reset_in={int(wait_s)}s). Re-run after reset or pass --wait-on-rate-limit."
+                    )
+                last_err = requests.HTTPError("CEDA rate limit 429", response=resp)
+                if attempt < max_retries - 1 and backoff_seconds > 0:
+                    time.sleep(wait_s)
+                    continue
+                raise last_err
+            if resp.status_code in (500, 502, 503, 504):
+                raise requests.HTTPError(f"CEDA HTTP {resp.status_code}", response=resp)
+            resp.raise_for_status()
+            payload = resp.json()
+            cache_file.write_text(json.dumps(payload), encoding="utf-8")
+            return payload
+        except RuntimeError:
+            raise
+        except Exception as exc:
+            last_err = exc
+            if attempt < max_retries - 1 and backoff_seconds > 0:
+                time.sleep(backoff_seconds * (2**attempt))
+    raise RuntimeError(f"CEDA GET failed for {url}: {last_err}")
+
+
+def _ceda_post_chunk(
+    client: requests.Session,
+    url: str,
+    headers: dict[str, str],
+    commodity_id: int,
+    state_id: int,
+    district_ids: list[int],
+    from_date: str,
+    to_date: str,
+    cache_file: Path,
+    request_budget: list[int],
+    max_retries: int = 3,
+    backoff_seconds: float = 2.0,
+    timeout_seconds: int = 45,
+    wait_on_hourly_limit: bool = False,
+) -> tuple[list[dict[str, Any]], bool]:
+    """Return (rows, hit_budget_or_rate_limit)."""
+    if cache_file.exists():
+        payload = json.loads(cache_file.read_text(encoding="utf-8"))
+        return payload.get("output", {}).get("data", payload.get("data", [])), False
+
+    if request_budget[0] <= 0:
+        return [], True
+
+    body = {
+        "commodity_id": int(commodity_id),
+        "state_id": int(state_id),
+        "district_id": [int(d) for d in district_ids],
+        "from_date": from_date,
+        "to_date": to_date,
+    }
+    last_err: Exception | None = None
+    for attempt in range(max_retries):
+        if request_budget[0] <= 0:
+            return [], True
+        try:
+            request_budget[0] -= 1
+            resp = client.post(url, headers=headers, json=body, timeout=timeout_seconds)
+            if resp.status_code == 429:
+                wait_s = float(resp.headers.get("Retry-After") or resp.headers.get("RateLimit-Reset") or 62.0)
+                if wait_s > 120 and not wait_on_hourly_limit:
+                    return [], True
+                last_err = requests.HTTPError("CEDA rate limit 429", response=resp)
+                if attempt < max_retries - 1 and backoff_seconds > 0:
+                    time.sleep(wait_s)
+                    continue
+                return [], True
+            if resp.status_code in (500, 502, 503, 504):
+                raise requests.HTTPError(f"CEDA HTTP {resp.status_code}", response=resp)
+            resp.raise_for_status()
+            payload = resp.json()
+            cache_file.write_text(json.dumps(payload), encoding="utf-8")
+            rem = resp.headers.get("RateLimit-Remaining")
+            if rem is not None and str(rem).isdigit() and int(rem) == 0:
+                request_budget[0] = 0
+            return payload.get("output", {}).get("data", payload.get("data", [])), False
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            last_err = exc
+            if len(district_ids) > 1:
+                mid = len(district_ids) // 2
+                left, stop_l = _ceda_post_chunk(
+                    client, url, headers, commodity_id, state_id, district_ids[:mid],
+                    from_date, to_date,
+                    cache_file.with_name(cache_file.stem + "_L.json"),
+                    request_budget,
+                    max_retries=max_retries, backoff_seconds=backoff_seconds,
+                    timeout_seconds=timeout_seconds, wait_on_hourly_limit=wait_on_hourly_limit,
+                )
+                if stop_l:
+                    return left, True
+                right, stop_r = _ceda_post_chunk(
+                    client, url, headers, commodity_id, state_id, district_ids[mid:],
+                    from_date, to_date,
+                    cache_file.with_name(cache_file.stem + "_R.json"),
+                    request_budget,
+                    max_retries=max_retries, backoff_seconds=backoff_seconds,
+                    timeout_seconds=timeout_seconds, wait_on_hourly_limit=wait_on_hourly_limit,
+                )
+                combined = left + right
+                if not stop_r:
+                    cache_file.write_text(json.dumps({"output": {"data": combined}}), encoding="utf-8")
+                return combined, stop_r
+            d0, d1 = pd.Timestamp(from_date), pd.Timestamp(to_date)
+            if (d1 - d0).days > 7:
+                d_mid = d0 + (d1 - d0) // 2
+                left, stop_l = _ceda_post_chunk(
+                    client, url, headers, commodity_id, state_id, district_ids,
+                    from_date, d_mid.strftime("%Y-%m-%d"),
+                    cache_file.with_name(cache_file.stem + "_T1.json"),
+                    request_budget,
+                    max_retries=max_retries, backoff_seconds=backoff_seconds,
+                    timeout_seconds=timeout_seconds, wait_on_hourly_limit=wait_on_hourly_limit,
+                )
+                if stop_l:
+                    return left, True
+                right, stop_r = _ceda_post_chunk(
+                    client, url, headers, commodity_id, state_id, district_ids,
+                    (d_mid + pd.Timedelta(days=1)).strftime("%Y-%m-%d"), to_date,
+                    cache_file.with_name(cache_file.stem + "_T2.json"),
+                    request_budget,
+                    max_retries=max_retries, backoff_seconds=backoff_seconds,
+                    timeout_seconds=timeout_seconds, wait_on_hourly_limit=wait_on_hourly_limit,
+                )
+                combined = left + right
+                if not stop_r:
+                    cache_file.write_text(json.dumps({"output": {"data": combined}}), encoding="utf-8")
+                return combined, stop_r
+            if attempt < max_retries - 1 and backoff_seconds > 0:
+                time.sleep(backoff_seconds * (2**attempt))
+        except Exception as exc:
+            last_err = exc
+            if attempt < max_retries - 1 and backoff_seconds > 0:
+                time.sleep(backoff_seconds * (2**attempt))
+    raise RuntimeError(
+        f"CEDA POST failed for {url} (state={state_id}, comm={commodity_id}, {from_date}..{to_date}): {last_err}"
+    )
+
+
 def fetch_ceda_history(
     target_states: list[str],
     target_commodities: list[str],
@@ -235,74 +395,153 @@ def fetch_ceda_history(
     api_key: str | None = None,
     session: requests.Session | None = None,
     max_retries: int = 3,
-    backoff_seconds: float = 1.5,
+    backoff_seconds: float = 2.0,
+    district_chunk_size: int = 12,
+    date_chunk_days: int = 90,
+    max_requests: int = 35,
+    wait_on_hourly_limit: bool = False,
 ) -> pd.DataFrame:
-    """Pull scoped daily arrivals + prices from CEDA Ashoka Agri-Market Data API with caching."""
+    """Pull scoped daily market-level arrivals + prices from CEDA Agmarknet v1 API."""
     validate_apmc_source_url(base_url)
     key = api_key or os.environ.get("CEDA_API_KEY")
     if not key:
         raise RuntimeError(
-            "Missing CEDA_API_KEY environment variable (or --api-key). "
+            "Missing CEDA_API_KEY environment variable (or --api-key / --api-key-file). "
             "Register at https://ceda.ashoka.edu.in/ to generate an API key, or pass "
             "--source agmarknet --import-dir <path> for local Agmarknet 2.0 exports."
         )
 
     cache_path = Path(cache_dir)
     cache_path.mkdir(parents=True, exist_ok=True)
-    endpoint = f"{base_url.rstrip('/')}/v1/agmarknet/prices-arrivals"
-    headers = {"Authorization": f"Bearer {key}", "Accept": "application/json"}
+    api_root = f"{base_url.rstrip('/')}/v1/agmarknet"
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json", "Accept": "application/json"}
 
     own_session = session is None
     client = requests.Session() if own_session else session
-    records: list[pd.DataFrame] = []
 
     try:
-        for state in target_states:
-            for commodity in target_commodities:
-                cfile = cache_path / f"ceda__{_slugify(state)}__{_slugify(commodity)}__{start_date}__{end_date}.json"
-                if cfile.exists():
-                    payload = json.loads(cfile.read_text(encoding="utf-8"))
-                else:
-                    params = {
-                        "state": state,
-                        "commodity": commodity,
-                        "start_date": start_date,
-                        "end_date": end_date,
-                    }
-                    payload = None
-                    last_err: Exception | None = None
-                    for attempt in range(max_retries):
-                        try:
-                            resp = client.get(endpoint, headers=headers, params=params, timeout=30)
-                            if resp.status_code in (429, 500, 502, 503, 504):
-                                raise requests.HTTPError(
-                                    f"CEDA transient HTTP {resp.status_code}", response=resp
-                                )
-                            resp.raise_for_status()
-                            payload = resp.json()
-                            break
-                        except Exception as exc:
-                            last_err = exc
-                            if attempt < max_retries - 1:
-                                time.sleep(backoff_seconds * (2**attempt))
-                    if payload is None:
-                        raise RuntimeError(
-                            f"CEDA fetch failed for ({state}, {commodity}): {last_err}"
-                        )
-                    cfile.write_text(json.dumps(payload), encoding="utf-8")
+        comm_payload = _ceda_get_json_cached(
+            client, f"{api_root}/commodities", headers, cache_path / "ceda_commodities.json",
+            max_retries=max_retries, backoff_seconds=backoff_seconds,
+            wait_on_hourly_limit=wait_on_hourly_limit,
+        )
+        geo_payload = _ceda_get_json_cached(
+            client, f"{api_root}/geographies", headers, cache_path / "ceda_geographies.json",
+            max_retries=max_retries, backoff_seconds=backoff_seconds,
+            wait_on_hourly_limit=wait_on_hourly_limit,
+        )
 
-                rows = payload.get("data", payload) if isinstance(payload, dict) else payload
-                if rows:
-                    records.append(pd.DataFrame(rows))
+        comm_rows = comm_payload.get("output", {}).get("data", comm_payload.get("commodities", []))
+        geo_rows = geo_payload.get("output", {}).get("data", geo_payload.get("geographies", []))
+
+        comm_by_name = {
+            str(r.get("commodity_name") or r.get("name")).strip().upper(): int(r.get("commodity_id") or r.get("id"))
+            for r in comm_rows
+        }
+        state_districts: dict[str, tuple[int, list[int]]] = {}
+        district_names: dict[int, str] = {}
+        state_names: dict[int, str] = {}
+        for g in geo_rows:
+            sid = int(g["census_state_id"])
+            sname = str(g["census_state_name"]).strip().upper()
+            did = int(g["census_district_id"])
+            dname = str(g["census_district_name"]).strip().upper()
+            state_names[sid] = sname
+            district_names[did] = dname
+            if sname not in state_districts:
+                state_districts[sname] = (sid, [])
+            state_districts[sname][1].append(did)
+
+        date_windows: list[tuple[str, str]] = []
+        cur = pd.Timestamp(start_date)
+        end_ts = pd.Timestamp(end_date)
+        while cur <= end_ts:
+            win_end = min(cur + pd.Timedelta(days=date_chunk_days - 1), end_ts)
+            date_windows.append((cur.strftime("%Y-%m-%d"), win_end.strftime("%Y-%m-%d")))
+            cur = win_end + pd.Timedelta(days=1)
+
+        all_price_rows: list[dict[str, Any]] = []
+        all_qty_rows: list[dict[str, Any]] = []
+        comm_id_to_name: dict[int, str] = {}
+        budget = [int(max_requests)]
+        stopped_early = False
+
+        for state in target_states:
+            if stopped_early:
+                break
+            st_up = state.strip().upper()
+            if st_up not in state_districts:
+                continue
+            sid, dist_ids = state_districts[st_up]
+            dist_ids = sorted(set(dist_ids))
+            dist_batches = [dist_ids[i : i + district_chunk_size] for i in range(0, len(dist_ids), district_chunk_size)]
+
+            for commodity in target_commodities:
+                if stopped_early:
+                    break
+                cm_up = commodity.strip().upper()
+                if cm_up not in comm_by_name:
+                    continue
+                cid = comm_by_name[cm_up]
+                comm_id_to_name[cid] = cm_up
+
+                for b_idx, d_batch in enumerate(dist_batches):
+                    if stopped_early:
+                        break
+                    for fdate, tdate in date_windows:
+                        p_cache = cache_path / f"ceda_px_s{sid}_c{cid}_b{b_idx}_{fdate}_{tdate}.json"
+                        q_cache = cache_path / f"ceda_qty_s{sid}_c{cid}_b{b_idx}_{fdate}_{tdate}.json"
+                        p_rows, p_stop = _ceda_post_chunk(
+                            client, f"{api_root}/prices", headers, cid, sid, d_batch,
+                            fdate, tdate, p_cache, budget, max_retries=max_retries,
+                            backoff_seconds=backoff_seconds, wait_on_hourly_limit=wait_on_hourly_limit,
+                        )
+                        all_price_rows.extend(p_rows)
+                        if p_stop:
+                            stopped_early = True
+                            break
+                        q_rows, q_stop = _ceda_post_chunk(
+                            client, f"{api_root}/quantities", headers, cid, sid, d_batch,
+                            fdate, tdate, q_cache, budget, max_retries=max_retries,
+                            backoff_seconds=backoff_seconds, wait_on_hourly_limit=wait_on_hourly_limit,
+                        )
+                        all_qty_rows.extend(q_rows)
+                        if q_stop:
+                            stopped_early = True
+                            break
+        if stopped_early:
+            print(
+                f"[CEDA] Stopped gracefully at hourly budget/rate limit "
+                f"(cached {len(all_price_rows)} price & {len(all_qty_rows)} qty rows so far; "
+                f"re-run after hourly reset to resume)."
+            )
     finally:
         if own_session:
             client.close()
 
-    if not records:
+    if not all_price_rows or not all_qty_rows:
         return pd.DataFrame()
-    return normalize_and_dedupe_apmc(
-        pd.concat(records, ignore_index=True), target_states, target_commodities
-    )
+
+    px_df = pd.DataFrame(all_price_rows)
+    qty_df = pd.DataFrame(all_qty_rows)
+    join_keys = ["date", "commodity_id", "census_state_id", "census_district_id", "market_id"]
+    for frame in (px_df, qty_df):
+        frame["date"] = pd.to_datetime(frame["date"]).dt.strftime("%Y-%m-%d")
+
+    merged = px_df.merge(qty_df[[*join_keys, "quantity"]], on=join_keys, how="inner")
+    if merged.empty:
+        return pd.DataFrame()
+
+    merged["state_name"] = merged["census_state_id"].map(state_names)
+    merged["district_name"] = merged["census_district_id"].map(district_names).fillna("UNKNOWN")
+    merged["commodity_name"] = merged["commodity_id"].map(comm_id_to_name)
+    merged["market_center_name"] = "CEDA_MKT_" + merged["market_id"].astype(str)
+    merged["variety"] = "CEDA_ALL"
+    merged["grade"] = "CEDA_ALL"
+    merged["arrival_quantity"] = merged["quantity"]
+    merged["price_unit"] = "Rs./Quintal"
+
+    return normalize_and_dedupe_apmc(merged, target_states, target_commodities)
 
 
 def build_seasonal_baselines(df: pd.DataFrame) -> pd.DataFrame:
@@ -454,8 +693,11 @@ def main() -> None:
     parser.add_argument("--source", choices=["ceda", "agmarknet", "local-raw"], default="local-raw")
     parser.add_argument("--import-dir", type=Path, default=None)
     parser.add_argument("--api-key", type=str, default=None)
+    parser.add_argument("--api-key-file", type=Path, default=None)
     parser.add_argument("--start-date", type=str, default="2024-01-01")
     parser.add_argument("--end-date", type=str, default="2025-11-19")
+    parser.add_argument("--max-requests", type=int, default=35)
+    parser.add_argument("--wait-on-rate-limit", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
@@ -488,6 +730,9 @@ def main() -> None:
             raise ValueError("--import-dir is required when --source agmarknet")
         scoped = ingest_agmarknet_exports(args.import_dir, p2["states"], p2["commodities"])
     else:
+        api_key = args.api_key
+        if not api_key and args.api_key_file is not None:
+            api_key = Path(args.api_key_file).read_text(encoding="utf-8").strip()
         scoped = fetch_ceda_history(
             target_states=p2["states"],
             target_commodities=p2["commodities"],
@@ -495,7 +740,9 @@ def main() -> None:
             end_date=args.end_date,
             cache_dir=ROOT / acfg["cache_dir"],
             base_url=acfg["ceda_base_url"],
-            api_key=args.api_key,
+            api_key=api_key,
+            max_requests=args.max_requests,
+            wait_on_hourly_limit=args.wait_on_rate_limit,
         )
 
     scoped = build_seasonal_baselines(scoped)
