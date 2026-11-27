@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts import audit_model as am  # noqa: E402
+from scripts import monitor_drift as md  # noqa: E402
 from scripts import optimize_dispatch as od  # noqa: E402
 
 
@@ -124,3 +125,18 @@ def test_lp_optimizer_respects_supply_capacity_distance_and_beats_or_ties_greedy
     assert by_hub.get("H2", 0.0) <= 45.0 + 1e-4
     # LP utility >= greedy nearest utility
     assert summary["utility_lift_over_greedy"] >= -1e-4
+
+
+def test_psi_and_feature_drift_detector() -> None:
+    rng = np.random.default_rng(7)
+    ref = pd.DataFrame({"f_stable": rng.normal(0.0, 1.0, 1000), "f_shifted": rng.normal(0.0, 1.0, 1000)})
+    same = pd.DataFrame({"f_stable": rng.normal(0.0, 1.0, 1000), "f_shifted": rng.normal(3.0, 1.0, 1000)})
+
+    psi_identical = md.compute_psi(ref["f_stable"].to_numpy(), ref["f_stable"].to_numpy())
+    assert psi_identical == 0.0
+
+    rows = md.compute_feature_drift(ref, same, ["f_stable", "f_shifted"])
+    by_name = {r["feature"]: r for r in rows}
+    assert by_name["f_stable"]["status"] == "stable"
+    assert by_name["f_shifted"]["psi"] > 0.25
+    assert by_name["f_shifted"]["status"] == "significant_shift"

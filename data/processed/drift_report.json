@@ -1,0 +1,434 @@
+{
+  "split_mode": "10d_7d_4d",
+  "n_train": 136105,
+  "n_val": 76184,
+  "n_test": 36841,
+  "target_drift": {
+    "train_onset_base_rate": 0.028177,
+    "val_onset_base_rate": 0.02811,
+    "test_onset_base_rate": 0.027284,
+    "train_delta_log_arr_mean": -0.00439,
+    "val_delta_log_arr_mean": -0.006496,
+    "test_delta_log_arr_mean": -0.003747
+  },
+  "train_vs_val": {
+    "n_features": 34,
+    "counts": {
+      "stable": 32,
+      "moderate_shift": 0,
+      "significant_shift": 2
+    },
+    "max_psi": 1.570662,
+    "top_5_drifted": [
+      {
+        "feature": "past_report_count",
+        "psi": 1.570662,
+        "status": "significant_shift",
+        "ks_stat": 0.655764,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "n_comm_day",
+        "psi": 1.315266,
+        "status": "significant_shift",
+        "ks_stat": 0.18019,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "price_spread",
+        "psi": 0.069349,
+        "status": "stable",
+        "ks_stat": 0.060368,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "dow_sin",
+        "psi": 0.066812,
+        "status": "stable",
+        "ks_stat": 0.050901,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "neighbor_surplus_frac_t",
+        "psi": 0.060774,
+        "status": "stable",
+        "ks_stat": 0.057548,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.01123,
+        "cur_nan_rate": 0.01162
+      }
+    ]
+  },
+  "train_vs_test": {
+    "n_features": 34,
+    "counts": {
+      "stable": 30,
+      "moderate_shift": 0,
+      "significant_shift": 4
+    },
+    "max_psi": 3.954399,
+    "top_5_drifted": [
+      {
+        "feature": "dow_cos",
+        "psi": 3.954399,
+        "status": "significant_shift",
+        "ks_stat": 0.298261,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "dow_sin",
+        "psi": 3.147771,
+        "status": "significant_shift",
+        "ks_stat": 0.342998,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "past_report_count",
+        "psi": 2.175693,
+        "status": "significant_shift",
+        "ks_stat": 0.719497,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "n_comm_day",
+        "psi": 1.31408,
+        "status": "significant_shift",
+        "ks_stat": 0.17678,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.0,
+        "cur_nan_rate": 0.0
+      },
+      {
+        "feature": "neighbor_surplus_frac_t",
+        "psi": 0.092495,
+        "status": "stable",
+        "ks_stat": 0.090767,
+        "ks_pvalue": 0.0,
+        "ref_nan_rate": 0.01123,
+        "cur_nan_rate": 0.01183
+      }
+    ]
+  },
+  "train_vs_test_all_features": [
+    {
+      "feature": "dow_cos",
+      "psi": 3.954399,
+      "status": "significant_shift",
+      "ks_stat": 0.298261,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "dow_sin",
+      "psi": 3.147771,
+      "status": "significant_shift",
+      "ks_stat": 0.342998,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "past_report_count",
+      "psi": 2.175693,
+      "status": "significant_shift",
+      "ks_stat": 0.719497,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "n_comm_day",
+      "psi": 1.31408,
+      "status": "significant_shift",
+      "ks_stat": 0.17678,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "neighbor_surplus_frac_t",
+      "psi": 0.092495,
+      "status": "stable",
+      "ks_stat": 0.090767,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.01123,
+      "cur_nan_rate": 0.01183
+    },
+    {
+      "feature": "lag_2_log_price",
+      "psi": 0.073901,
+      "status": "stable",
+      "ks_stat": 0.041544,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.29083,
+      "cur_nan_rate": 0.03111
+    },
+    {
+      "feature": "days_since_prev_report",
+      "psi": 0.073607,
+      "status": "stable",
+      "ks_stat": 0.100883,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.14883,
+      "cur_nan_rate": 0.01428
+    },
+    {
+      "feature": "lag_1_log_price",
+      "psi": 0.056607,
+      "status": "stable",
+      "ks_stat": 0.039251,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.14883,
+      "cur_nan_rate": 0.01428
+    },
+    {
+      "feature": "price_spread",
+      "psi": 0.055752,
+      "status": "stable",
+      "ks_stat": 0.060581,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "price_per_kg",
+      "psi": 0.055608,
+      "status": "stable",
+      "ks_stat": 0.04096,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "log_price",
+      "psi": 0.055608,
+      "status": "stable",
+      "ks_stat": 0.04096,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "lag_3_log_price",
+      "psi": 0.047241,
+      "status": "stable",
+      "ks_stat": 0.04181,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.42424,
+      "cur_nan_rate": 0.05013
+    },
+    {
+      "feature": "latitude",
+      "psi": 0.036467,
+      "status": "stable",
+      "ks_stat": 0.084064,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "diff_prior_price",
+      "psi": 0.03199,
+      "status": "stable",
+      "ks_stat": 0.047305,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.14883,
+      "cur_nan_rate": 0.01428
+    },
+    {
+      "feature": "longitude",
+      "psi": 0.031134,
+      "status": "stable",
+      "ks_stat": 0.048593,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "market_price_ratio_state_comm_t",
+      "psi": 0.024806,
+      "status": "stable",
+      "ks_stat": 0.031571,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "arr_growth_3d",
+      "psi": 0.011457,
+      "status": "stable",
+      "ks_stat": 0.023476,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.42424,
+      "cur_nan_rate": 0.05013
+    },
+    {
+      "feature": "prior_log_price",
+      "psi": 0.011051,
+      "status": "stable",
+      "ks_stat": 0.034387,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "prior_surplus_cs",
+      "psi": 0.009943,
+      "status": "stable",
+      "ks_stat": 0.024168,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "lag_3_log_arr",
+      "psi": 0.005953,
+      "status": "stable",
+      "ks_stat": 0.030163,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.42424,
+      "cur_nan_rate": 0.05013
+    },
+    {
+      "feature": "diff_prior_arr",
+      "psi": 0.00571,
+      "status": "stable",
+      "ks_stat": 0.014702,
+      "ks_pvalue": 1.3e-05,
+      "ref_nan_rate": 0.14883,
+      "cur_nan_rate": 0.01428
+    },
+    {
+      "feature": "prior_log_arrival",
+      "psi": 0.005607,
+      "status": "stable",
+      "ks_stat": 0.02719,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "arrival_tonnes",
+      "psi": 0.00463,
+      "status": "stable",
+      "ks_stat": 0.02125,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "log_arrival",
+      "psi": 0.004604,
+      "status": "stable",
+      "ks_stat": 0.02125,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "lag_1_log_arr",
+      "psi": 0.002272,
+      "status": "stable",
+      "ks_stat": 0.01173,
+      "ks_pvalue": 0.000985,
+      "ref_nan_rate": 0.14883,
+      "cur_nan_rate": 0.01428
+    },
+    {
+      "feature": "lag_2_log_arr",
+      "psi": 0.00222,
+      "status": "stable",
+      "ks_stat": 0.016541,
+      "ks_pvalue": 1e-06,
+      "ref_nan_rate": 0.29083,
+      "cur_nan_rate": 0.03111
+    },
+    {
+      "feature": "p_price_t",
+      "psi": 0.002148,
+      "status": "stable",
+      "ks_stat": 0.018441,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "dist_price_030",
+      "psi": 0.002148,
+      "status": "stable",
+      "ks_stat": 0.018441,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "dist_arr_070",
+      "psi": 0.001036,
+      "status": "stable",
+      "ks_stat": 0.014547,
+      "ks_pvalue": 9e-06,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "p_arr_t",
+      "psi": 0.001024,
+      "status": "stable",
+      "ks_stat": 0.014547,
+      "ks_pvalue": 9e-06,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "market_arr_ratio_state_comm_t",
+      "psi": 0.000998,
+      "status": "stable",
+      "ks_stat": 0.006838,
+      "ks_pvalue": 0.132231,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "geo_missing",
+      "psi": 0.0,
+      "status": "stable",
+      "ks_stat": 0.032716,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "surplus_cs",
+      "psi": 0.0,
+      "status": "stable",
+      "ks_stat": 0.003435,
+      "ks_pvalue": 0.882498,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    },
+    {
+      "feature": "is_weekend",
+      "psi": 0.0,
+      "status": "stable",
+      "ks_stat": 0.308374,
+      "ks_pvalue": 0.0,
+      "ref_nan_rate": 0.0,
+      "cur_nan_rate": 0.0
+    }
+  ]
+}
