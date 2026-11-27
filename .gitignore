@@ -4,3 +4,7 @@ __pycache__/
 data/raw/apmc_arrivals_prices.csv
 data/processed/freshroute_foodbank_cleaned.csv
 data/processed/freshroute_foodbank_encoded.csv
+data/external/apmc_cache/
+data/external/weather_cache/
+data/external/*.csv
+data/external/*.parquet

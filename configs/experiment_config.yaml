@@ -90,3 +90,48 @@ paths:
   model_metrics: "data/processed/model_metrics.json"
   dispatch_list_demo: "data/processed/dispatch_list_demo.csv"
   figures_dir: "reports/figures"
+
+phase_2:
+  commodities:
+    - "ONION"
+    - "POTATO"
+    - "TOMATO"
+    - "CABBAGE"
+    - "CAULIFLOWER"
+    - "GREEN CHILLI"
+    - "BANANA"
+    - "BHINDI(LADIES FINGER)"
+    - "BRINJAL"
+    - "CARROT"
+  states:
+    - "TAMIL NADU"
+    - "UTTAR PRADESH"
+    - "MADHYA PRADESH"
+    - "KERALA"
+    - "MAHARASHTRA"
+    - "HARYANA"
+  apmc_history:
+    ceda_base_url: "https://api.ceda.ashoka.edu.in"
+    ceda_api_key_env: "CEDA_API_KEY"
+    lookback_months: 24
+    cache_dir: "data/external/apmc_cache"
+    output_csv: "data/external/apmc_history_scoped.csv"
+    walk_forward_cv:
+      min_train_months: 6
+      test_window_months: 1
+      n_folds: 5
+  weather:
+    endpoint: "https://archive-api.open-meteo.com/v1/archive"
+    daily_variables:
+      - "precipitation_sum"
+      - "temperature_2m_max"
+      - "temperature_2m_min"
+      - "relative_humidity_2m_mean"
+      - "et0_fao_evapotranspiration"
+    lookback_days: 730
+    daily_weighted_quota: 10000
+    safety_weighted_budget_per_run: 8500
+    batch_locations: 25
+    centroids_csv: "data/external/district_centroids.csv"
+    cache_dir: "data/external/weather_cache"
+    output_csv: "data/external/district_weather_daily.csv"
