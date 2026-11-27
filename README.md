@@ -41,15 +41,27 @@ All metrics below are directly recorded in `data/processed/model_metrics.json`:
 | `XGBRegressor (reg:squarederror)` | Secondary | `0.3533` | `0.1531` | `0.2622` | `0.9435` | `0.5048` | `0.5395` |
 | `XGBRegressor (reg:pseudohubererror)` | Secondary | `0.3512` | `0.1479` | `0.2710` | `0.9442` | `0.5232` | `0.5586` |
 
-## Anti-Leakage Verification (`tests/test_pipeline_integrity.py`)
+## Anti-Leakage & Pipeline Verification (`tests/`)
 
-Running `python -m pytest -v tests/test_pipeline_integrity.py` passes **`5 passed in 32.91s`**:
+Running `python -m pytest -v tests/test_pipeline_integrity.py tests/test_phase2_pipelines.py tests/test_audit_and_dispatch.py` passes **15 automated tests**:
 
+### Core Anti-Leakage Suite (`tests/test_pipeline_integrity.py` — 5 tests)
 - `test_1_target_date_non_overlap` — Enforces `train["target_date"].max() < val["date"].min()`, `val["target_date"].max() < test["date"].min()`, and `7/7` weekday coverage on `Val`.
 - `test_2_feature_allowlist_and_formula_guard` — Verifies zero `t+1` fields or legacy `price_z`/`arrival_z`/`surplus_S` columns in `FEATURE_COLS`, `cleaning_report.json`, and `model_metrics.json`.
 - `test_3_zero_future_filtering_in_features` — AST/signature check plus `t+1` drop/perturbation invariance on `build_features()`.
 - `test_4_shuffled_target_collapse` — Permuted-target `XGBClassifier` collapses to Test base rate (`±0.01` `PR-AUC`) and `ROC-AUC ∈ [0.45, 0.55]`; permuted-target `XGBRegressor` (`reg:absoluteerror` and `reg:squarederror`) collapses to `R² <= 0.01`, `MAE >= persistence_MAE`, and `RMSE >= persistence_RMSE`.
 - `test_5_mandatory_baseline_reporting` — Verifies `model_metrics.json` contains non-null metrics for `Naive Persistence`, `LogisticRegression`, `Mean-Reversion (-diff_prior_arr)`, `XGBClassifier`, and `XGBRegressor (reg:absoluteerror)`.
+
+## Phase 2 (Scoped Multi-Year Weather & APMC), Hardening & Constrained Dispatch
+
+- **District Weather & Scoped APMC (`scripts/fetch_weather.py`, `scripts/fetch_apmc_history.py`, `scripts/train_phase2_walkforward.py`):**
+  - Covers `226` districts across the top `6` agricultural states (`213` non-imputed raw mandi medians + `13` verified Census/LGD centroids; zero state-median imputed coordinates) and `10` high-volume perishables.
+  - Fetched and disk-cached `730` days (`2023-11-21`–`2025-11-19`, `164,980` rows) via Open-Meteo; on the `10d_7d_4d` scoped 24-day ablation (`data/processed/phase2_walkforward_metrics.json`, `50` features vs. `34` base), adding weather + causal seasonal/calendar features lifted Track 1A `XGBClassifier` Test `PR-AUC` from `0.2438` (`8.58×`) to **`0.2638` (`9.29×`)** and `ROC-AUC` from `0.9346` to **`0.9445`**, while Track 1B `reg:absoluteerror` achieved `RMSE = 0.2313` (vs. `0.2618`), `MAE = 0.0893` (vs. `0.0989`), and Surge `NDCG@10 = 0.5845` (vs. `0.5472`).
+- **Calibration, Per-State Parity & Drift Monitoring (`scripts/audit_model.py`, `scripts/monitor_drift.py`):**
+  - Val-only Isotonic calibration reduced Track 1A Test `ECE` from `0.008063` to **`0.003119`** (`Brier` `0.024224` → **`0.023501`**); **`16 / 16`** audited states beat `Naive Persistence` on both Track 1B `RMSE` and `MAE` (`data/processed/model_audit_report.json`).
+  - Feature drift monitoring (`data/processed/drift_report.json`) confirms `30 / 34` features remain stable (`PSI < 0.10`) from Train to Test (the 4 shifted features are `dow_cos`/`dow_sin` from the 4-day Sat–Tue Test window plus `past_report_count`/`n_comm_day`) with steady onset base rate (`0.0282` Train → `0.0273` Test).
+- **Demand Layer `V_d` & LP Hub-Routing Optimizer (`scripts/optimize_dispatch.py`):**
+  - Combines NFSA/PDS demand weights `V_d` (`--pds-csv` or disclosed regional reference hubs), perishability weights `w_perish`, and Haversine distance/capacity constraints via HiGHS LP (`scipy.optimize.linprog`), producing `44` optimal routes (`533.32` tonnes at `127.01 km` weighted average haul, `+5.534` utility lift over greedy nearest routing in `data/processed/optimized_dispatch_plan.csv`).
 
 ## Try It Yourself
 
@@ -58,9 +70,13 @@ pip install -r requirements.txt
 python scripts/clean_dataset.py
 python scripts/build_features.py
 python scripts/train_model.py
-python -m pytest -v tests/test_pipeline_integrity.py
+python scripts/audit_model.py
+python scripts/monitor_drift.py
+python scripts/optimize_dispatch.py
+python -m pytest -v tests/test_pipeline_integrity.py tests/test_phase2_pipelines.py tests/test_audit_and_dispatch.py
 ```
 
 - Raw data (`data/raw/apmc_arrivals_prices.csv`) is git-ignored; download steps are in `data/SOURCES.md`.
-- Outputs: `data/processed/freshroute_foodbank_cleaned.csv`, `data/processed/cleaning_report.json`, `data/processed/model_metrics.json`, and `data/processed/dispatch_list_demo.csv` (50 top Test predicted glut-onset/surge rows).
+- Phase 2 weather/APMC fetchers: `python scripts/fetch_weather.py` (no key needed) and `python scripts/fetch_apmc_history.py --source ceda` (requires `CEDA_API_KEY`) or `--source agmarknet --import-dir <dir>`, followed by `python scripts/train_phase2_walkforward.py`.
+- Key outputs: `data/processed/freshroute_foodbank_cleaned.csv`, `data/processed/cleaning_report.json`, `data/processed/model_metrics.json`, `data/processed/model_audit_report.json`, `data/processed/drift_report.json`, `data/processed/dispatch_list_demo.csv`, and `data/processed/optimized_dispatch_plan.csv`.
 - Engineering roadmap & specs: `IMPROVEMENT_PLAN_v3_1.md` and `docs/CE1_PRODUCT_SPEC.md`.
