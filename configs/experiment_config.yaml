@@ -1,0 +1,92 @@
+# FreshRoute Plan v3.1 Experiment Configuration
+# Single source of truth for entity keys, chronological target-date splits,
+# feature cross-section thresholds, Train-only winsorization, shrinkage, and models.
+
+entity_keys:
+  - state_name
+  - market_center_name
+  - commodity_name
+  - variety
+  - grade
+
+split:
+  mode: "10d_7d_4d"  # default: full 7-weekday Val (Fri-Thu); optional: "11d_6d_4d"
+  presets:
+    10d_7d_4d:
+      train_start: "2025-10-27"
+      train_end: "2025-11-05"       # target_date <= 2025-11-06
+      train_target_max: "2025-11-06"
+      val_start: "2025-11-07"
+      val_end: "2025-11-13"         # target_date <= 2025-11-14 (all 7 weekdays)
+      val_target_max: "2025-11-14"
+      test_start: "2025-11-15"
+      test_end: "2025-11-18"        # target_date <= 2025-11-19
+      test_target_max: "2025-11-19"
+    11d_6d_4d:
+      train_start: "2025-10-27"
+      train_end: "2025-11-06"       # target_date <= 2025-11-07
+      train_target_max: "2025-11-07"
+      val_start: "2025-11-08"
+      val_end: "2025-11-13"         # target_date <= 2025-11-14
+      val_target_max: "2025-11-14"
+      test_start: "2025-11-15"
+      test_end: "2025-11-18"        # target_date <= 2025-11-19
+      test_target_max: "2025-11-19"
+
+cross_section:
+  min_n_comm_day: 10
+
+winsorization:
+  price_iqr_k: 3.0
+  arrival_iqr_k: 5.0
+
+surplus_cs:
+  arrival_pct_min: 0.70
+  price_pct_max: 0.30
+
+shrinkage:
+  smoothing_m: 10.0
+
+models:
+  random_seed: 42
+  track_1a:
+    topk_values: [20, 50, 100]
+    xgb_params:
+      tree_method: "hist"
+      scale_pos_weight: 1.0
+      n_estimators: 300
+      learning_rate: 0.05
+      max_depth: 5
+      min_child_weight: 10
+      subsample: 0.8
+      colsample_bytree: 0.8
+      reg_lambda: 5.0
+      eval_metric: "aucpr"
+      random_state: 42
+      n_jobs: -1
+  track_1b:
+    default_objective: "reg:absoluteerror"
+    secondary_objectives:
+      - "reg:squarederror"
+      - "reg:pseudohubererror"
+    surge_ndcg_k: [5, 10]
+    xgb_params:
+      tree_method: "hist"
+      n_estimators: 300
+      learning_rate: 0.05
+      max_depth: 5
+      min_child_weight: 20
+      subsample: 0.8
+      colsample_bytree: 0.8
+      reg_lambda: 5.0
+      random_state: 42
+      n_jobs: -1
+
+paths:
+  raw_apmc: "data/raw/apmc_arrivals_prices.csv"
+  cleaned_csv: "data/processed/freshroute_foodbank_cleaned.csv"
+  encoded_csv: "data/processed/freshroute_foodbank_encoded.csv"
+  cleaning_report: "data/processed/cleaning_report.json"
+  model_metrics: "data/processed/model_metrics.json"
+  dispatch_list_demo: "data/processed/dispatch_list_demo.csv"
+  figures_dir: "reports/figures"
