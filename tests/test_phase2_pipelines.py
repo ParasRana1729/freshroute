@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
 
 from scripts import fetch_apmc_history as fah  # noqa: E402
 from scripts import fetch_weather as fw  # noqa: E402
+from scripts import train_phase2_walkforward as tpw  # noqa: E402
 
 
 def test_weighted_call_estimator_matches_plan() -> None:
@@ -186,3 +187,120 @@ def test_apmc_rejects_forbidden_datagov_and_causal_walk_forward() -> None:
     assert len(folds) == 2  # months 7 and 8
     for fold in folds:
         assert fold["train"]["target_date"].max() < fold["test"]["date"].min()
+
+
+def test_phase2_weather_join_forbids_imputed_coords() -> None:
+    apmc = pd.DataFrame(
+        [
+            {
+                "date": "2025-11-01",
+                "state_name": "MAHARASHTRA",
+                "district_name": "PUNE",
+                "market_center_name": "PUNE",
+                "commodity_name": "TOMATO",
+                "variety": "LOCAL",
+                "grade": "FAQ",
+                "arrival_tonnes": 10.0,
+                "modal_price": 2000.0,
+                "price_per_kg": 20.0,
+                "min_per_kg": 18.0,
+                "max_per_kg": 22.0,
+                "log_arrival": np.log1p(10.0),
+                "log_price": np.log1p(20.0),
+            }
+        ]
+    )
+    bad_weather = pd.DataFrame(
+        [
+            {
+                "date": "2025-11-01",
+                "state_name": "MAHARASHTRA",
+                "district_name": "PUNE",
+                "coord_source": "state_median_imputed",
+                "precipitation_sum": 1.0,
+                "temperature_2m_max": 30.0,
+                "relative_humidity_2m_mean": 70.0,
+                "et0_fao_evapotranspiration": 4.0,
+            }
+        ]
+    )
+    with pytest.raises(ValueError, match="state_median_imputed"):
+        tpw.prepare_phase2_frame(apmc, weather_df=bad_weather)
+
+
+def test_phase2_expanding_walk_forward_cv_runs_leak_free() -> None:
+    cfg = fw.load_config()
+    cfg_fast = json.loads(json.dumps(cfg))
+    cfg_fast["models"]["track_1a"]["xgb_params"]["n_estimators"] = 20
+    cfg_fast["models"]["track_1b"]["xgb_params"]["n_estimators"] = 20
+
+    rng = np.random.default_rng(42)
+    dates = pd.date_range("2024-01-01", "2024-08-31", freq="D")
+    markets = [f"MANDI_{i}" for i in range(12)]
+
+    apmc_rows = []
+    weather_rows = []
+    for d in dates:
+        weather_rows.append(
+            {
+                "date": d,
+                "state_name": "MAHARASHTRA",
+                "district_name": "PUNE",
+                "coord_source": "raw_mandi_median",
+                "precipitation_sum": float(rng.exponential(2.0)),
+                "temperature_2m_max": float(30.0 + rng.normal(0, 2)),
+                "relative_humidity_2m_mean": float(np.clip(65.0 + rng.normal(0, 10), 20, 99)),
+                "et0_fao_evapotranspiration": float(4.0 + rng.uniform(0, 2)),
+            }
+        )
+        for m_idx, mkt in enumerate(markets):
+            arr = float(np.exp(2.0 + 0.3 * np.sin(m_idx + d.dayofyear / 10.0) + rng.normal(0, 0.35)))
+            px = float(np.exp(3.0 - 0.2 * np.sin(m_idx + d.dayofyear / 10.0) + rng.normal(0, 0.15)))
+            apmc_rows.append(
+                {
+                    "date": d,
+                    "state_name": "MAHARASHTRA",
+                    "district_name": "PUNE",
+                    "market_center_name": mkt,
+                    "commodity_name": "TOMATO",
+                    "variety": "LOCAL",
+                    "grade": "FAQ",
+                    "arrival_tonnes": arr,
+                    "modal_price": px * 100.0,
+                    "price_per_kg": px,
+                    "min_per_kg": px * 0.9,
+                    "max_per_kg": px * 1.1,
+                    "log_arrival": np.log1p(arr),
+                    "log_price": np.log1p(px),
+                }
+            )
+
+    apmc_df = pd.DataFrame(apmc_rows)
+    weather_df = pd.DataFrame(weather_rows)
+    centroids_df = pd.DataFrame(
+        [
+            {
+                "state_name": "MAHARASHTRA",
+                "district_name": "PUNE",
+                "latitude": 18.52,
+                "longitude": 73.85,
+                "coord_source": "raw_mandi_median",
+            }
+        ]
+    )
+    enriched = tpw.prepare_phase2_frame(apmc_df, weather_df=weather_df, centroids_df=centroids_df)
+    report = tpw.evaluate_walk_forward_cv(
+        enriched,
+        cfg_fast,
+        min_train_months=6,
+        test_window_months=1,
+        n_folds=2,
+        include_weather=True,
+    )
+    assert report["n_folds"] == 2
+    assert set(report["summary"].keys()) >= {
+        "track_1a_xgb_pr_auc_lift_mean",
+        "track_1b_rmse_reduction_mean",
+        "track_1b_mae_reduction_mean",
+        "track_1b_surge_ndcg10_lift_mean",
+    }

@@ -311,6 +311,20 @@ def build_seasonal_baselines(df: pd.DataFrame) -> pd.DataFrame:
         return df.copy()
 
     out = df.copy()
+    existing_seasonal = [
+        c
+        for c in (
+            "arr_mean_30d",
+            "arr_mean_90d",
+            "price_mean_30d",
+            "price_mean_90d",
+            "prior_year_month_log_arr",
+            "prior_year_month_log_price",
+        )
+        if c in out.columns
+    ]
+    if existing_seasonal:
+        out = out.drop(columns=existing_seasonal)
     out["date"] = pd.to_datetime(out["date"])
     out = out.sort_values([*ENTITY_KEYS, "date"]).reset_index(drop=True)
 
