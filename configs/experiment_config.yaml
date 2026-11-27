@@ -131,7 +131,7 @@ phase_2:
     lookback_days: 730
     daily_weighted_quota: 10000
     safety_weighted_budget_per_run: 8500
-    batch_locations: 25
+    batch_locations: 15
     centroids_csv: "data/external/district_centroids.csv"
     cache_dir: "data/external/weather_cache"
     output_csv: "data/external/district_weather_daily.csv"

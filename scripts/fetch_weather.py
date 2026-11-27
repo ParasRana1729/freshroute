@@ -176,7 +176,7 @@ def fetch_open_meteo_weather(
     max_weighted_budget: float = 8500.0,
     output_csv: Path | str | None = None,
     session: requests.Session | None = None,
-    max_retries: int = 3,
+    max_retries: int = 5,
     backoff_seconds: float = 1.5,
 ) -> tuple[pd.DataFrame, dict[str, Any]]:
     """Fetch district daily weather with disk cache and weighted-call quota guard."""
@@ -237,7 +237,21 @@ def fetch_open_meteo_weather(
             for attempt in range(max_retries):
                 try:
                     resp = client.get(endpoint, params=params, timeout=30)
-                    if resp.status_code in (429, 500, 502, 503, 504):
+                    if resp.status_code == 429:
+                        msg = resp.text[:300]
+                        if "daily" in msg.lower():
+                            raise RuntimeError(f"Open-Meteo daily quota exceeded: {msg}")
+                        retry_after = resp.headers.get("Retry-After")
+                        wait_s = float(retry_after) if retry_after else (62.0 if "minutely" in msg.lower() else backoff_seconds * (2**attempt))
+                        last_err = requests.HTTPError(
+                            f"Open-Meteo rate limit HTTP 429: {msg}", response=resp
+                        )
+                        if attempt < max_retries - 1:
+                            if backoff_seconds > 0:
+                                time.sleep(wait_s)
+                            continue
+                        raise last_err
+                    if resp.status_code in (500, 502, 503, 504):
                         raise requests.HTTPError(
                             f"Open-Meteo transient HTTP {resp.status_code}: {resp.text[:200]}",
                             response=resp,
@@ -245,9 +259,11 @@ def fetch_open_meteo_weather(
                     resp.raise_for_status()
                     payload = resp.json()
                     break
+                except RuntimeError:
+                    raise
                 except Exception as exc:
                     last_err = exc
-                    if attempt < max_retries - 1:
+                    if attempt < max_retries - 1 and backoff_seconds > 0:
                         time.sleep(backoff_seconds * (2**attempt))
             if payload is None:
                 raise RuntimeError(f"Open-Meteo request failed after {max_retries} attempts: {last_err}")
