@@ -1,0 +1,15 @@
+{
+  "status": "optimal",
+  "max_distance_km": 400.0,
+  "n_candidate_mandis": 50,
+  "n_hubs": 15,
+  "n_active_routes": 44,
+  "total_candidate_tonnes": 4627.82,
+  "total_hub_capacity_tonnes": 955.0,
+  "lp_dispatched_tonnes": 533.32,
+  "lp_total_utility": 109.907,
+  "lp_weighted_avg_distance_km": 127.01,
+  "greedy_nearest_dispatched_tonnes": 533.32,
+  "greedy_nearest_total_utility": 104.372,
+  "utility_lift_over_greedy": 5.534
+}
