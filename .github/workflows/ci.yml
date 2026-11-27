@@ -23,7 +23,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Phase 2 & committed artifact integrity tests
+      - name: Run Phase 2, audit/dispatch, and integrity tests
         run: |
           python -m pytest -v tests/test_phase2_pipelines.py -k "not test_district_centroids_exclude_imputed_and_cover_top6"
+          python -m pytest -v tests/test_audit_and_dispatch.py
           python -m pytest -v tests/test_pipeline_integrity.py -k "test_2_feature_allowlist_and_formula_guard or test_5_mandatory_baseline_reporting"

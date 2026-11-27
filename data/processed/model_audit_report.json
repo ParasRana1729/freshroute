@@ -1,0 +1,498 @@
+{
+  "split_mode": "10d_7d_4d",
+  "track_1a_calibration_test": {
+    "uncalibrated": {
+      "brier": 0.024224,
+      "log_loss": 0.095131,
+      "ece": 0.008063,
+      "pr_auc": 0.227606,
+      "roc_auc": 0.908236,
+      "bins": [
+        {
+          "bin": "[0.0,0.1]",
+          "count": 29618,
+          "mean_pred": 0.01498,
+          "empirical_rate": 0.01351
+        },
+        {
+          "bin": "[0.1,0.2]",
+          "count": 1201,
+          "mean_pred": 0.14323,
+          "empirical_rate": 0.09908
+        },
+        {
+          "bin": "[0.2,0.3]",
+          "count": 665,
+          "mean_pred": 0.24737,
+          "empirical_rate": 0.19248
+        },
+        {
+          "bin": "[0.3,0.4]",
+          "count": 430,
+          "mean_pred": 0.34638,
+          "empirical_rate": 0.22326
+        },
+        {
+          "bin": "[0.4,0.5]",
+          "count": 304,
+          "mean_pred": 0.44634,
+          "empirical_rate": 0.25658
+        },
+        {
+          "bin": "[0.5,0.6]",
+          "count": 144,
+          "mean_pred": 0.54049,
+          "empirical_rate": 0.42361
+        },
+        {
+          "bin": "[0.6,0.7]",
+          "count": 1,
+          "mean_pred": 0.61234,
+          "empirical_rate": 1.0
+        }
+      ]
+    },
+    "val_isotonic": {
+      "brier": 0.023501,
+      "log_loss": 0.088514,
+      "ece": 0.003119,
+      "pr_auc": 0.214846,
+      "roc_auc": 0.908044,
+      "bins": [
+        {
+          "bin": "[0.0,0.1]",
+          "count": 29933,
+          "mean_pred": 0.01423,
+          "empirical_rate": 0.01406
+        },
+        {
+          "bin": "[0.1,0.2]",
+          "count": 988,
+          "mean_pred": 0.1471,
+          "empirical_rate": 0.10729
+        },
+        {
+          "bin": "[0.2,0.3]",
+          "count": 1088,
+          "mean_pred": 0.24221,
+          "empirical_rate": 0.22151
+        },
+        {
+          "bin": "[0.3,0.4]",
+          "count": 167,
+          "mean_pred": 0.31658,
+          "empirical_rate": 0.23952
+        },
+        {
+          "bin": "[0.4,0.5]",
+          "count": 163,
+          "mean_pred": 0.47074,
+          "empirical_rate": 0.36196
+        },
+        {
+          "bin": "[0.5,0.6]",
+          "count": 23,
+          "mean_pred": 0.50943,
+          "empirical_rate": 0.65217
+        },
+        {
+          "bin": "[0.6,0.7]",
+          "count": 1,
+          "mean_pred": 0.63636,
+          "empirical_rate": 1.0
+        }
+      ]
+    },
+    "val_platt": {
+      "brier": 0.023992,
+      "log_loss": 0.094269,
+      "ece": 0.005962,
+      "pr_auc": 0.227606,
+      "roc_auc": 0.908236,
+      "bins": [
+        {
+          "bin": "[0.0,0.1]",
+          "count": 29890,
+          "mean_pred": 0.01265,
+          "empirical_rate": 0.01402
+        },
+        {
+          "bin": "[0.1,0.2]",
+          "count": 1088,
+          "mean_pred": 0.14258,
+          "empirical_rate": 0.10662
+        },
+        {
+          "bin": "[0.2,0.3]",
+          "count": 648,
+          "mean_pred": 0.24647,
+          "empirical_rate": 0.2284
+        },
+        {
+          "bin": "[0.3,0.4]",
+          "count": 365,
+          "mean_pred": 0.34828,
+          "empirical_rate": 0.22466
+        },
+        {
+          "bin": "[0.4,0.5]",
+          "count": 267,
+          "mean_pred": 0.44281,
+          "empirical_rate": 0.24719
+        },
+        {
+          "bin": "[0.5,0.6]",
+          "count": 105,
+          "mean_pred": 0.53189,
+          "empirical_rate": 0.49524
+        }
+      ]
+    }
+  },
+  "track_1a_per_state_test": [
+    {
+      "state_name": "TAMIL NADU",
+      "n": 15901,
+      "positives": 176,
+      "base_rate": 0.01107,
+      "pr_auc": 0.2735,
+      "pr_auc_lift": 24.71,
+      "roc_auc": 0.96245,
+      "f1": 0.30357
+    },
+    {
+      "state_name": "KERALA",
+      "n": 3164,
+      "positives": 63,
+      "base_rate": 0.01991,
+      "pr_auc": 0.1668,
+      "pr_auc_lift": 8.38,
+      "roc_auc": 0.90266,
+      "f1": 0.26027
+    },
+    {
+      "state_name": "MADHYA PRADESH",
+      "n": 2650,
+      "positives": 162,
+      "base_rate": 0.06113,
+      "pr_auc": 0.22931,
+      "pr_auc_lift": 3.75,
+      "roc_auc": 0.80463,
+      "f1": 0.35402
+    },
+    {
+      "state_name": "HARYANA",
+      "n": 1662,
+      "positives": 83,
+      "base_rate": 0.04994,
+      "pr_auc": 0.18851,
+      "pr_auc_lift": 3.77,
+      "roc_auc": 0.80215,
+      "f1": 0.27132
+    },
+    {
+      "state_name": "MAHARASHTRA",
+      "n": 1618,
+      "positives": 93,
+      "base_rate": 0.05748,
+      "pr_auc": 0.40171,
+      "pr_auc_lift": 6.99,
+      "roc_auc": 0.86059,
+      "f1": 0.32212
+    },
+    {
+      "state_name": "UTTAR PRADESH",
+      "n": 1208,
+      "positives": 113,
+      "base_rate": 0.09354,
+      "pr_auc": 0.28376,
+      "pr_auc_lift": 3.03,
+      "roc_auc": 0.80899,
+      "f1": 0.33588
+    },
+    {
+      "state_name": "GUJARAT",
+      "n": 1166,
+      "positives": 43,
+      "base_rate": 0.03688,
+      "pr_auc": 0.19628,
+      "pr_auc_lift": 5.32,
+      "roc_auc": 0.83687,
+      "f1": 0.23762
+    },
+    {
+      "state_name": "PUNJAB",
+      "n": 894,
+      "positives": 15,
+      "base_rate": 0.01678,
+      "pr_auc": 0.10591,
+      "pr_auc_lift": 6.31,
+      "roc_auc": 0.82488,
+      "f1": 0.19512
+    },
+    {
+      "state_name": "WEST BENGAL",
+      "n": 839,
+      "positives": 15,
+      "base_rate": 0.01788,
+      "pr_auc": 0.18385,
+      "pr_auc_lift": 10.28,
+      "roc_auc": 0.91133,
+      "f1": 0.25806
+    },
+    {
+      "state_name": "HIMACHAL PRADESH",
+      "n": 837,
+      "positives": 5,
+      "base_rate": 0.00597,
+      "pr_auc": 0.24327,
+      "pr_auc_lift": 40.72,
+      "roc_auc": 0.93101,
+      "f1": 0.22222
+    },
+    {
+      "state_name": "RAJASTHAN",
+      "n": 703,
+      "positives": 31,
+      "base_rate": 0.0441,
+      "pr_auc": 0.31585,
+      "pr_auc_lift": 7.16,
+      "roc_auc": 0.82613,
+      "f1": 0.38356
+    },
+    {
+      "state_name": "CHHATTISGARH",
+      "n": 355,
+      "positives": 23,
+      "base_rate": 0.06479,
+      "pr_auc": 0.29013,
+      "pr_auc_lift": 4.48,
+      "roc_auc": 0.82988,
+      "f1": 0.14815
+    },
+    {
+      "state_name": "ODISHA",
+      "n": 328,
+      "positives": 6,
+      "base_rate": 0.01829,
+      "pr_auc": 0.08491,
+      "pr_auc_lift": 4.64,
+      "roc_auc": 0.87992,
+      "f1": 0.0
+    },
+    {
+      "state_name": "KARNATAKA",
+      "n": 259,
+      "positives": 16,
+      "base_rate": 0.06178,
+      "pr_auc": 0.1367,
+      "pr_auc_lift": 2.21,
+      "roc_auc": 0.77752,
+      "f1": 0.0
+    }
+  ],
+  "track_1b_per_state_test": [
+    {
+      "state_name": "TAMIL NADU",
+      "n": 16625,
+      "rmse": 0.06302,
+      "persistence_rmse": 0.07014,
+      "rmse_improvement": 0.00712,
+      "mae": 0.02521,
+      "persistence_mae": 0.02704,
+      "mae_improvement": 0.00183,
+      "res_r2": 0.19205
+    },
+    {
+      "state_name": "KERALA",
+      "n": 3484,
+      "rmse": 0.19958,
+      "persistence_rmse": 0.2265,
+      "rmse_improvement": 0.02692,
+      "mae": 0.0656,
+      "persistence_mae": 0.06619,
+      "mae_improvement": 0.00059,
+      "res_r2": 0.22291
+    },
+    {
+      "state_name": "MADHYA PRADESH",
+      "n": 3110,
+      "rmse": 0.86435,
+      "persistence_rmse": 1.00408,
+      "rmse_improvement": 0.13973,
+      "mae": 0.59535,
+      "persistence_mae": 0.66994,
+      "mae_improvement": 0.0746,
+      "res_r2": 0.25884
+    },
+    {
+      "state_name": "MAHARASHTRA",
+      "n": 2211,
+      "rmse": 0.3949,
+      "persistence_rmse": 0.47341,
+      "rmse_improvement": 0.07851,
+      "mae": 0.22574,
+      "persistence_mae": 0.26133,
+      "mae_improvement": 0.03559,
+      "res_r2": 0.30408
+    },
+    {
+      "state_name": "HARYANA",
+      "n": 2065,
+      "rmse": 0.39942,
+      "persistence_rmse": 0.45874,
+      "rmse_improvement": 0.05932,
+      "mae": 0.21397,
+      "persistence_mae": 0.24404,
+      "mae_improvement": 0.03007,
+      "res_r2": 0.24064
+    },
+    {
+      "state_name": "UTTAR PRADESH",
+      "n": 1989,
+      "rmse": 0.33203,
+      "persistence_rmse": 0.37969,
+      "rmse_improvement": 0.04767,
+      "mae": 0.16394,
+      "persistence_mae": 0.17762,
+      "mae_improvement": 0.01369,
+      "res_r2": 0.23507
+    },
+    {
+      "state_name": "GUJARAT",
+      "n": 1398,
+      "rmse": 0.40001,
+      "persistence_rmse": 0.46019,
+      "rmse_improvement": 0.06017,
+      "mae": 0.24165,
+      "persistence_mae": 0.27044,
+      "mae_improvement": 0.02879,
+      "res_r2": 0.2438
+    },
+    {
+      "state_name": "PUNJAB",
+      "n": 1084,
+      "rmse": 0.41474,
+      "persistence_rmse": 0.45031,
+      "rmse_improvement": 0.03558,
+      "mae": 0.17342,
+      "persistence_mae": 0.18073,
+      "mae_improvement": 0.00732,
+      "res_r2": 0.14957
+    },
+    {
+      "state_name": "WEST BENGAL",
+      "n": 924,
+      "rmse": 0.22927,
+      "persistence_rmse": 0.25842,
+      "rmse_improvement": 0.02915,
+      "mae": 0.09606,
+      "persistence_mae": 0.10394,
+      "mae_improvement": 0.00788,
+      "res_r2": 0.21264
+    },
+    {
+      "state_name": "RAJASTHAN",
+      "n": 877,
+      "rmse": 0.48908,
+      "persistence_rmse": 0.57561,
+      "rmse_improvement": 0.08654,
+      "mae": 0.3263,
+      "persistence_mae": 0.37628,
+      "mae_improvement": 0.04998,
+      "res_r2": 0.27785
+    },
+    {
+      "state_name": "HIMACHAL PRADESH",
+      "n": 860,
+      "rmse": 0.28841,
+      "persistence_rmse": 0.33868,
+      "rmse_improvement": 0.05027,
+      "mae": 0.12365,
+      "persistence_mae": 0.14007,
+      "mae_improvement": 0.01642,
+      "res_r2": 0.27429
+    },
+    {
+      "state_name": "CHHATTISGARH",
+      "n": 413,
+      "rmse": 0.5956,
+      "persistence_rmse": 0.67461,
+      "rmse_improvement": 0.07901,
+      "mae": 0.31416,
+      "persistence_mae": 0.34871,
+      "mae_improvement": 0.03454,
+      "res_r2": 0.21775
+    },
+    {
+      "state_name": "KARNATAKA",
+      "n": 373,
+      "rmse": 0.48639,
+      "persistence_rmse": 0.55466,
+      "rmse_improvement": 0.06827,
+      "mae": 0.25095,
+      "persistence_mae": 0.27069,
+      "mae_improvement": 0.01973,
+      "res_r2": 0.23094
+    },
+    {
+      "state_name": "ODISHA",
+      "n": 362,
+      "rmse": 0.26724,
+      "persistence_rmse": 0.33344,
+      "rmse_improvement": 0.0662,
+      "mae": 0.15303,
+      "persistence_mae": 0.18309,
+      "mae_improvement": 0.03006,
+      "res_r2": 0.35767
+    },
+    {
+      "state_name": "TELANGANA",
+      "n": 289,
+      "rmse": 0.62912,
+      "persistence_rmse": 0.72807,
+      "rmse_improvement": 0.09895,
+      "mae": 0.33577,
+      "persistence_mae": 0.38208,
+      "mae_improvement": 0.04631,
+      "res_r2": 0.25126
+    },
+    {
+      "state_name": "UTTARAKHAND",
+      "n": 218,
+      "rmse": 0.37374,
+      "persistence_rmse": 0.46302,
+      "rmse_improvement": 0.08927,
+      "mae": 0.20408,
+      "persistence_mae": 0.23997,
+      "mae_improvement": 0.03589,
+      "res_r2": 0.3452
+    }
+  ],
+  "tamil_nadu_bias_check": {
+    "track_1a": {
+      "state_name": "TAMIL NADU",
+      "n": 15901,
+      "positives": 176,
+      "base_rate": 0.01107,
+      "pr_auc": 0.2735,
+      "pr_auc_lift": 24.71,
+      "roc_auc": 0.96245,
+      "f1": 0.30357
+    },
+    "track_1b": {
+      "state_name": "TAMIL NADU",
+      "n": 16625,
+      "rmse": 0.06302,
+      "persistence_rmse": 0.07014,
+      "rmse_improvement": 0.00712,
+      "mae": 0.02521,
+      "persistence_mae": 0.02704,
+      "mae_improvement": 0.00183,
+      "res_r2": 0.19205
+    },
+    "states_beating_persistence_rmse": 16,
+    "states_beating_persistence_mae": 16,
+    "total_audited_states_1b": 16
+  }
+}
