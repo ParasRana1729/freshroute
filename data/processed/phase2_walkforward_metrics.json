@@ -1,0 +1,601 @@
+{
+  "mode": "scoped_24d_weather_ablation",
+  "split_stats": {
+    "split_mode": "10d_7d_4d",
+    "total_exact_pairs": 54715,
+    "active_pairs_both": 54715,
+    "dropped_t_ge_10_next_lt_10": 0,
+    "dropped_t_lt_10_next_ge_10": 0,
+    "dropped_both_lt_10": 0,
+    "train_pairs": 28768,
+    "val_pairs": 14536,
+    "test_pairs": 7464,
+    "boundary_purged_pairs": 3947
+  },
+  "base_feature_count": 34,
+  "phase2_feature_count": 50,
+  "added_features": [
+    "arr_mean_30d",
+    "arr_mean_90d",
+    "price_mean_30d",
+    "price_mean_90d",
+    "prior_year_month_log_arr",
+    "prior_year_month_log_price",
+    "days_to_major_festival",
+    "is_kharif_harvest_peak",
+    "is_rabi_harvest_peak",
+    "is_zaid_harvest_peak",
+    "precip_sum_3d",
+    "precip_sum_7d",
+    "temp_max_mean_3d",
+    "humidity_mean_3d",
+    "et0_sum_3d",
+    "heat_spoilage_index"
+  ],
+  "baseline_features": {
+    "track_1a": {
+      "task": "glut_onset_0_to_1",
+      "subset_filter": "surplus_cs == 0 & n_comm_day(t) >= 10 & n_comm_day(t+1) >= 10",
+      "train_n": 25095,
+      "train_pos": 799,
+      "train_base_rate": 0.031839,
+      "val_n": 12422,
+      "val_pos": 360,
+      "val_base_rate": 0.028981,
+      "test_n": 6374,
+      "test_pos": 181,
+      "test_base_rate": 0.028397,
+      "models": {
+        "Naive Persistence": {
+          "val": {
+            "base_rate": 0.028981,
+            "pr_auc": 0.028981,
+            "pr_auc_lift": 1.0,
+            "roc_auc": 0.5,
+            "f1_val_tuned": 0.0,
+            "val_threshold": 0.5,
+            "recall_at_20": 0.0,
+            "recall_at_50": 0.0,
+            "recall_at_100": 0.0
+          },
+          "test": {
+            "base_rate": 0.028397,
+            "pr_auc": 0.028397,
+            "pr_auc_lift": 1.0,
+            "roc_auc": 0.5,
+            "f1_val_tuned": 0.0,
+            "val_threshold": 0.5,
+            "recall_at_20": 0.0,
+            "recall_at_50": 0.0,
+            "recall_at_100": 0.0
+          }
+        },
+        "LogisticRegression": {
+          "fit_seconds": 0.491,
+          "top_commodities_count": 10,
+          "val": {
+            "base_rate": 0.028981,
+            "pr_auc": 0.218744,
+            "pr_auc_lift": 7.5479,
+            "roc_auc": 0.885094,
+            "f1_val_tuned": 0.309252,
+            "val_threshold": 0.595859,
+            "recall_at_20": 0.019444,
+            "recall_at_50": 0.052778,
+            "recall_at_100": 0.105556
+          },
+          "test": {
+            "base_rate": 0.028397,
+            "pr_auc": 0.183232,
+            "pr_auc_lift": 6.4526,
+            "roc_auc": 0.877865,
+            "f1_val_tuned": 0.293245,
+            "val_threshold": 0.595859,
+            "recall_at_20": 0.022099,
+            "recall_at_50": 0.082873,
+            "recall_at_100": 0.132597
+          }
+        },
+        "XGBClassifier": {
+          "fit_seconds": 1.715,
+          "best_iteration": 30,
+          "best_params": {
+            "tree_method": "hist",
+            "scale_pos_weight": 1.0,
+            "eval_metric": "aucpr",
+            "random_state": 42,
+            "n_jobs": -1,
+            "n_estimators": 600,
+            "learning_rate": 0.03,
+            "max_depth": 4,
+            "min_child_weight": 20,
+            "subsample": 0.8,
+            "colsample_bytree": 0.7,
+            "reg_lambda": 10.0,
+            "reg_alpha": 2.0
+          },
+          "top_features": {
+            "prior_surplus_cs": 0.245597,
+            "dist_price_030": 0.117935,
+            "p_price_t": 0.109023,
+            "prior_log_price": 0.087443,
+            "dist_arr_070": 0.071978,
+            "p_arr_t": 0.070345,
+            "diff_prior_arr": 0.02596,
+            "neighbor_surplus_frac_t": 0.022426,
+            "past_report_count": 0.021455,
+            "lag_3_log_arr": 0.020081
+          },
+          "val": {
+            "base_rate": 0.028981,
+            "pr_auc": 0.307857,
+            "pr_auc_lift": 10.6228,
+            "roc_auc": 0.940797,
+            "f1_val_tuned": 0.369637,
+            "val_threshold": 0.151083,
+            "recall_at_20": 0.030556,
+            "recall_at_50": 0.075,
+            "recall_at_100": 0.141667
+          },
+          "test": {
+            "base_rate": 0.028397,
+            "pr_auc": 0.243781,
+            "pr_auc_lift": 8.5849,
+            "roc_auc": 0.934634,
+            "f1_val_tuned": 0.339321,
+            "val_threshold": 0.151083,
+            "recall_at_20": 0.027624,
+            "recall_at_50": 0.088398,
+            "recall_at_100": 0.187845
+          }
+        }
+      }
+    },
+    "track_1b": {
+      "task": "arrival_residual_delta_log_arr",
+      "default_objective": "reg:absoluteerror",
+      "train_n": 28768,
+      "val_n": 14536,
+      "test_n": 7464,
+      "val_zero_delta_frac": 0.284741,
+      "test_zero_delta_frac": 0.315782,
+      "models": {
+        "Naive Persistence": {
+          "role": "baseline",
+          "val": {
+            "rmse": 0.255435,
+            "mae": 0.095776,
+            "res_r2": -6.4e-05,
+            "recon_r2": 0.953315
+          },
+          "test": {
+            "rmse": 0.261796,
+            "mae": 0.098859,
+            "res_r2": -4.7e-05,
+            "recon_r2": 0.948971
+          }
+        },
+        "Mean-Reversion (-diff_prior_arr)": {
+          "role": "ranking_baseline",
+          "val": {
+            "rmse": 0.265918,
+            "mae": 0.104828,
+            "res_r2": -0.083837,
+            "recon_r2": 0.949405,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.441381,
+            "ndcg_at_10": 0.462272
+          },
+          "test": {
+            "rmse": 0.266021,
+            "mae": 0.103238,
+            "res_r2": -0.032589,
+            "recon_r2": 0.947311,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.536973,
+            "ndcg_at_10": 0.547204
+          }
+        },
+        "XGBRegressor (reg:absoluteerror)": {
+          "role": "default",
+          "objective": "reg:absoluteerror",
+          "fit_seconds": 3.363,
+          "best_iteration": 118,
+          "params": {
+            "tree_method": "hist",
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 5,
+            "min_child_weight": 20,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "reg_lambda": 5.0,
+            "random_state": 42,
+            "n_jobs": -1,
+            "objective": "reg:absoluteerror"
+          },
+          "val": {
+            "rmse": 0.230559,
+            "mae": 0.089995,
+            "res_r2": 0.185234,
+            "recon_r2": 0.961965,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.464495,
+            "ndcg_at_10": 0.48588
+          },
+          "test": {
+            "rmse": 0.232024,
+            "mae": 0.088784,
+            "res_r2": 0.214476,
+            "recon_r2": 0.959918,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.571752,
+            "ndcg_at_10": 0.580939
+          }
+        },
+        "XGBRegressor (reg:squarederror)": {
+          "role": "secondary",
+          "objective": "reg:squarederror",
+          "fit_seconds": 2.043,
+          "best_iteration": 69,
+          "params": {
+            "tree_method": "hist",
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 5,
+            "min_child_weight": 20,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "reg_lambda": 5.0,
+            "random_state": 42,
+            "n_jobs": -1,
+            "objective": "reg:squarederror"
+          },
+          "val": {
+            "rmse": 0.224093,
+            "mae": 0.095567,
+            "res_r2": 0.230295,
+            "recon_r2": 0.964069,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.461922,
+            "ndcg_at_10": 0.485328
+          },
+          "test": {
+            "rmse": 0.225543,
+            "mae": 0.094081,
+            "res_r2": 0.257744,
+            "recon_r2": 0.962125,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.582179,
+            "ndcg_at_10": 0.594872
+          }
+        },
+        "XGBRegressor (reg:pseudohubererror)": {
+          "role": "secondary",
+          "objective": "reg:pseudohubererror",
+          "fit_seconds": 2.156,
+          "best_iteration": 77,
+          "params": {
+            "tree_method": "hist",
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 5,
+            "min_child_weight": 20,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "reg_lambda": 5.0,
+            "random_state": 42,
+            "n_jobs": -1,
+            "objective": "reg:pseudohubererror"
+          },
+          "val": {
+            "rmse": 0.223923,
+            "mae": 0.094319,
+            "res_r2": 0.231461,
+            "recon_r2": 0.964123,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.447687,
+            "ndcg_at_10": 0.476504
+          },
+          "test": {
+            "rmse": 0.222873,
+            "mae": 0.092138,
+            "res_r2": 0.275212,
+            "recon_r2": 0.963017,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.588793,
+            "ndcg_at_10": 0.587989
+          }
+        }
+      },
+      "success_checks": {
+        "beats_persistence_rmse": true,
+        "beats_persistence_mae": true,
+        "beats_mean_reversion_surge_ndcg10": true
+      }
+    }
+  },
+  "with_weather_and_calendar": {
+    "track_1a": {
+      "task": "glut_onset_0_to_1",
+      "subset_filter": "surplus_cs == 0 & n_comm_day(t) >= 10 & n_comm_day(t+1) >= 10",
+      "train_n": 25095,
+      "train_pos": 799,
+      "train_base_rate": 0.031839,
+      "val_n": 12422,
+      "val_pos": 360,
+      "val_base_rate": 0.028981,
+      "test_n": 6374,
+      "test_pos": 181,
+      "test_base_rate": 0.028397,
+      "models": {
+        "Naive Persistence": {
+          "val": {
+            "base_rate": 0.028981,
+            "pr_auc": 0.028981,
+            "pr_auc_lift": 1.0,
+            "roc_auc": 0.5,
+            "f1_val_tuned": 0.0,
+            "val_threshold": 0.5,
+            "recall_at_20": 0.0,
+            "recall_at_50": 0.0,
+            "recall_at_100": 0.0
+          },
+          "test": {
+            "base_rate": 0.028397,
+            "pr_auc": 0.028397,
+            "pr_auc_lift": 1.0,
+            "roc_auc": 0.5,
+            "f1_val_tuned": 0.0,
+            "val_threshold": 0.5,
+            "recall_at_20": 0.0,
+            "recall_at_50": 0.0,
+            "recall_at_100": 0.0
+          }
+        },
+        "LogisticRegression": {
+          "fit_seconds": 0.921,
+          "top_commodities_count": 10,
+          "val": {
+            "base_rate": 0.028981,
+            "pr_auc": 0.225208,
+            "pr_auc_lift": 7.7709,
+            "roc_auc": 0.899414,
+            "f1_val_tuned": 0.322654,
+            "val_threshold": 0.889239,
+            "recall_at_20": 0.019444,
+            "recall_at_50": 0.044444,
+            "recall_at_100": 0.105556
+          },
+          "test": {
+            "base_rate": 0.028397,
+            "pr_auc": 0.18728,
+            "pr_auc_lift": 6.5952,
+            "roc_auc": 0.915299,
+            "f1_val_tuned": 0.26,
+            "val_threshold": 0.889239,
+            "recall_at_20": 0.022099,
+            "recall_at_50": 0.066298,
+            "recall_at_100": 0.127072
+          }
+        },
+        "XGBClassifier": {
+          "fit_seconds": 2.748,
+          "best_iteration": 45,
+          "best_params": {
+            "tree_method": "hist",
+            "scale_pos_weight": 1.0,
+            "eval_metric": "aucpr",
+            "random_state": 42,
+            "n_jobs": -1,
+            "n_estimators": 600,
+            "learning_rate": 0.03,
+            "max_depth": 5,
+            "min_child_weight": 15,
+            "subsample": 0.8,
+            "colsample_bytree": 0.5,
+            "reg_lambda": 10.0,
+            "reg_alpha": 1.0
+          },
+          "top_features": {
+            "prior_surplus_cs": 0.20769,
+            "p_price_t": 0.125533,
+            "dist_price_030": 0.103099,
+            "dist_arr_070": 0.102876,
+            "p_arr_t": 0.083599,
+            "latitude": 0.034657,
+            "days_to_major_festival": 0.025375,
+            "neighbor_surplus_frac_t": 0.023922,
+            "diff_prior_arr": 0.022926,
+            "lag_1_log_arr": 0.019955
+          },
+          "val": {
+            "base_rate": 0.028981,
+            "pr_auc": 0.332715,
+            "pr_auc_lift": 11.4805,
+            "roc_auc": 0.94967,
+            "f1_val_tuned": 0.381773,
+            "val_threshold": 0.240682,
+            "recall_at_20": 0.027778,
+            "recall_at_50": 0.072222,
+            "recall_at_100": 0.141667
+          },
+          "test": {
+            "base_rate": 0.028397,
+            "pr_auc": 0.263804,
+            "pr_auc_lift": 9.29,
+            "roc_auc": 0.944517,
+            "f1_val_tuned": 0.347619,
+            "val_threshold": 0.240682,
+            "recall_at_20": 0.033149,
+            "recall_at_50": 0.093923,
+            "recall_at_100": 0.19337
+          }
+        }
+      }
+    },
+    "track_1b": {
+      "task": "arrival_residual_delta_log_arr",
+      "default_objective": "reg:absoluteerror",
+      "train_n": 28768,
+      "val_n": 14536,
+      "test_n": 7464,
+      "val_zero_delta_frac": 0.284741,
+      "test_zero_delta_frac": 0.315782,
+      "models": {
+        "Naive Persistence": {
+          "role": "baseline",
+          "val": {
+            "rmse": 0.255435,
+            "mae": 0.095776,
+            "res_r2": -6.4e-05,
+            "recon_r2": 0.953315
+          },
+          "test": {
+            "rmse": 0.261796,
+            "mae": 0.098859,
+            "res_r2": -4.7e-05,
+            "recon_r2": 0.948971
+          }
+        },
+        "Mean-Reversion (-diff_prior_arr)": {
+          "role": "ranking_baseline",
+          "val": {
+            "rmse": 0.265918,
+            "mae": 0.104828,
+            "res_r2": -0.083837,
+            "recon_r2": 0.949405,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.441381,
+            "ndcg_at_10": 0.462272
+          },
+          "test": {
+            "rmse": 0.266021,
+            "mae": 0.103238,
+            "res_r2": -0.032589,
+            "recon_r2": 0.947311,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.536973,
+            "ndcg_at_10": 0.547204
+          }
+        },
+        "XGBRegressor (reg:absoluteerror)": {
+          "role": "default",
+          "objective": "reg:absoluteerror",
+          "fit_seconds": 5.269,
+          "best_iteration": 169,
+          "params": {
+            "tree_method": "hist",
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 5,
+            "min_child_weight": 20,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "reg_lambda": 5.0,
+            "random_state": 42,
+            "n_jobs": -1,
+            "objective": "reg:absoluteerror"
+          },
+          "val": {
+            "rmse": 0.229078,
+            "mae": 0.090214,
+            "res_r2": 0.195667,
+            "recon_r2": 0.962452,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.455617,
+            "ndcg_at_10": 0.48123
+          },
+          "test": {
+            "rmse": 0.231255,
+            "mae": 0.089275,
+            "res_r2": 0.219675,
+            "recon_r2": 0.960183,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.575333,
+            "ndcg_at_10": 0.584534
+          }
+        },
+        "XGBRegressor (reg:squarederror)": {
+          "role": "secondary",
+          "objective": "reg:squarederror",
+          "fit_seconds": 2.207,
+          "best_iteration": 53,
+          "params": {
+            "tree_method": "hist",
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 5,
+            "min_child_weight": 20,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "reg_lambda": 5.0,
+            "random_state": 42,
+            "n_jobs": -1,
+            "objective": "reg:squarederror"
+          },
+          "val": {
+            "rmse": 0.224588,
+            "mae": 0.094523,
+            "res_r2": 0.226887,
+            "recon_r2": 0.96391,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.469959,
+            "ndcg_at_10": 0.486295
+          },
+          "test": {
+            "rmse": 0.225586,
+            "mae": 0.092926,
+            "res_r2": 0.257461,
+            "recon_r2": 0.962111,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.589791,
+            "ndcg_at_10": 0.596445
+          }
+        },
+        "XGBRegressor (reg:pseudohubererror)": {
+          "role": "secondary",
+          "objective": "reg:pseudohubererror",
+          "fit_seconds": 2.678,
+          "best_iteration": 76,
+          "params": {
+            "tree_method": "hist",
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "max_depth": 5,
+            "min_child_weight": 20,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8,
+            "reg_lambda": 5.0,
+            "random_state": 42,
+            "n_jobs": -1,
+            "objective": "reg:pseudohubererror"
+          },
+          "val": {
+            "rmse": 0.223821,
+            "mae": 0.093702,
+            "res_r2": 0.23216,
+            "recon_r2": 0.964156,
+            "n_evaluated_slices": 70,
+            "ndcg_at_5": 0.456162,
+            "ndcg_at_10": 0.480568
+          },
+          "test": {
+            "rmse": 0.222803,
+            "mae": 0.091746,
+            "res_r2": 0.275671,
+            "recon_r2": 0.96304,
+            "n_evaluated_slices": 40,
+            "ndcg_at_5": 0.564955,
+            "ndcg_at_10": 0.573134
+          }
+        }
+      },
+      "success_checks": {
+        "beats_persistence_rmse": true,
+        "beats_persistence_mae": true,
+        "beats_mean_reversion_surge_ndcg10": true
+      }
+    }
+  }
+}
