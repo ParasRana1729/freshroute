@@ -5,24 +5,27 @@ state–market–commodity–variety–grade grain unchanged. It asks whether re
 from other commodities in the same market, district, or state improve the
 projected reporting-cohort model.
 
-All features are available on or before the feature date. The compact candidate
+The corrected feature builder uses reports available on or before the feature date.
+The compact candidate
 uses current market, district, and state report counts and glut-gate rates. It
 also uses market values from the preceding day and the equivalent forecast
 weekday one week earlier. Exact calendar joins create the lag features. A
 future-row invariance test checks that adding later reports does not change
 earlier feature values.
 
-## Result
+## Withdrawn result
 
 | Model | April 2–30 validation F1 |
 | --- | ---: |
 | Projected cohort and baseline ensemble | **47.25%** |
 | Ensemble with cross-commodity local context | 46.96% |
 
-The local-context candidate lost **0.29 percentage points** on the full April
-validation cohort and was rejected. May was not scored for this candidate, so
-this result is not a new held-out performance claim. The latest valid held-out
-result remains the 47.49% May score selected by the preceding April comparison.
+The original experiment selected peer identities using the full table of paired
+reports. That membership could depend on reports from after the feature date.
+The original 46.96% score is withdrawn. The corrected implementation uses all
+unpaired reports and their same-day ranks. It has no reported score here.
+The May benchmark's separate projection takes its peers directly from unpaired
+reports and retains its 47.49% held-out score.
 
 The current India Data Portal new-source archive ends on May 31, 2026. The
 Agmarknet 2.0 public market-details endpoint has later daily reports, but its
@@ -33,17 +36,21 @@ therefore cannot construct a fresh test set for the unchanged Track 1A target.
 
 ## Reproduce
 
-First build the May work directory with the command in
-[the May benchmark](ONSET_COHORT_BENCHMARK.md). Then run:
+Use the CSV and dependencies from [the May benchmark](ONSET_COHORT_BENCHMARK.md).
+Rebuild the work directory to include unpaired report metadata before rerunning
+the local-context experiment.
 
 ```bash
 POLARS_MAX_THREADS=2 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=3 \
+  python scripts/benchmark_onset_cohort.py \
+  --archive data/external/agmarknet_full.csv \
+  --work-dir data/external/onset_cohort --prepare-only
+POLARS_MAX_THREADS=2 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=3 \
   python scripts/benchmark_local_context.py \
   --work-dir data/external/onset_cohort \
-  --output data/processed/onset_local_context_metrics.json
+  --output data/external/onset_local_context_rerun.json
 python -m pytest -q
 ```
 
-The [metrics artifact](../data/processed/onset_local_context_metrics.json)
-contains both April scores, selected thresholds, and the exact compact feature
-list.
+The historical [metrics artifact](../data/processed/onset_local_context_metrics.json)
+retains the original audit trail and identifies the withdrawn score.

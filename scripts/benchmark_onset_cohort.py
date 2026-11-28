@@ -53,15 +53,29 @@ PROJECTIONS = [
 ]
 
 
-def prepare_sources(archive: Path, directory: Path):
+def prepare_sources(archive: Path, directory: Path, *, write_market_keys=False):
     """Build both feature sets from the same rows and fixed Train-only clipping bounds."""
     directory.mkdir(parents=True, exist_ok=True)
     cleaned = directory / "cleaned.parquet"
     prep.clean_archive(archive, cleaned, TEST_END)
     config = prep.bf.load_config()
-    history = prep.history(
-        prep.cross_section(pl.scan_parquet(cleaned), MARCH_START, config).collect()
-    )
+    reports = pl.scan_parquet(cleaned)
+    names = ["state_name", "market_center_name", "commodity_name"]
+    aliases = [f"source_{name}" for name in names]
+    if write_market_keys:
+        reports = reports.with_columns(
+            pl.col(name).alias(key) for name, key in zip(names, aliases)
+        )
+    ranked = prep.cross_section(
+        reports, MARCH_START, config, stable_ids=write_market_keys
+    ).collect()
+    if write_market_keys:
+        ranked.select(*IDENTITY, *aliases).rename(
+            dict(zip(aliases, names))
+        ).write_parquet(directory / "market_keys.parquet", compression="zstd")
+        ranked = ranked.drop(aliases)
+    history = prep.history(ranked)
+    del ranked
     # Freeze clipping before the first calibration forecast in March.
     # Save the full day-t peer snapshot before matching next-day rows.
     peer_history = directory / "peer_history.parquet"
@@ -71,6 +85,12 @@ def prepare_sources(archive: Path, directory: Path):
         "log_price",
         "log_arrival_mean_7",
         "log_price_mean_7",
+        "state",
+        "district",
+        "market",
+        "p_arr",
+        "p_price",
+        "surplus",
     ).write_parquet(peer_history, compression="zstd")
     # Every peer group and matched entity belongs to one commodity. Materialize
     # its bucket separately to bound the peak memory of the peer joins.
@@ -89,9 +109,9 @@ def prepare_sources(archive: Path, directory: Path):
     for part in parts:
         part.unlink()
     projection_path = directory / "report_projection.parquet"
-    expected_peer_ranks(pl.scan_parquet(peer_history)).write_parquet(
-        projection_path, compression="zstd"
-    )
+    expected_peer_ranks(
+        pl.scan_parquet(peer_history), stable_reductions=write_market_keys
+    ).write_parquet(projection_path, compression="zstd")
     return open_sources(directory)
 
 
@@ -442,14 +462,21 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive", required=True, type=Path)
     parser.add_argument("--work-dir", required=True, type=Path)
-    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--prepare-only", action="store_true")
+    parser.add_argument("--write-market-keys", action="store_true")
     parser.add_argument("--threads", type=int, default=3)
     parser.add_argument("--with-catboost", action="store_true")
     args = parser.parse_args()
-    base, cohort = prepare_sources(args.archive, args.work_dir)
-    run_benchmark(
-        base, cohort, args.archive, args.output, args.threads, args.with_catboost
+    if args.output is None and not args.prepare_only:
+        parser.error("--output is required unless --prepare-only is set")
+    base, cohort = prepare_sources(
+        args.archive, args.work_dir, write_market_keys=args.write_market_keys
     )
+    if not args.prepare_only:
+        run_benchmark(
+            base, cohort, args.archive, args.output, args.threads, args.with_catboost
+        )
 
 
 if __name__ == "__main__":

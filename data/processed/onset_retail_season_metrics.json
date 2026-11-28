@@ -1,0 +1,62 @@
+{
+  "task": "Track 1A next-day glut onset",
+  "selection": "March 2-31, 2026",
+  "replay": "April 2-30, 2026 (previously used development window)",
+  "fresh_test": null,
+  "training_rows": 362189,
+  "training_positives": 37498,
+  "features_added": [
+    "retail_season",
+    "retail_season_change",
+    "produce_season",
+    "produce_season_change"
+  ],
+  "models": {
+    "control": {
+      "march": {
+        "trees": 80,
+        "thresholds": {
+          "0": 0.5474450858070581,
+          "1": 0.5049135564016147,
+          "2": 0.5032565863621785
+        },
+        "f1": 0.4572687943841319
+      },
+      "april": {
+        "rows": 359896,
+        "positives": 10378,
+        "predicted_positives": 17129,
+        "true_positives": 6301,
+        "precision": 0.36785568334403645,
+        "recall": 0.6071497398342648,
+        "f1": 0.45813792852728397
+      }
+    },
+    "retail_season": {
+      "march": {
+        "trees": 80,
+        "thresholds": {
+          "0": 0.5625590352783115,
+          "1": 0.5130109245905636,
+          "2": 0.5378041583322647
+        },
+        "f1": 0.4580699536451749
+      },
+      "april": {
+        "rows": 359896,
+        "positives": 10378,
+        "predicted_positives": 16011,
+        "true_positives": 6059,
+        "precision": 0.37842733120979327,
+        "recall": 0.5838311813451532,
+        "f1": 0.45920648755163135
+      }
+    }
+  },
+  "retail_archive_sha256": "8325431b8258d22813e9d85c8f220f6b7e0f3c91fcda9a0337a39d4d65aa0c0a",
+  "selected_in_march": "retail_season",
+  "april_retail_coverage": {
+    "retail_season": 61882,
+    "produce_season": 359119
+  }
+}
