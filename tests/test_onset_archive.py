@@ -44,7 +44,8 @@ def test_notice_snapshot_respects_local_midnight_and_keeps_uncovered_rows(tmp_pa
     assert result["buyer_demand_tonnes"].null_count() == 3
 
 
-def test_archive_features_use_only_reports_through_feature_day():
+@pytest.mark.parametrize("stable_ids", [False, True])
+def test_archive_features_use_only_reports_through_feature_day(stable_ids):
     from polars.testing import assert_frame_equal
     from scripts import prepare_onset_archive as prep
 
@@ -76,10 +77,28 @@ def test_archive_features_use_only_reports_through_feature_day():
 
     def features(source):
         return prep.peers(
-            prep.history(prep.cross_section(source, start, config).collect()),
+            prep.history(
+                prep.cross_section(
+                    source, start, config, stable_ids=stable_ids
+                ).collect()
+            ),
             config["surplus_cs"],
         )
 
+    if stable_ids:
+        # Crossing Enum's 255-category boundary after the forecast must not
+        # change hashes used in earlier joins and training-row sampling.
+        future = pl.DataFrame(
+            [
+                {
+                    **rows[0],
+                    "date": date(2026, 1, 15),
+                    "market_center_name": f"NEW-{i}",
+                }
+                for i in range(300)
+            ]
+        ).lazy()
+        reports = pl.concat([reports, future])
     full = features(reports)
     prefix = features(reports.filter(pl.col("date") <= cutoff))
     # Compare rows by source identity. Polars may assign different categorical
@@ -92,6 +111,8 @@ def test_archive_features_use_only_reports_through_feature_day():
         "district_comm",
         "state_comm",
     ]
+    if stable_ids:
+        encoded = []
     keys = ["source_market", "date"]
     assert_frame_equal(
         full.filter(pl.col("date") <= cutoff).drop(encoded).sort(keys),
@@ -187,3 +208,59 @@ def test_analog_features_use_only_resolved_same_entity_outcomes():
         .alias("y_price_level"),
     )
     assert_frame_equal(result.filter(pl.col("d") <= 11), estimate_transitions(prefix))
+
+
+def test_announced_price_units_dates_and_uncovered_produce():
+    from scripts.onset_support_reference import price_reference
+
+    frame = pl.DataFrame(
+        {
+            "date": [
+                date(2025, 9, 30),
+                date(2025, 10, 1),
+                date(2025, 5, 28),
+                date(2026, 4, 1),
+            ],
+            "commodity_name": ["WHEAT", "WHEAT", "MAIZE", "TOMATO"],
+        }
+    )
+    assert frame.select(price_reference()).to_series().to_list() == [
+        None,
+        pytest.approx(25.85),
+        24.0,
+        None,
+    ]
+
+
+def test_market_leads_use_only_past_fits_and_current_peer_reports():
+    import numpy as np
+    from polars.testing import assert_frame_equal
+    from scripts.onset_market_leads import FEATURES, KEYS, estimates
+
+    rng = np.random.default_rng(99)
+    first = (date(2025, 10, 1) - date(1970, 1, 1)).days
+    shocks = rng.uniform(0.1, 0.9, 140)
+    rows = []
+    for i in range(140):
+        for market, rank in [(1, shocks[i]), (2, shocks[max(i - 1, 0)]), (3, 0.5)]:
+            rows.append(
+                dict(
+                    state=0,
+                    commodity=1,
+                    market=market,
+                    d=first + i,
+                    p_arr=rank,
+                    p_price=1 - rank,
+                )
+            )
+    df = pl.DataFrame(rows)
+    end = first + 110
+    full = estimates(df).filter(pl.col("d") <= end).sort(KEYS)
+    prefix = estimates(df.filter(pl.col("d") <= end)).sort(KEYS)
+    assert_frame_equal(full, prefix)
+    assert np.isfinite(
+        full.filter((pl.col("d") == end) & (pl.col("market") == 2))[FEATURES[0]].item()
+    )
+    # With one observed market only, the model has no independent peer.
+    solo = estimates(df.filter(pl.col("market") == 1))
+    assert solo["peer_change_p_arr"].is_nan().all()

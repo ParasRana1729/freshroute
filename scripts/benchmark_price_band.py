@@ -11,6 +11,9 @@ from lightgbm import LGBMClassifier
 from scripts import advance_market_signal as advance
 from scripts import benchmark_onset_cohort as cohort
 from scripts import onset_archive_stack as stack
+from scripts import onset_support_reference as support
+from scripts import onset_retail_season as retail
+from scripts import onset_market_leads as leads
 from scripts.onset_gate_thresholds import alert_thresholds, choose_gate_thresholds
 from scripts.train_onset_f1 import f1_metrics
 
@@ -36,10 +39,25 @@ def price_band(source):
     ), list(features)
 
 
-def run(directory, notices=None):
+def run(
+    directory,
+    notices=None,
+    support_prices=False,
+    market_leads=False,
+    retail_prices=None,
+):
     _, source = cohort.open_sources(directory)
     common = cohort.feature_columns(source)
-    if notices is None:
+    if retail_prices is not None:
+        source, added = retail.attach(source, directory, retail_prices)
+        candidate = "retail_season"
+    elif market_leads:
+        source, added = leads.attach(source, directory, cohort.MAY_START)
+        candidate = "market_leads"
+    elif support_prices:
+        source, added = support.attach(source, directory)
+        candidate = "support_prices"
+    elif notices is None:
         source, added = price_band(source)
         candidate = "price_band"
     else:
@@ -79,6 +97,8 @@ def run(directory, notices=None):
         "features_added": added,
         "models": {},
     }
+    if retail_prices is not None:
+        report["retail_archive_sha256"] = retail.DIGEST
     if notices is not None:
         counts = {
             "sampled_train": int(train["notice_age_days"].count()),
@@ -123,10 +143,19 @@ def run(directory, notices=None):
     april_y = april.pop("y").to_numpy()
     if notices is not None:
         report["matched_notice_rows"]["april"] = int(april["notice_age_days"].count())
+    if retail_prices is not None:
+        report["april_retail_coverage"] = {
+            k: int(april[k].notna().sum()) for k in ["retail_season", "produce_season"]
+        }
     for name, (model, cols, best) in models.items():
         score = model.predict_proba(april[cols], num_iteration=best["trees"])[:, 1]
         cuts = alert_thresholds(april["rule_state"].to_numpy(), best["thresholds"])
         report["models"][name]["april"] = f1_metrics(april_y, score, cuts)
+        if support_prices and name == "control":
+            covered = april["announced_rs_per_kg"].notna().to_numpy()
+            report["april_coverage_diagnostic"] = support.correction_bound(
+                april_y, score >= cuts, covered
+            )
         print(name, "April", report["models"][name]["april"], flush=True)
     return report
 
@@ -135,8 +164,23 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--work-dir", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
-    parser.add_argument("--notices", type=Path)
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--notices", type=Path)
+    group.add_argument("--support-prices", action="store_true")
+    group.add_argument("--market-leads", action="store_true")
+    group.add_argument("--retail-prices", type=Path)
     args = parser.parse_args()
     args.output.write_text(
-        json.dumps(run(args.work_dir, args.notices), indent=2, allow_nan=False) + "\n"
+        json.dumps(
+            run(
+                args.work_dir,
+                args.notices,
+                args.support_prices,
+                args.market_leads,
+                args.retail_prices,
+            ),
+            indent=2,
+            allow_nan=False,
+        )
+        + "\n"
     )

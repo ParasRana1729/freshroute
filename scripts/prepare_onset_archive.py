@@ -97,7 +97,7 @@ def clean_archive(archive: Path, output: Path, end_date: date) -> None:
 
 
 def cross_section(
-    cleaned: pl.LazyFrame, fit_through: date, config: dict
+    cleaned: pl.LazyFrame, fit_through: date, config: dict, *, stable_ids=False
 ) -> pl.LazyFrame:
     """Fit clipping bounds on training dates and compute per-commodity daily ranks."""
     fit = (
@@ -128,6 +128,25 @@ def cross_section(
         )
     cutoff = config["surplus_cs"]
     active_count = config["cross_section"]["min_n_comm_day"]
+    # First-report order means a name observed later never renumbers earlier IDs.
+    # Break same-date ties lexicographically, independent of Polars worker order.
+    encodings = {}
+    for alias, key in zip([*INT_KEYS, "district"], NAMES):
+        dtype = pl.Categorical
+        if stable_ids:
+            names = (
+                cleaned.group_by(key)
+                .agg(pl.col("date").min().alias("first_report"))
+                .sort("first_report", key)
+                .select(key)
+                .collect()
+                .to_series()
+            )
+            dtype = pl.Enum(names)
+        physical = pl.col(key).cast(dtype).to_physical()
+        # Enum selects an integer width from the total number of categories.
+        # Hash inputs must retain one type as new names enter the archive.
+        encodings[alias] = physical.cast(pl.UInt32) if stable_ids else physical
     frame = (
         clipped.with_columns(
             pl.col("date").cast(pl.Int32).alias("d"),
@@ -141,11 +160,7 @@ def cross_section(
                     / pl.col("modal_price").clip(lower_bound=EPS)
                 ).clip(0, 5)
             ).alias("price_spread"),
-            **{
-                alias: pl.col(col).cast(pl.Categorical).to_physical()
-                for alias, col in zip(INT_KEYS, KEYS)
-            },
-            district=pl.col("district_name").cast(pl.Categorical).to_physical(),
+            **encodings,
         )
         .drop(
             *[f"{col}_q{i}" for col in ("arrival", "modal_price") for i in (1, 2)],

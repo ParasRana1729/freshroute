@@ -66,7 +66,9 @@ def prepare_sources(archive: Path, directory: Path, *, write_market_keys=False):
         reports = reports.with_columns(
             pl.col(name).alias(key) for name, key in zip(names, aliases)
         )
-    ranked = prep.cross_section(reports, MARCH_START, config).collect()
+    ranked = prep.cross_section(
+        reports, MARCH_START, config, stable_ids=write_market_keys
+    ).collect()
     if write_market_keys:
         ranked.select(*IDENTITY, *aliases).rename(
             dict(zip(aliases, names))

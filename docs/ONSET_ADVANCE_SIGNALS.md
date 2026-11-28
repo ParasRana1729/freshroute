@@ -49,3 +49,55 @@ the pipeline needs historical snapshots covering training, calibration and
 evaluation. Independent verification also requires a later national daily
 export with actual arrivals and modal prices by state, market, commodity,
 variety and grade.
+
+## Public price and market signals
+
+The support-price candidate measures the gap between prices on the reporting
+day and minimum support prices already announced for 17 exact commodity names.
+The common-paddy reference uses the common rate. Local procurement and grade
+eligibility remain unobserved. The benchmark also counts errors outside the
+covered crops. Correcting every decision inside the covered crops while
+freezing the others gives a diagnostic upper bound for that particular change.
+[May 2025 kharif announcement](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2131983)
+and [October 2025 rabi announcement](https://www.pib.gov.in/newsite/erelcontent.aspx?lang=2&reg=48&relid=276863).
+
+A second candidate learns whether one market's price or arrival rank leads a
+change at another market in the same state for the same commodity. It starts
+with unpaired reports and refits peer selection at the start of each month
+using only previous months' resolved outcomes. Up to three independent peers
+contribute predicted changes on each forecast day.
+
+A third candidate uses a 2024-vintage export of 1,901,416 state retail prices
+from the Department of Consumer Affairs. It learns repeating half-month price
+patterns from completed historical years. A regional onion, potato and tomato
+basket can contribute on days when the exact commodity lacks a retail series.
+The input CSV is pinned by SHA-256. [Retail price archive](https://ckandev.indiadataportal.com/dataset/price-monitoring/resource/45f8c494-03d2-46b5-aa1a-a5e3656c3da6).
+
+Build a fresh work directory using the preparation command above. It assigns
+category IDs in first-report order, breaks ties by name, and uses fixed-width
+integers when hashing identities. This makes the sampled negative rows
+independent of thread scheduling and the number of categories reported later.
+
+```bash
+python -m scripts.benchmark_price_band --work-dir data/external/issued_signals \
+  --support-prices --output data/processed/onset_support_price_metrics.json
+python -m scripts.benchmark_price_band --work-dir data/external/issued_signals \
+  --market-leads --output data/processed/onset_market_lead_metrics.json
+curl --fail --location --output data/external/retail.csv \
+  'https://ckandev.indiadataportal.com/dataset/1a59d7e5-baf1-4c4a-b10f-55a6367f82f7/resource/45f8c494-03d2-46b5-aa1a-a5e3656c3da6/download/daily-retail-prices-of-essential-commodities.csv'
+python -m scripts.benchmark_price_band --work-dir data/external/issued_signals \
+  --retail-prices data/external/retail.csv --output data/processed/onset_retail_season_metrics.json
+```
+
+## Fresh national test data
+
+On November 28, 2026 the India Data Portal new-source datastore ended on May
+31. Its old-source datastore ended on October 26, 2025 and has no grade field.
+A search of all 11 FreshRoute branches and GitHub releases found no later
+national export. A June data.gov.in mirror retains variety, grade and prices
+but has no arrival quantity. A November public Agmarknet extract has market
+totals. Across the pinned archive, 111,486 of 125,490 market–commodity days
+with multiple varieties or grades have different quantities across those rows.
+Assigning the totals to each variety would change the reference labels.
+[June mirror schema](https://subsets.io/datasets/agmarknet-prices) and
+[public Agmarknet extract](https://github.com/herrrickshaw/india-mandi-arrivals).
