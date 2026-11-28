@@ -3,26 +3,20 @@
 ## 1. Primary dataset — real India APMC arrivals + prices
 - **File:** `data/raw/apmc_arrivals_prices.csv` (untouched download)
 - **Source:** Directorate of Marketing & Inspection (DMI), Ministry of Agriculture
-  & Farmers Welfare — via data.gov.in API `9ef84268-d588-465a-a308-a864a43d0070`
-  (`Current Daily Price of Various Commodities from Various Markets (Mandi)`)
-  / CEDA Ashoka Agmarknet mirror
-- **Coverage:** 2025-10-27 – 2025-11-19 (24 days), 383,753 usable rows × 22 cols
-  after cleaning (394,258 raw), 28 states, 528 districts, 2,705 markets,
-  304 commodities
+  & Farmers Welfare, through the [India Data Portal's Agmarknet archive](https://indiadataportal.com/p/agriculture-marketing).
+- **Coverage:** 2025-10-27 – 2025-11-19 (24 days), 383,692 rows after cleaning and deduplication.
 - **Columns:** date, state/district/market, commodity/variety/grade,
-  latitude/longitude, arrival_tonnes, min/max/modal_price, price_per_kg,
-  price_z, arrival_z, surplus_S
-- **License:** Government Open Data License – India (GOLD) / CEDA Open Data
-  Terms (free non-commercial academic attribution)
+  latitude/longitude, arrival quantity and units, and the minimum, maximum,
+  and modal prices with their units.
+- **Archive license:** Open Data Commons Attribution License.
 - **Role:** supply-side data the optimizer learns from (arrival surges +
   price depressions = glut proxy at mandi level)
-- **Re-download (file is git-ignored, 81 MB local only):**
-  - data.gov.in API (free key required):
-    `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=<YOUR_KEY>&format=csv&limit=10000`
-    paginate with `offset`, save as `data/raw/apmc_arrivals_prices.csv`
-  - or CEDA mirror UI/API: `https://agmarknet.ceda.ashoka.edu.in/`
-  - then run `python scripts/clean_dataset.py` to regenerate
-    `data/processed/` outputs
+- **Recover the benchmark:** Run `python scripts/fetch_benchmark_data.py`, then
+  `python scripts/clean_dataset.py`. The fetcher extracts the first 394,257 complete
+  records from the archive and writes the git-ignored raw CSV. The original
+  cleaning report counted a 394,258th raw record with incomplete fields that was
+  discarded during cleaning. The archive includes additional reports for November
+  19, so filtering the full export by date alone changes the test cohort.
 
 ## 2. Derived target — disclosed, not observed
 - `redistribution_priority` (Low/Medium/High) is **derived by a published rule**:

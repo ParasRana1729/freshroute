@@ -41,6 +41,26 @@ All metrics below are directly recorded in `data/processed/model_metrics.json`:
 | `XGBRegressor (reg:squarederror)` | Secondary | `0.3533` | `0.1531` | `0.2622` | `0.9435` | `0.5048` | `0.5395` |
 | `XGBRegressor (reg:pseudohubererror)` | Secondary | `0.3512` | `0.1479` | `0.2710` | `0.9442` | `0.5232` | `0.5586` |
 
+### Track 1A F1 experiment (80% target)
+
+The candidate reached **41.97% held-out F1** on the original 10d/7d/4d split.
+The existing XGBoost trainer reached **31.15%** when rerun on the same data and
+software versions, a gain of **10.81 percentage points**. The candidate found
+427 of the 883 glut onsets among 32,363 eligible test rows, with 37.07%
+precision and 48.36% recall. The 80% target remains unmet.
+
+The model uses recent market observations, cumulative peer statistics through
+day `t`, and distances to past commodity-level arrival and price cutoffs.
+Model selection, tree count, and the alert threshold use validation F1.
+The [experiment report](data/processed/onset_f1_metrics.json) includes the
+trial results and a breakdown for the four held-out dates.
+
+```bash
+python scripts/fetch_benchmark_data.py
+python scripts/clean_dataset.py
+python scripts/train_onset_f1.py
+```
+
 ## Anti-Leakage & Pipeline Verification (`tests/`)
 
 Running `python -m pytest -v tests/test_pipeline_integrity.py tests/test_phase2_pipelines.py tests/test_audit_and_dispatch.py` passes **15 automated tests**:
