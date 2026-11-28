@@ -23,9 +23,7 @@ def _frame() -> pl.DataFrame:
 
 def test_local_context_uses_same_day_and_exact_past_lags():
     result = local_reporting_context(_frame())
-    row = result.filter(pl.col("entity") == 1, pl.col("d") == 11).row(
-        0, named=True
-    )
+    row = result.filter(pl.col("entity") == 1, pl.col("d") == 11).row(0, named=True)
     assert row["local_market_report_count"] == 2
     assert row["local_market_surplus_rate"] == 0.5
     assert row["local_market_report_count_lag_1"] == 2
@@ -38,3 +36,13 @@ def test_future_reports_do_not_change_earlier_context():
     assert original.select("entity", "d", *feature_columns()).equals(
         extended.select("entity", "d", *feature_columns())
     )
+
+
+def test_local_context_does_not_pool_same_market_name_across_states():
+    reports = _frame().with_columns(
+        pl.when(pl.col("entity") == 2).then(5).otherwise(pl.col("state")).alias("state")
+    )
+    result = local_reporting_context(reports)
+    first = result.filter(pl.col("entity") == 1, pl.col("d") == 10).row(0, named=True)
+    assert first["local_market_report_count"] == 1
+    assert first["local_district_report_count"] == 1

@@ -67,7 +67,9 @@ months of reports.
 The [May follow-up](docs/ONSET_COHORT_BENCHMARK.md) compares projected market
 reporting cohorts with a baseline on a common held-out population.
 The [local-context experiment](docs/ONSET_LOCAL_CONTEXT_EXPERIMENT.md) records a
-rejected cross-commodity candidate without reopening that holdout.
+peer-selection issue and the corrected feature builder.
+The [historical analog experiment](docs/ONSET_ANALOG_EXPERIMENT.md) compares
+similar past transitions on April validation.
 
 ## Anti-Leakage & Pipeline Verification (`tests/`)
 

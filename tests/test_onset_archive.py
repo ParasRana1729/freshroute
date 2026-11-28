@@ -101,3 +101,50 @@ def test_projected_peer_ranks_do_not_use_future_reports():
     assert_frame_equal(full, prefix, check_exact=False)
     assert len(prefix) == reports.filter(pl.col("d") <= cutoff).height
     assert prefix.filter(pl.col("d") == cutoff)["weekly_weight"].max() > 0
+
+
+def test_analog_features_use_only_resolved_same_entity_outcomes():
+    import math
+
+    from polars.testing import assert_frame_equal
+    from scripts.analog_onset import estimate_transitions
+
+    reports = pl.DataFrame(
+        {
+            "entity": [2, 1, 1, 1],
+            "d": [9, 10, 11, 13],
+            "p_arr": [0.6, 0.6, 0.6, 0.6],
+            "p_price": [0.2, 0.2, 0.2, 0.2],
+            "log_arrival": [2.0, 2.0, 2.0, 2.0],
+            "log_price": [4.0, 4.0, 4.0, 4.0],
+            "weekday": [1, 2, 3, 5],
+            "rule_state": [2, 2, 2, 2],
+            "y": [1, 1, 0, 0],
+            "y_arr_level": [2.8, 3.0, 1.2, 2.4],
+            "y_price_level": [3.5, 3.0, 4.2, 4.1],
+        }
+    )
+    result = estimate_transitions(reports)
+    first = result.filter(pl.col("entity") == 1, pl.col("d") == 10).row(0, named=True)
+    assert first["analog_near_weight"] == 0
+    assert math.isnan(first["analog_near_onset_rate"])
+
+    next_day = result.filter(pl.col("entity") == 1, pl.col("d") == 11).row(
+        0, named=True
+    )
+    assert next_day["analog_near_onset_rate"] == 1
+    assert next_day["analog_near_arrival_step"] == 1
+    assert next_day["analog_near_price_step"] == -1
+
+    prefix = reports.filter(pl.col("d") <= 11).with_columns(
+        pl.when(pl.col("d") == 11).then(1).otherwise(pl.col("y")).alias("y"),
+        pl.when(pl.col("d") == 11)
+        .then(8.0)
+        .otherwise(pl.col("y_arr_level"))
+        .alias("y_arr_level"),
+        pl.when(pl.col("d") == 11)
+        .then(1.0)
+        .otherwise(pl.col("y_price_level"))
+        .alias("y_price_level"),
+    )
+    assert_frame_equal(result.filter(pl.col("d") <= 11), estimate_transitions(prefix))

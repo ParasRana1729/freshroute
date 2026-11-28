@@ -3,7 +3,7 @@
   "scope": "full eligible national cohort",
   "selection_window": "2026-04-02 through 2026-04-30",
   "test_window": null,
-  "claim_status": "development_validation_only",
+  "claim_status": "withdrawn_future_dependent_peer_membership",
   "local_context_features": [
     "local_market_report_count",
     "local_market_surplus_rate",

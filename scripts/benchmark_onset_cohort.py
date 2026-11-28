@@ -71,6 +71,12 @@ def prepare_sources(archive: Path, directory: Path):
         "log_price",
         "log_arrival_mean_7",
         "log_price_mean_7",
+        "state",
+        "district",
+        "market",
+        "p_arr",
+        "p_price",
+        "surplus",
     ).write_parquet(peer_history, compression="zstd")
     # Every peer group and matched entity belongs to one commodity. Materialize
     # its bucket separately to bound the peak memory of the peer joins.
@@ -442,14 +448,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive", required=True, type=Path)
     parser.add_argument("--work-dir", required=True, type=Path)
-    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--prepare-only", action="store_true")
     parser.add_argument("--threads", type=int, default=3)
     parser.add_argument("--with-catboost", action="store_true")
     args = parser.parse_args()
+    if args.output is None and not args.prepare_only:
+        parser.error("--output is required unless --prepare-only is set")
     base, cohort = prepare_sources(args.archive, args.work_dir)
-    run_benchmark(
-        base, cohort, args.archive, args.output, args.threads, args.with_catboost
-    )
+    if not args.prepare_only:
+        run_benchmark(
+            base, cohort, args.archive, args.output, args.threads, args.with_catboost
+        )
 
 
 if __name__ == "__main__":

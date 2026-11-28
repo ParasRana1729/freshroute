@@ -19,11 +19,16 @@ MEASURES = (
 )
 
 
+def _region_keys(group: str) -> list[str]:
+    return ["state"] if group == "state" else ["state", group]
+
+
 def _daily_context(frame: pl.DataFrame, group: str) -> pl.DataFrame:
     """Summarize reports visible on each date and attach exact calendar lags."""
     prefix = f"local_{group}"
+    keys = _region_keys(group)
     daily = (
-        frame.group_by(group, "d")
+        frame.group_by(*keys, "d")
         .agg(
             pl.len().cast(pl.Int32).alias(f"{prefix}_report_count"),
             pl.col("commodity")
@@ -56,16 +61,16 @@ def _daily_context(frame: pl.DataFrame, group: str) -> pl.DataFrame:
             .cast(pl.Float32)
             .alias(f"{prefix}_mean_log_price"),
         )
-        .sort(group, "d")
+        .sort(*keys, "d")
     )
     current = [f"{prefix}_{measure}" for measure in MEASURES]
     for lag in LAGS:
         lookup = daily.select(
-            group,
+            *keys,
             (pl.col("d") + lag).alias("d"),
             *[pl.col(column).alias(f"{column}_lag_{lag}") for column in current],
         )
-        daily = daily.join(lookup, on=[group, "d"], how="left")
+        daily = daily.join(lookup, on=[*keys, "d"], how="left")
     return daily
 
 
@@ -91,7 +96,7 @@ def local_reporting_context(frame: pl.DataFrame) -> pl.DataFrame:
     features = frame.select("entity", "d", *GROUPS)
     for group in GROUPS:
         daily = _daily_context(frame, group)
-        features = features.join(daily, on=[group, "d"], how="left")
+        features = features.join(daily, on=[*_region_keys(group), "d"], how="left")
     return features.drop(*GROUPS).sort("d", "entity")
 
 

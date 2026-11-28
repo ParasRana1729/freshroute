@@ -1,0 +1,60 @@
+{
+  "task": "glut_onset_0_to_1",
+  "scope": "full eligible national cohort",
+  "evaluation": "chronological development validation",
+  "validation_first_target_date": "2026-04-02",
+  "validation_last_target_date": "2026-04-30",
+  "validation_rows": 359896,
+  "validation_positives": 10378,
+  "validation_rows_with_analogs": 355360,
+  "analog_features": [
+    "analog_near_weight",
+    "analog_near_onset_rate",
+    "analog_near_arrival_step",
+    "analog_near_price_step",
+    "analog_broad_weight",
+    "analog_broad_onset_rate",
+    "analog_broad_arrival_step",
+    "analog_broad_price_step"
+  ],
+  "versions": {
+    "lightgbm": "4.7.0",
+    "polars": "2.2.0"
+  },
+  "validation": {
+    "cohort+ensemble": {
+      "case": "cohort+ensemble",
+      "num_leaves": 8,
+      "trees": 40,
+      "f1": 0.4724815205913411,
+      "global_f1": 0.46922428330522764,
+      "gate_f1": 0.4724815205913411,
+      "pr_auc": 0.4409548466083195,
+      "mode": "gate",
+      "global_threshold": 0.265543705812184,
+      "gate_thresholds": {
+        "0": 0.22135239164093592,
+        "1": 0.25289146501018817,
+        "2": 0.2969196344257231
+      }
+    },
+    "cohort+ensemble+analogs": {
+      "case": "cohort+ensemble+analogs",
+      "num_leaves": 8,
+      "trees": 40,
+      "f1": 0.4724114441416894,
+      "global_f1": 0.4712139118689853,
+      "gate_f1": 0.4724114441416894,
+      "pr_auc": 0.44456923865399567,
+      "mode": "gate",
+      "global_threshold": 0.2670801438179257,
+      "gate_thresholds": {
+        "0": 0.257015371726338,
+        "1": 0.2689858175652038,
+        "2": 0.27333977621415495
+      }
+    }
+  },
+  "validation_f1_difference": -7.007644965167925e-05,
+  "test": null
+}

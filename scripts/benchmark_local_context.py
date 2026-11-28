@@ -14,8 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts import benchmark_onset_cohort as cohort
-from scripts import prepare_onset_archive as prep
-from scripts.local_reporting_context import local_reporting_context
+from scripts.local_reporting_context import GROUPS, local_reporting_context
 
 
 def selected_context_columns() -> list[str]:
@@ -48,47 +47,30 @@ def selected_context_columns() -> list[str]:
 
 
 def build_context(directory: Path, output: Path) -> None:
-    """Calculate context from every unpaired report using stable entity metadata."""
-    config = prep.bf.load_config()
-    identity = (
-        pl.scan_parquet(directory / "pairs.parquet")
-        .select("entity", "market", "district", "state")
-        .unique("entity")
-    )
-    active_count = config["cross_section"]["min_n_comm_day"]
-    cutoff = config["surplus_cs"]
-    frame = (
-        pl.scan_parquet(directory / "peer_history.parquet")
-        .join(identity, on="entity", how="inner", validate="m:1")
-        .with_columns(
-            n_comm=pl.len().over("d", "commodity"),
-            p_arr=(
-                pl.col("log_arrival").rank("average").over("d", "commodity")
-                / pl.len().over("d", "commodity")
-            ).cast(pl.Float32),
-            p_price=(
-                pl.col("log_price").rank("average").over("d", "commodity")
-                / pl.len().over("d", "commodity")
-            ).cast(pl.Float32),
+    """Use identities and ranks from each day's reports before target pairing."""
+    source = pl.scan_parquet(directory / "peer_history.parquet")
+    columns = [
+        *cohort.COHORT_KEYS,
+        *GROUPS,
+        "p_arr",
+        "p_price",
+        "surplus",
+        "log_arrival",
+        "log_price",
+    ]
+    if set(columns) - set(source.collect_schema().names()):
+        raise ValueError(
+            "Rebuild the cohort work directory with benchmark_onset_cohort.py"
         )
-        .with_columns(
-            pl.when(pl.col("n_comm") >= active_count)
-            .then(
-                (pl.col("p_arr") >= cutoff["arrival_pct_min"])
-                & (pl.col("p_price") <= cutoff["price_pct_max"])
-            )
-            .alias("surplus")
-        )
-        .collect()
-    )
-    local_reporting_context(frame).write_parquet(output, compression="zstd")
+    local_reporting_context(source.select(columns).collect()).select(
+        *cohort.IDENTITY, *selected_context_columns()
+    ).write_parquet(output, compression="zstd")
 
 
 def run(directory: Path, output: Path, threads: int) -> None:
     base, projected = cohort.open_sources(directory)
-    context_path = directory / "local_reporting_context.parquet"
-    if not context_path.exists():
-        build_context(directory, context_path)
+    context_path = directory / "local_reporting_context_unpaired.parquet"
+    build_context(directory, context_path)
     local_columns = selected_context_columns()
     context = pl.scan_parquet(context_path).select(*cohort.IDENTITY, *local_columns)
     local = projected.join(
@@ -103,9 +85,7 @@ def run(directory: Path, output: Path, threads: int) -> None:
     ]
     missing = (
         local.select(
-            pl.any_horizontal(pl.col(current_columns).is_null())
-            .any()
-            .alias("missing")
+            pl.any_horizontal(pl.col(current_columns).is_null()).any().alias("missing")
         )
         .collect()
         .item()
@@ -174,8 +154,7 @@ def run(directory: Path, output: Path, threads: int) -> None:
         "local_context_features": local_columns,
         "validation": results,
         "validation_f1_difference": (
-            results["local_context+ensemble"]["f1"]
-            - results["cohort+ensemble"]["f1"]
+            results["local_context+ensemble"]["f1"] - results["cohort+ensemble"]["f1"]
         ),
     }
     output.parent.mkdir(parents=True, exist_ok=True)
