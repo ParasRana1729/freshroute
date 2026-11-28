@@ -64,6 +64,8 @@ python scripts/train_onset_f1.py
 The [extended archive benchmark](docs/ONSET_ARCHIVE_BENCHMARK.md) tests the same
 onset definition on a separate month-long holdout after training on several
 months of reports.
+The [May follow-up](docs/ONSET_COHORT_BENCHMARK.md) compares projected market
+reporting cohorts with a baseline on a common held-out population.
 
 ## Anti-Leakage & Pipeline Verification (`tests/`)
 

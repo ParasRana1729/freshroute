@@ -20,6 +20,7 @@ def test_archive_features_use_only_reports_through_feature_day():
                     "state_name": "STATE",
                     "district_name": "DISTRICT",
                     "market_center_name": f"MARKET {market:02d}",
+                    "source_market": market,
                     "commodity_name": "TOMATO",
                     "variety": "LOCAL",
                     "grade": "FAQ",
@@ -42,9 +43,20 @@ def test_archive_features_use_only_reports_through_feature_day():
 
     full = features(reports)
     prefix = features(reports.filter(pl.col("date") <= cutoff))
-    keys = ["market", "date"]
+    # Compare rows by source identity. Polars may assign different categorical
+    # codes during independent collections, even for the same market names.
+    encoded = [
+        *prep.INT_KEYS,
+        "district",
+        "entity",
+        "mkt_comm",
+        "district_comm",
+        "state_comm",
+    ]
+    keys = ["source_market", "date"]
     assert_frame_equal(
-        full.filter(pl.col("date") <= cutoff).sort(keys), prefix.sort(keys)
+        full.filter(pl.col("date") <= cutoff).drop(encoded).sort(keys),
+        prefix.drop(encoded).sort(keys),
     )
     pairs = prep.pair(full)
     assert pairs.height == 60
