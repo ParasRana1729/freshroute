@@ -109,9 +109,9 @@ def prepare_sources(archive: Path, directory: Path, *, write_market_keys=False):
     for part in parts:
         part.unlink()
     projection_path = directory / "report_projection.parquet"
-    expected_peer_ranks(pl.scan_parquet(peer_history)).write_parquet(
-        projection_path, compression="zstd"
-    )
+    expected_peer_ranks(
+        pl.scan_parquet(peer_history), stable_reductions=write_market_keys
+    ).write_parquet(projection_path, compression="zstd")
     return open_sources(directory)
 
 

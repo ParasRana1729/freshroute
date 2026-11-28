@@ -143,3 +143,33 @@ fixed sample over rotation, and it retained its lead in April.
 python -m scripts.benchmark_onset_multitask --work-dir data/external/issued_signals \
   --rotating-negatives --output data/processed/onset_rotating_negatives_metrics.json
 ```
+
+The first choice for fresh verification is June 2–30, 2026, the first complete
+target month after the opened May benchmark with the same boundary-pair
+convention. Before looking at that month's labels, freeze the candidate,
+thresholds and complete national population. Require both quantity and modal
+price at the five-key reporting grain and check source compatibility on known
+overlap dates. If a different period becomes available first, designate its
+dates before opening outcomes. A development replay cannot verify the 80% target.
+
+## Rebuild and ensemble checks
+
+Cold rebuilding the original direct benchmark changed a few weighted peer
+ranks when float32 partial sums split a price or arrival tie. The variant
+requested by `--write-market-keys` now accumulates weighted peer contributions
+in float64 before constructing ties. Two independent builds of the pinned
+archive produced identical projections for all 3,755,454 reporting rows.
+
+The ensemble comparison fits separate neural forecasts of all nine rank and
+event outcomes. March out-of-sample heads train the stacking model, and April
+selects stack size and thresholds on the full population. March forecasts use
+training outcomes through February 28. April forecasts use training outcomes
+through March 31. The comparison includes the incumbent joint, price, arrival,
+projected-cohort and CatBoost heads on both sides. To reproduce it, use the
+CatBoost version pinned in the May benchmark and a fresh work directory.
+
+```bash
+export POLARS_MAX_THREADS=2 OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=3
+python -m scripts.benchmark_onset_neural_stack --work-dir data/external/issued_signals \
+  --output data/processed/onset_neural_stack_metrics.json
+```

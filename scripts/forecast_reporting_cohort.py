@@ -6,8 +6,19 @@ LEVELS = ("log_arrival", "log_price")
 WEEKLY_LAGS = ((6, 1.0), (13, 0.65), (20, 0.40), (27, 0.25))
 
 
-def expected_peer_ranks(history: pl.LazyFrame) -> pl.DataFrame:
+def expected_peer_ranks(
+    history: pl.LazyFrame, *, stable_reductions=False
+) -> pl.DataFrame:
     """Estimate ranks in the next weekday's reporting cohort using reports through t."""
+
+    def weighted_sum(column):
+        # All terms originate as float32. Accumulation in float64 preserves
+        # ties across worker schedules for these bounded peer counts.
+        values = pl.col(column)
+        if stable_reductions:
+            return values.cast(pl.Float64).sum()
+        return values.sum()
+
     identifiers = ["d", "commodity", "entity"]
     levels = [*LEVELS, "log_arrival_mean_7", "log_price_mean_7"]
     observed = history.select(identifiers + levels)
@@ -42,9 +53,9 @@ def expected_peer_ranks(history: pl.LazyFrame) -> pl.DataFrame:
         .group_by(identifiers)
         .agg(
             pl.col("current").sum().alias("has_current"),
-            pl.col("weekly_weight").sum(),
+            weighted_sum("weekly_weight").cast(pl.Float32),
             *[pl.col(f"current_{name}").max() for name in levels],
-            *[pl.col(f"weekly_{name}").sum() for name in LEVELS],
+            *[weighted_sum(f"weekly_{name}").cast(pl.Float32) for name in LEVELS],
         )
         .collect(engine="streaming")
     )
@@ -87,7 +98,7 @@ def expected_peer_ranks(history: pl.LazyFrame) -> pl.DataFrame:
         keys = slices + [measure]
         ordered = (
             cohort.group_by(keys)
-            .agg(pl.col("report_weight").sum().alias("tie_weight"))
+            .agg(weighted_sum("report_weight").alias("tie_weight"))
             .sort(keys)
         )
         ordered = ordered.with_columns(
@@ -109,7 +120,7 @@ def expected_peer_ranks(history: pl.LazyFrame) -> pl.DataFrame:
         )
         ranks.append(rank)
     counts = cohort.group_by(slices).agg(
-        pl.col("report_weight").sum().cast(pl.Float32).alias("expected_report_weight"),
+        weighted_sum("report_weight").cast(pl.Float32).alias("expected_report_weight"),
         pl.col("has_current").sum().alias("projected_n_current"),
     )
     features = (

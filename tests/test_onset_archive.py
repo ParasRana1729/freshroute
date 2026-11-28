@@ -294,3 +294,34 @@ def test_retail_profiles_use_published_history_and_wrap_december():
     assert_frame_equal(basket.sort("fortnight"), extra_basket.sort("fortnight"))
     assert basket.height == 24
     assert basket.filter(pl.col("fortnight") == 0)["produce_season_change"].item() < 0
+
+
+def test_stable_projected_ranks_preserve_ties_when_input_order_changes():
+    import numpy as np
+    from polars.testing import assert_frame_equal
+    from scripts.forecast_reporting_cohort import expected_peer_ranks
+
+    rng = np.random.default_rng(33)
+    days, markets = 32, 24
+    day = np.repeat(np.arange(days, dtype="int32"), markets)
+    ids = np.tile(np.arange(markets, dtype="uint32"), days)
+    values = rng.choice([1.123456, 2.456789, 3.076543], size=(days, 4)).astype(
+        "float32"
+    )
+    x = values[day, ids % 4]
+    frame = pl.DataFrame(
+        dict(
+            d=day,
+            commodity=np.zeros_like(day),
+            entity=ids,
+            log_arrival=x,
+            log_price=x,
+            log_arrival_mean_7=x,
+            log_price_mean_7=x,
+        )
+    )
+    expected = expected_peer_ranks(frame.lazy(), stable_reductions=True)
+    shuffled = expected_peer_ranks(
+        frame.sample(fraction=1, shuffle=True, seed=42).lazy(), stable_reductions=True
+    )
+    assert_frame_equal(expected, shuffled, check_exact=True)
