@@ -21,10 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt "polars==2.2.0"
 
       - name: Run Phase 2, audit/dispatch, and integrity tests
         run: |
           python -m pytest -v tests/test_phase2_pipelines.py -k "not test_district_centroids_exclude_imputed_and_cover_top6"
           python -m pytest -v tests/test_audit_and_dispatch.py
           python -m pytest -v tests/test_pipeline_integrity.py -k "test_2_feature_allowlist_and_formula_guard or test_5_mandatory_baseline_reporting"
+          python -m pytest -v tests/test_onset_f1.py tests/test_onset_archive.py

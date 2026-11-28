@@ -1,0 +1,678 @@
+{
+  "task": "glut_onset_0_to_1",
+  "f1_target": 0.8,
+  "target_met": false,
+  "archive_sha256": "f8a4372f3c4d532cc0a1a584933b9cfded8f71a6648e4724497976bcbc0025e3",
+  "versions": {
+    "lightgbm": "4.7.0",
+    "polars": "2.2.0",
+    "catboost": "1.2.10"
+  },
+  "clipping_fit_through": "2026-02-28",
+  "train_target_end": "2026-03-31",
+  "validation_target_end": "2026-04-30",
+  "test_target_end": "2026-05-31",
+  "validation": [
+    {
+      "case": "base",
+      "num_leaves": 16,
+      "trees": 40,
+      "f1": 0.4694646896205077,
+      "global_f1": 0.4694646896205077,
+      "gate_f1": 0.4699095210425832,
+      "pr_auc": 0.4419362252621469,
+      "mode": "global",
+      "global_threshold": 0.2585949594707546,
+      "gate_thresholds": {
+        "0": 0.26113818456166016,
+        "1": 0.25804375875130453,
+        "2": 0.25262291290795286
+      }
+    },
+    {
+      "case": "cohort",
+      "num_leaves": 8,
+      "trees": 40,
+      "f1": 0.4697906957037539,
+      "global_f1": 0.4685733858537421,
+      "gate_f1": 0.4697906957037539,
+      "pr_auc": 0.4411017797541234,
+      "mode": "gate",
+      "global_threshold": 0.2651869796457691,
+      "gate_thresholds": {
+        "0": 0.2419900436176604,
+        "1": 0.2582777995103956,
+        "2": 0.2713253220608406
+      }
+    },
+    {
+      "case": "cohort+ensemble",
+      "num_leaves": 8,
+      "trees": 40,
+      "f1": 0.4724815205913411,
+      "global_f1": 0.46922428330522764,
+      "gate_f1": 0.4724815205913411,
+      "pr_auc": 0.4409548466083195,
+      "mode": "gate",
+      "global_threshold": 0.265543705812184,
+      "gate_thresholds": {
+        "0": 0.22135239164093592,
+        "1": 0.25289146501018817,
+        "2": 0.2969196344257231
+      }
+    },
+    {
+      "case": "cohort+ensemble+catboost",
+      "num_leaves": 8,
+      "trees": 40,
+      "f1": 0.47282830759173,
+      "global_f1": 0.47282830759173,
+      "gate_f1": 0.47330565944679626,
+      "pr_auc": 0.4489201853458613,
+      "mode": "global",
+      "global_threshold": 0.2558100944946753,
+      "gate_thresholds": {
+        "0": 0.2560779999229826,
+        "1": 0.2558582714983043,
+        "2": 0.2587095681692415
+      }
+    }
+  ],
+  "baseline": {
+    "selected": {
+      "case": "base",
+      "num_leaves": 16,
+      "trees": 40,
+      "f1": 0.4694646896205077,
+      "global_f1": 0.4694646896205077,
+      "gate_f1": 0.4699095210425832,
+      "pr_auc": 0.4419362252621469,
+      "mode": "global",
+      "global_threshold": 0.2585949594707546,
+      "gate_thresholds": {
+        "0": 0.26113818456166016,
+        "1": 0.25804375875130453,
+        "2": 0.25262291290795286
+      }
+    },
+    "rows": 381513,
+    "positives": 10712,
+    "predicted_positives": 13333,
+    "true_positives": 5607,
+    "precision": 0.4205355133878347,
+    "recall": 0.5234316654219567,
+    "f1": 0.4663755458515284,
+    "pr_auc": 0.44009740106953343,
+    "by_target_date": {
+      "2026-05-02": {
+        "rows": 10406,
+        "positives": 228,
+        "predicted_positives": 337,
+        "true_positives": 114,
+        "precision": 0.33827893175074186,
+        "recall": 0.5,
+        "f1": 0.40353982300884955
+      },
+      "2026-05-03": {
+        "rows": 9486,
+        "positives": 323,
+        "predicted_positives": 350,
+        "true_positives": 166,
+        "precision": 0.4742857142857143,
+        "recall": 0.5139318885448917,
+        "f1": 0.4933135215453195
+      },
+      "2026-05-04": {
+        "rows": 9530,
+        "positives": 181,
+        "predicted_positives": 201,
+        "true_positives": 90,
+        "precision": 0.44776119402985076,
+        "recall": 0.4972375690607735,
+        "f1": 0.4712041884816754
+      },
+      "2026-05-05": {
+        "rows": 14958,
+        "positives": 371,
+        "predicted_positives": 488,
+        "true_positives": 176,
+        "precision": 0.36065573770491804,
+        "recall": 0.4743935309973046,
+        "f1": 0.409778812572759
+      },
+      "2026-05-06": {
+        "rows": 15177,
+        "positives": 432,
+        "predicted_positives": 538,
+        "true_positives": 211,
+        "precision": 0.39219330855018586,
+        "recall": 0.48842592592592593,
+        "f1": 0.4350515463917526
+      },
+      "2026-05-07": {
+        "rows": 15136,
+        "positives": 387,
+        "predicted_positives": 521,
+        "true_positives": 190,
+        "precision": 0.3646833013435701,
+        "recall": 0.4909560723514212,
+        "f1": 0.4185022026431718
+      },
+      "2026-05-08": {
+        "rows": 14973,
+        "positives": 453,
+        "predicted_positives": 496,
+        "true_positives": 229,
+        "precision": 0.46169354838709675,
+        "recall": 0.5055187637969095,
+        "f1": 0.48261327713382507
+      },
+      "2026-05-09": {
+        "rows": 11830,
+        "positives": 410,
+        "predicted_positives": 493,
+        "true_positives": 224,
+        "precision": 0.4543610547667343,
+        "recall": 0.5463414634146342,
+        "f1": 0.49612403100775193
+      },
+      "2026-05-10": {
+        "rows": 9208,
+        "positives": 286,
+        "predicted_positives": 316,
+        "true_positives": 157,
+        "precision": 0.49683544303797467,
+        "recall": 0.548951048951049,
+        "f1": 0.521594684385382
+      },
+      "2026-05-11": {
+        "rows": 9811,
+        "positives": 160,
+        "predicted_positives": 211,
+        "true_positives": 81,
+        "precision": 0.38388625592417064,
+        "recall": 0.50625,
+        "f1": 0.4366576819407008
+      },
+      "2026-05-12": {
+        "rows": 15251,
+        "positives": 398,
+        "predicted_positives": 567,
+        "true_positives": 198,
+        "precision": 0.3492063492063492,
+        "recall": 0.49748743718592964,
+        "f1": 0.41036269430051814
+      },
+      "2026-05-13": {
+        "rows": 15319,
+        "positives": 421,
+        "predicted_positives": 559,
+        "true_positives": 230,
+        "precision": 0.41144901610017887,
+        "recall": 0.5463182897862233,
+        "f1": 0.46938775510204084
+      },
+      "2026-05-14": {
+        "rows": 15398,
+        "positives": 393,
+        "predicted_positives": 520,
+        "true_positives": 199,
+        "precision": 0.38269230769230766,
+        "recall": 0.5063613231552163,
+        "f1": 0.4359255202628697
+      },
+      "2026-05-15": {
+        "rows": 15205,
+        "positives": 438,
+        "predicted_positives": 491,
+        "true_positives": 227,
+        "precision": 0.4623217922606925,
+        "recall": 0.5182648401826484,
+        "f1": 0.48869752421959095
+      },
+      "2026-05-16": {
+        "rows": 12991,
+        "positives": 421,
+        "predicted_positives": 596,
+        "true_positives": 259,
+        "precision": 0.43456375838926176,
+        "recall": 0.6152019002375297,
+        "f1": 0.5093411996066863
+      },
+      "2026-05-17": {
+        "rows": 9487,
+        "positives": 299,
+        "predicted_positives": 372,
+        "true_positives": 177,
+        "precision": 0.47580645161290325,
+        "recall": 0.5919732441471572,
+        "f1": 0.5275707898658718
+      },
+      "2026-05-18": {
+        "rows": 9802,
+        "positives": 203,
+        "predicted_positives": 239,
+        "true_positives": 111,
+        "precision": 0.46443514644351463,
+        "recall": 0.5467980295566502,
+        "f1": 0.502262443438914
+      },
+      "2026-05-19": {
+        "rows": 15417,
+        "positives": 350,
+        "predicted_positives": 482,
+        "true_positives": 162,
+        "precision": 0.3360995850622407,
+        "recall": 0.46285714285714286,
+        "f1": 0.3894230769230769
+      },
+      "2026-05-20": {
+        "rows": 15448,
+        "positives": 436,
+        "predicted_positives": 549,
+        "true_positives": 230,
+        "precision": 0.41894353369763204,
+        "recall": 0.5275229357798165,
+        "f1": 0.467005076142132
+      },
+      "2026-05-21": {
+        "rows": 15463,
+        "positives": 389,
+        "predicted_positives": 497,
+        "true_positives": 196,
+        "precision": 0.39436619718309857,
+        "recall": 0.5038560411311054,
+        "f1": 0.44243792325056436
+      },
+      "2026-05-22": {
+        "rows": 15318,
+        "positives": 470,
+        "predicted_positives": 507,
+        "true_positives": 235,
+        "precision": 0.4635108481262327,
+        "recall": 0.5,
+        "f1": 0.481064483111566
+      },
+      "2026-05-23": {
+        "rows": 12389,
+        "positives": 438,
+        "predicted_positives": 561,
+        "true_positives": 270,
+        "precision": 0.48128342245989303,
+        "recall": 0.6164383561643836,
+        "f1": 0.5405405405405406
+      },
+      "2026-05-24": {
+        "rows": 9288,
+        "positives": 306,
+        "predicted_positives": 397,
+        "true_positives": 193,
+        "precision": 0.48614609571788414,
+        "recall": 0.630718954248366,
+        "f1": 0.5490753911806543
+      },
+      "2026-05-25": {
+        "rows": 9704,
+        "positives": 194,
+        "predicted_positives": 215,
+        "true_positives": 95,
+        "precision": 0.4418604651162791,
+        "recall": 0.4896907216494845,
+        "f1": 0.46454767726161367
+      },
+      "2026-05-26": {
+        "rows": 14911,
+        "positives": 376,
+        "predicted_positives": 543,
+        "true_positives": 196,
+        "precision": 0.36095764272559855,
+        "recall": 0.5212765957446809,
+        "f1": 0.426550598476605
+      },
+      "2026-05-27": {
+        "rows": 14427,
+        "positives": 438,
+        "predicted_positives": 555,
+        "true_positives": 214,
+        "precision": 0.3855855855855856,
+        "recall": 0.4885844748858447,
+        "f1": 0.4310171198388721
+      },
+      "2026-05-28": {
+        "rows": 11479,
+        "positives": 429,
+        "predicted_positives": 370,
+        "true_positives": 188,
+        "precision": 0.5081081081081081,
+        "recall": 0.4382284382284382,
+        "f1": 0.47058823529411764
+      },
+      "2026-05-29": {
+        "rows": 11592,
+        "positives": 273,
+        "predicted_positives": 340,
+        "true_positives": 138,
+        "precision": 0.40588235294117647,
+        "recall": 0.5054945054945055,
+        "f1": 0.45024469820554647
+      },
+      "2026-05-30": {
+        "rows": 13280,
+        "positives": 393,
+        "predicted_positives": 632,
+        "true_positives": 225,
+        "precision": 0.3560126582278481,
+        "recall": 0.5725190839694656,
+        "f1": 0.43902439024390244
+      },
+      "2026-05-31": {
+        "rows": 8829,
+        "positives": 416,
+        "predicted_positives": 390,
+        "true_positives": 226,
+        "precision": 0.5794871794871795,
+        "recall": 0.5432692307692307,
+        "f1": 0.5607940446650124
+      }
+    }
+  },
+  "selected_model": {
+    "selected": {
+      "case": "cohort+ensemble+catboost",
+      "num_leaves": 8,
+      "trees": 40,
+      "f1": 0.47282830759173,
+      "global_f1": 0.47282830759173,
+      "gate_f1": 0.47330565944679626,
+      "pr_auc": 0.4489201853458613,
+      "mode": "global",
+      "global_threshold": 0.2558100944946753,
+      "gate_thresholds": {
+        "0": 0.2560779999229826,
+        "1": 0.2558582714983043,
+        "2": 0.2587095681692415
+      }
+    },
+    "rows": 381513,
+    "positives": 10712,
+    "predicted_positives": 13687,
+    "true_positives": 5793,
+    "precision": 0.42324833783882515,
+    "recall": 0.5407953696788649,
+    "f1": 0.47485552686585514,
+    "pr_auc": 0.4501863636463592,
+    "by_target_date": {
+      "2026-05-02": {
+        "rows": 10406,
+        "positives": 228,
+        "predicted_positives": 301,
+        "true_positives": 113,
+        "precision": 0.3754152823920266,
+        "recall": 0.4956140350877193,
+        "f1": 0.42722117202268434
+      },
+      "2026-05-03": {
+        "rows": 9486,
+        "positives": 323,
+        "predicted_positives": 365,
+        "true_positives": 174,
+        "precision": 0.4767123287671233,
+        "recall": 0.5386996904024768,
+        "f1": 0.5058139534883721
+      },
+      "2026-05-04": {
+        "rows": 9530,
+        "positives": 181,
+        "predicted_positives": 211,
+        "true_positives": 88,
+        "precision": 0.41706161137440756,
+        "recall": 0.4861878453038674,
+        "f1": 0.4489795918367347
+      },
+      "2026-05-05": {
+        "rows": 14958,
+        "positives": 371,
+        "predicted_positives": 502,
+        "true_positives": 193,
+        "precision": 0.3844621513944223,
+        "recall": 0.5202156334231806,
+        "f1": 0.44215349369988544
+      },
+      "2026-05-06": {
+        "rows": 15177,
+        "positives": 432,
+        "predicted_positives": 556,
+        "true_positives": 218,
+        "precision": 0.3920863309352518,
+        "recall": 0.5046296296296297,
+        "f1": 0.44129554655870445
+      },
+      "2026-05-07": {
+        "rows": 15136,
+        "positives": 387,
+        "predicted_positives": 543,
+        "true_positives": 204,
+        "precision": 0.3756906077348066,
+        "recall": 0.5271317829457365,
+        "f1": 0.43870967741935485
+      },
+      "2026-05-08": {
+        "rows": 14973,
+        "positives": 453,
+        "predicted_positives": 539,
+        "true_positives": 250,
+        "precision": 0.46382189239332094,
+        "recall": 0.5518763796909493,
+        "f1": 0.5040322580645161
+      },
+      "2026-05-09": {
+        "rows": 11830,
+        "positives": 410,
+        "predicted_positives": 476,
+        "true_positives": 226,
+        "precision": 0.47478991596638653,
+        "recall": 0.551219512195122,
+        "f1": 0.510158013544018
+      },
+      "2026-05-10": {
+        "rows": 9208,
+        "positives": 286,
+        "predicted_positives": 342,
+        "true_positives": 168,
+        "precision": 0.49122807017543857,
+        "recall": 0.5874125874125874,
+        "f1": 0.535031847133758
+      },
+      "2026-05-11": {
+        "rows": 9811,
+        "positives": 160,
+        "predicted_positives": 211,
+        "true_positives": 83,
+        "precision": 0.3933649289099526,
+        "recall": 0.51875,
+        "f1": 0.4474393530997305
+      },
+      "2026-05-12": {
+        "rows": 15251,
+        "positives": 398,
+        "predicted_positives": 576,
+        "true_positives": 205,
+        "precision": 0.3559027777777778,
+        "recall": 0.5150753768844221,
+        "f1": 0.4209445585215606
+      },
+      "2026-05-13": {
+        "rows": 15319,
+        "positives": 421,
+        "predicted_positives": 601,
+        "true_positives": 234,
+        "precision": 0.389351081530782,
+        "recall": 0.5558194774346793,
+        "f1": 0.45792563600782776
+      },
+      "2026-05-14": {
+        "rows": 15398,
+        "positives": 393,
+        "predicted_positives": 538,
+        "true_positives": 202,
+        "precision": 0.3754646840148699,
+        "recall": 0.5139949109414759,
+        "f1": 0.4339419978517723
+      },
+      "2026-05-15": {
+        "rows": 15205,
+        "positives": 438,
+        "predicted_positives": 550,
+        "true_positives": 241,
+        "precision": 0.4381818181818182,
+        "recall": 0.5502283105022832,
+        "f1": 0.48785425101214575
+      },
+      "2026-05-16": {
+        "rows": 12991,
+        "positives": 421,
+        "predicted_positives": 578,
+        "true_positives": 263,
+        "precision": 0.45501730103806226,
+        "recall": 0.6247030878859857,
+        "f1": 0.5265265265265265
+      },
+      "2026-05-17": {
+        "rows": 9487,
+        "positives": 299,
+        "predicted_positives": 397,
+        "true_positives": 188,
+        "precision": 0.473551637279597,
+        "recall": 0.6287625418060201,
+        "f1": 0.5402298850574713
+      },
+      "2026-05-18": {
+        "rows": 9802,
+        "positives": 203,
+        "predicted_positives": 243,
+        "true_positives": 112,
+        "precision": 0.4609053497942387,
+        "recall": 0.5517241379310345,
+        "f1": 0.5022421524663677
+      },
+      "2026-05-19": {
+        "rows": 15417,
+        "positives": 350,
+        "predicted_positives": 489,
+        "true_positives": 166,
+        "precision": 0.3394683026584867,
+        "recall": 0.4742857142857143,
+        "f1": 0.3957091775923719
+      },
+      "2026-05-20": {
+        "rows": 15448,
+        "positives": 436,
+        "predicted_positives": 580,
+        "true_positives": 243,
+        "precision": 0.4189655172413793,
+        "recall": 0.5573394495412844,
+        "f1": 0.47834645669291337
+      },
+      "2026-05-21": {
+        "rows": 15463,
+        "positives": 389,
+        "predicted_positives": 509,
+        "true_positives": 198,
+        "precision": 0.3889980353634578,
+        "recall": 0.5089974293059126,
+        "f1": 0.44097995545657015
+      },
+      "2026-05-22": {
+        "rows": 15318,
+        "positives": 470,
+        "predicted_positives": 543,
+        "true_positives": 250,
+        "precision": 0.4604051565377532,
+        "recall": 0.5319148936170213,
+        "f1": 0.49358341559723595
+      },
+      "2026-05-23": {
+        "rows": 12389,
+        "positives": 438,
+        "predicted_positives": 540,
+        "true_positives": 257,
+        "precision": 0.4759259259259259,
+        "recall": 0.58675799086758,
+        "f1": 0.5255623721881391
+      },
+      "2026-05-24": {
+        "rows": 9288,
+        "positives": 306,
+        "predicted_positives": 401,
+        "true_positives": 194,
+        "precision": 0.4837905236907731,
+        "recall": 0.6339869281045751,
+        "f1": 0.5487977369165488
+      },
+      "2026-05-25": {
+        "rows": 9704,
+        "positives": 194,
+        "predicted_positives": 207,
+        "true_positives": 90,
+        "precision": 0.43478260869565216,
+        "recall": 0.4639175257731959,
+        "f1": 0.4488778054862843
+      },
+      "2026-05-26": {
+        "rows": 14911,
+        "positives": 376,
+        "predicted_positives": 528,
+        "true_positives": 193,
+        "precision": 0.36553030303030304,
+        "recall": 0.5132978723404256,
+        "f1": 0.4269911504424779
+      },
+      "2026-05-27": {
+        "rows": 14427,
+        "positives": 438,
+        "predicted_positives": 600,
+        "true_positives": 228,
+        "precision": 0.38,
+        "recall": 0.5205479452054794,
+        "f1": 0.4393063583815029
+      },
+      "2026-05-28": {
+        "rows": 11479,
+        "positives": 429,
+        "predicted_positives": 375,
+        "true_positives": 192,
+        "precision": 0.512,
+        "recall": 0.44755244755244755,
+        "f1": 0.47761194029850745
+      },
+      "2026-05-29": {
+        "rows": 11592,
+        "positives": 273,
+        "predicted_positives": 360,
+        "true_positives": 150,
+        "precision": 0.4166666666666667,
+        "recall": 0.5494505494505495,
+        "f1": 0.47393364928909953
+      },
+      "2026-05-30": {
+        "rows": 13280,
+        "positives": 393,
+        "predicted_positives": 620,
+        "true_positives": 233,
+        "precision": 0.3758064516129032,
+        "recall": 0.5928753180661578,
+        "f1": 0.4600197433366239
+      },
+      "2026-05-31": {
+        "rows": 8829,
+        "positives": 416,
+        "predicted_positives": 406,
+        "true_positives": 237,
+        "precision": 0.583743842364532,
+        "recall": 0.5697115384615384,
+        "f1": 0.5766423357664233
+      }
+    }
+  },
+  "test_f1_difference": 0.008479981014326732
+}

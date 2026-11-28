@@ -1,0 +1,74 @@
+{
+  "task": "glut_onset_0_to_1",
+  "scope": "full eligible national cohort",
+  "selection_window": "2026-04-02 through 2026-04-30",
+  "test_window": null,
+  "claim_status": "development_validation_only",
+  "local_context_features": [
+    "local_market_report_count",
+    "local_market_surplus_rate",
+    "local_market_high_arrival_rate",
+    "local_market_low_price_rate",
+    "local_market_mean_arrival_rank",
+    "local_market_mean_price_rank",
+    "local_market_report_count_lag_1",
+    "local_market_surplus_rate_lag_1",
+    "local_market_high_arrival_rate_lag_1",
+    "local_market_low_price_rate_lag_1",
+    "local_market_mean_arrival_rank_lag_1",
+    "local_market_mean_price_rank_lag_1",
+    "local_market_report_count_lag_6",
+    "local_market_surplus_rate_lag_6",
+    "local_market_high_arrival_rate_lag_6",
+    "local_market_low_price_rate_lag_6",
+    "local_market_mean_arrival_rank_lag_6",
+    "local_market_mean_price_rank_lag_6",
+    "local_district_report_count",
+    "local_district_surplus_rate",
+    "local_district_high_arrival_rate",
+    "local_district_low_price_rate",
+    "local_district_mean_arrival_rank",
+    "local_district_mean_price_rank",
+    "local_state_report_count",
+    "local_state_surplus_rate",
+    "local_state_high_arrival_rate",
+    "local_state_low_price_rate",
+    "local_state_mean_arrival_rank",
+    "local_state_mean_price_rank"
+  ],
+  "validation": {
+    "cohort+ensemble": {
+      "case": "cohort+ensemble",
+      "num_leaves": 8,
+      "trees": 40,
+      "f1": 0.4724815205913411,
+      "global_f1": 0.46922428330522764,
+      "gate_f1": 0.4724815205913411,
+      "pr_auc": 0.4409548466083195,
+      "mode": "gate",
+      "global_threshold": 0.265543705812184,
+      "gate_thresholds": {
+        "0": 0.22135239164093592,
+        "1": 0.25289146501018817,
+        "2": 0.2969196344257231
+      }
+    },
+    "local_context+ensemble": {
+      "case": "local_context+ensemble",
+      "num_leaves": 64,
+      "trees": 40,
+      "f1": 0.46957826304384065,
+      "global_f1": 0.46824499030381384,
+      "gate_f1": 0.46957826304384065,
+      "pr_auc": 0.44329900952806195,
+      "mode": "gate",
+      "global_threshold": 0.24982998900846187,
+      "gate_thresholds": {
+        "0": 0.27060315523631145,
+        "1": 0.24637809693167562,
+        "2": 0.27611787214154837
+      }
+    }
+  },
+  "validation_f1_difference": -0.0029032575475004263
+}
