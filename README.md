@@ -61,6 +61,10 @@ python scripts/clean_dataset.py
 python scripts/train_onset_f1.py
 ```
 
+The [extended archive benchmark](docs/ONSET_ARCHIVE_BENCHMARK.md) tests the same
+onset definition on a separate month-long holdout after training on several
+months of reports.
+
 ## Anti-Leakage & Pipeline Verification (`tests/`)
 
 Running `python -m pytest -v tests/test_pipeline_integrity.py tests/test_phase2_pipelines.py tests/test_audit_and_dispatch.py` passes **15 automated tests**:
