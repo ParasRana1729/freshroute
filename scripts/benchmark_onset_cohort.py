@@ -139,7 +139,15 @@ def read_frame(source, features, end, start=None):
     )
 
 
-def score_window(source, first, last, *, projected: bool, threads: int):
+def score_window(
+    source,
+    first,
+    last,
+    *,
+    projected: bool,
+    threads: int,
+    additional_metadata=(),
+):
     """Forecast the joint event, both gates, and optional gate-specific outcomes."""
     features = feature_columns(source)
     train = read_frame(source, features, min(first, APRIL_START)).to_pandas()
@@ -212,6 +220,7 @@ def score_window(source, first, last, *, projected: bool, threads: int):
         *stack.CALIBRATION_COLUMNS,
         "days_since_previous",
         *extra,
+        *additional_metadata,
     ]
     return forecast.select(metadata).with_columns(
         *[pl.Series(name, scores) for name, scores in outputs.items()]

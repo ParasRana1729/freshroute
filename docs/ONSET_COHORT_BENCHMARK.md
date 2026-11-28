@@ -26,6 +26,8 @@ In the preliminary April ablation, the projected peer distribution reduced next-
 
 As a development diagnostic, providing the actual next-day high-arrival classification while forecasting the low-price classification yielded 66.86% April F1. Providing the actual low-price classification and forecasting high arrivals yielded 72.72%. The diagnostic thresholds came from March, and both variants used an observed future outcome. The scores describe these two specific experiments. Pre-market supply and buying signals remain worth evaluating with verified issue timestamps.
 
+A subsequent [cross-commodity local-context experiment](ONSET_LOCAL_CONTEXT_EXPERIMENT.md) added current and lagged market, district, and state reporting conditions. It reduced April validation F1 from 47.25% to 46.96%, so the candidate was rejected without scoring May.
+
 ## Reproduce
 
 Use the same full India Data Portal export as the [April archive benchmark](ONSET_ARCHIVE_BENCHMARK.md). The archive supplies report dates in place of original publication timestamps. Report-date availability is assumed for this backtest. Deployment timing can be checked with prospective snapshots that record when each report first appears.

@@ -66,6 +66,8 @@ onset definition on a separate month-long holdout after training on several
 months of reports.
 The [May follow-up](docs/ONSET_COHORT_BENCHMARK.md) compares projected market
 reporting cohorts with a baseline on a common held-out population.
+The [local-context experiment](docs/ONSET_LOCAL_CONTEXT_EXPERIMENT.md) records a
+rejected cross-commodity candidate without reopening that holdout.
 
 ## Anti-Leakage & Pipeline Verification (`tests/`)
 
