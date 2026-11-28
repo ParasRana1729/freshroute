@@ -52,3 +52,40 @@ def test_archive_features_use_only_reports_through_feature_day():
         (pl.col("y") == 1)
         != ((pl.col("y_arr_rank") >= 0.7) & (pl.col("y_price_rank") <= 0.3))
     ).is_empty()
+
+
+def test_projected_peer_ranks_do_not_use_future_reports():
+    from polars.testing import assert_frame_equal
+    from scripts.forecast_reporting_cohort import expected_peer_ranks
+
+    reports = pl.DataFrame(
+        [
+            dict(
+                d=day,
+                commodity=0,
+                entity=market,
+                log_arrival=float(day + market),
+                log_price=float(day - market),
+                log_arrival_mean_7=float(day + market - 1),
+                log_price_mean_7=float(day - market + 1),
+            )
+            for day in range(1, 35)
+            for market in range(12)
+            if (day + market) % 4 != 0
+        ],
+        schema_overrides={
+            column: pl.Float32
+            for column in (
+                "log_arrival",
+                "log_price",
+                "log_arrival_mean_7",
+                "log_price_mean_7",
+            )
+        },
+    )
+    cutoff = 25
+    full = expected_peer_ranks(reports.lazy()).filter(pl.col("d") <= cutoff)
+    prefix = expected_peer_ranks(reports.lazy().filter(pl.col("d") <= cutoff))
+    assert_frame_equal(full, prefix, check_exact=False)
+    assert len(prefix) == reports.filter(pl.col("d") <= cutoff).height
+    assert prefix.filter(pl.col("d") == cutoff)["weekly_weight"].max() > 0

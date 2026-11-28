@@ -50,3 +50,23 @@ def test_onset_history_uses_only_available_daily_reports() -> None:
     ].iloc[0]
     assert market_a_last["history_entity_observed_onset"] == 1
     assert market_a_last["days_since_observed_surplus"] == 2
+
+
+def test_gate_thresholds_match_exhaustive_pooled_f1():
+    from itertools import product
+    from sklearn.metrics import f1_score
+    from scripts.onset_gate_thresholds import alert_thresholds, choose_gate_thresholds
+
+    scores = np.array([0.40, 0.40, 0.80, 0.10, 0.95, 0.08])
+    labels = np.array([1, 0, 1, 0, 0, 0])
+    gates = np.array([0, 0, 1, 1, 2, 2])
+
+    cutoffs, optimized = choose_gate_thresholds(labels, scores, gates)
+    options = [np.r_[np.inf, np.unique(scores[gates == group])] for group in range(3)]
+    exhaustive = max(
+        f1_score(labels, scores >= np.asarray(candidate)[gates])
+        for candidate in product(*options)
+    )
+    assert optimized == exhaustive
+    assert cutoffs[2] is None
+    assert f1_score(labels, scores >= alert_thresholds(gates, cutoffs)) == optimized

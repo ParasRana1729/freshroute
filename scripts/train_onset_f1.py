@@ -125,7 +125,9 @@ def add_peer_cutoffs(
     return pd.concat([frame, pd.DataFrame(extra, dtype=np.float32)], axis=1), list(extra)
 
 
-def f1_metrics(y_true: np.ndarray, scores: np.ndarray, threshold: float) -> dict[str, Any]:
+def f1_metrics(
+    y_true: np.ndarray, scores: np.ndarray, threshold: float | np.ndarray
+) -> dict[str, Any]:
     decisions = scores >= threshold
     precision, recall, f1, _ = precision_recall_fscore_support(
         y_true, decisions, average="binary", zero_division=0

@@ -10,6 +10,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 import lightgbm
+import numpy as np
 import polars as pl
 from lightgbm import LGBMClassifier
 from sklearn.metrics import average_precision_score
@@ -121,9 +122,10 @@ def predict_test(source, columns, selected, train_end, val_end, test_end):
 def summarize_test(dates, y_test, scores, threshold):
     metrics = f1_metrics(y_test, scores, threshold)
     metrics["pr_auc"] = float(average_precision_score(y_test, scores))
+    row_thresholds = np.broadcast_to(threshold, scores.shape)
     by_target_date = {
         str((day + timedelta(days=1)).date()): f1_metrics(
-            y_test[rows], scores[rows], threshold
+            y_test[rows], scores[rows], row_thresholds[rows]
         )
         for day, rows in dates.groupby(dates).indices.items()
     }
