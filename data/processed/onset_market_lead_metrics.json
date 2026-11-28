@@ -1,0 +1,57 @@
+{
+  "task": "Track 1A next-day glut onset",
+  "selection": "March 2-31, 2026",
+  "replay": "April 2-30, 2026 (previously used development window)",
+  "fresh_test": null,
+  "training_rows": 362189,
+  "training_positives": 37498,
+  "features_added": [
+    "peer_change_p_arr",
+    "peer_strength_p_arr",
+    "peer_change_p_price",
+    "peer_strength_p_price"
+  ],
+  "models": {
+    "control": {
+      "march": {
+        "trees": 80,
+        "thresholds": {
+          "0": 0.5474450858070581,
+          "1": 0.5049135564016147,
+          "2": 0.5032565863621785
+        },
+        "f1": 0.4572687943841319
+      },
+      "april": {
+        "rows": 359896,
+        "positives": 10378,
+        "predicted_positives": 17129,
+        "true_positives": 6301,
+        "precision": 0.36785568334403645,
+        "recall": 0.6071497398342648,
+        "f1": 0.45813792852728397
+      }
+    },
+    "market_leads": {
+      "march": {
+        "trees": 80,
+        "thresholds": {
+          "0": 0.5286659014081834,
+          "1": 0.507927378769905,
+          "2": 0.5331427468129576
+        },
+        "f1": 0.4586721991701245
+      },
+      "april": {
+        "rows": 359896,
+        "positives": 10378,
+        "predicted_positives": 16424,
+        "true_positives": 6175,
+        "precision": 0.3759741841207988,
+        "recall": 0.5950086721911736,
+        "f1": 0.4607865084695172
+      }
+    }
+  },
+  "selected_in_march": "market_leads"
+}

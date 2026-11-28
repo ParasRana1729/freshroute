@@ -264,3 +264,33 @@ def test_market_leads_use_only_past_fits_and_current_peer_reports():
     # With one observed market only, the model has no independent peer.
     solo = estimates(df.filter(pl.col("market") == 1))
     assert solo["peer_change_p_arr"].is_nan().all()
+
+
+def test_retail_profiles_use_published_history_and_wrap_december():
+    from scripts.onset_retail_season import profiles
+
+    rows = []
+    for year in [2018, 2019, 2020]:
+        for month in range(1, 13):
+            for d in (5, 20):
+                for crop in ["Onion", "Tomato", "Potato"]:
+                    rows.append(
+                        dict(
+                            date=date(year, month, d),
+                            commodity=crop,
+                            state_name="State",
+                            price=float(month + 10),
+                        )
+                    )
+    historical = pl.DataFrame(rows)
+    newer = pl.DataFrame([{**rows[0], "date": date(2025, 1, 5), "price": 50000.0}])
+    from polars.testing import assert_frame_equal
+
+    exact, basket = profiles(historical)
+    extra, extra_basket = profiles(pl.concat([historical, newer]))
+    assert_frame_equal(
+        exact.sort("retail_crop", "fortnight"), extra.sort("retail_crop", "fortnight")
+    )
+    assert_frame_equal(basket.sort("fortnight"), extra_basket.sort("fortnight"))
+    assert basket.height == 24
+    assert basket.filter(pl.col("fortnight") == 0)["produce_season_change"].item() < 0

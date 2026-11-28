@@ -4,6 +4,7 @@ import argparse
 import copy
 import json
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import numpy as np
 import polars as pl
@@ -59,7 +60,7 @@ def numeric_encoder(train, names):
     return encode
 
 
-def train_epochs(x, y, epochs):
+def train_epochs(x, y, epochs, shard_dir=None):
     net = MLPClassifier(
         hidden_layer_sizes=(96, 48),
         batch_size=1024,
@@ -70,22 +71,31 @@ def train_epochs(x, y, epochs):
     )
     order = np.random.default_rng(124)
     for epoch in range(1, epochs + 1):
-        shuffle = order.permutation(len(y))
+        bucket = (epoch - 1) % 4 if shard_dir is not None else 0
+        if bucket:
+            inputs = np.load(shard_dir / f"x{bucket}.npy", mmap_mode="r")
+            targets = np.load(shard_dir / f"y{bucket}.npy", mmap_mode="r")
+        else:
+            inputs, targets = x, y
+        shuffle = order.permutation(len(targets))
         for indices in np.array_split(shuffle, max(1, len(shuffle) // 16384)):
-            net.partial_fit(x[indices], y[indices], classes=np.arange(y.shape[1]))
+            net.partial_fit(
+                inputs[indices], targets[indices], classes=np.arange(y.shape[1])
+            )
         yield epoch, net
 
 
-def run(directory):
+def run(directory, shard_dir=None):
     _, source = cohort.open_sources(directory)
     names = cohort.feature_columns(source)
     source = source.filter(pl.col("surplus") == 0)
 
-    def read(start, end, fit=False):
+    def read(start, end, fit=False, negative_bucket=0):
         frame = source.filter(pl.col("date") < end)
         if fit:
             frame = frame.filter(
-                (pl.col("y") == 1) | (pl.struct("entity", "d").hash(seed=31) % 4 == 0)
+                (pl.col("y") == 1)
+                | (pl.struct("entity", "d").hash(seed=31) % 4 == negative_bucket)
             )
         else:
             frame = frame.filter(pl.col("date") > start)
@@ -111,6 +121,15 @@ def run(directory):
     )
     tree.fit(train, y[:, 0], categorical_feature=stack.CATEGORIES)
     del train
+    unique_training_rows = len(y)
+    if shard_dir is not None:
+        for bucket in (1, 2, 3):
+            partition = read(None, cohort.MARCH_START, True, bucket)
+            targets = rank_targets(partition)
+            unique_training_rows += int((~targets[:, 0]).sum())
+            np.save(shard_dir / f"x{bucket}.npy", encode(partition))
+            np.save(shard_dir / f"y{bucket}.npy", targets)
+            del partition, targets
     march = read(cohort.MARCH_START, cohort.APRIL_START)
     labels = march.pop("y").to_numpy()
     m = encode(march)
@@ -122,7 +141,7 @@ def run(directory):
     tree_cuts = cuts
     selected_net = None
     trials = [best]
-    for epoch, net in train_epochs(x, y, 10):
+    for epoch, net in train_epochs(x, y, 10, shard_dir):
         if epoch not in (2, 5, 10):
             continue
         pred = net.predict_proba(m)[:, 0]
@@ -153,6 +172,8 @@ def run(directory):
         fresh_test=None,
         sklearn_version=sklearn.__version__,
         training_rows=len(y),
+        unique_available_neural_training_rows=unique_training_rows,
+        rotating_negatives=(shard_dir is not None),
         training_positives=int(y[:, 0].sum()),
         march_trials=trials,
         selected=best,
@@ -167,7 +188,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--work-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--rotating-negatives", action="store_true")
     args = parser.parse_args()
-    report = run(args.work_dir)
+    if args.rotating_negatives:
+        with TemporaryDirectory(dir=args.work_dir) as scratch:
+            report = run(args.work_dir, Path(scratch))
+    else:
+        report = run(args.work_dir)
     args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print("April", report["april_selected"], flush=True)

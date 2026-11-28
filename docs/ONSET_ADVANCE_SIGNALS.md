@@ -131,3 +131,15 @@ The earlier price-range and support-price runs used Polars category codes
 whose values or widths could depend on the archive build. The fixed-identity
 build above supersedes those runs. The incumbent May benchmark uses its
 original preprocessing and remains the latest independent test.
+
+On the same national April replay the price-range candidate scored 46.11%
+and historical same-commodity market leads scored 46.08%. A separate
+neural run rotated the quarter-sample of negatives each epoch while keeping
+the positives in every epoch. It exposed the network to all 1,334,463 eligible
+training examples and reached 46.84% April F1. March favored the original
+fixed sample over rotation, and it retained its lead in April.
+
+```bash
+python -m scripts.benchmark_onset_multitask --work-dir data/external/issued_signals \
+  --rotating-negatives --output data/processed/onset_rotating_negatives_metrics.json
+```
