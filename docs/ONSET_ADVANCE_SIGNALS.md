@@ -101,3 +101,33 @@ with multiple varieties or grades have different quantities across those rows.
 Assigning the totals to each variety would change the reference labels.
 [June mirror schema](https://subsets.io/datasets/agmarknet-prices) and
 [public Agmarknet extract](https://github.com/herrrickshaw/india-mandi-arrivals).
+
+## Neural rank forecasts
+
+The multi-task network trains on previously resolved next-day outcomes. It
+predicts three arrival-rank thresholds, three price-rank thresholds, two
+alternate joint thresholds and the original onset label. The auxiliary outcomes
+serve as training targets. Every forecast uses only today's or earlier inputs.
+Training-only numeric scales and frequent category names are frozen in March
+and April. March selects the checkpoint, blend weight and alert thresholds.
+The complete April population supplies the development replay.
+
+```bash
+export POLARS_MAX_THREADS=2 OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=3
+python -m scripts.benchmark_onset_multitask --work-dir data/external/issued_signals \
+  --output data/processed/onset_multitask_metrics.json
+```
+
+On the fixed-identity build, March selected a 50/50 blend of the direct tree
+classifier and the neural onset head after ten epochs. On all 359,896 April
+records (10,378 onsets) it scored 47.02% positive-class F1, versus 45.81%
+for the matched tree. Precision reached 40.16% and recall reached 56.72%.
+The historical retail-season candidate scored 45.92%. The matched support
+price candidate scored 45.78%. Its 17 crop references covered 1,964 of the
+10,378 April onsets. Correcting every covered decision and freezing the other
+control decisions would yield 55.30% national F1 on this development window.
+
+The earlier price-range and support-price runs used Polars category codes
+whose values or widths could depend on the archive build. The fixed-identity
+build above supersedes those runs. The incumbent May benchmark uses its
+original preprocessing and remains the latest independent test.

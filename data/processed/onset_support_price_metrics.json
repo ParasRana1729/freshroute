@@ -1,0 +1,66 @@
+{
+  "task": "Track 1A next-day glut onset",
+  "selection": "March 2-31, 2026",
+  "replay": "April 2-30, 2026 (previously used development window)",
+  "fresh_test": null,
+  "training_rows": 362189,
+  "training_positives": 37498,
+  "features_added": [
+    "announced_rs_per_kg",
+    "modal_vs_announced",
+    "daily_low_vs_announced",
+    "cutoff_vs_announced",
+    "projected_vs_announced"
+  ],
+  "models": {
+    "control": {
+      "march": {
+        "trees": 80,
+        "thresholds": {
+          "0": 0.5474450858070581,
+          "1": 0.5049135564016147,
+          "2": 0.5032565863621785
+        },
+        "f1": 0.4572687943841319
+      },
+      "april": {
+        "rows": 359896,
+        "positives": 10378,
+        "predicted_positives": 17129,
+        "true_positives": 6301,
+        "precision": 0.36785568334403645,
+        "recall": 0.6071497398342648,
+        "f1": 0.45813792852728397
+      }
+    },
+    "support_prices": {
+      "march": {
+        "trees": 80,
+        "thresholds": {
+          "0": 0.5269765810319442,
+          "1": 0.4876470556353252,
+          "2": 0.5180744798307917
+        },
+        "f1": 0.4576681180454765
+      },
+      "april": {
+        "rows": 359896,
+        "positives": 10378,
+        "predicted_positives": 17169,
+        "true_positives": 6305,
+        "precision": 0.3672316384180791,
+        "recall": 0.607535170553093,
+        "f1": 0.4577630957999056
+      }
+    }
+  },
+  "selected_in_march": "support_prices",
+  "april_coverage_diagnostic": {
+    "covered_rows": 51153,
+    "covered_positives": 1964,
+    "outside_tp": 5369,
+    "outside_fp": 8811,
+    "outside_fn": 3045,
+    "perfect_covered_f1": 0.5529748887715858
+  }
+}
