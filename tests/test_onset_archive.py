@@ -5,6 +5,45 @@ import pytest
 pl = pytest.importorskip("polars")
 
 
+def test_notice_snapshot_respects_local_midnight_and_keeps_uncovered_rows(tmp_path):
+    from scripts.advance_market_signal import attach
+
+    keys = pl.DataFrame(
+        dict(
+            entity=[1, 2, 3],
+            d=[10, 10, 10],
+            state_name=["STATE"] * 3,
+            market_center_name=["A", "A", "B"],
+            commodity_name=["CROP"] * 3,
+        )
+    )
+    keys.write_parquet(tmp_path / "market_keys.parquet")
+    source = keys.select("entity", "d").with_columns(
+        pl.lit(date(2026, 3, 1)).alias("date")
+    )
+    notices = pl.DataFrame(
+        dict(
+            state_name=["State"] * 3,
+            market_center_name=["A"] * 3,
+            commodity_name=["Crop"] * 3,
+            target_date=["2026-03-02"] * 3,
+            issued_at=[
+                "2026-03-01T07:00:00Z",
+                "2026-03-01T18:29:59Z",
+                "2026-03-01T18:30:00Z",
+            ],
+            expected_arrival_tonnes=[10, 12, 95],
+            buyer_demand_tonnes=[None, None, 90],
+        )
+    )
+    path = tmp_path / "notices.csv"
+    notices.write_csv(path)
+    result = attach(source.lazy(), tmp_path, path).collect()
+    assert result["entity"].to_list() == [1, 2, 3]
+    assert result["expected_arrival_tonnes"].to_list() == [12, 12, None]
+    assert result["buyer_demand_tonnes"].null_count() == 3
+
+
 def test_archive_features_use_only_reports_through_feature_day():
     from polars.testing import assert_frame_equal
     from scripts import prepare_onset_archive as prep
