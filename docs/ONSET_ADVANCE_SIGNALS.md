@@ -118,26 +118,20 @@ python -m scripts.benchmark_onset_multitask --work-dir data/external/issued_sign
   --output data/processed/onset_multitask_metrics.json
 ```
 
-On the fixed-identity build, March selected a 50/50 blend of the direct tree
-classifier and the neural onset head after ten epochs. On all 359,896 April
-records (10,378 onsets) it scored 47.02% positive-class F1, versus 45.81%
-for the matched tree. Precision reached 40.16% and recall reached 56.72%.
-The historical retail-season candidate scored 45.92%. The matched support
-price candidate scored 45.78%. Its 17 crop references covered 1,964 of the
-10,378 April onsets. Correcting every covered decision and freezing the other
-control decisions would yield 55.30% national F1 on this development window.
+March selected a 50/50 blend of the direct tree and the neural onset head
+after ten epochs. It scored **46.95%** positive-class F1 on the full April
+replay, compared with **45.98%** for the matched tree. It detected 6,080 of
+10,378 onsets in 359,896 rows, with 39.17% precision and 58.59% recall.
+Two independent archive builds produced byte-identical metrics, SHA-256
+`5a538537b6bc9d2e6f3f8bd56a1d0386f11f938ac91b086872fbf106656afea1`.
+Preliminary runs before stabilizing weighted ties ranged from 46.77% to
+47.02%. The [rebuild-verified metrics](../data/processed/onset_multitask_metrics.json)
+supersede those figures.
 
-The earlier price-range and support-price runs used Polars category codes
-whose values or widths could depend on the archive build. The fixed-identity
-build above supersedes those runs. The incumbent May benchmark uses its
-original preprocessing and remains the latest independent test.
-
-On the same national April replay the price-range candidate scored 46.11%
-and historical same-commodity market leads scored 46.08%. A separate
-neural run rotated the quarter-sample of negatives each epoch while keeping
-the positives in every epoch. It exposed the network to all 1,334,463 eligible
-training examples and reached 46.84% April F1. March favored the original
-fixed sample over rotation, and it retained its lead in April.
+A second run used a different quarter of eligible negatives in each epoch
+and exposed the network to all 1,334,463 eligible training rows. It
+scored 46.9454% on April. The fixed-sample blend scored 46.9462% and had
+higher March validation F1. April outcomes played no part in that selection.
 
 ```bash
 python -m scripts.benchmark_onset_multitask --work-dir data/external/issued_signals \

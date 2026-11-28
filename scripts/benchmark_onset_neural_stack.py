@@ -16,13 +16,34 @@ WINDOWS = [
 ]
 
 
-def incumbent(base, projected, start, end):
-    baseline = cohort.score_window(base, start, end, projected=False, threads=3)
-    print("Baseline heads complete", end, flush=True)
-    rich = cohort.score_window(projected, start, end, projected=True, threads=3)
-    print("Projected heads complete", end, flush=True)
-    cat = cohort.fit_catboost(projected, start, 3)
-    scored = cohort.forecast_catboost(projected, cat, start, end)
+def incumbent(base, projected, start, end, directory, resume):
+    # Each part is independent and may be expensive on a CPU-only host.
+    # A fresh run regenerates all parts. Resume only within the same work dir.
+    def cached(name, build):
+        path = directory / f"{name}_{end}.parquet"
+        if resume and path.exists():
+            return pl.read_parquet(path)
+        frame = build()
+        tmp = path.with_suffix(".partial")
+        frame.write_parquet(tmp, compression="zstd")
+        tmp.replace(path)
+        print(name, "heads complete", end, flush=True)
+        return frame
+
+    baseline = cached(
+        "base",
+        lambda: cohort.score_window(base, start, end, projected=False, threads=3),
+    )
+    rich = cached(
+        "projected",
+        lambda: cohort.score_window(projected, start, end, projected=True, threads=3),
+    )
+
+    def cat_forecasts():
+        cat = cohort.fit_catboost(projected, start, 3)
+        return cohort.forecast_catboost(projected, cat, start, end)
+
+    scored = cached("cat", cat_forecasts)
     return cohort.design("cohort+ensemble+catboost", baseline, rich, scored)
 
 
@@ -113,6 +134,11 @@ def main():
         action="store_true",
         help="Reuse both sets of scores from this same work directory",
     )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Reuse completed component files from this exact source build",
+    )
     args = parser.parse_args()
     if not args.heads_only and args.output is None:
         parser.error("--output is required for a comparison")
@@ -120,7 +146,7 @@ def main():
     for start, end in WINDOWS:
         if args.reuse_heads:
             continue
-        forecast = incumbent(base, projected, start, end)
+        forecast = incumbent(base, projected, start, end, args.work_dir, args.resume)
         forecast.write_parquet(
             args.work_dir / f"incumbent_{end}.parquet", compression="zstd"
         )
